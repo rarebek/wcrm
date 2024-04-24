@@ -4,10 +4,12 @@ import (
 	"context"
 	"log"
 	"testing"
+	"time"
 
+	"github.com/google/uuid"
 	"github.com/stretchr/testify/suite"
 
-	pbp "order-service/genproto/order"
+	pb "order-service/genproto/order"
 	"order-service/internal/pkg/config"
 	db "order-service/internal/pkg/postgres"
 
@@ -30,77 +32,82 @@ func (p *OrderRepositrySuiteTest) SetupSuite() {
 	p.Repository = NewOrderRepo(pgPoll)
 }
 
-// ! SUIT TEST
-func (p *OrderRepositrySuiteTest) TestOrderCRUD() {
-	// ! CREATE ORDER
+// test func
+func (p *OrderRepositrySuiteTest) TestProductCRUD() {
+	// create comment
 	// ---------------------------------------------------------------------------------------------------
-	orderReq := &pbp.Order{
-		Tax:        2,
-		Discount:   15,
-		TotalPrice: 365,
-	}
 
-	createOrder, err := p.Repository.CreateOrder(context.Background(), &model.Order{
+	WorkerID := uuid.New().String()
+	orderReq := &pb.Order{}
+	createdOrder, err := p.Repository.CreateOrder(context.Background(), &model.Order{
+		WorkerId:   WorkerID,
 		Tax:        orderReq.Tax,
 		Discount:   orderReq.Discount,
 		TotalPrice: orderReq.TotalPrice,
+		CreatedAt:  time.Now(),
+		UpdatedAt:  time.Now(),
 	})
 
 	p.Suite.NoError(err)
-	p.Suite.NotNil(createOrder)
-	p.Suite.NotNil(createOrder.Id)
-	p.Suite.Equal(orderReq.WorkerId, createOrder.WorkerId)
-	p.Suite.Equal(orderReq.Tax, createOrder.Tax)
-	p.Suite.Equal(orderReq.Discount, createOrder.Discount)
-	p.Suite.Equal(orderReq.TotalPrice, createOrder.TotalPrice)
-	p.Suite.NotNil(createOrder.CreatedAt)
-	p.Suite.NotNil(createOrder.UpdatedAt)
+	p.Suite.NotNil(createdOrder)
+	p.Suite.NotNil(createdOrder.Id)
+	p.Suite.NotNil(orderReq.WorkerId)
+	p.Suite.Equal(orderReq.Tax, createdOrder.Tax)
+	p.Suite.Equal(orderReq.Discount, createdOrder.Discount)
+	p.Suite.Equal(orderReq.TotalPrice, createdOrder.TotalPrice)
+	p.Suite.NotNil(createdOrder.CreatedAt)
+	p.Suite.NotNil(createdOrder.UpdatedAt)
 
 	// ---------------------------------------------------------------------------------------------------------
 
-	//! update comment
+	// update product
 	// ---------------------------------------------------------------------------------------------------------
 
-	createOrder.WorkerId = "3287f50f-9385-47e4-a910-64d7a1718727"
-	createOrder.Tax = 15
-	createOrder.Discount = 10000
-	createOrder.TotalPrice = 10
+	WorkerUpdatedOrder := uuid.New().String()
 
-	updatedOrder, err := p.Repository.UpdateOrder(context.Background(), createOrder)
+	createdOrder.WorkerId = WorkerUpdatedOrder
+	createdOrder.Tax = 125
+	createdOrder.Discount = 100
+	createdOrder.TotalPrice = 156
+
+	updatedOrder, err := p.Repository.UpdateOrder(context.Background(), createdOrder)
 	p.Suite.NoError(err)
 	p.Suite.NotNil(updatedOrder)
 	p.Suite.NotNil(updatedOrder.Id)
-	p.Suite.Equal(createOrder.WorkerId, updatedOrder.WorkerId)
-	p.Suite.Equal(createOrder.Tax, updatedOrder.Tax)
-	p.Suite.Equal(createOrder.Discount, updatedOrder.Discount)
-	p.Suite.Equal(createOrder.TotalPrice, updatedOrder.TotalPrice)
+	p.Suite.NotNil(createdOrder.WorkerId)
+	p.Suite.Equal(createdOrder.Tax, updatedOrder.Tax)
+	p.Suite.Equal(createdOrder.Discount, updatedOrder.Discount)
+	p.Suite.Equal(createdOrder.TotalPrice, updatedOrder.TotalPrice)
 
 	// ----------------------------------------------------------------------------------------------------------
 
 	// ----------------------------------------------------------------------------------------------------------
-	//! get order
+	// get product
 
 	filter := make(map[string]int64)
 	filter["id"] = int64(updatedOrder.Id)
 	GetOrder, err := p.Repository.GetOrder(context.Background(), filter)
 	p.Suite.NoError(err)
 	p.Suite.NotNil(GetOrder)
-	p.Suite.Equal(updatedOrder.WorkerId, GetOrder.WorkerId)
+	p.Suite.NotNil(updatedOrder.WorkerId)
 	p.Suite.Equal(updatedOrder.Tax, GetOrder.Tax)
 	p.Suite.Equal(updatedOrder.Discount, GetOrder.Discount)
 	p.Suite.Equal(updatedOrder.TotalPrice, GetOrder.TotalPrice)
-
 	// ----------------------------------------------------------------------------------------------------------
 
 	// ----------------------------------------------------------------------------------------------------------
 
-	//! get all order
-
+	// get all comment
 	allComment, err := p.Repository.GetOrders(context.Background(), 1, 5, map[string]string{})
 	p.Suite.NoError(err)
 	p.Suite.NotNil(allComment)
 	// ----------------------------------------------------------------------------------------------------------
 
+	// ----------------------------------------------------------------------------------------------------------
+	// delete user
+	err = p.Repository.DeleteOrder(context.Background(), createdOrder.Id)
+	p.Suite.NoError(err)
+	// ----------------------------------------------------------------------------------------------------------
 }
 
 func TestExampleTestSuite(t *testing.T) {

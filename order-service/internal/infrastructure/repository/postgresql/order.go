@@ -50,7 +50,6 @@ func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entit
 	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Create")
 	// defer span.End()
 	data := map[string]any{
-		"id":          order.Id,
 		"worker_id":   order.WorkerId,
 		"product_id":  order.ProductId,
 		"tax":         order.Tax,
@@ -64,26 +63,26 @@ func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entit
 		return &entity.Order{}, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	query += "RETURNING id, worker_id, product_id, tax, discount, total_price, created_at, updated_at"
+	query += " RETURNING id, worker_id, product_id, tax, discount, total_price, created_at, updated_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
 
-	var created entity.Order
+	var createdOrder entity.Order
 
 	err = row.Scan(
-		&created.Id,
-		&created.WorkerId,
-		&created.ProductId,
-		&created.Tax,
-		&created.Discount,
-		&created.TotalPrice,
-		&created.CreatedAt,
-		&created.UpdatedAt)
+		&createdOrder.Id,
+		&createdOrder.WorkerId,
+		&createdOrder.ProductId,
+		&createdOrder.Tax,
+		&createdOrder.Discount,
+		&createdOrder.TotalPrice,
+		&createdOrder.CreatedAt,
+		&createdOrder.UpdatedAt)
 
 	if err != nil {
 		return &entity.Order{}, err
 	}
-	return &created, nil
+	return &createdOrder, nil
 }
 
 func (p orderRepo) GetOrder(ctx context.Context, params map[string]int64) (*entity.Order, error) {

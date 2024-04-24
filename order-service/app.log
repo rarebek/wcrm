@@ -1,0 +1,86 @@
+2024-04-24T12:26:50.297+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:27:12.421+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:27:12+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:36690", "grpc.code": "OK", "grpc.time_ms": 1.205}
+2024-04-24T12:28:06.715+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-24T12:30:20.940+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:30:35.904+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:30:35+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:43202", "grpc.code": "OK", "grpc.time_ms": 1.05}
+2024-04-24T12:33:09.392+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:33:18.148+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:33:18+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:37280", "grpc.code": "OK", "grpc.time_ms": 1.583}
+2024-04-24T12:34:41.590+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:34:50.244+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:34:50+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:44680", "grpc.code": "OK", "grpc.time_ms": 1.448}
+2024-04-24T12:36:39.763+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:36:59.110+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:36:59+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:51812", "grpc.code": "OK", "grpc.time_ms": 1.584}
+2024-04-24T12:38:29.921+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:38:38.884+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:38:38+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:34994", "grpc.code": "OK", "grpc.time_ms": 1.554}
+2024-04-24T12:47:17.889+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:47:17.890+0500	ERROR	app/main.go:27	app run	{"error": "gRPC fatal to serve grpc server over :1111 gRPC fatal to listen on :1111 listen tcp :1111: bind: address already in use"}
+main.main.func1
+	/home/dell/projects/go/src/order-service/cmd/app/main.go:27
+2024-04-24T12:47:18.885+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-24T12:47:58.548+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:47:58.549+0500	ERROR	app/main.go:27	app run	{"error": "gRPC fatal to serve grpc server over :1111 gRPC fatal to listen on :1111 listen tcp :1111: bind: address already in use"}
+main.main.func1
+	/home/dell/projects/go/src/order-service/cmd/app/main.go:27
+2024-04-24T12:48:14.986+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:48:22.594+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:48:22+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:52706", "grpc.code": "OK", "grpc.time_ms": 1.082}
+2024-04-24T12:49:09.804+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-24T12:49:15.097+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:49:21.101+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:49:21+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:36114", "grpc.code": "OK", "grpc.time_ms": 1.239}
+2024-04-24T12:50:26.106+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:50:30.854+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:50:30+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:34924", "grpc.code": "OK", "grpc.time_ms": 1.296}
+2024-04-24T12:52:09.229+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:52:11.543+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:52:11+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:40198", "grpc.code": "OK", "grpc.time_ms": 1.438}
+2024-04-24T12:52:31.376+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:52:31+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:44756", "grpc.code": "OK", "grpc.time_ms": 2.089}
+2024-04-24T12:56:02.753+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:56:10.418+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:56:10+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:56854", "grpc.code": "OK", "grpc.time_ms": 1.333}
+2024-04-24T12:58:02.653+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-24T12:58:08.145+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T12:58:11.732+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T12:58:11+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:58560", "grpc.code": "OK", "grpc.time_ms": 1.296}
+2024-04-24T13:00:33.657+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T13:00:37.060+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:00:37+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:54404", "grpc.code": "OK", "grpc.time_ms": 3.573}
+2024-04-24T13:08:46.669+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T13:09:03.197+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:09:03+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:51784", "grpc.code": "OK", "grpc.time_ms": 3.252}
+2024-04-24T13:13:08.464+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-24T13:15:27.016+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T13:15:36.870+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:15:36+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:40234", "grpc.code": "OK", "grpc.time_ms": 4.133}
+2024-04-24T13:26:52.939+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T13:26:57.255+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:26:57+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:38918", "grpc.code": "OK", "grpc.time_ms": 4.909}
+2024-04-24T13:27:24.225+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:27:24+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "GetOrder", "peer.address": "127.0.0.1:59454", "grpc.code": "OK", "grpc.time_ms": 1.617}
+2024-04-24T13:27:40.295+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:27:40+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "GetOrders", "peer.address": "127.0.0.1:39878", "grpc.code": "OK", "grpc.time_ms": 1.142}
+2024-04-24T13:27:47.084+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:27:47+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "DeleteOrder", "peer.address": "127.0.0.1:39894", "grpc.code": "OK", "grpc.time_ms": 2.6}
+2024-04-24T13:27:56.475+0500	ERROR	services/content.go:68	get order error	{"error": "object not found"}
+order-service/internal/delivery/grpc/services.orderRPC.GetOrder
+	/home/dell/projects/go/src/order-service/internal/delivery/grpc/services/content.go:68
+order-service/genproto/order._OrderService_GetOrder_Handler.func1
+	/home/dell/projects/go/src/order-service/genproto/order/order.pb.go:489
+order-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/dell/projects/go/src/order-service/internal/delivery/grpc/server/middleware.go:34
+order-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/dell/projects/go/src/order-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/dell/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+order-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/dell/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/dell/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+order-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/dell/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/dell/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+order-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/dell/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+order-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/dell/projects/go/src/order-service/internal/delivery/grpc/server/middleware.go:16
+order-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/dell/projects/go/src/order-service/internal/delivery/grpc/server/middleware.go:23
+order-service/genproto/order._OrderService_GetOrder_Handler
+	/home/dell/projects/go/src/order-service/genproto/order/order.pb.go:491
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/dell/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/dell/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/dell/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-24T13:27:56.475+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:27:56+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "GetOrder", "peer.address": "127.0.0.1:46026", "grpc.code": "OK", "grpc.time_ms": 1.139}
+2024-04-24T13:28:04.065+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:28:04+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:37124", "grpc.code": "OK", "grpc.time_ms": 1.941}
+2024-04-24T13:28:26.788+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:28:26+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "UpdateOrder", "peer.address": "127.0.0.1:55930", "grpc.code": "OK", "grpc.time_ms": 2.838}
+2024-04-24T13:29:06.211+0500	INFO	app/main.go:36	Conten service stops !
