@@ -3742,3 +3742,85 @@ main.main.func1
 2024-04-23T21:36:04.618+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-23T21:36:04+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:49892", "grpc.code": "OK", "grpc.time_ms": 2.521}
 2024-04-23T21:36:04.928+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-23T21:36:04+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:49902", "grpc.code": "OK", "grpc.time_ms": 2.454}
 2024-04-23T21:36:27.662+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-24T13:11:56.794+0500	INFO	app/app.go:104	gRPC Server Listening	{"url": ":1111"}
+2024-04-24T13:12:10.113+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:12:09+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:45118", "grpc.code": "OK", "grpc.time_ms": 126.879}
+2024-04-24T13:12:11.594+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:12:11+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:53788", "grpc.code": "OK", "grpc.time_ms": 2.369}
+2024-04-24T13:12:13.764+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:12:13+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:53800", "grpc.code": "OK", "grpc.time_ms": 2.388}
+2024-04-24T13:12:14.612+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:12:14+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:53804", "grpc.code": "OK", "grpc.time_ms": 2.676}
+2024-04-24T13:12:15.281+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:12:15+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:53814", "grpc.code": "OK", "grpc.time_ms": 2.493}
+2024-04-24T13:12:17.920+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:12:17+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:53830", "grpc.code": "OK", "grpc.time_ms": 2.101}
+2024-04-24T13:13:59.438+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:13:59+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:35264", "grpc.code": "OK", "grpc.time_ms": 39.291}
+2024-04-24T13:14:25.308+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:14:25+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "DeleteProduct", "peer.address": "127.0.0.1:50878", "grpc.code": "OK", "grpc.time_ms": 1.474}
+2024-04-24T13:14:31.982+0500	ERROR	services/product.go:105	delete product error	{"error": "no sql rows"}
+wcrm/product-service/internal/delivery/grpc/services.productRPC.DeleteProduct
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/internal/delivery/grpc/services/product.go:105
+wcrm/product-service/genproto/product._ProductService_DeleteProduct_Handler.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/genproto/product/product_grpc.pb.go:186
+wcrm/product-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/internal/delivery/grpc/server/middleware.go:34
+wcrm/product-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+wcrm/product-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+wcrm/product-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+wcrm/product-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+wcrm/product-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/internal/delivery/grpc/server/middleware.go:16
+wcrm/product-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/internal/delivery/grpc/server/middleware.go:23
+wcrm/product-service/genproto/product._ProductService_DeleteProduct_Handler
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/genproto/product/product_grpc.pb.go:188
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/asadbek/Documents/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/asadbek/Documents/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/asadbek/Documents/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-24T13:14:31.982+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:14:31+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "DeleteProduct", "peer.address": "127.0.0.1:57028", "grpc.code": "OK", "grpc.time_ms": 0.65}
+2024-04-24T13:14:37.358+0500	ERROR	services/product.go:77	get product error	{"error": "object not found"}
+wcrm/product-service/internal/delivery/grpc/services.productRPC.GetProduct
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/internal/delivery/grpc/services/product.go:77
+wcrm/product-service/genproto/product._ProductService_GetProduct_Handler.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/genproto/product/product_grpc.pb.go:204
+wcrm/product-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/internal/delivery/grpc/server/middleware.go:34
+wcrm/product-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+wcrm/product-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+wcrm/product-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+wcrm/product-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/asadbek/Documents/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+wcrm/product-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/internal/delivery/grpc/server/middleware.go:16
+wcrm/product-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/internal/delivery/grpc/server/middleware.go:23
+wcrm/product-service/genproto/product._ProductService_GetProduct_Handler
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/product-service/genproto/product/product_grpc.pb.go:206
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/asadbek/Documents/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/asadbek/Documents/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/asadbek/Documents/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-24T13:14:37.358+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:14:37+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "GetProduct", "peer.address": "127.0.0.1:57030", "grpc.code": "OK", "grpc.time_ms": 0.754}
+2024-04-24T13:16:00.408+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:16:00+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:38666", "grpc.code": "OK", "grpc.time_ms": 1.346}
+2024-04-24T13:16:07.919+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:16:07+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:48784", "grpc.code": "OK", "grpc.time_ms": 2.286}
+2024-04-24T13:16:14.980+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:16:14+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:38974", "grpc.code": "OK", "grpc.time_ms": 2.225}
+2024-04-24T13:16:21.034+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-24T13:16:21+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "CreateProduct", "peer.address": "127.0.0.1:40060", "grpc.code": "OK", "grpc.time_ms": 2.669}
+2024-04-24T17:24:23.206+0500	INFO	app/main.go:36	Conten service stops !
