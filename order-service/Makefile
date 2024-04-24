@@ -63,7 +63,7 @@ proto-gen:
 	./scripts/gen-proto.sh
 
 run:
-	go run cmd/main.go
+	go run cmd/app/main.go
 
 migrate-up:
 	migrate -path migrations -database "postgresql://postgres:123@localhost:5432/orders?sslmode=disable" -verbose up
