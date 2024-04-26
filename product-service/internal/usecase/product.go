@@ -4,15 +4,15 @@ import (
 	"wcrm/product-service/internal/entity"
 	"wcrm/product-service/internal/infrastructure/repository"
 
-	// "wcrm/product-service/internal/pkg/otlp"
+	"wcrm/product-service/internal/pkg/otlp"
 	"context"
 	"time"
 )
 
-// const (
-// 	serviceNameUser = "contentService"
-// 	spanNameUser    = "contentUsecase"
-// )
+const (
+	serviceNameProduct = "productService"
+	spanNameProduct  = "productUsecase"
+)
 
 type Product interface {
 	CreateProduct(ctx context.Context, product *entity.Product) (*entity.Product, error)
@@ -40,8 +40,8 @@ func (u newsService) CreateProduct(ctx context.Context, product *entity.Product)
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	// ctx, span := otlp.Start(ctx, serviceNameUser, spanNameUser+"Create")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, serviceNameProduct, spanNameProduct+"Create")
+	defer span.End()
 
 	createdProduct, err := u.repo.CreateProduct(ctx, product)
 	if err != nil {
@@ -55,8 +55,8 @@ func (u newsService) GetProduct(ctx context.Context, params map[string]int64) (*
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	// ctx, span := otlp.Start(ctx, serviceNameUser, spanNameUser+"Get")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, serviceNameProduct, spanNameProduct+"Get")
+	defer span.End()
 
 	return u.repo.GetProduct(ctx, params)
 }
@@ -65,8 +65,8 @@ func (u newsService) ListProduct(ctx context.Context, limit, offset uint64, filt
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	// ctx, span := otlp.Start(ctx, serviceNameUser, spanNameUser+"List")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, serviceNameProduct, spanNameProduct+"List")
+	defer span.End()
 
 	return u.repo.ListProduct(ctx, limit, offset, filter)
 }
@@ -75,8 +75,8 @@ func (u newsService) UpdateProduct(ctx context.Context, product *entity.Product)
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	// ctx, span := otlp.Start(ctx, serviceNameUser, spanNameUser+"Update")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, serviceNameProduct, spanNameProduct+"Update")
+	defer span.End()
 
 	updatedProduct, err := u.repo.UpdateProduct(ctx, product)
 	if err != nil {
@@ -90,8 +90,8 @@ func (u newsService) DeleteProduct(ctx context.Context, id int64) (*entity.Check
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	// ctx, span := otlp.Start(ctx, serviceNameUser, spanNameUser+"Delete")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, serviceNameProduct, spanNameProduct+"Delete")
+	defer span.End()
 
 	deleteProduct, err := u.repo.DeleteProduct(ctx, id)
 

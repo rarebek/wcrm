@@ -46,7 +46,7 @@ func New() *Config {
 	config.APP = getEnv("APP", "app")
 	config.Environment = getEnv("ENVIRONMENT", "develop")
 	config.LogLevel = getEnv("LOG_LEVEL", "debug")
-	config.RPCPort = getEnv("RPC_PORT", ":1111")
+	config.RPCPort = getEnv("RPC_PORT", ":2222")
 	config.Context.Timeout = getEnv("CONTEXT_TIMEOUT", "30s")
 
 	// db configuration
@@ -63,7 +63,7 @@ func New() *Config {
 
 	// connect with order service
 	config.OrderService.Host = cast.ToString(getEnv("ORDER_SERVICE_HOST", "127.0.0.1"))
-	config.OrderService.Port = cast.ToInt(getEnv("ORDER_SERVICE_PORT", "2222"))
+	config.OrderService.Port = cast.ToInt(getEnv("ORDER_SERVICE_PORT", "1234"))
 
 	return &config
 }

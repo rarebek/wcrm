@@ -29,9 +29,6 @@ func UserRPC(logger *zap.Logger, productUsecase usecase.Product) pbp.ProductServ
 
 func (u productRPC) CreateProduct(ctx context.Context, product *pbp.Product) (*pbp.Product, error) {
 
-	// fmt.Println("birinchi bu >>>>>>>>>>>>>>>")
-	// pp.Println(product)
-
 	req_product := entity.Product{
 		Title:       product.Title,
 		Description: product.Description,
@@ -63,10 +60,7 @@ func (u productRPC) CreateProduct(ctx context.Context, product *pbp.Product) (*p
 		DeletedAt:   "",
 	}, nil
 }
-func (u productRPC) GetProduct(ctx context.Context, id *pbp.Id) (*pbp.Product, error) {
-
-	// fmt.Println("birinchi bu >>>>>>>>>>>>>>>")
-	// pp.Println(id)
+func (u productRPC) GetProduct(ctx context.Context, id *pbp.GetProductRequest) (*pbp.Product, error) {
 
 	reqMap := make(map[string]int64)
 	reqMap["id"] = id.Id
@@ -91,7 +85,7 @@ func (u productRPC) GetProduct(ctx context.Context, id *pbp.Id) (*pbp.Product, e
 		DeletedAt:   "",
 	}, nil
 }
-func (u productRPC) DeleteProduct(ctx context.Context, id *pbp.Id) (*pbp.CheckResponse, error) {
+func (u productRPC) DeleteProduct(ctx context.Context, id *pbp.DeleteProductRequest) (*pbp.CheckResponse, error) {
 
 	// fmt.Println("birinchi bu >>>>>>>>>>>>>>>")
 	// pp.Println(id)
@@ -103,7 +97,7 @@ func (u productRPC) DeleteProduct(ctx context.Context, id *pbp.Id) (*pbp.CheckRe
 
 	if err != nil {
 		u.logger.Error("delete product error", zap.Error(err))
-		return &pbp.CheckResponse{}, nil
+		return &pbp.CheckResponse{Check: false}, nil
 	}
 
 	return &pbp.CheckResponse{

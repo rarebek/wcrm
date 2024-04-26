@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"wcrm/product-service/internal/entity"
 
-	// "wcrm/product-service/internal/pkg/otlp"
+	"wcrm/product-service/internal/pkg/otlp"
 	"wcrm/product-service/internal/pkg/postgres"
 
 	"github.com/Masterminds/squirrel"
@@ -45,8 +45,8 @@ func (p *productRepo) productSelectQueryPrefix() squirrel.SelectBuilder {
 }
 
 func (p productRepo) CreateProduct(ctx context.Context, product *entity.Product) (*entity.Product, error) {
-	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Create")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"Create")
+	defer span.End()
 	data := map[string]any{
 		"title":       product.Title,
 		"description": product.Description,
@@ -85,9 +85,9 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.Product)
 }
 
 func (p productRepo) GetProduct(ctx context.Context, params map[string]int64) (*entity.Product, error) {
-	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Get")
-	// defer span.End()
-
+	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"Get")
+	defer span.End()
+										
 	var (
 		product entity.Product
 	)
@@ -122,8 +122,8 @@ func (p productRepo) GetProduct(ctx context.Context, params map[string]int64) (*
 }
 
 func (p productRepo) ListProduct(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Product, error) {
-	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"List")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"List")
+	defer span.End()
 
 	var (
 		products []*entity.Product
@@ -169,8 +169,8 @@ func (p productRepo) ListProduct(ctx context.Context, limit, offset uint64, filt
 }
 
 func (p productRepo) UpdateProduct(ctx context.Context, product *entity.Product) (*entity.Product, error) {
-	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Update")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"Update")
+	defer span.End()
 
 	clauses := map[string]any{
 		"title":       product.Title,
@@ -215,20 +215,20 @@ func (p productRepo) UpdateProduct(ctx context.Context, product *entity.Product)
 }
 
 func (p productRepo) DeleteProduct(ctx context.Context, id int64) (*entity.CheckResponse, error) {
-	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Delete")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"Delete")
+	defer span.End()
 
 	sqlStr, args, err := p.db.Sq.Builder.
 		Delete(p.tableName).
 		Where(p.db.Sq.Equal("id", id)).
 		ToSql()
 	if err != nil {
-		return &entity.CheckResponse{}, p.db.ErrSQLBuild(err, p.tableName+" delete")
+		return &entity.CheckResponse{Check: false}, p.db.ErrSQLBuild(err, p.tableName+" delete")
 	}
 
 	commandTag, err := p.db.Exec(ctx, sqlStr, args...)
 	if err != nil {
-		return &entity.CheckResponse{}, p.db.Error(err)
+		return &entity.CheckResponse{Check: false}, p.db.Error(err)
 	}
 
 	if commandTag.RowsAffected() == 0 {

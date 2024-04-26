@@ -1,0 +1,235 @@
+2024-04-18T13:23:41.595+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:50060"}
+2024-04-18T13:25:30.687+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T13:25:33.465+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T13:31:46.971+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T13:34:14.605+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T13:39:20.135+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T13:42:17.921+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T13:47:28.436+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T13:51:39.431+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T13:56:10.918+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T13:56:33.403+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T13:56:33.404+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T13:56:41.836+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:14:18.090+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:16:02.378+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:16:46.952+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:18:16.220+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:20:08.727+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-18T14:20:08.728+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T14:21:08.309+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:23:40.753+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:27:52.583+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:29:06.091+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:34:28.968+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:38:23.670+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:38:23.671+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T14:38:30.452+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:41:12.182+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T14:45:22.469+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T15:03:49.583+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T15:03:49.584+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T15:04:00.910+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T15:22:24.207+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T15:22:24.208+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T15:22:32.058+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T15:53:07.791+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T15:56:42.203+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-18T15:56:42.203+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T15:57:45.237+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T16:16:08.259+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T16:17:28.995+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T16:17:28.996+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T16:17:34.514+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T16:51:12.611+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T16:51:12.612+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T16:51:18.041+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T16:52:07.012+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T16:52:07.013+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T16:52:11.681+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T16:55:13.334+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T16:55:13.335+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T16:55:19.184+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T17:29:29.096+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T17:29:29.097+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T17:29:35.000+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T17:39:05.746+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T17:51:01.597+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T17:52:15.100+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T17:52:15.101+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-18T17:52:21.148+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-18T18:34:04.584+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-19T11:49:53.591+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-19T11:58:55.291+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-19T12:17:35.166+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-19T12:17:35.167+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-19T12:17:42.446+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-19T12:19:43.153+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-19T12:21:23.178+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-19T12:22:29.567+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-19T12:42:55.343+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-19T15:00:50.755+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-19T15:00:50.757+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-19T15:00:57.299+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-22T20:02:19.539+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-22T20:07:16.031+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-22T20:07:16.032+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api_gateway/cmd/app/main.go:32
+2024-04-22T20:09:12.320+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T12:35:25.972+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T14:40:16.151+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T14:43:22.048+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T14:43:22.049+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api-gateway/cmd/app/main.go:32
+2024-04-25T14:43:28.073+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T14:45:30.801+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T14:59:03.154+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T14:59:03.154+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api-gateway/cmd/app/main.go:32
+2024-04-25T14:59:09.259+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T15:00:09.029+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T15:03:00.694+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T15:14:53.586+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T15:58:43.437+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T16:09:56.145+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T16:09:56.146+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api-gateway/cmd/app/main.go:32
+2024-04-25T16:10:06.161+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T16:13:53.264+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T16:39:11.263+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T16:39:11.264+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api-gateway/cmd/app/main.go:32
+2024-04-25T16:39:56.089+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T16:54:29.867+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T17:49:17.066+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T17:49:17.067+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/evrone_service/api-gateway/cmd/app/main.go:32
+2024-04-25T17:49:24.581+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T21:05:44.510+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T21:09:31.874+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T21:22:00.681+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T21:22:00.682+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-25T21:22:06.457+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T21:38:51.367+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T21:38:51.368+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-25T21:38:58.124+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T22:04:02.995+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T22:04:02.996+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-25T22:04:08.384+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-25T22:07:17.713+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-25T22:07:17.715+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T09:33:09.007+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T09:36:40.954+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T09:36:40.955+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T09:36:47.650+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T09:45:13.690+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-26T09:45:13.691+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T09:45:25.096+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T09:46:28.286+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T09:46:28.287+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T09:46:38.672+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T09:51:37.110+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T09:51:37.110+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T09:51:43.533+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T09:55:18.355+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T09:55:18.356+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T09:55:22.941+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:12:51.120+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:12:51.121+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T10:12:56.993+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:19:39.095+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:19:39.096+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T10:19:44.672+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:25:29.847+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:25:29.847+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T10:25:34.441+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:42:45.474+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:42:45.475+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T10:42:51.704+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:45:22.358+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:45:22.359+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T10:45:27.443+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:59:26.629+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T10:59:26.631+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T10:59:32.942+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T11:07:47.557+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T11:18:58.911+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T11:18:58.913+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T11:19:04.425+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T11:20:01.843+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T12:30:26.476+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T12:30:26.477+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T12:30:31.668+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T12:46:03.702+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T12:46:03.703+0500	ERROR	app/main.go:32	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T12:46:10.106+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
