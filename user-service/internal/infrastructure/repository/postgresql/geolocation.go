@@ -37,7 +37,7 @@ func (p *geolocationsRepo) geolocationsSelectQueryPrefix() squirrel.SelectBuilde
 		).From(p.tableName)
 }
 
-func (p geolocationsRepo) CreateGeolocation(ctx context.Context, geolocation *entity.Geolocation) error {
+func (p geolocationsRepo) Create(ctx context.Context, geolocation *entity.Geolocation) error {
 	data := map[string]any{
 		"id":         geolocation.Id,
 		"latitude":  geolocation.Latitude,
@@ -57,7 +57,7 @@ func (p geolocationsRepo) CreateGeolocation(ctx context.Context, geolocation *en
 	return nil
 }
 
-func (p geolocationsRepo) GetGeolocation(ctx context.Context, params map[string]int64) (*entity.Geolocation, error) {
+func (p geolocationsRepo) Get(ctx context.Context, params map[string]int64) (*entity.Geolocation, error) {
 	var (
 		geolocation entity.Geolocation
 	)
@@ -85,7 +85,7 @@ func (p geolocationsRepo) GetGeolocation(ctx context.Context, params map[string]
 	return &geolocation, nil
 }
 
-func (p geolocationsRepo) UpdateGeolocation(ctx context.Context, geolocations *entity.Geolocation) error {
+func (p geolocationsRepo) Update(ctx context.Context, geolocations *entity.Geolocation) error {
 	clauses := map[string]any{
 		"latitude":  geolocations.Latitude,	
 		"longitude":  geolocations.Longitude,
@@ -112,7 +112,7 @@ func (p geolocationsRepo) UpdateGeolocation(ctx context.Context, geolocations *e
 	return nil
 }
 
-func (p geolocationsRepo) DeleteGeolocation(ctx context.Context, guid int64) error {
+func (p geolocationsRepo) Delete(ctx context.Context, guid int64) error {
 	sqlStr, args, err := p.db.Sq.Builder.
 		Delete(p.tableName).
 		Where(p.db.Sq.Equal("id", guid)).
@@ -133,7 +133,7 @@ func (p geolocationsRepo) DeleteGeolocation(ctx context.Context, guid int64) err
 	return nil
 }
 
-func (p geolocationsRepo) ListGeolocation(ctx context.Context, filter map[string]string) ([]*entity.Geolocation, error) {
+func (p geolocationsRepo) List(ctx context.Context, filter map[string]string) ([]*entity.Geolocation, error) {
 	var (
 		geolocations []*entity.Geolocation
 	)

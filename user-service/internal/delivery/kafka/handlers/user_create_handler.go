@@ -43,7 +43,7 @@ func (h *ownerCreateHandler) HandlerEvents() error {
 				return err
 			}
 
-			if _, err := h.ownerUsecase.CreateOwner(ctx, owner); err != nil {
+			if _, err := h.ownerUsecase.Create(ctx, owner); err != nil {
 				return err
 			}
 

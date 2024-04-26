@@ -876,3 +876,1006 @@ google.golang.org/grpc.(*Server).serveStreams.func2.1
 2024-04-23T21:40:55.870+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50025"}
 2024-04-23T21:40:58.643+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-23T21:40:58+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "DeleteOwner", "peer.address": "127.0.0.1:54678", "grpc.code": "OK", "grpc.time_ms": 1.486}
 2024-04-23T22:06:55.888+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:03:21.657+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:05:52.454+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:17:47.222+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:17:51.005+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:17:51.005+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:17:51+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:35608", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.477}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:18:48.835+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:18:48.835+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:18:48+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:41494", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.29}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:33.936+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:33.937+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:19:33+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:37892", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.297}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:34.452+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:34.452+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:19:34+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:43328", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.336}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:34.689+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:34.689+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:19:34+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:43330", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.423}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:34.946+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:34.946+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:19:34+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:43346", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.379}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:35.124+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:35.124+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:19:35+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:43354", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.268}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:35.296+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:35.296+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:19:35+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:43358", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.357}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:35.574+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:35.574+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:19:35+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:43374", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.345}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:36.785+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:36.785+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:19:36+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:43384", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.285}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:44.205+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:19:45.235+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:19:47.368+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:19:47.368+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:19:47+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:47264", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.422}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:20:04.893+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T13:20:04+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:57398", "grpc.code": "OK", "grpc.time_ms": 1.21}
+2024-04-25T13:20:16.359+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:20:16.359+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:20:16+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:40136", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.409}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:20:37.667+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T13:20:37+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:49224", "grpc.code": "OK", "grpc.time_ms": 0.616}
+2024-04-25T13:21:19.290+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:21:19.290+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:21:19+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:41108", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.351}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:23:00.207+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:23:01.158+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:23:02.446+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:23:02.446+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:23:02+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:51194", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.414}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:24:18.644+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:24:19.571+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:24:20.991+0500	ERROR	services/user.go:343	ERROR: column "owners" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:24:20.991+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:24:20+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:39854", "error": "ERROR: column \"owners\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 0.44}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:26:28.667+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:26:29.671+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:26:30.567+0500	ERROR	services/user.go:343	ERROR: relation "users" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CheckFieldOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:343
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1445
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:26:30.567+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-25T13:26:30+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:58852", "error": "ERROR: relation \"users\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.434}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CheckFieldOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1447
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-25T13:26:37.266+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:26:38.207+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:26:39.184+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T13:26:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:33210", "grpc.code": "OK", "grpc.time_ms": 0.982}
+2024-04-25T13:27:29.847+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:27:30.793+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:27:31.707+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T13:27:31+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:53364", "grpc.code": "OK", "grpc.time_ms": 1.25}
+2024-04-25T13:30:39.236+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:30:40.217+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:30:45.230+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T13:30:45+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:58886", "grpc.code": "OK", "grpc.time_ms": 1.074}
+2024-04-25T13:30:58.795+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T13:30:58+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldOwner", "peer.address": "127.0.0.1:50704", "grpc.code": "OK", "grpc.time_ms": 0.248}
+2024-04-25T13:38:18.642+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:38:19.763+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:38:33.603+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T13:38:33+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldWorker", "peer.address": "127.0.0.1:47456", "grpc.code": "OK", "grpc.time_ms": 1.134}
+2024-04-25T13:38:39.597+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T13:38:39+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CheckFieldWorker", "peer.address": "127.0.0.1:42468", "grpc.code": "OK", "grpc.time_ms": 0.273}
+2024-04-25T13:39:16.427+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T16:53:27.485+0500	INFO	app/app.go:119	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T16:54:27.861+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-25T16:54:27+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateWorker", "peer.address": "127.0.0.1:56076", "grpc.code": "OK", "grpc.time_ms": 1.804}
+2024-04-25T16:55:02.438+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T16:55:03.199+0500	INFO	app/app.go:119	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T17:01:16.520+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T18:45:55.977+0500	INFO	app/app.go:119	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T18:47:38.087+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-26T14:03:33.671+0500	INFO	app/app.go:119	gRPC Server Listening	{"url": ":50025"}
+2024-04-26T14:04:12.492+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T14:04:12+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:56938", "grpc.code": "OK", "grpc.time_ms": 1.387}
+2024-04-26T17:07:30.376+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:07:30+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:50698", "grpc.code": "OK", "grpc.time_ms": 4.941}
+2024-04-26T17:07:33.228+0500	ERROR	services/user.go:116	object not found
+user-service/internal/delivery/grpc/services.userRPC.GetOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:116
+user-service/genproto/user_service._UserService_GetOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1373
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_GetOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1375
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.56.0/server.go:1337
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.56.0/server.go:1714
+google.golang.org/grpc.(*Server).serveStreams.func1.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.56.0/server.go:959
+2024-04-26T17:07:33.228+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-26T17:07:33+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:50710", "error": "object not found", "grpc.code": "Unknown", "grpc.time_ms": 0.975}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_GetOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user.pb.go:1375
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.56.0/server.go:1337
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.56.0/server.go:1714
+google.golang.org/grpc.(*Server).serveStreams.func1.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.56.0/server.go:959
+2024-04-26T17:07:48.517+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:07:48+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:39854", "grpc.code": "OK", "grpc.time_ms": 0.607}
+2024-04-26T17:08:00.512+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:08:00+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:55860", "grpc.code": "OK", "grpc.time_ms": 0.348}
+2024-04-26T17:22:49.012+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:22:49+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:47996", "grpc.code": "OK", "grpc.time_ms": 0.363}
+2024-04-26T17:23:00.257+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:23:00+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:38416", "grpc.code": "OK", "grpc.time_ms": 0.277}
+2024-04-26T17:23:05.303+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:23:05+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:60960", "grpc.code": "OK", "grpc.time_ms": 0.341}
+2024-04-26T17:23:29.739+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-26T17:23:35.522+0500	INFO	app/app.go:119	gRPC Server Listening	{"url": ":50025"}
+2024-04-26T17:23:50.408+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:23:50+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:43484", "grpc.code": "OK", "grpc.time_ms": 1.018}
+2024-04-26T17:24:08.844+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-26T17:24:09.778+0500	INFO	app/app.go:119	gRPC Server Listening	{"url": ":50025"}
+2024-04-26T17:24:15.279+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:24:15+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:47040", "grpc.code": "OK", "grpc.time_ms": 1.126}
+2024-04-26T17:24:19.882+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:24:19+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:47048", "grpc.code": "OK", "grpc.time_ms": 0.26}
+2024-04-26T18:29:26.201+0500	INFO	app/main.go:42	Conten service stops !

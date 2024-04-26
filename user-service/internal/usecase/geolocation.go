@@ -8,11 +8,11 @@ import (
 )
 
 type Geolocation interface {
-	CreateGeolocation(ctx context.Context, geolocation *entity.Geolocation) (int64, error)
-	GetGeolocation(ctx context.Context, params map[string]int64) (*entity.Geolocation, error)
-	UpdateGeolocation(ctx context.Context, geolocation *entity.Geolocation) error
-	DeleteGeolocation(ctx context.Context, guid int64) error
-	ListGeolocation(ctx context.Context, filter map[string]string) ([]*entity.Geolocation, error)
+	Create(ctx context.Context, geolocation *entity.Geolocation) (int64, error)
+	Get(ctx context.Context, params map[string]int64) (*entity.Geolocation, error)
+	Update(ctx context.Context, geolocation *entity.Geolocation) error
+	Delete(ctx context.Context, guid int64) error
+	List(ctx context.Context, filter map[string]string) ([]*entity.Geolocation, error)
 }
 
 type geolocationService struct {
@@ -28,37 +28,37 @@ func NewGeolocationService(ctxTimeout time.Duration, repo repository.Geolocation
 	}
 }
 
-func (u geolocationService) CreateGeolocation(ctx context.Context, geolocation *entity.Geolocation) (int64, error) {
+func (u geolocationService) Create(ctx context.Context, geolocation *entity.Geolocation) (int64, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	return geolocation.Id, u.repo.CreateGeolocation(ctx, geolocation)
+	return geolocation.Id, u.repo.Create(ctx, geolocation)
 }
 
-func (u geolocationService) GetGeolocation(ctx context.Context, params map[string]int64) (*entity.Geolocation, error) {
+func (u geolocationService) Get(ctx context.Context, params map[string]int64) (*entity.Geolocation, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	return u.repo.GetGeolocation(ctx, params)
+	return u.repo.Get(ctx, params)
 }
 
-func (u geolocationService) UpdateGeolocation(ctx context.Context, geolocation *entity.Geolocation) error {
+func (u geolocationService) Update(ctx context.Context, geolocation *entity.Geolocation) error {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	return u.repo.UpdateGeolocation(ctx, geolocation)
+	return u.repo.Update(ctx, geolocation)
 }
 
-func (u geolocationService) DeleteGeolocation(ctx context.Context, guid int64) error {
+func (u geolocationService) Delete(ctx context.Context, guid int64) error {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	return u.repo.DeleteGeolocation(ctx, guid)
+	return u.repo.Delete(ctx, guid)
 }
 
-func (u geolocationService) ListGeolocation(ctx context.Context, filter map[string]string) ([]*entity.Geolocation, error) {
+func (u geolocationService) List(ctx context.Context, filter map[string]string) ([]*entity.Geolocation, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	return u.repo.ListGeolocation(ctx, filter)
+	return u.repo.List(ctx, filter)
 }

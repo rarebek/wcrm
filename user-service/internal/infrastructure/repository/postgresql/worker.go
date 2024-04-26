@@ -41,7 +41,7 @@ func (p *workersRepo) workersSelectQueryPrefix() squirrel.SelectBuilder {
 		).From(p.tableName)
 }
 
-func (p workersRepo) CreateWorker(ctx context.Context, worker *entity.Worker) error {
+func (p workersRepo) Create(ctx context.Context, worker *entity.Worker) error {
 	data := map[string]any{
 		"id":         worker.Id,
 		"full_name":  worker.FullName,
@@ -64,7 +64,7 @@ func (p workersRepo) CreateWorker(ctx context.Context, worker *entity.Worker) er
 	return nil
 }
 
-func (p workersRepo) GetWorker(ctx context.Context, params map[string]string) (*entity.Worker, error) {
+func (p workersRepo) Get(ctx context.Context, params map[string]string) (*entity.Worker, error) {
 	var (
 		worker entity.Worker
 	)
@@ -95,7 +95,7 @@ func (p workersRepo) GetWorker(ctx context.Context, params map[string]string) (*
 	return &worker, nil
 }
 
-func (p workersRepo) UpdateWorker(ctx context.Context, workers *entity.Worker) error {
+func (p workersRepo) Update(ctx context.Context, workers *entity.Worker) error {
 	clauses := map[string]any{
 		"full_name":  workers.FullName,
 		"login_key":  workers.LoginKey,
@@ -125,7 +125,7 @@ func (p workersRepo) UpdateWorker(ctx context.Context, workers *entity.Worker) e
 }
 
 // For soft delete 
-func (p workersRepo) DeleteWorker(ctx context.Context, guid string) error {
+func (p workersRepo) Delete(ctx context.Context, guid string) error {
 	data := map[string]any{
 		"deleted_at": time.Now(),
 	}
@@ -151,7 +151,7 @@ func (p workersRepo) DeleteWorker(ctx context.Context, guid string) error {
 	return nil
 }
 
-func (p workersRepo) ListWorker(ctx context.Context, limit uint64, offset uint64, filter map[string]string) ([]*entity.Worker, error) {
+func (p workersRepo) List(ctx context.Context, limit uint64, offset uint64, filter map[string]string) ([]*entity.Worker, error) {
 	var (
 		workers []*entity.Worker
 	)
@@ -191,4 +191,25 @@ func (p workersRepo) ListWorker(ctx context.Context, limit uint64, offset uint64
 	}
 
 	return workers, nil
+}
+
+
+func (p workersRepo) CheckField(ctx context.Context, field, value string) (bool, error) {
+	query := fmt.Sprintf(
+		`SELECT count(1) 
+		FROM workers WHERE %s = $1 
+		AND deleted_at IS NULL`, field)
+
+	var isExists int
+
+	row := p.db.QueryRow(ctx, query, value)
+	if err := row.Scan(&isExists); err != nil {
+		return true, err
+	}
+
+	if isExists == 0 {
+		return false, nil
+	}
+
+	return true, nil
 }

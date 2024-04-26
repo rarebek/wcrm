@@ -43,7 +43,7 @@ func (p *ownersRepo) ownersSelectQueryPrefix() squirrel.SelectBuilder {
 		).From(p.tableName)
 }
 
-func (p ownersRepo) CreateOwner(ctx context.Context, owner *entity.Owner) error {
+func (p ownersRepo) Create(ctx context.Context, owner *entity.Owner) error {
 	data := map[string]any{
 		"id":           owner.Id,
 		"full_name":    owner.FullName,
@@ -68,7 +68,7 @@ func (p ownersRepo) CreateOwner(ctx context.Context, owner *entity.Owner) error 
 	return nil
 }
 
-func (p ownersRepo) GetOwner(ctx context.Context, params map[string]string) (*entity.Owner, error) {
+func (p ownersRepo) Get(ctx context.Context, params map[string]string) (*entity.Owner, error) {
 	var (
 		owner entity.Owner
 	)
@@ -101,7 +101,7 @@ func (p ownersRepo) GetOwner(ctx context.Context, params map[string]string) (*en
 	return &owner, nil
 }
 
-func (p ownersRepo) UpdateOwner(ctx context.Context, owners *entity.Owner) error {
+func (p ownersRepo) Update(ctx context.Context, owners *entity.Owner) error {
 	clauses := map[string]any{
 		"full_name":    owners.FullName,
 		"company_name": owners.CompanyName,
@@ -132,8 +132,8 @@ func (p ownersRepo) UpdateOwner(ctx context.Context, owners *entity.Owner) error
 	return nil
 }
 
-// For soft delete 
-func (p ownersRepo) DeleteOwner(ctx context.Context, guid string) error {
+// For soft delete
+func (p ownersRepo) Delete(ctx context.Context, guid string) error {
 	data := map[string]any{
 		"deleted_at": time.Now(),
 	}
@@ -159,7 +159,7 @@ func (p ownersRepo) DeleteOwner(ctx context.Context, guid string) error {
 	return nil
 }
 
-func (p ownersRepo) ListOwner(ctx context.Context, limit uint64, offset uint64, filter map[string]string) ([]*entity.Owner, error) {
+func (p ownersRepo) List(ctx context.Context, limit uint64, offset uint64, filter map[string]string) ([]*entity.Owner, error) {
 	var (
 		owners []*entity.Owner
 	)
@@ -199,4 +199,46 @@ func (p ownersRepo) ListOwner(ctx context.Context, limit uint64, offset uint64, 
 	}
 
 	return owners, nil
+}
+
+func (p ownersRepo) CheckField(ctx context.Context, field, value string) (bool, error) {
+	query := fmt.Sprintf(
+		`SELECT count(1) 
+		FROM owners WHERE %s = $1 
+		AND deleted_at IS NULL`, field)
+
+	var isExists int
+
+	row := p.db.QueryRow(ctx, query, value)
+	if err := row.Scan(&isExists); err != nil {
+		return true, err
+	}
+
+	if isExists == 0 {
+		return false, nil
+	}
+
+	return true, nil
+
+	// query, args, err := p.db.Sq.Builder.
+	// 	Select(p.tableName).
+	// 	Where(p.db.Sq.Equal(field, value)).
+	// 	ToSql()
+	// if err != nil {
+	// 	fmt.Println("\x1b[32m Error 1\x1b[0m")
+	// 	return true, p.db.ErrSQLBuild(err, p.tableName+" CheckFieldOwner")
+	// }
+
+	// commandTag, err := p.db.Exec(ctx, query, args...)
+	// if err != nil {
+	// 	fmt.Println("\x1b[32m Error 2\x1b[0m")
+	// 	return true, p.db.Error(err)
+	// }
+
+	// if commandTag.RowsAffected() == 0 {
+	// 	fmt.Println("\x1b[32m Error 3\x1b[0m")
+	// 	return false, nil
+	// }
+
+	// return true, nil
 }

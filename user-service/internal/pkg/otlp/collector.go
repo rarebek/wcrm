@@ -1,6 +1,5 @@
 package otlp
 
-
 import (
 	"user-service/internal/pkg/config"
 	"context"
