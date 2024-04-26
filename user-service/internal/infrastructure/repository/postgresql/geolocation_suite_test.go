@@ -43,15 +43,30 @@ func (s *GeolocationReposisitoryTestSuite) TestGeolocationCRUD() {
 	s.DB = db
 
 	userRepo := NewGeolocationsRepo(s.DB)
+	ownerRepo := NewOwnersRepo(s.DB)
 	ctx := context.Background()
 
-	// struct for create geolocation
-	OwnerId := uuid.New().String()
+	owner := entity.Owner{
+		Id:          uuid.New().String(),
+		FullName:    "testFullName",
+		CompanyName: "testCompanyName",
+		Email:       "testEmail",
+		Password:    "testPassword",
+		Avatar:      "testAvatar",
+		Tax:         12,
+		CreatedAt:   time.Now().UTC(),
+		UpdatedAt:   time.Now().UTC(),
+	}
+	// uuid generating
+
+	err = ownerRepo.Create(ctx, &owner)
+	s.Suite.NoError(err)
+
 
 	geolocation := entity.Geolocation{
 		Latitude:  40.7128,
 		Longitude: -74.0060,
-		OwnerId:   OwnerId,
+		OwnerId:   owner.Id,
 	}
 	// uuid generating
 
@@ -63,13 +78,13 @@ func (s *GeolocationReposisitoryTestSuite) TestGeolocationCRUD() {
 	}
 
 	// check create geolocation method
-	err = userRepo.CreateGeolocation(ctx, &geolocation)
+	err = userRepo.Create(ctx, &geolocation)
 	s.Suite.NoError(err)
 	Params := make(map[string]int64)
 	Params["id"] = geolocation.Id
 
 	// check get geolocation method
-	getGeolocation, err := userRepo.GetGeolocation(ctx, Params)
+	getGeolocation, err := userRepo.Get(ctx, Params)
 	s.Suite.NoError(err)
 	s.Suite.NotNil(getGeolocation)
 	s.Suite.Equal(getGeolocation.Id, geolocation.Id)
@@ -78,9 +93,9 @@ func (s *GeolocationReposisitoryTestSuite) TestGeolocationCRUD() {
 	s.Suite.Equal(getGeolocation.OwnerId, geolocation.OwnerId)
 
 	// check update geolocation method
-	err = userRepo.UpdateGeolocation(ctx, &updGeolocation)
+	err = userRepo.Update(ctx, &updGeolocation)
 	s.Suite.NoError(err)
-	updGetGeolocation, err := userRepo.GetGeolocation(ctx, Params)
+	updGetGeolocation, err := userRepo.Get(ctx, Params)
 	s.Suite.NoError(err)
 	s.Suite.NotNil(updGetGeolocation)
 	s.Suite.Equal(updGetGeolocation.Id, updGeolocation.Id)
@@ -89,12 +104,15 @@ func (s *GeolocationReposisitoryTestSuite) TestGeolocationCRUD() {
 	s.Suite.Equal(getGeolocation.OwnerId, geolocation.OwnerId)
 
 	// check getAllGeolocations method
-	getAllGeolocations, err := userRepo.ListGeolocation(ctx, nil)
+	getAllGeolocations, err := userRepo.List(ctx, nil)
 	s.Suite.NoError(err)
 	s.Suite.NotNil(getAllGeolocations)
 
 	// check delete geolocation method
-	err = userRepo.DeleteGeolocation(ctx, geolocation.Id)
+	err = userRepo.Delete(ctx, geolocation.Id)
+	s.Suite.NoError(err)
+
+	err = ownerRepo.Delete(ctx, owner.Id)
 	s.Suite.NoError(err)
 }
 

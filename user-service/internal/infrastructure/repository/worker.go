@@ -6,9 +6,10 @@ import (
 )
 
 type Workers interface {
-	CreateWorker(ctx context.Context, kyc *entity.Worker) error
-	GetWorker(ctx context.Context, params map[string]string) (*entity.Worker, error)
-	UpdateWorker(ctx context.Context, kyc *entity.Worker) error
-	DeleteWorker(ctx context.Context, guid string) error
-	ListWorker(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Worker, error)
+	Create(ctx context.Context, kyc *entity.Worker) error
+	Get(ctx context.Context, params map[string]string) (*entity.Worker, error)
+	Update(ctx context.Context, kyc *entity.Worker) error
+	Delete(ctx context.Context, guid string) error
+	List(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Worker, error)
+	CheckField(ctx context.Context, field, value string) (bool, error)
 }

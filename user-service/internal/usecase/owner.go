@@ -8,11 +8,12 @@ import (
 )
 
 type Owner interface {
-	CreateOwner(ctx context.Context, owner *entity.Owner) (string, error)
-	GetOwner(ctx context.Context, params map[string]string) (*entity.Owner, error)
-	UpdateOwner(ctx context.Context, owner *entity.Owner) error
-	DeleteOwner(ctx context.Context, guid string) error
-	ListOwner(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Owner, error)
+	Create(ctx context.Context, owner *entity.Owner) (string, error)
+	Get(ctx context.Context, params map[string]string) (*entity.Owner, error)
+	Update(ctx context.Context, owner *entity.Owner) error
+	Delete(ctx context.Context, guid string) error
+	List(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Owner, error)
+	CheckField(ctx context.Context, field, value string) (bool, error)
 }
 
 type ownerService struct {
@@ -28,41 +29,48 @@ func NewOwnerService(ctxTimeout time.Duration, repo repository.Owners) ownerServ
 	}
 }
 
-func (u ownerService) CreateOwner(ctx context.Context, owner *entity.Owner) (string, error) {
+func (u ownerService) Create(ctx context.Context, owner *entity.Owner) (string, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
 	u.beforeRequest(&owner.Id, &owner.CreatedAt, &owner.UpdatedAt)
 
-	return owner.Id, u.repo.CreateOwner(ctx, owner)
+	return owner.Id, u.repo.Create(ctx, owner)
 }
 
-func (u ownerService) GetOwner(ctx context.Context, params map[string]string) (*entity.Owner, error) {
+func (u ownerService) Get(ctx context.Context, params map[string]string) (*entity.Owner, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	return u.repo.GetOwner(ctx, params)
+	return u.repo.Get(ctx, params)
 }
 
-func (u ownerService) UpdateOwner(ctx context.Context, owner *entity.Owner) error {
+func (u ownerService) Update(ctx context.Context, owner *entity.Owner) error {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
 	u.beforeRequest(nil, nil, &owner.UpdatedAt)
 
-	return u.repo.UpdateOwner(ctx, owner)
+	return u.repo.Update(ctx, owner)
 }
 
-func (u ownerService) DeleteOwner(ctx context.Context, guid string) error {
+func (u ownerService) Delete(ctx context.Context, guid string) error {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	return u.repo.DeleteOwner(ctx, guid)
+	return u.repo.Delete(ctx, guid)
 }
 
-func (u ownerService) ListOwner(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Owner, error) {
+func (u ownerService) List(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Owner, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
-	return u.repo.ListOwner(ctx, limit, offset, filter)
+	return u.repo.List(ctx, limit, offset, filter)
+}
+
+func (u ownerService) CheckField(ctx context.Context, field, value string) (bool, error) {
+	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
+	defer cancel()
+
+	return u.repo.CheckField(ctx, field, value)
 }

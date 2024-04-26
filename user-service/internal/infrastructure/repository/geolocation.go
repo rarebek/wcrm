@@ -6,9 +6,9 @@ import (
 )
 
 type Geolocations interface {
-	CreateGeolocation(ctx context.Context, kyc *entity.Geolocation) error
-	GetGeolocation(ctx context.Context, params map[string]int64) (*entity.Geolocation, error)
-	UpdateGeolocation(ctx context.Context, kyc *entity.Geolocation) error
-	DeleteGeolocation(ctx context.Context, guid int64) error
-	ListGeolocation(ctx context.Context, filter map[string]string) ([]*entity.Geolocation, error)
+	Create(ctx context.Context, kyc *entity.Geolocation) error
+	Get(ctx context.Context, params map[string]int64) (*entity.Geolocation, error)
+	Update(ctx context.Context, kyc *entity.Geolocation) error
+	Delete(ctx context.Context, guid int64) error
+	List(ctx context.Context, filter map[string]string) ([]*entity.Geolocation, error)
 }

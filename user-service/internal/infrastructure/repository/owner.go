@@ -6,9 +6,10 @@ import (
 )
 
 type Owners interface {
-	CreateOwner(ctx context.Context, kyc *entity.Owner) error
-	GetOwner(ctx context.Context, params map[string]string) (*entity.Owner, error)
-	UpdateOwner(ctx context.Context, kyc *entity.Owner) error
-	DeleteOwner(ctx context.Context, guid string) error
-	ListOwner(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Owner, error)
+	Create(ctx context.Context, kyc *entity.Owner) error
+	Get(ctx context.Context, params map[string]string) (*entity.Owner, error)
+	Update(ctx context.Context, kyc *entity.Owner) error
+	Delete(ctx context.Context, guid string) error
+	List(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Owner, error)
+	CheckField(ctx context.Context, field, value string) (bool, error)
 }

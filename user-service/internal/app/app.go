@@ -14,6 +14,7 @@ import (
 	"user-service/internal/pkg/postgres"
 	"user-service/internal/usecase"
 	"user-service/internal/usecase/event"
+	"user-service/internal/pkg/otlp"
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"
@@ -41,8 +42,15 @@ func NewApp(cfg *config.Config) (*App, error) {
 		return nil, err
 	}
 
+	// kafaka init
 	kafkaProducer := kafka.NewProducer(cfg, logger)
 	kafkaConsumer := kafka.NewConsumer(logger)
+
+	// otlp collector initialization
+	shutdownOTLP, err := otlp.InitOTLPProvider(cfg)
+	if err != nil {
+		return nil, err
+	}
 
 	// init db
 	db, err := postgres.New(cfg)
@@ -74,6 +82,7 @@ func NewApp(cfg *config.Config) (*App, error) {
 		Logger:         logger,
 		DB:             db,
 		GrpcServer:     grpcServer,
+		ShutdownOTLP:   shutdownOTLP,
 		BrokerConsumer: consumerApp.BrokerConsumer,
 		BrokerProducer: kafkaProducer,
 	}, nil
@@ -106,7 +115,6 @@ func (a *App) Run() error {
 	workerUsecase := usecase.NewWorkerService(contextTimeout, workerRepo)
 	geolocationUsecase := usecase.NewGeolocationService(contextTimeout, geolocationRepo)
 
-	
 	userproto.RegisterUserServiceServer(a.GrpcServer, clean_grpc.NewRPC(a.Logger, ownerUsecase, workerUsecase, geolocationUsecase, a.BrokerProducer))
 	a.Logger.Info("gRPC Server Listening", zap.String("url", a.Config.RPCPort))
 	if err := grpc_server.Run(a.Config, a.GrpcServer); err != nil {

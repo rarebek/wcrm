@@ -42,11 +42,11 @@ func (s *OwnerReposisitoryTestSuite) TestOwnerCRUD() {
 
 	s.DB = db
 
-	userRepo := NewOwnersRepo(s.DB)
+	ownerRepo := NewOwnersRepo(s.DB)
 	ctx := context.Background()
 
-	// struct for create user
-	user := entity.Owner{
+	// struct for create owner
+	owner := entity.Owner{
 		FullName:    "testFullName",
 		CompanyName: "testCompanyName",
 		Email:       "testEmail",
@@ -57,10 +57,10 @@ func (s *OwnerReposisitoryTestSuite) TestOwnerCRUD() {
 		UpdatedAt:   time.Now().UTC(),
 	}
 	// uuid generating
-	user.Id = uuid.New().String()
+	owner.Id = uuid.New().String()
 
 	updOwner := entity.Owner{
-		Id:          user.Id,
+		Id:          owner.Id,
 		FullName:    "updateFullName",
 		CompanyName: "updateCompanyName",
 		Email:       "updateEmail",
@@ -69,88 +69,87 @@ func (s *OwnerReposisitoryTestSuite) TestOwnerCRUD() {
 		Tax:         12,
 	}
 
-	// check create user method
-	err = userRepo.CreateOwner(ctx, &user)
+	// check create owner method
+	err = ownerRepo.Create(ctx, &owner)
 	s.Suite.NoError(err)
 	Params := make(map[string]string)
-	Params["id"] = user.Id
+	Params["id"] = owner.Id
 
-	// check get user method
-	getOwner, err := userRepo.GetOwner(ctx, Params)
+	// check get owner method
+	getOwner, err := ownerRepo.Get(ctx, Params)
 	s.Suite.NoError(err)
 	s.Suite.NotNil(getOwner)
-	s.Suite.Equal(getOwner.Id, user.Id)
-	s.Suite.Equal(getOwner.FullName, user.FullName)
-	s.Suite.Equal(getOwner.CompanyName, user.CompanyName)
-	s.Suite.Equal(getOwner.Email, user.Email)
-	s.Suite.Equal(getOwner.Password, user.Password)
-	s.Suite.Equal(getOwner.Avatar, user.Avatar)
-	s.Suite.Equal(getOwner.Tax, user.Tax)
+	s.Suite.Equal(getOwner.Id, owner.Id)
+	s.Suite.Equal(getOwner.FullName, owner.FullName)
+	s.Suite.Equal(getOwner.CompanyName, owner.CompanyName)
+	s.Suite.Equal(getOwner.Email, owner.Email)
+	s.Suite.Equal(getOwner.Password, owner.Password)
+	s.Suite.Equal(getOwner.Avatar, owner.Avatar)
+	s.Suite.Equal(getOwner.Tax, owner.Tax)
 
-	// check update user method
-	err = userRepo.UpdateOwner(ctx, &updOwner)
+	// check update owner method
+	err = ownerRepo.Update(ctx, &updOwner)
 	s.Suite.NoError(err)
-	updGetOwner, err := userRepo.GetOwner(ctx, Params)
+	updGetOwner, err := ownerRepo.Get(ctx, Params)
 	s.Suite.NoError(err)
 	s.Suite.NotNil(updGetOwner)
 	s.Suite.Equal(updGetOwner.Id, updOwner.Id)
 	s.Suite.Equal(updGetOwner.FullName, updOwner.FullName)
-	s.Suite.Equal(getOwner.CompanyName, user.CompanyName)
-	s.Suite.Equal(getOwner.Email, user.Email)
-	s.Suite.Equal(getOwner.Password, user.Password)
-	s.Suite.Equal(getOwner.Avatar, user.Avatar)
-	s.Suite.Equal(getOwner.Tax, user.Tax)
+	s.Suite.Equal(getOwner.CompanyName, owner.CompanyName)
+	s.Suite.Equal(getOwner.Email, owner.Email)
+	s.Suite.Equal(getOwner.Password, owner.Password)
+	s.Suite.Equal(getOwner.Avatar, owner.Avatar)
+	s.Suite.Equal(getOwner.Tax, owner.Tax)
 
 	// check getAllOwners method
-	getAllOwners, err := userRepo.ListOwner(ctx, 5, 1, nil)
+	getAllOwners, err := ownerRepo.List(ctx, 5, 1, nil)
 	s.Suite.NoError(err)
 	s.Suite.NotNil(getAllOwners)
 
+	// check getAllOwners method
+	req := entity.CheckFieldRequest{
+		Field: "email",
+		Value: updOwner.Email,
+	}
 
-	// ---------------------------------
-	// req := entity.CheckFieldReq{
-	// 	Value: updOwner.PhoneNumber,
-	// 	Field: "phone_number",
-	// }
+	// check CheckField owner method
+	result, err := ownerRepo.CheckField(ctx, req.Field, req.Value)
+	s.Suite.NoError(err)
+	s.Suite.NotNil(updGetOwner)
+	s.Suite.Equal(result, true)
 
-	// check CheckField user method
-	// result, err := userRepo.CheckField(ctx, &req)
-	// s.Suite.NoError(err)
-	// s.Suite.NotNil(updGetOwner)
-	// s.Suite.Equal(result.Status, true)
-
-	// check IfExists user method
+	// check IfExists owner method
 	// if_exists_req := entity.IfExistsReq{
 	// 	PhoneNumber: updOwner.PhoneNumber,
 	// }
-	// status, err := userRepo.IfExists(ctx, &if_exists_req)
+	// status, err := ownerRepo.IfExists(ctx, &if_exists_req)
 	// s.Suite.NoError(err)
 	// s.Suite.NotNil(updGetOwner)
 	// s.Suite.Equal(status.IsExistsReq, true)
 
-	// check ChangePassword user method
+	// check ChangePassword owner method
 	// change_password_req := entity.ChangeOwnerPasswordReq{
 	// 	PhoneNumber: updOwner.PhoneNumber,
 	// 	Password:    "new_password",
 	// }
 
-	// resp_change_password, err := userRepo.ChangePassword(ctx, &change_password_req)
+	// resp_change_password, err := ownerRepo.ChangePassword(ctx, &change_password_req)
 	// s.Suite.NoError(err)
 	// s.Suite.NotNil(resp_change_password)
 	// s.Suite.Equal(resp_change_password.Status, true)
 
-	// check UpdateRefreshToken user method
+	// check UpdateRefreshToken owner method
 	// req_update_refresh_token := entity.UpdateRefreshTokenReq{
 	// 	OwnerId:       updOwner.Id,
 	// 	RefreshToken: "new_refresh_token",
 	// }
-	// resp_update_refresh_token, err := userRepo.UpdateRefreshToken(ctx, &req_update_refresh_token)
+	// resp_update_refresh_token, err := ownerRepo.UpdateRefreshToken(ctx, &req_update_refresh_token)
 	// s.Suite.NoError(err)
 	// s.Suite.NotNil(resp_update_refresh_token)
 	// s.Suite.Equal(resp_update_refresh_token.Status, true)
 
-	// check delete user method
-	err = userRepo.DeleteOwner(ctx, user.Id)
+	// check delete owner method
+	err = ownerRepo.Delete(ctx, owner.Id)
 	s.Suite.NoError(err)
 
 }

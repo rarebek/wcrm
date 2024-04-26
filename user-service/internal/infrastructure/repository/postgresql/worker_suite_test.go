@@ -42,108 +42,96 @@ func (s *WorkerReposisitoryTestSuite) TestWorkerCRUD() {
 
 	s.DB = db
 
-	userRepo := NewWorkersRepo(s.DB)
+	workerRepo := NewWorkersRepo(s.DB)
+	ownerRepo := NewOwnersRepo(s.DB)
 	ctx := context.Background()
 
-	// struct for create user
-	user := entity.Worker{
+	// struct for create owner
+	owner := entity.Owner{
+		Id:          uuid.New().String(),
+		FullName:    "testFullName",
+		CompanyName: "testCompanyName",
+		Email:       "testEmail",
+		Password:    "testPassword",
+		Avatar:      "testAvatar",
+		Tax:         12,
+		CreatedAt:   time.Now().UTC(),
+		UpdatedAt:   time.Now().UTC(),
+	}
+	// uuid generating
+
+	err = ownerRepo.Create(ctx, &owner)
+	s.Suite.NoError(err)
+
+	// struct for create worker
+	worker := entity.Worker{
 		FullName:  "testFullName",
 		LoginKey:  "testLoginKey",
 		Password:  "testPassword",
+		OwnerId:   owner.Id,
 		CreatedAt: time.Now().UTC(),
 		UpdatedAt: time.Now().UTC(),
 	}
 	// uuid generating
-	user.Id = uuid.New().String()
-	user.OwnerId = uuid.New().String()
+	worker.Id = uuid.New().String()
 
 	updWorker := entity.Worker{
-		Id:       user.Id,
+		Id:       worker.Id,
 		FullName: "updateFullName",
 		LoginKey: "updateLoginKey",
 		Password: "updatePassword",
-		OwnerId:  user.OwnerId,
+		OwnerId:  owner.Id,
 	}
 
-	// check create user method
-	err = userRepo.CreateWorker(ctx, &user)
+	// check create worker method
+	err = workerRepo.Create(ctx, &worker)
 	s.Suite.NoError(err)
 	Params := make(map[string]string)
-	Params["id"] = user.Id
+	Params["id"] = worker.Id
 
-	// check get user method
-	getWorker, err := userRepo.GetWorker(ctx, Params)
+	// check get worker method
+	getWorker, err := workerRepo.Get(ctx, Params)
 	s.Suite.NoError(err)
 	s.Suite.NotNil(getWorker)
-	s.Suite.Equal(getWorker.Id, user.Id)
-	s.Suite.Equal(getWorker.FullName, user.FullName)
-	s.Suite.Equal(getWorker.LoginKey, user.LoginKey)
-	s.Suite.Equal(getWorker.Password, user.Password)
-	s.Suite.Equal(getWorker.OwnerId, user.OwnerId)
+	s.Suite.Equal(getWorker.Id, worker.Id)
+	s.Suite.Equal(getWorker.FullName, worker.FullName)
+	s.Suite.Equal(getWorker.LoginKey, worker.LoginKey)
+	s.Suite.Equal(getWorker.Password, worker.Password)
+	s.Suite.Equal(getWorker.OwnerId, worker.OwnerId)
 
-	// check update user method
-	err = userRepo.UpdateWorker(ctx, &updWorker)
+	// check update worker method
+	err = workerRepo.Update(ctx, &updWorker)
 	s.Suite.NoError(err)
-	updGetWorker, err := userRepo.GetWorker(ctx, Params)
+	updGetWorker, err := workerRepo.Get(ctx, Params)
 	s.Suite.NoError(err)
 	s.Suite.NotNil(updGetWorker)
 	s.Suite.Equal(updGetWorker.Id, updWorker.Id)
 	s.Suite.Equal(updGetWorker.FullName, updWorker.FullName)
-	s.Suite.Equal(getWorker.LoginKey, user.LoginKey)
-	s.Suite.Equal(getWorker.Password, user.Password)
-	s.Suite.Equal(getWorker.OwnerId, user.OwnerId)
+	s.Suite.Equal(getWorker.LoginKey, worker.LoginKey)
+	s.Suite.Equal(getWorker.Password, worker.Password)
+	s.Suite.Equal(getWorker.OwnerId, worker.OwnerId)
 
 	// check getAllWorkers method
-	getAllWorkers, err := userRepo.ListWorker(ctx, 5, 1, nil)
+	getAllWorkers, err := workerRepo.List(ctx, 5, 1, nil)
 	s.Suite.NoError(err)
 	s.Suite.NotNil(getAllWorkers)
 
-	// ---------------------------------
-	// req := entity.CheckFieldReq{
-	// 	Value: updWorker.PhoneNumber,
-	// 	Field: "phone_number",
-	// }
+	req := entity.CheckFieldRequest{
+		Field: "login_key",
+		Value: updWorker.LoginKey,
+	}
 
-	// check CheckField user method
-	// result, err := userRepo.CheckField(ctx, &req)
-	// s.Suite.NoError(err)
-	// s.Suite.NotNil(updGetWorker)
-	// s.Suite.Equal(result.Status, true)
+	// check CheckField owner method
+	result, err := workerRepo.CheckField(ctx, req.Field, req.Value)
+	s.Suite.NoError(err)
+	s.Suite.Equal(result, true)
 
-	// check IfExists user method
-	// if_exists_req := entity.IfExistsReq{
-	// 	PhoneNumber: updWorker.PhoneNumber,
-	// }
-	// status, err := userRepo.IfExists(ctx, &if_exists_req)
-	// s.Suite.NoError(err)
-	// s.Suite.NotNil(updGetWorker)
-	// s.Suite.Equal(status.IsExistsReq, true)
-
-	// check ChangePassword user method
-	// change_password_req := entity.ChangeWorkerPasswordReq{
-	// 	PhoneNumber: updWorker.PhoneNumber,
-	// 	Password:    "new_password",
-	// }
-
-	// resp_change_password, err := userRepo.ChangePassword(ctx, &change_password_req)
-	// s.Suite.NoError(err)
-	// s.Suite.NotNil(resp_change_password)
-	// s.Suite.Equal(resp_change_password.Status, true)
-
-	// check UpdateRefreshToken user method
-	// req_update_refresh_token := entity.UpdateRefreshTokenReq{
-	// 	WorkerId:       updWorker.Id,
-	// 	RefreshToken: "new_refresh_token",
-	// }
-	// resp_update_refresh_token, err := userRepo.UpdateRefreshToken(ctx, &req_update_refresh_token)
-	// s.Suite.NoError(err)
-	// s.Suite.NotNil(resp_update_refresh_token)
-	// s.Suite.Equal(resp_update_refresh_token.Status, true)
-
-	// check delete user method
-	err = userRepo.DeleteWorker(ctx, user.Id)
+	// check delete worker method
+	err = workerRepo.Delete(ctx, worker.Id)
 	s.Suite.NoError(err)
 
+	err = ownerRepo.Delete(ctx, owner.Id)
+	s.Suite.NoError(err)
 }
 
 func TestWorkerTestSuite(t *testing.T) {
