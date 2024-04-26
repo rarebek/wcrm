@@ -4,14 +4,16 @@ import (
 	"context"
 	"fmt"
 
-	// "order-service/genproto/Order"
-	"order-service/internal/entity"
+	// "projects/order-service/genproto/order"
+	"projects/order-service/internal/entity"
 
-	// "order-service/internal/pkg/otlp"
-	"order-service/internal/pkg/postgres"
+	"projects/order-service/internal/pkg/logger"
+	"projects/order-service/internal/pkg/otlp"
+	"projects/order-service/internal/pkg/postgres"
 
 	"github.com/Masterminds/squirrel"
 	"github.com/k0kubun/pp"
+	"go.opentelemetry.io/otel/attribute"
 )
 
 const (
@@ -22,15 +24,15 @@ const (
 )
 
 type orderRepo struct {
-	tableName string
-	db        *postgres.PostgresDB
+	tableName   string
+	db          *postgres.PostgresDB
 	opTableName string
 }
 
 func NewOrderRepo(db *postgres.PostgresDB) *orderRepo {
 	return &orderRepo{
-		tableName: orderTableName,
-		db:        db,
+		tableName:   orderTableName,
+		db:          db,
 		opTableName: or_proTableName,
 	}
 }
@@ -50,8 +52,10 @@ func (p *orderRepo) orderSelectQueryPrefix() squirrel.SelectBuilder {
 }
 
 func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entity.Order, error) {
-	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Create")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Create")
+	span.SetAttributes(attribute.String("create", "order"))
+	defer span.End()
+
 	data := map[string]any{
 		"worker_id":   order.WorkerId,
 		"product_id":  order.ProductId,
@@ -61,25 +65,14 @@ func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entit
 		"created_at":  order.CreatedAt,
 		"updated_at":  order.UpdatedAt,
 	}
-	op_data := map[string]any{
-		"order_id": order.Id,
-		"product_id": order.ProductId,
-	}
 
 	query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
 	if err != nil {
 		return &entity.Order{}, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	opquery , op_args,err := p.db.Sq.Builder.Insert(p.opTableName).SetMap(op_data).ToSql()
-	if err != nil {
-		return &entity.Order{}, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.opTableName, "create"))
-	}
-
 	query += " RETURNING id, worker_id, product_id, tax, discount, total_price, created_at, updated_at"
-	opquery += " RETURNING id, order_id, product_id"
 	row := p.db.QueryRow(ctx, query, args...)
-	op_row := p.db.QueryRow(ctx, opquery, op_args...)
 
 	var createdOrder entity.Order
 
@@ -91,30 +84,47 @@ func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entit
 		&createdOrder.Discount,
 		&createdOrder.TotalPrice,
 		&createdOrder.CreatedAt,
-		&createdOrder.UpdatedAt)
-
-	if err != nil {
-		return &entity.Order{}, err
-	}
-
-	var op_order entity.OPModel
-
-	err = op_row.Scan(
-		&op_order.Id,
-		&op_order.OrderId,
-		&op_order.ProductID,
+		&createdOrder.UpdatedAt,
 	)
 
 	if err != nil {
 		return &entity.Order{}, err
 	}
 
+	op_data := map[string]any{
+		"order_id":   createdOrder.Id,
+		"product_id": createdOrder.ProductId,
+	}
+
+	opquery, op_args, err := p.db.Sq.Builder.Insert(p.opTableName).SetMap(op_data).ToSql()
+	if err != nil {
+		return &entity.Order{}, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.opTableName, "opcreate"))
+	}
+
+	// opquery += " RETURNING id, order_id, product_id"
+
+	// op_row := p.db.QueryRow(ctx, opquery, op_args...)
+
+	_, err = p.db.Exec(ctx, opquery, op_args...)
+	if err != nil {
+		logger.Error(err)
+	}
+
+	// var op_order entity.OPModel
+
+	// errr = op_row.Scan(
+	// 	&op_order.Id,
+	// 	&op_order.OrderId,
+	// 	&op_order.ProductID,
+	// )
+
 	return &createdOrder, nil
 }
 
 func (p orderRepo) GetOrder(ctx context.Context, params map[string]int64) (*entity.Order, error) {
-	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Get")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Get")
+	span.SetAttributes(attribute.String("get", "order"))
+	defer span.End()
 
 	var (
 		order entity.Order
@@ -149,8 +159,9 @@ func (p orderRepo) GetOrder(ctx context.Context, params map[string]int64) (*enti
 }
 
 func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Order, error) {
-	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"List")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Gets")
+	span.SetAttributes(attribute.String("gets", "order"))
+	defer span.End()
 
 	// fmt.Println(filter)
 
@@ -206,8 +217,9 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 }
 
 func (p orderRepo) UpdateOrder(ctx context.Context, order *entity.Order) (*entity.Order, error) {
-	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Update")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Update")
+	span.SetAttributes(attribute.String("update", "order"))
+	defer span.End()
 
 	clauses := map[string]any{
 		"tax":         order.Tax,
@@ -250,8 +262,9 @@ func (p orderRepo) UpdateOrder(ctx context.Context, order *entity.Order) (*entit
 }
 
 func (p orderRepo) DeleteOrder(ctx context.Context, id int64) error {
-	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Delete")
-	// defer span.End()
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Delete")
+	span.SetAttributes(attribute.String("delete", "order"))
+	defer span.End()
 
 	sqlStr, args, err := p.db.Sq.Builder.
 		Delete(p.tableName).

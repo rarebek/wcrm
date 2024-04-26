@@ -2,10 +2,10 @@ package main
 
 import (
 	"log"
-	"order-service/internal/app"
-	"order-service/internal/pkg/config"
 	"os"
 	"os/signal"
+	"projects/order-service/internal/app"
+	"projects/order-service/internal/pkg/config"
 	"syscall"
 
 	"go.uber.org/zap"

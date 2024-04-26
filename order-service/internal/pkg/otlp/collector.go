@@ -3,7 +3,7 @@ package otlp
 import (
 	"context"
 	"fmt"
-	"order-service/internal/pkg/config"
+	"projects/order-service/internal/pkg/config"
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"

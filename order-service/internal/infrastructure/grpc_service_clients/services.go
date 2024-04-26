@@ -1,7 +1,7 @@
 package grpc_service_clients
 
 import (
-	"order-service/internal/pkg/config"
+	"projects/order-service/internal/pkg/config"
 
 	"google.golang.org/grpc"
 )

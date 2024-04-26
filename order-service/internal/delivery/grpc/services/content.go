@@ -4,12 +4,20 @@ import (
 	"context"
 	"time"
 
-	pb "order-service/genproto/order"
-	"order-service/internal/entity"
-	"order-service/internal/usecase"
-	"order-service/internal/usecase/event"
+	pb "projects/order-service/genproto/order"
+	"projects/order-service/internal/entity"
+	"projects/order-service/internal/pkg/otlp"
+	"projects/order-service/internal/usecase"
+	"projects/order-service/internal/usecase/event"
 
+	"go.opentelemetry.io/otel/attribute"
 	"go.uber.org/zap"
+)
+
+const (
+	orderTableName      = "orders"
+	orderServiceName    = "orderService"
+	orderSpanRepoPrefix = "orderRepo"
 )
 
 type orderRPC struct {
@@ -27,7 +35,10 @@ func UserRPC(logger *zap.Logger, orderUsecase usecase.Order, brokerProducer even
 }
 
 func (u orderRPC) CreateOrder(ctx context.Context, order *pb.Order) (*pb.Order, error) {
-
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Create")
+	span.SetAttributes(attribute.String("create","order"))
+	defer span.End()
+	
 	req_order := entity.Order{
 		Id:         order.Id,
 		WorkerId:   order.WorkerId,
@@ -58,7 +69,10 @@ func (u orderRPC) CreateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 	}, nil
 }
 func (u orderRPC) GetOrder(ctx context.Context, id *pb.Id) (*pb.Order, error) {
-
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Get")
+	span.SetAttributes(attribute.String("get","order"))
+	defer span.End()
+	
 	reqMap := make(map[string]int64)
 	reqMap["id"] = id.Id
 
@@ -81,7 +95,10 @@ func (u orderRPC) GetOrder(ctx context.Context, id *pb.Id) (*pb.Order, error) {
 	}, nil
 }
 func (u orderRPC) DeleteOrder(ctx context.Context, id *pb.Id) (*pb.Order, error) {
-
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Delete")
+	span.SetAttributes(attribute.String("delete","order"))
+	defer span.End()
+	
 	reqMap := make(map[string]int64)
 	reqMap["id"] = id.Id
 
@@ -110,6 +127,9 @@ func (u orderRPC) DeleteOrder(ctx context.Context, id *pb.Id) (*pb.Order, error)
 	}, nil
 }
 func (u orderRPC) UpdateOrder(ctx context.Context, order *pb.Order) (*pb.Order, error) {
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Update")
+	span.SetAttributes(attribute.String("update","order"))
+	defer span.End()
 
 	updated_order := entity.Order{
 		Id:         order.Id,
@@ -140,6 +160,10 @@ func (u orderRPC) UpdateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 	}, nil
 }
 func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllRequest) (*pb.GetAllResponse, error) {
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Gets")
+	span.SetAttributes(attribute.String("gets","order"))
+	defer span.End()
+
 	offset := req.Limit * (req.Page - 1)
 
 	res_orders, err := u.order.GetOrders(ctx, uint64(req.Limit), uint64(offset), map[string]string{})

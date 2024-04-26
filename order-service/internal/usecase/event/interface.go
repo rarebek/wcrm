@@ -2,7 +2,7 @@ package event
 
 import (
 	"context"
-	"order-service/internal/entity"
+	"projects/order-service/internal/entity"
 )
 
 type ConsumerConfig interface {

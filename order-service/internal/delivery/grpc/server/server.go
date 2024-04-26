@@ -4,7 +4,7 @@ package server
 import (
 	"fmt"
 	"net"
-	"order-service/internal/pkg/config"
+	"projects/order-service/internal/pkg/config"
 
 	"google.golang.org/grpc"
 )

@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"order-service/internal/entity"
-	configpkg "order-service/internal/pkg/config"
+	"projects/order-service/internal/entity"
+	configpkg "projects/order-service/internal/pkg/config"
 	"strings"
 
 	"github.com/jackc/pgconn"

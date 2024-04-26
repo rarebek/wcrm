@@ -2,7 +2,7 @@ package repository
 
 import (
 	"context"
-	"order-service/internal/entity"
+	"projects/order-service/internal/entity"
 )
 
 type Order interface {
