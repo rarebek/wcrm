@@ -15,6 +15,7 @@ import (
 )
 
 const (
+	or_proTableName     = "orders_products"
 	orderTableName      = "orders"
 	orderServiceName    = "orderService"
 	orderSpanRepoPrefix = "orderRepo"
@@ -23,12 +24,14 @@ const (
 type orderRepo struct {
 	tableName string
 	db        *postgres.PostgresDB
+	opTableName string
 }
 
 func NewOrderRepo(db *postgres.PostgresDB) *orderRepo {
 	return &orderRepo{
 		tableName: orderTableName,
 		db:        db,
+		opTableName: or_proTableName,
 	}
 }
 
@@ -50,7 +53,6 @@ func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entit
 	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Create")
 	// defer span.End()
 	data := map[string]any{
-		"id":          order.Id,
 		"worker_id":   order.WorkerId,
 		"product_id":  order.ProductId,
 		"tax":         order.Tax,
@@ -59,31 +61,55 @@ func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entit
 		"created_at":  order.CreatedAt,
 		"updated_at":  order.UpdatedAt,
 	}
+	op_data := map[string]any{
+		"order_id": order.Id,
+		"product_id": order.ProductId,
+	}
+
 	query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
 	if err != nil {
 		return &entity.Order{}, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	query += "RETURNING id, worker_id, product_id, tax, discount, total_price, created_at, updated_at"
+	opquery , op_args,err := p.db.Sq.Builder.Insert(p.opTableName).SetMap(op_data).ToSql()
+	if err != nil {
+		return &entity.Order{}, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.opTableName, "create"))
+	}
 
+	query += " RETURNING id, worker_id, product_id, tax, discount, total_price, created_at, updated_at"
+	opquery += " RETURNING id, order_id, product_id"
 	row := p.db.QueryRow(ctx, query, args...)
+	op_row := p.db.QueryRow(ctx, opquery, op_args...)
 
-	var created entity.Order
+	var createdOrder entity.Order
 
 	err = row.Scan(
-		&created.Id,
-		&created.WorkerId,
-		&created.ProductId,
-		&created.Tax,
-		&created.Discount,
-		&created.TotalPrice,
-		&created.CreatedAt,
-		&created.UpdatedAt)
+		&createdOrder.Id,
+		&createdOrder.WorkerId,
+		&createdOrder.ProductId,
+		&createdOrder.Tax,
+		&createdOrder.Discount,
+		&createdOrder.TotalPrice,
+		&createdOrder.CreatedAt,
+		&createdOrder.UpdatedAt)
 
 	if err != nil {
 		return &entity.Order{}, err
 	}
-	return &created, nil
+
+	var op_order entity.OPModel
+
+	err = op_row.Scan(
+		&op_order.Id,
+		&op_order.OrderId,
+		&op_order.ProductID,
+	)
+
+	if err != nil {
+		return &entity.Order{}, err
+	}
+
+	return &createdOrder, nil
 }
 
 func (p orderRepo) GetOrder(ctx context.Context, params map[string]int64) (*entity.Order, error) {
