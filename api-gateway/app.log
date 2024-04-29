@@ -233,3 +233,82 @@ main.main.func1
 main.main.func1
 	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
 2024-04-26T12:46:10.106+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:18:15.866+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:18:15.867+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:35:42.215+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:35:42.216+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:35:47.479+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:35:47.479+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:35:53.010+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:35:53.011+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:36:12.261+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:36:12.262+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:37:01.318+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:37:01.318+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:38:27.481+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:38:27.482+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:39:48.037+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:39:48.037+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:40:35.821+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:40:35.822+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:40:53.145+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:40:53.145+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:41:07.024+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:41:07.025+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:41:23.649+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:41:23.650+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:42:35.206+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:42:35.207+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:43:05.501+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:43:05.502+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:43:14.482+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:43:14.483+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:43:49.271+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T15:43:49.272+0500	ERROR	app/main.go:32	app run	{"error": "failed to exit idle mode: passthrough: received empty target in Build()"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-26T15:46:03.835+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T16:12:23.987+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T16:14:48.328+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T18:30:30.339+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T18:45:55.972+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T18:47:21.562+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T19:32:55.696+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T19:37:05.432+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-26T19:39:57.898+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-29T15:50:11.549+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}
+2024-04-29T15:58:39.895+0500	INFO	app/main.go:41	api gateway service stops
+2024-04-29T15:58:39.896+0500	ERROR	app/main.go:32	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:32
+2024-04-29T16:00:49.335+0500	INFO	app/main.go:30	Listen: 	{"address": "localhost:8080"}

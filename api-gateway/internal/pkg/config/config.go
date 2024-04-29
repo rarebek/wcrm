@@ -61,12 +61,12 @@ type Config struct {
 		}
 	}
 
-	// InvestmentService webAddress
-	// InvestorService   webAddress
+	// services
 	UserService webAddress
 	ProductService webAddress
-	// AggregateService  webAddress
-	// PaymentService    webAddress
+	OrderService webAddress
+
+	// otlp
 	OTLPCollector webAddress
 }
 
@@ -107,6 +107,10 @@ func NewConfig() (*Config, error) {
 	// PRODUCT
 	config.ProductService.Host = getEnv("PRODUCT_SERVICE_GRPC_HOST", "127.0.0.1")
 	config.ProductService.Port = getEnv("PRODUCT_SERVICE_GRPC_PORT", ":2222")
+
+	// ORDER
+	config.OrderService.Host = getEnv("ORDER_SERVICE_GRPC_HOST", "127.0.0.1")
+	config.OrderService.Port = getEnv("ORDER_SERVICE_GRPC_PORT", ":3333")
 
 	// token configuration
 	// config.Token.Secret = getEnv("TOKEN_SECRET", "token_secret")

@@ -8,8 +8,8 @@ type Owner struct {
 	Password    string `json:"password"`
 	Avatar      string `json:"avatar"`
 	Tax         string `json:"tax"`
-	CreatedAt   string `json:"createdAt"`
-	UpdatedAt   string `json:"updatedAt"`
+	CreatedAt   string `json:"created_at"`
+	UpdatedAt   string `json:"updated_at"`
 }
 
 type OwnerList struct {

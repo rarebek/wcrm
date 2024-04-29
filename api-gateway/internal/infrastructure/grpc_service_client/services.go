@@ -3,8 +3,10 @@ package grpc_service_clients
 import (
 	"fmt"
 
-	pbu "evrone_service/api_gateway/genproto/user_service"
+	pbu "evrone_service/api_gateway/genproto/user"
 	pbp "evrone_service/api_gateway/genproto/product"
+	pbo "evrone_service/api_gateway/genproto/order"
+
 
 	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
 	"google.golang.org/grpc"
@@ -13,6 +15,7 @@ import (
 )
 
 type ServiceClient interface {
+	OrderService() pbo.OrderServiceClient
 	ProductService() pbp.ProductServiceClient
 	UserService() pbu.UserServiceClient
 	Close()
@@ -22,6 +25,7 @@ type serviceClient struct {
 	connections []*grpc.ClientConn
 	userService pbu.UserServiceClient
 	productService pbp.ProductServiceClient
+	orderService pbo.OrderServiceClient
 }
 
 func New(cfg *config.Config) (ServiceClient, error) {
@@ -45,16 +49,31 @@ func New(cfg *config.Config) (ServiceClient, error) {
 		return nil, err
 	}
 
+	connOrderService, err := grpc.Dial(
+		fmt.Sprintf("%s%s", cfg.OrderService.Host, cfg.OrderService.Port),
+		grpc.WithInsecure(),
+		grpc.WithUnaryInterceptor(otelgrpc.UnaryClientInterceptor()),
+		grpc.WithStreamInterceptor(otelgrpc.StreamClientInterceptor()),
+	)
+	if err != nil {
+		return nil, err
+	}
 
 
 	return &serviceClient{
 		userService: pbu.NewUserServiceClient(connUserService),
 		productService: pbp.NewProductServiceClient(connProductService),
+		orderService: pbo.NewOrderServiceClient(connOrderService),
 		connections: []*grpc.ClientConn{
 			connProductService,
 			connUserService,
+			connOrderService,
 		},
 	}, nil
+}
+
+func (s *serviceClient) OrderService() pbo.OrderServiceClient {
+	return s.orderService
 }
 
 func (s *serviceClient) UserService() pbu.UserServiceClient {

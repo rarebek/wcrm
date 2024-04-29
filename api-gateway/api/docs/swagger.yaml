@@ -4,6 +4,19 @@ definitions:
       chack:
         type: boolean
     type: object
+  models.CreateOrder:
+    properties:
+      discount:
+        type: integer
+      product_id:
+        type: integer
+      tax:
+        type: integer
+      total_price:
+        type: integer
+      worker_id:
+        type: integer
+    type: object
   models.CreateOwner:
     properties:
       avatar:
@@ -21,15 +34,20 @@ definitions:
     type: object
   models.CreateProduct:
     properties:
-      categoryId:
+      category_id:
+        example: 7
         type: integer
       description:
+        example: Juda mazzali
         type: string
       discount:
+        example: 12
         type: integer
       picture:
+        example: http://static/images/myimage.jpg
         type: string
       price:
+        example: 20000
         type: integer
       title:
         type: string
@@ -39,13 +57,37 @@ definitions:
       message:
         type: string
     type: object
+  models.Order:
+    properties:
+      created_at:
+        type: string
+      discount:
+        type: integer
+      id:
+        type: integer
+      product_id:
+        type: integer
+      tax:
+        type: integer
+      total_price:
+        type: integer
+      worker_id:
+        type: integer
+    type: object
+  models.OrderList:
+    properties:
+      orders:
+        items:
+          $ref: '#/definitions/models.Order'
+        type: array
+    type: object
   models.Owner:
     properties:
       avatar:
         type: string
       company_name:
         type: string
-      createdAt:
+      created_at:
         type: string
       email:
         type: string
@@ -57,14 +99,21 @@ definitions:
         type: string
       tax:
         type: string
-      updatedAt:
+      updated_at:
         type: string
+    type: object
+  models.OwnerList:
+    properties:
+      owners:
+        items:
+          $ref: '#/definitions/models.Owner'
+        type: array
     type: object
   models.Product:
     properties:
-      categoryId:
+      category_id:
         type: integer
-      createdAt:
+      created_at:
         type: string
       description:
         type: string
@@ -78,7 +127,7 @@ definitions:
         type: integer
       title:
         type: string
-      updatedAt:
+      updated_at:
         type: string
     type: object
   models.ProductList:
@@ -92,6 +141,17 @@ definitions:
     properties:
       error:
         $ref: '#/definitions/models.Error'
+    type: object
+  models.UpdateOrder:
+    properties:
+      discount:
+        type: integer
+      id:
+        type: integer
+      tax:
+        type: integer
+      total_price:
+        type: integer
     type: object
   models.UpdateOwner:
     properties:
@@ -112,7 +172,7 @@ definitions:
     type: object
   models.UpdateProduct:
     properties:
-      categoryId:
+      category_id:
         type: integer
       description:
         type: string
@@ -134,6 +194,158 @@ info:
   title: WCRM
   version: "1.0"
 paths:
+  /v1/order/create:
+    post:
+      consumes:
+      - application/json
+      description: Api for create oder
+      parameters:
+      - description: Create Order
+        in: body
+        name: Order
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateOrder'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Order'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Create Order
+      tags:
+      - Order
+  /v1/order/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Api for delete order
+      parameters:
+      - description: Id Order
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CheckResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Delete Order
+      tags:
+      - Order
+  /v1/order/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get order
+      parameters:
+      - description: Id Order
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Order'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Get Order
+      tags:
+      - Order
+  /v1/order/update:
+    put:
+      consumes:
+      - application/json
+      description: Api for update order
+      parameters:
+      - description: Update Order
+        in: body
+        name: Order
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateOrder'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Order'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Update Order
+      tags:
+      - Order
+  /v1/orders/get:
+    get:
+      consumes:
+      - application/json
+      description: Api for get all product
+      parameters:
+      - description: Page Order
+        in: path
+        name: page
+        required: true
+        type: string
+      - description: Limit Order
+        in: path
+        name: limit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.OrderList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Get List Order
+      tags:
+      - Order
   /v1/owner/create:
     post:
       consumes:
@@ -163,7 +375,7 @@ paths:
             $ref: '#/definitions/models.StandartError'
       summary: Create Owner
       tags:
-      - Owner
+      - User
   /v1/owner/delete/{id}:
     delete:
       consumes:
@@ -192,7 +404,7 @@ paths:
             $ref: '#/definitions/models.StandartError'
       summary: Delete Owner
       tags:
-      - Owner
+      - User
   /v1/owner/get/{id}:
     get:
       consumes:
@@ -221,7 +433,7 @@ paths:
             $ref: '#/definitions/models.StandartError'
       summary: Get Owner
       tags:
-      - Owner
+      - User
   /v1/owner/update:
     put:
       consumes:
@@ -251,7 +463,7 @@ paths:
             $ref: '#/definitions/models.StandartError'
       summary: Update Owner
       tags:
-      - Owner
+      - User
   /v1/owners/get:
     get:
       consumes:
@@ -274,7 +486,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.ProductList'
+            $ref: '#/definitions/models.OwnerList'
         "404":
           description: Not Found
           schema:
@@ -285,7 +497,7 @@ paths:
             $ref: '#/definitions/models.StandartError'
       summary: Get List Owner
       tags:
-      - Owner
+      - User
   /v1/product/create:
     post:
       consumes:
