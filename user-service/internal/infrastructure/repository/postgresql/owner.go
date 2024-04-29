@@ -43,7 +43,7 @@ func (p *ownersRepo) ownersSelectQueryPrefix() squirrel.SelectBuilder {
 		).From(p.tableName)
 }
 
-func (p ownersRepo) Create(ctx context.Context, owner *entity.Owner) error {
+func (p ownersRepo) Create(ctx context.Context, owner *entity.Owner) (*entity.Owner, error) {
 	data := map[string]any{
 		"id":           owner.Id,
 		"full_name":    owner.FullName,
@@ -57,15 +57,21 @@ func (p ownersRepo) Create(ctx context.Context, owner *entity.Owner) error {
 	}
 	query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
 	if err != nil {
-		return p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
+		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	_, err = p.db.Exec(ctx, query, args...)
+	query += "RETURNING id, full_name, company_name, email, password, avatar, tax, created_at"
+
+	row := p.db.QueryRow(ctx, query, args...)
 	if err != nil {
-		return p.db.Error(err)
+		return nil, p.db.Error(err)
 	}
 
-	return nil
+	if err = row.Scan(&owner.Id, &owner.FullName, &owner.CompanyName, &owner.Email, &owner.Password, &owner.Avatar, &owner.Tax, &owner.CreatedAt); err != nil {
+		return nil, err
+	}
+
+	return owner, nil
 }
 
 func (p ownersRepo) Get(ctx context.Context, params map[string]string) (*entity.Owner, error) {
@@ -101,7 +107,7 @@ func (p ownersRepo) Get(ctx context.Context, params map[string]string) (*entity.
 	return &owner, nil
 }
 
-func (p ownersRepo) Update(ctx context.Context, owners *entity.Owner) error {
+func (p ownersRepo) Update(ctx context.Context, owners *entity.Owner) (*entity.Owner, error) {
 	clauses := map[string]any{
 		"full_name":    owners.FullName,
 		"company_name": owners.CompanyName,
@@ -117,23 +123,25 @@ func (p ownersRepo) Update(ctx context.Context, owners *entity.Owner) error {
 		Where(p.db.Sq.Equal("id", owners.Id)).
 		ToSql()
 	if err != nil {
-		return p.db.ErrSQLBuild(err, p.tableName+" update")
+		return nil, p.db.ErrSQLBuild(err, p.tableName+" update")
 	}
 
-	commandTag, err := p.db.Exec(ctx, sqlStr, args...)
+	sqlStr += "RETURNING id, full_name, company_name, email, password, avatar, tax, created_at, updated_at"
+
+	row := p.db.QueryRow(ctx, sqlStr, args...)
 	if err != nil {
-		return p.db.Error(err)
+		return nil, p.db.Error(err)
+	}
+	var owner entity.Owner
+	if err = row.Scan(&owner.Id, &owner.FullName, &owner.CompanyName, &owner.Email, &owner.Password, &owner.Avatar, &owner.Tax, &owner.CreatedAt); err != nil {
+		return nil, err
 	}
 
-	if commandTag.RowsAffected() == 0 {
-		return p.db.Error(fmt.Errorf("no sql rows"))
-	}
-
-	return nil
+	return &owner, nil
 }
 
 // For soft delete
-func (p ownersRepo) Delete(ctx context.Context, guid string) error {
+func (p ownersRepo) Delete(ctx context.Context, guid string) (*entity.Owner, error) {
 	data := map[string]any{
 		"deleted_at": time.Now(),
 	}
@@ -144,19 +152,23 @@ func (p ownersRepo) Delete(ctx context.Context, guid string) error {
 		Where(p.db.Sq.Equal("id", guid)).
 		ToSql()
 	if err != nil {
-		return p.db.ErrSQLBuild(err, p.tableName+" delete")
+		return nil, p.db.ErrSQLBuild(err, p.tableName+" delete")
 	}
 
-	commandTag, err := p.db.Exec(ctx, query, args...)
+	query += "RETURNING id, full_name, company_name, email, password, avatar, tax, created_at"
+
+	row := p.db.QueryRow(ctx, query, args...)
 	if err != nil {
-		return p.db.Error(err)
+		return nil, p.db.Error(err)
 	}
 
-	if commandTag.RowsAffected() == 0 {
-		return p.db.Error(fmt.Errorf("no sql rows"))
+	var owner entity.Owner
+
+	if err = row.Scan(&owner.Id, &owner.FullName, &owner.CompanyName, &owner.Email, &owner.Password, &owner.Avatar, &owner.Tax, &owner.CreatedAt); err != nil {
+		return nil, err
 	}
 
-	return nil
+	return &owner, nil
 }
 
 func (p ownersRepo) List(ctx context.Context, limit uint64, offset uint64, filter map[string]string) ([]*entity.Owner, error) {

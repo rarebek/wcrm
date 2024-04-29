@@ -59,7 +59,7 @@ func (s *GeolocationReposisitoryTestSuite) TestGeolocationCRUD() {
 	}
 	// uuid generating
 
-	err = ownerRepo.Create(ctx, &owner)
+	// err = ownerRepo.Create(ctx, &owner)
 	s.Suite.NoError(err)
 
 
@@ -112,7 +112,7 @@ func (s *GeolocationReposisitoryTestSuite) TestGeolocationCRUD() {
 	err = userRepo.Delete(ctx, geolocation.Id)
 	s.Suite.NoError(err)
 
-	err = ownerRepo.Delete(ctx, owner.Id)
+	_, err = ownerRepo.Delete(ctx, owner.Id)
 	s.Suite.NoError(err)
 }
 

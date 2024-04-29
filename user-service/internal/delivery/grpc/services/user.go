@@ -3,12 +3,13 @@ package services
 import (
 	"context"
 	"time"
-	userproto "user-service/genproto/user_service"
+	userproto "user-service/genproto/user"
 	"user-service/internal/entity"
 	"user-service/internal/usecase"
 	"user-service/internal/usecase/event"
 
 	"user-service/internal/pkg/otlp"
+
 	"go.opentelemetry.io/otel/attribute"
 
 	"go.uber.org/zap"
@@ -36,14 +37,14 @@ func NewRPC(logger *zap.Logger,
 	}
 }
 
-func (s userRPC) CreateOwner(ctx context.Context, in *userproto.Owner) (*userproto.GetOwnerRequest, error) {
+func (s userRPC) CreateOwner(ctx context.Context, in *userproto.Owner) (*userproto.Owner, error) {
 	//tracing
 	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "CreateOwner")
 	span.SetAttributes(
 		attribute.Key("id").String(in.Id),
 	)
 	defer span.End()
-	guid, err := s.ownerUsecase.Create(ctx, &entity.Owner{
+	owner, err := s.ownerUsecase.Create(ctx, &entity.Owner{
 		Id:          in.Id,
 		FullName:    in.FullName,
 		CompanyName: in.CompanyName,
@@ -60,8 +61,15 @@ func (s userRPC) CreateOwner(ctx context.Context, in *userproto.Owner) (*userpro
 		return nil, err
 	}
 
-	return &userproto.GetOwnerRequest{
-		Id: guid,
+	return &userproto.Owner{
+		Id:          owner.Id,
+		FullName:    owner.FullName,
+		CompanyName: owner.CompanyName,
+		Email:       owner.Email,
+		Password:    owner.Password,
+		Avatar:      owner.Avatar,
+		Tax:         owner.Tax,
+		CreatedAt:   owner.CreatedAt.Format("Jan 2, 2006 - 03:04 PM"),
 	}, nil
 }
 
@@ -72,7 +80,7 @@ func (s userRPC) UpdateOwner(ctx context.Context, in *userproto.Owner) (*userpro
 		attribute.Key("id").String(in.Id),
 	)
 	defer span.End()
-	err := s.ownerUsecase.Update(ctx, &entity.Owner{
+	owner, err := s.ownerUsecase.Update(ctx, &entity.Owner{
 		Id:          in.Id,
 		FullName:    in.FullName,
 		CompanyName: in.CompanyName,
@@ -87,24 +95,35 @@ func (s userRPC) UpdateOwner(ctx context.Context, in *userproto.Owner) (*userpro
 		return nil, err
 	}
 	return &userproto.Owner{
-		Id:          in.Id,
-		FullName:    in.FullName,
-		CompanyName: in.CompanyName,
-		Avatar:      in.Avatar,
-		Email:       in.Email,
-		Password:    in.Password,
-		Tax:         in.Tax,
-		CreatedAt:   in.CreatedAt,
-		UpdatedAt:   in.UpdatedAt,
+		Id:          owner.Id,
+		FullName:    owner.FullName,
+		CompanyName: owner.CompanyName,
+		Avatar:      owner.Avatar,
+		Email:       owner.Email,
+		Password:    owner.Password,
+		Tax:         owner.Tax,
+		CreatedAt:   owner.CreatedAt.Format("Jan 2, 2006 - 03:04 PM"),
+		UpdatedAt:   owner.UpdatedAt.Format("Jan 2, 2006 - 03:04 PM"),
 	}, nil
 }
 
-func (s userRPC) DeleteOwner(ctx context.Context, in *userproto.GetOwnerRequest) (*userproto.DeletedOwner, error) {
-	if err := s.ownerUsecase.Delete(ctx, in.Id); err != nil {
+func (s userRPC) DeleteOwner(ctx context.Context, in *userproto.GetOwnerRequest) (*userproto.Owner, error) {
+	owner, err := s.ownerUsecase.Delete(ctx, in.Id)
+	if err != nil {
 		s.logger.Error(err.Error())
-		return &userproto.DeletedOwner{Status: false}, err
+		return nil, err
 	}
-	return &userproto.DeletedOwner{Status: true}, nil
+	return &userproto.Owner{
+		Id:          owner.Id,
+		FullName:    owner.FullName,
+		CompanyName: owner.CompanyName,
+		Avatar:      owner.Avatar,
+		Email:       owner.Email,
+		Password:    owner.Password,
+		Tax:         owner.Tax,
+		CreatedAt:   owner.CreatedAt.Format("Jan 2, 2006 - 03:04 PM"),
+		UpdatedAt:   owner.UpdatedAt.Format("Jan 2, 2006 - 03:04 PM"),
+	}, nil
 }
 
 func (s userRPC) GetOwner(ctx context.Context, in *userproto.GetOwnerRequest) (*userproto.Owner, error) {
@@ -268,13 +287,11 @@ func (s userRPC) ListWorker(ctx context.Context, in *userproto.GetAllWorkerReque
 
 // --------------------------------------
 
-
-
 func (s userRPC) CreateGeolocation(ctx context.Context, in *userproto.Geolocation) (*userproto.GetGeolocationRequest, error) {
 	guid, err := s.geolocationUsecase.Create(ctx, &entity.Geolocation{
 		Id:        in.Id,
 		Latitude:  in.Latitude,
-		Longitude:  in.Longitude,
+		Longitude: in.Longitude,
 		OwnerId:   in.OwnerId,
 	})
 
@@ -292,7 +309,7 @@ func (s userRPC) UpdateGeolocation(ctx context.Context, in *userproto.Geolocatio
 	err := s.geolocationUsecase.Update(ctx, &entity.Geolocation{
 		Id:        in.Id,
 		Latitude:  in.Latitude,
-		Longitude:  in.Longitude,
+		Longitude: in.Longitude,
 		OwnerId:   in.OwnerId,
 	})
 	if err != nil {
@@ -302,7 +319,7 @@ func (s userRPC) UpdateGeolocation(ctx context.Context, in *userproto.Geolocatio
 	return &userproto.Geolocation{
 		Id:        in.Id,
 		Latitude:  in.Latitude,
-		Longitude:  in.Longitude,
+		Longitude: in.Longitude,
 		OwnerId:   in.OwnerId,
 	}, nil
 }
@@ -328,9 +345,8 @@ func (s userRPC) GetGeolocation(ctx context.Context, in *userproto.GetGeolocatio
 	return &userproto.Geolocation{
 		Id:        user.Id,
 		Latitude:  user.Latitude,
-		Longitude:  user.Longitude,
+		Longitude: user.Longitude,
 		OwnerId:   user.OwnerId,
-	
 	}, nil
 }
 
@@ -347,7 +363,7 @@ func (s userRPC) ListGeolocation(ctx context.Context, in *userproto.GetAllGeoloc
 		temp := &userproto.Geolocation{
 			Id:        u.Id,
 			Latitude:  u.Latitude,
-			Longitude:  u.Longitude,
+			Longitude: u.Longitude,
 			OwnerId:   u.OwnerId,
 		}
 
@@ -356,7 +372,6 @@ func (s userRPC) ListGeolocation(ctx context.Context, in *userproto.GetAllGeoloc
 
 	return &response, nil
 }
-
 
 func (s userRPC) CheckFieldOwner(ctx context.Context, in *userproto.CheckFieldRequest) (*userproto.CheckFieldResponse, error) {
 	exist, err := s.ownerUsecase.CheckField(ctx, in.Field, in.Value)

@@ -3,7 +3,7 @@ package app
 import (
 	"fmt"
 	"time"
-	userproto "user-service/genproto/user_service"
+	userproto "user-service/genproto/user"
 	grpc_server "user-service/internal/delivery/grpc/server"
 	clean_grpc "user-service/internal/delivery/grpc/services"
 	"user-service/internal/infrastructure/grpc_service_clients"
@@ -11,10 +11,10 @@ import (
 	repo "user-service/internal/infrastructure/repository/postgresql"
 	"user-service/internal/pkg/config"
 	"user-service/internal/pkg/logger"
+	"user-service/internal/pkg/otlp"
 	"user-service/internal/pkg/postgres"
 	"user-service/internal/usecase"
 	"user-service/internal/usecase/event"
-	"user-service/internal/pkg/otlp"
 
 	grpc_middleware "github.com/grpc-ecosystem/go-grpc-middleware"
 	grpc_zap "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap"

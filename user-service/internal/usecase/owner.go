@@ -8,10 +8,10 @@ import (
 )
 
 type Owner interface {
-	Create(ctx context.Context, owner *entity.Owner) (string, error)
+	Create(ctx context.Context, owner *entity.Owner) (*entity.Owner, error)
 	Get(ctx context.Context, params map[string]string) (*entity.Owner, error)
-	Update(ctx context.Context, owner *entity.Owner) error
-	Delete(ctx context.Context, guid string) error
+	Update(ctx context.Context, owner *entity.Owner) (*entity.Owner, error)
+	Delete(ctx context.Context, guid string) (*entity.Owner, error)
 	List(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Owner, error)
 	CheckField(ctx context.Context, field, value string) (bool, error)
 }
@@ -29,13 +29,18 @@ func NewOwnerService(ctxTimeout time.Duration, repo repository.Owners) ownerServ
 	}
 }
 
-func (u ownerService) Create(ctx context.Context, owner *entity.Owner) (string, error) {
+func (u ownerService) Create(ctx context.Context, owner *entity.Owner) (*entity.Owner, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
 	u.beforeRequest(&owner.Id, &owner.CreatedAt, &owner.UpdatedAt)
 
-	return owner.Id, u.repo.Create(ctx, owner)
+	owner, err := u.repo.Create(ctx, owner)
+	if err != nil {
+		return nil, err
+	}
+
+	return owner, nil
 }
 
 func (u ownerService) Get(ctx context.Context, params map[string]string) (*entity.Owner, error) {
@@ -45,7 +50,7 @@ func (u ownerService) Get(ctx context.Context, params map[string]string) (*entit
 	return u.repo.Get(ctx, params)
 }
 
-func (u ownerService) Update(ctx context.Context, owner *entity.Owner) error {
+func (u ownerService) Update(ctx context.Context, owner *entity.Owner) (*entity.Owner, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
@@ -54,7 +59,7 @@ func (u ownerService) Update(ctx context.Context, owner *entity.Owner) error {
 	return u.repo.Update(ctx, owner)
 }
 
-func (u ownerService) Delete(ctx context.Context, guid string) error {
+func (u ownerService) Delete(ctx context.Context, guid string) (*entity.Owner, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
