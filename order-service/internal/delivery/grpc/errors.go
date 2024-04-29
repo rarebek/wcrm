@@ -3,7 +3,7 @@ package grpc
 import (
 	"context"
 	"errors"
-	"order-service/internal/entity"
+	"projects/order-service/internal/entity"
 
 	epb "google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"

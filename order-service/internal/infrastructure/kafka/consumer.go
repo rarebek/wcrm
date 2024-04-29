@@ -1,8 +1,8 @@
 package kafka
 
 // import (
-// 	"order-service/internal/pkg/otlp"
-// 	"order-service/internal/usecase/event"
+// 	"projects/order-service/internal/pkg/otlp"
+// 	"projects/order-service/internal/usecase/event"
 // 	"context"
 // 	"errors"
 // 	"fmt"

@@ -9,12 +9,12 @@ import (
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/suite"
 
-	pb "order-service/genproto/order"
-	"order-service/internal/pkg/config"
-	db "order-service/internal/pkg/postgres"
+	pb "projects/order-service/genproto/order"
+	"projects/order-service/internal/pkg/config"
+	db "projects/order-service/internal/pkg/postgres"
 
-	model "order-service/internal/entity"
-	Order "order-service/internal/infrastructure/repository"
+	model "projects/order-service/internal/entity"
+	Order "projects/order-service/internal/infrastructure/repository"
 )
 
 type OrderRepositrySuiteTest struct {

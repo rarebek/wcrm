@@ -1,8 +1,8 @@
 package logger
 
 import (
-	"order-service/internal/pkg/app"
 	"path/filepath"
+	"projects/order-service/internal/pkg/app"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"

@@ -1,10 +1,10 @@
 package kafka
 
 import (
-	"order-service/internal/entity"
-	"order-service/internal/pkg/config"
+	"projects/order-service/internal/entity"
+	"projects/order-service/internal/pkg/config"
 
-	// "order-service/internal/pkg/otlp"
+	// "projects/order-service/internal/pkg/otlp"
 	"context"
 
 	"github.com/segmentio/kafka-go"
