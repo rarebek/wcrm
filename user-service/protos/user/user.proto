@@ -1,13 +1,13 @@
 syntax = "proto3";
 
 package user_service;
-option go_package = "genproto/user_service";
+option go_package = ".";
 
 service UserService {
-  rpc CreateOwner(Owner) returns (GetOwnerRequest);
+  rpc CreateOwner(Owner) returns (Owner);
   rpc GetOwner(GetOwnerRequest) returns (Owner);
   rpc UpdateOwner(Owner) returns (Owner);
-  rpc DeleteOwner(GetOwnerRequest) returns (DeletedOwner);
+  rpc DeleteOwner(GetOwnerRequest) returns (Owner);
   rpc ListOwner(GetAllOwnerRequest) returns (GetAllOwnerResponse);
   rpc CheckFieldOwner(CheckFieldRequest) returns (CheckFieldResponse);
 

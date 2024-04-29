@@ -1879,3 +1879,7 @@ google.golang.org/grpc.(*Server).serveStreams.func1.1
 2024-04-26T17:24:15.279+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:24:15+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:47040", "grpc.code": "OK", "grpc.time_ms": 1.126}
 2024-04-26T17:24:19.882+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T17:24:19+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetOwner", "peer.address": "127.0.0.1:47048", "grpc.code": "OK", "grpc.time_ms": 0.26}
 2024-04-26T18:29:26.201+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-29T17:12:25.643+0500	INFO	app/app.go:119	gRPC Server Listening	{"url": ":50025"}
+2024-04-29T17:12:26.347+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-29T17:12:27.815+0500	INFO	app/app.go:119	gRPC Server Listening	{"url": ":50025"}
+2024-04-29T17:22:17.341+0500	INFO	app/main.go:42	Conten service stops !

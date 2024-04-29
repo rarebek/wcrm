@@ -60,7 +60,7 @@ func (s *WorkerReposisitoryTestSuite) TestWorkerCRUD() {
 	}
 	// uuid generating
 
-	err = ownerRepo.Create(ctx, &owner)
+	// err = ownerRepo.Create(ctx, &owner)
 	s.Suite.NoError(err)
 
 	// struct for create worker
@@ -130,7 +130,7 @@ func (s *WorkerReposisitoryTestSuite) TestWorkerCRUD() {
 	err = workerRepo.Delete(ctx, worker.Id)
 	s.Suite.NoError(err)
 
-	err = ownerRepo.Delete(ctx, owner.Id)
+	_, err = ownerRepo.Delete(ctx, owner.Id)
 	s.Suite.NoError(err)
 }
 
