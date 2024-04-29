@@ -66,13 +66,13 @@ run:
 	go run cmd/app/main.go
 
 migrate-up:
-	migrate -path migrations -database "postgresql://postgres:123@localhost:5432/orders?sslmode=disable" -verbose up
+	migrate -path migrations -database "postgresql://postgres:asadbek@localhost:5432/productdb?sslmode=disable" -verbose up
 
 migrate-down:
-	migrate -path migrations -database "postgres://postgres:123@localhost:5432/orders?sslmode=disable" -verbose down
+	migrate -path migrations -database "postgres://postgres:asadbek@localhost:5432/productdb?sslmode=disable" -verbose down
 
 migrate_file:
 	migrate create -ext sql -dir migrations/ -seq orders_products
 
 migrate-dirty:
-	migrate -path ./migrations/ -database "postgresql://postgres:123@localhost:5432/orders?sslmode=disable" force 1
+	migrate -path ./migrations/ -database "postgresql://postgres:asadbek@localhost:5432/productdb?sslmode=disable" force 1

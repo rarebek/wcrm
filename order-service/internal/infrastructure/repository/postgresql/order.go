@@ -52,6 +52,9 @@ func (p *orderRepo) orderSelectQueryPrefix() squirrel.SelectBuilder {
 func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entity.Order, error) {
 	// ctx, span := otlp.Start(ctx, userServiceName, userSpanRepoPrefix+"Create")
 	// defer span.End()
+
+	fmt.Println(order)
+
 	data := map[string]any{
 		"worker_id":   order.WorkerId,
 		"product_id":  order.ProductId,
