@@ -10,7 +10,7 @@ service OrderService{
   rpc GetOrders(GetAllOrderRequest) returns (GetAllOrderResponse);
 }
 
-message Order{
+message Order {
   int64 id = 1;
   int64 workerId = 2;
   int64 productId = 3;

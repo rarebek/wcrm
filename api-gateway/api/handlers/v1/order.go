@@ -3,37 +3,37 @@ package v1
 import (
 	"context"
 	_ "evrone_service/api_gateway/api/docs"
-	"fmt"
 	"net/http"
 	"time"
 
 	// "github.com/casbin/casbin/v2"
 	// "evrone_service/api_gateway/api/middleware"
 	"evrone_service/api_gateway/api/models"
-	pbu "evrone_service/api_gateway/genproto/user"
+	pbo "evrone_service/api_gateway/genproto/order"
 
 	// grpcClient "evrone_service/api_gateway/internal/infrastructure/grpc_service_client"
 	// "evrone_service/api_gateway/internal/pkg/config"
+
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
 	"github.com/spf13/cast"
+	// "github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
-// Create Owner
-// @Summary Create Owner
-// @Description Api for create owner
-// @Tags User
+// Create Order
+// @Summary Create Order
+// @Description Api for create oder
+// @Tags Order
 // @Accept json
 // @Produce json
-// @Param Product body models.CreateOwner true "Create Owner"
-// @Success 200 {object} models.Owner
+// @Param Order body models.CreateOrder true "Create Order"
+// @Success 200 {object} models.Order
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/owner/create [POST]
-func (h HandlerV1) CreateOwner(c *gin.Context) {
+// @Router /v1/order/create [POST]
+func (h HandlerV1) CreateOrder(c *gin.Context) {
 	var (
-		body        models.CreateOwner
+		body        models.CreateOrder
 		jspbMarshal protojson.MarshalOptions
 	)
 
@@ -47,25 +47,16 @@ func (h HandlerV1) CreateOwner(c *gin.Context) {
 		})
 	}
 
-	fmt.Println("BODYYYYYYYYYYYYYYYYYYYY", body)
-
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	id := uuid.New().String()
-
-	response, err := h.Service.UserService().CreateOwner(ctx, &pbu.Owner{
-		Id:          id,
-		FullName:    body.FullName,
-		CompanyName: body.CompanyName,
-		Email:       body.Email,
-		Password:    body.Password,
-		Avatar:      body.Avatar,
-		Tax:         body.Tax,
+	response, err := h.Service.OrderService().CreateOrder(ctx, &pbo.Order{
+		WorkerId:   body.WorkerId,
+		ProductId:  body.ProductId,
+		Tax:        body.Tax,
+		Discount:   body.Discount,
+		TotalPrice: body.TotalPrice,
 	})
-	
-	fmt.Println("keldi>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>................")
-	fmt.Println(response)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -78,18 +69,18 @@ func (h HandlerV1) CreateOwner(c *gin.Context) {
 }
 
 
-// Get Owner
-// @Summary Get Owner
-// @Description Api for get product
-// @Tags User
+// Get Order
+// @Summary Get Order
+// @Description Api for get order
+// @Tags Order
 // @Accept json
 // @Produce json
-// @Param id path string true "Id Owner"
-// @Success 200 {object} models.Owner
+// @Param id path string true "Id Order"
+// @Success 200 {object} models.Order
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/owner/get/{id} [GET]
-func (h *HandlerV1) GetOwner(c *gin.Context)  {
+// @Router /v1/order/get/{id} [GET]
+func (h *HandlerV1) GetOrder(c *gin.Context)  {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
@@ -98,8 +89,8 @@ func (h *HandlerV1) GetOwner(c *gin.Context)  {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	response, err := h.Service.UserService().GetOwner(ctx, &pbu.GetOwnerRequest{
-		Id: id,
+	response, err := h.Service.OrderService().GetOrder(ctx, &pbo.OrderId{
+		Id: cast.ToInt64(id),
 	})
 
 	if err != nil {
@@ -112,20 +103,20 @@ func (h *HandlerV1) GetOwner(c *gin.Context)  {
 	c.JSON(http.StatusOK, response)
 }
 
-// Update Owner 
-// @Summary Update Owner
-// @Description Api for update product
-// @Tags User
+// Update Order 
+// @Summary Update Order
+// @Description Api for update order
+// @Tags Order
 // @Accept json
 // @Produce json
-// @Param Owner body models.UpdateOwner true "Update Owner"
-// @Success 200 {object} models.Owner
+// @Param Order body models.UpdateOrder true "Update Order"
+// @Success 200 {object} models.Order
 // @Failure 400 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/owner/update [PUT]
-func (h *HandlerV1) UpdateOwner(c *gin.Context)  {
+// @Router /v1/order/update [PUT]
+func (h *HandlerV1) UpdateOrder(c *gin.Context)  {
 	var (
-		body      models.UpdateOwner
+		body      models.UpdateOrder
 		jspbMarshal protojson.MarshalOptions
 	)
 	jspbMarshal.UseProtoNames = true
@@ -141,16 +132,12 @@ func (h *HandlerV1) UpdateOwner(c *gin.Context)  {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	response, err := h.Service.UserService().UpdateOwner(ctx, &pbu.Owner{
-		Id:          body.Id,
-		FullName:    body.FullName,
-		CompanyName: body.CompanyName,
-		Email:       body.Email,
-		Password:    body.Password,
-		Avatar:      body.Avatar,
-		Tax:         body.Tax,
+	response, err := h.Service.OrderService().UpdateOrder(ctx, &pbo.Order{
+		Id:         body.Id,
+		Tax:        body.Tax,
+		Discount:   body.Discount,
+		TotalPrice: body.TotalPrice,
 	})
-		
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -162,18 +149,18 @@ func (h *HandlerV1) UpdateOwner(c *gin.Context)  {
 	c.JSON(http.StatusOK, response)
 }
 
-// Delete Owner
-// @Summary Delete Owner
-// @Description Api for delete product
-// @Tags User
+// Delete Order
+// @Summary Delete Order
+// @Description Api for delete order
+// @Tags Order
 // @Accept json
 // @Produce json
-// @Param id path string true "Id Owner"
+// @Param id path string true "Id Order"
 // @Success 200 {object} models.CheckResponse
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/owner/delete/{id} [DELETE]
-func (h *HandlerV1) DeleteOwner(c *gin.Context)  {
+// @Router /v1/order/delete/{id} [DELETE]
+func (h *HandlerV1) DeleteOrder(c *gin.Context)  {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
@@ -182,8 +169,8 @@ func (h *HandlerV1) DeleteOwner(c *gin.Context)  {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	response, err := h.Service.UserService().DeleteOwner(ctx, &pbu.GetOwnerRequest{
-		Id: id,
+	response, err := h.Service.OrderService().DeleteOrder(ctx, &pbo.OrderId{
+		Id: cast.ToInt64(id),
 	})
 
 	if err != nil {
@@ -196,19 +183,19 @@ func (h *HandlerV1) DeleteOwner(c *gin.Context)  {
 	c.JSON(http.StatusOK, response)
 }
 
-// Get List Owner
-// @Summary Get List Owner
+// Get List Order
+// @Summary Get List Order
 // @Description Api for get all product
-// @Tags User
+// @Tags Order
 // @Accept json
 // @Produce json
-// @Param page path string true "Page Owner"
-// @Param limit path string true "Limit Owner"
-// @Success 200 {object} models.OwnerList
+// @Param page path string true "Page Order"
+// @Param limit path string true "Limit Order"
+// @Success 200 {object} models.OrderList
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/owners/get [GET]
-func (h *HandlerV1) ListOwner(c *gin.Context)  {
+// @Router /v1/orders/get [GET]
+func (h *HandlerV1) ListOrder(c *gin.Context)  {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
@@ -218,7 +205,7 @@ func (h *HandlerV1) ListOwner(c *gin.Context)  {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	response, err := h.Service.UserService().ListOwner(ctx, &pbu.GetAllOwnerRequest{
+	response, err := h.Service.OrderService().GetOrders(ctx, &pbo.GetAllOrderRequest{
 		Page: cast.ToInt64(page),
 		Limit: cast.ToInt64(limit),
 	})

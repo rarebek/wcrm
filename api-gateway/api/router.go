@@ -62,6 +62,13 @@ func NewRoute(option RouteOption) *gin.Engine {
 	api.DELETE("/owner/delete/:id", HandlerV1.DeleteOwner)
 	api.GET("/owners/get", HandlerV1.ListOwner)
 
+	// order crud
+	api.POST("/order/create", HandlerV1.CreateOrder)
+	api.GET("/order/get/:id", HandlerV1.GetOrder)
+	api.PUT("/order/update", HandlerV1.UpdateOrder)
+	api.DELETE("/order/delete/:id", HandlerV1.DeleteOrder)
+	api.GET("/orders/get", HandlerV1.ListOrder)
+
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))
 
