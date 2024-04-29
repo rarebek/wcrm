@@ -63,10 +63,7 @@ func (p ownersRepo) Create(ctx context.Context, owner *entity.Owner) (*entity.Ow
 	query += "RETURNING id, full_name, company_name, email, password, avatar, tax, created_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
-	if err != nil {
-		return nil, p.db.Error(err)
-	}
-
+	
 	if err = row.Scan(&owner.Id, &owner.FullName, &owner.CompanyName, &owner.Email, &owner.Password, &owner.Avatar, &owner.Tax, &owner.CreatedAt); err != nil {
 		return nil, err
 	}
@@ -86,6 +83,9 @@ func (p ownersRepo) Get(ctx context.Context, params map[string]string) (*entity.
 			queryBuilder = queryBuilder.Where(p.db.Sq.Equal(key, value))
 		}
 	}
+
+	queryBuilder = queryBuilder.Where("deleted_at IS NULL")
+
 	query, args, err := queryBuilder.ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "get"))
@@ -121,19 +121,17 @@ func (p ownersRepo) Update(ctx context.Context, owners *entity.Owner) (*entity.O
 		Update(p.tableName).
 		SetMap(clauses).
 		Where(p.db.Sq.Equal("id", owners.Id)).
+		Where("deleted_at IS NULL").
 		ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, p.tableName+" update")
 	}
 
-	sqlStr += "RETURNING id, full_name, company_name, email, password, avatar, tax, created_at, updated_at"
+	sqlStr += " RETURNING id, full_name, company_name, email, password, avatar, tax, created_at, updated_at"
 
 	row := p.db.QueryRow(ctx, sqlStr, args...)
-	if err != nil {
-		return nil, p.db.Error(err)
-	}
 	var owner entity.Owner
-	if err = row.Scan(&owner.Id, &owner.FullName, &owner.CompanyName, &owner.Email, &owner.Password, &owner.Avatar, &owner.Tax, &owner.CreatedAt); err != nil {
+	if err = row.Scan(&owner.Id, &owner.FullName, &owner.CompanyName, &owner.Email, &owner.Password, &owner.Avatar, &owner.Tax, &owner.CreatedAt, &owner.UpdatedAt); err != nil {
 		return nil, err
 	}
 
@@ -150,18 +148,16 @@ func (p ownersRepo) Delete(ctx context.Context, guid string) (*entity.Owner, err
 		Update(p.tableName).
 		SetMap(data).
 		Where(p.db.Sq.Equal("id", guid)).
+		Where("deleted_at IS NULL").
 		ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, p.tableName+" delete")
 	}
 
-	query += "RETURNING id, full_name, company_name, email, password, avatar, tax, created_at"
+	query += " RETURNING id, full_name, company_name, email, password, avatar, tax, created_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
-	if err != nil {
-		return nil, p.db.Error(err)
-	}
-
+	
 	var owner entity.Owner
 
 	if err = row.Scan(&owner.Id, &owner.FullName, &owner.CompanyName, &owner.Email, &owner.Password, &owner.Avatar, &owner.Tax, &owner.CreatedAt); err != nil {

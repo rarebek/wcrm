@@ -41,7 +41,7 @@ func (p *workersRepo) workersSelectQueryPrefix() squirrel.SelectBuilder {
 		).From(p.tableName)
 }
 
-func (p workersRepo) Create(ctx context.Context, worker *entity.Worker) error {
+func (p workersRepo) Create(ctx context.Context, worker *entity.Worker) (*entity.Worker, error) {
 	data := map[string]any{
 		"id":         worker.Id,
 		"full_name":  worker.FullName,
@@ -53,13 +53,19 @@ func (p workersRepo) Create(ctx context.Context, worker *entity.Worker) error {
 	}
 	query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
 	if err != nil {
-		return p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
+		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	_, err = p.db.Exec(ctx, query, args...)
+	query += " RETURNING id, full_name, login_key, password, owner_id, created_at, updated_at"
+
+	row := p.db.QueryRow(ctx, query, args...)
 	if err != nil {
-		return p.db.Error(err)
+		return nil, p.db.Error(err)
 	}
+
+	var createdWorker entity.Worker
+
+	row.Scan(&createdWorker.Id, &createdWorker.)
 
 	return nil
 }
@@ -124,7 +130,7 @@ func (p workersRepo) Update(ctx context.Context, workers *entity.Worker) error {
 	return nil
 }
 
-// For soft delete 
+// For soft delete
 func (p workersRepo) Delete(ctx context.Context, guid string) error {
 	data := map[string]any{
 		"deleted_at": time.Now(),
@@ -192,7 +198,6 @@ func (p workersRepo) List(ctx context.Context, limit uint64, offset uint64, filt
 
 	return workers, nil
 }
-
 
 func (p workersRepo) CheckField(ctx context.Context, field, value string) (bool, error) {
 	query := fmt.Sprintf(

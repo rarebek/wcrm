@@ -55,16 +55,16 @@ func New() *Config {
 	config.APP = getEnv("APP", "app")
 	config.Environment = getEnv("ENVIRONMENT", "develop")
 	config.LogLevel = getEnv("LOG_LEVEL", "debug")
-	config.RPCPort = getEnv("RPC_PORT", ":50025")
+	config.RPCPort = getEnv("RPC_PORT", ":1111")
 	config.Context.Timeout = getEnv("CONTEXT_TIMEOUT", "30s")
 
 	// db configuration
 	config.DB.Host = getEnv("POSTGRES_HOST", "localhost")
 	config.DB.Port = getEnv("POSTGRES_PORT", "5432")
 	config.DB.User = getEnv("POSTGRES_USER", "postgres")
-	config.DB.Password = getEnv("POSTGRES_PASSWORD", "nodirbek")
+	config.DB.Password = getEnv("POSTGRES_PASSWORD", "asadbek")
 	config.DB.SslMode = getEnv("POSTGRES_SSLMODE", "disable")
-	config.DB.Name = getEnv("POSTGRES_DATABASE", "userdb")
+	config.DB.Name = getEnv("POSTGRES_DATABASE", "productdb")
 
 	config.PostService.Host = getEnv("POST_SERVICE_RPC_HOST", "localhost")
 	config.PostService.Port = getEnv("POST_SERVICE_RPC_PORT", ":22222")
