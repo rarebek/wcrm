@@ -88,7 +88,7 @@ func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entit
 	)
 
 	if err != nil {
-		return &entity.Order{}, err
+		return nil, err
 	}
 
 	op_data := map[string]any{

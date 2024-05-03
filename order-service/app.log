@@ -310,3 +310,8 @@ google.golang.org/grpc.(*Server).serveStreams.func2.1
 2024-04-26T21:15:51.279+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
 2024-04-26T21:16:01.737+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-26T21:16:01+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:49676", "grpc.code": "OK", "grpc.time_ms": 6.736}
 2024-04-26T21:16:38.048+0500	INFO	app/main.go:36	Conten service stops !
+2024-05-03T19:01:01.659+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-05-03T19:04:36.150+0500	INFO	app/main.go:36	Conten service stops !
+2024-05-03T19:04:38.355+0500	INFO	app/app.go:109	gRPC Server Listening	{"url": ":1111"}
+2024-05-03T19:04:53.905+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-03T19:04:53+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "OrderService", "grpc.method": "CreateOrder", "peer.address": "127.0.0.1:43878", "grpc.code": "OK", "grpc.time_ms": 26.706}
+2024-05-03T19:10:23.669+0500	INFO	app/main.go:36	Conten service stops !
