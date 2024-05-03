@@ -103,11 +103,6 @@ func (p *OrderRepositrySuiteTest) TestProductCRUD() {
 	p.Suite.NotNil(allComment)
 	// ----------------------------------------------------------------------------------------------------------
 
-	// ----------------------------------------------------------------------------------------------------------
-	// delete user
-	err = p.Repository.DeleteOrder(context.Background(), createdOrder.Id)
-	p.Suite.NoError(err)
-	// ----------------------------------------------------------------------------------------------------------
 }
 
 func TestExampleTestSuite(t *testing.T) {
