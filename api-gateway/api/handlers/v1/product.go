@@ -197,7 +197,7 @@ func (h *HandlerV1) DeleteProduct(c *gin.Context)  {
 // @Success 200 {object} models.ProductList
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/products/get [GET]
+// @Router /v1/products/get/{page}/{limit} [GET]
 func (h *HandlerV1) ListProduct(c *gin.Context)  {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true

@@ -3,10 +3,9 @@ package grpc_service_clients
 import (
 	"fmt"
 
-	pbu "evrone_service/api_gateway/genproto/user"
-	pbp "evrone_service/api_gateway/genproto/product"
 	pbo "evrone_service/api_gateway/genproto/order"
-
+	pbp "evrone_service/api_gateway/genproto/product"
+	pbu "evrone_service/api_gateway/genproto/user"
 
 	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
 	"google.golang.org/grpc"
@@ -22,10 +21,10 @@ type ServiceClient interface {
 }
 
 type serviceClient struct {
-	connections []*grpc.ClientConn
-	userService pbu.UserServiceClient
+	connections    []*grpc.ClientConn
+	userService    pbu.UserServiceClient
 	productService pbp.ProductServiceClient
-	orderService pbo.OrderServiceClient
+	orderService   pbo.OrderServiceClient
 }
 
 func New(cfg *config.Config) (ServiceClient, error) {
@@ -59,11 +58,10 @@ func New(cfg *config.Config) (ServiceClient, error) {
 		return nil, err
 	}
 
-
 	return &serviceClient{
-		userService: pbu.NewUserServiceClient(connUserService),
+		userService:    pbu.NewUserServiceClient(connUserService),
 		productService: pbp.NewProductServiceClient(connProductService),
-		orderService: pbo.NewOrderServiceClient(connOrderService),
+		orderService:   pbo.NewOrderServiceClient(connOrderService),
 		connections: []*grpc.ClientConn{
 			connProductService,
 			connUserService,

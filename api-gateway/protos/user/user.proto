@@ -4,26 +4,27 @@ package user_service;
 option go_package = ".";
 
 service UserService {
-  rpc CreateOwner(Owner) returns (GetOwnerRequest);
+  rpc CreateOwner(Owner) returns (Owner);
   rpc GetOwner(GetOwnerRequest) returns (Owner);
   rpc UpdateOwner(Owner) returns (Owner);
-  rpc DeleteOwner(GetOwnerRequest) returns (DeletedOwner);
+  rpc DeleteOwner(GetOwnerRequest) returns (Owner);
   rpc ListOwner(GetAllOwnerRequest) returns (GetAllOwnerResponse);
+  rpc CheckFieldOwner(CheckFieldRequest) returns (CheckFieldResponse);
 
   rpc CreateWorker(Worker) returns (GetWorkerRequest);
   rpc GetWorker(GetWorkerRequest) returns (Worker);
   rpc UpdateWorker(Worker) returns (Worker);
   rpc DeleteWorker(GetWorkerRequest) returns (DeletedWorker);
   rpc ListWorker(GetAllWorkerRequest) returns (GetAllWorkerResponse);
+  rpc CheckFieldWorker(CheckFieldRequest) returns (CheckFieldResponse);
 
   rpc CreateGeolocation(Geolocation) returns (GetGeolocationRequest);
   rpc GetGeolocation(GetGeolocationRequest) returns (Geolocation);
   rpc UpdateGeolocation(Geolocation) returns (Geolocation);
   rpc DeleteGeolocation(GetGeolocationRequest) returns (DeletedGeolocation);
   rpc ListGeolocation(GetAllGeolocationRequest) returns (GetAllGeolocationResponse);
+  
 }
-
-
 
 message Owner {
   string id = 1;
@@ -102,5 +103,14 @@ message GetAllWorkerResponse {
 
 message GetAllGeolocationResponse {
   repeated Geolocation all_geolocations = 1;
+}
+
+message CheckFieldRequest {
+  string field = 1;
+  string value = 2;
+}
+
+message CheckFieldResponse {
+  bool exist = 1;
 }
 

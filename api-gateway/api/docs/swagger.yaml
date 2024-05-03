@@ -30,7 +30,7 @@ definitions:
       password:
         type: string
       tax:
-        type: string
+        type: integer
     type: object
   models.CreateProduct:
     properties:
@@ -52,10 +52,39 @@ definitions:
       title:
         type: string
     type: object
+  models.CreateWorker:
+    properties:
+      full_name:
+        type: string
+      login_key:
+        type: string
+      owner_id:
+        type: string
+      password:
+        type: string
+    type: object
   models.Error:
     properties:
       message:
         type: string
+    type: object
+  models.Geolocation:
+    properties:
+      id:
+        type: integer
+      latitude:
+        type: number
+      longitude:
+        type: number
+      owner_id:
+        type: string
+    type: object
+  models.GeolocationList:
+    properties:
+      geolocations:
+        items:
+          $ref: '#/definitions/models.Geolocation'
+        type: array
     type: object
   models.Order:
     properties:
@@ -98,7 +127,7 @@ definitions:
       password:
         type: string
       tax:
-        type: string
+        type: integer
       updated_at:
         type: string
     type: object
@@ -168,7 +197,7 @@ definitions:
       password:
         type: string
       tax:
-        type: string
+        type: integer
     type: object
   models.UpdateProduct:
     properties:
@@ -187,6 +216,30 @@ definitions:
       title:
         type: string
     type: object
+  models.Worker:
+    properties:
+      created_at:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      login_key:
+        type: string
+      owner_id:
+        type: string
+      password:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.WorkerList:
+    properties:
+      workers:
+        items:
+          $ref: '#/definitions/models.Worker'
+        type: array
+    type: object
 host: localhost:8080
 info:
   contact: {}
@@ -194,6 +247,153 @@ info:
   title: WCRM
   version: "1.0"
 paths:
+  /v1/geolocation/create:
+    post:
+      consumes:
+      - application/json
+      description: Api for create geolocation
+      parameters:
+      - description: Create Geolocation
+        in: body
+        name: Geolocation
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateProduct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Geolocation'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Create Geolocation
+      tags:
+      - Geolocation
+  /v1/geolocation/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Api for delete geolocation
+      parameters:
+      - description: Id Geolocation
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CheckResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Delete Geolocation
+      tags:
+      - Geolocation
+  /v1/geolocation/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get geolocation
+      parameters:
+      - description: Id Geolocation
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Geolocation'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Get Geolocation
+      tags:
+      - Geolocation
+  /v1/geolocation/update:
+    put:
+      consumes:
+      - application/json
+      description: Api for update geolocation
+      parameters:
+      - description: Update Geolocation
+        in: body
+        name: Geolocation
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateProduct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Geolocation'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Update Geolocation
+      tags:
+      - Geolocation
+  /v1/geolocations/get{page}/{limit}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get all geolocation
+      parameters:
+      - description: Owner Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GeolocationList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Get List Geolocation
+      tags:
+      - Geolocation
   /v1/order/create:
     post:
       consumes:
@@ -312,7 +512,7 @@ paths:
       summary: Update Order
       tags:
       - Order
-  /v1/orders/get:
+  /v1/orders/get/{page}/{limit}:
     get:
       consumes:
       - application/json
@@ -464,7 +664,7 @@ paths:
       summary: Update Owner
       tags:
       - User
-  /v1/owners/get:
+  /v1/owners/get/{page}/{limit}:
     get:
       consumes:
       - application/json
@@ -616,7 +816,7 @@ paths:
       summary: Update Product
       tags:
       - Product
-  /v1/products/get:
+  /v1/products/get/{page}/{limit}:
     get:
       consumes:
       - application/json
@@ -650,6 +850,158 @@ paths:
       summary: Get List Product
       tags:
       - Product
+  /v1/worker/create:
+    post:
+      consumes:
+      - application/json
+      description: Api for create worker
+      parameters:
+      - description: Create Worker
+        in: body
+        name: Worker
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateWorker'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Worker'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Create Worker
+      tags:
+      - Worker
+  /v1/worker/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Api for delete worker
+      parameters:
+      - description: Id Worker
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CheckResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Delete Worker
+      tags:
+      - Worker
+  /v1/worker/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get worker
+      parameters:
+      - description: Id Worker
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Worker'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Get Worker
+      tags:
+      - Worker
+  /v1/worker/update:
+    put:
+      consumes:
+      - application/json
+      description: Api for update worker
+      parameters:
+      - description: Update Worker
+        in: body
+        name: Worker
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateProduct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Worker'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Update Worker
+      tags:
+      - Worker
+  /v1/workers/get/{page}/{limit}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get all worker
+      parameters:
+      - description: Page Worker
+        in: path
+        name: page
+        required: true
+        type: string
+      - description: Limit Worker
+        in: path
+        name: limit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.WorkerList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Get List Worker
+      tags:
+      - Worker
 securityDefinitions:
   ApiKeyAuth:
     in: header

@@ -53,21 +53,39 @@ func NewRoute(option RouteOption) *gin.Engine {
 	api.GET("/product/get/:id", HandlerV1.GetProduct)
 	api.PUT("/product/update", HandlerV1.UpdateProduct)
 	api.DELETE("/product/delete/:id", HandlerV1.DeleteProduct)
-	api.GET("/products/get", HandlerV1.ListProduct)
+	api.GET("/products/get/:page/:limit", HandlerV1.ListProduct)
 
 	// owner crud
 	api.POST("/owner/create", HandlerV1.CreateOwner)
 	api.GET("/owner/get/:id", HandlerV1.GetOwner)
 	api.PUT("/owner/update", HandlerV1.UpdateOwner)
 	api.DELETE("/owner/delete/:id", HandlerV1.DeleteOwner)
-	api.GET("/owners/get", HandlerV1.ListOwner)
+	api.GET("/owners/get/:page/:limit", HandlerV1.ListOwner)
+
+	// geolocation crud
+	api.POST("/geolocation/create", HandlerV1.CreateGeolocation)
+	api.GET("/geolocation/get/:id", HandlerV1.GetGeolocation)
+	api.PUT("/geolocation/update", HandlerV1.UpdateGeolocation)
+	api.DELETE("/geolocation/delete/:id", HandlerV1.DeleteGeolocation)
+	api.GET("/geolocations/get/:page/:limit", HandlerV1.ListGeolocation)
+
+	// worker crud
+	api.POST("/worker/create", HandlerV1.CreateWorker)
+	api.GET("/worker/get/:id", HandlerV1.GetWorker)
+	api.PUT("/worker/update", HandlerV1.UpdateWorker)
+	api.DELETE("/worker/delete/:id", HandlerV1.DeleteWorker)
+	api.GET("/workers/get/:page/:limit", HandlerV1.ListWorker)
 
 	// order crud
 	api.POST("/order/create", HandlerV1.CreateOrder)
 	api.GET("/order/get/:id", HandlerV1.GetOrder)
 	api.PUT("/order/update", HandlerV1.UpdateOrder)
 	api.DELETE("/order/delete/:id", HandlerV1.DeleteOrder)
-	api.GET("/orders/get", HandlerV1.ListOrder)
+	api.GET("/orders/get/:page/:limit", HandlerV1.ListOrder)
+
+	
+
+
 
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))

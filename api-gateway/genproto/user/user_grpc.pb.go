@@ -24,11 +24,13 @@ const (
 	UserService_UpdateOwner_FullMethodName       = "/user_service.UserService/UpdateOwner"
 	UserService_DeleteOwner_FullMethodName       = "/user_service.UserService/DeleteOwner"
 	UserService_ListOwner_FullMethodName         = "/user_service.UserService/ListOwner"
+	UserService_CheckFieldOwner_FullMethodName   = "/user_service.UserService/CheckFieldOwner"
 	UserService_CreateWorker_FullMethodName      = "/user_service.UserService/CreateWorker"
 	UserService_GetWorker_FullMethodName         = "/user_service.UserService/GetWorker"
 	UserService_UpdateWorker_FullMethodName      = "/user_service.UserService/UpdateWorker"
 	UserService_DeleteWorker_FullMethodName      = "/user_service.UserService/DeleteWorker"
 	UserService_ListWorker_FullMethodName        = "/user_service.UserService/ListWorker"
+	UserService_CheckFieldWorker_FullMethodName  = "/user_service.UserService/CheckFieldWorker"
 	UserService_CreateGeolocation_FullMethodName = "/user_service.UserService/CreateGeolocation"
 	UserService_GetGeolocation_FullMethodName    = "/user_service.UserService/GetGeolocation"
 	UserService_UpdateGeolocation_FullMethodName = "/user_service.UserService/UpdateGeolocation"
@@ -40,16 +42,18 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
-	CreateOwner(ctx context.Context, in *Owner, opts ...grpc.CallOption) (*GetOwnerRequest, error)
+	CreateOwner(ctx context.Context, in *Owner, opts ...grpc.CallOption) (*Owner, error)
 	GetOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*Owner, error)
 	UpdateOwner(ctx context.Context, in *Owner, opts ...grpc.CallOption) (*Owner, error)
-	DeleteOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*DeletedOwner, error)
+	DeleteOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*Owner, error)
 	ListOwner(ctx context.Context, in *GetAllOwnerRequest, opts ...grpc.CallOption) (*GetAllOwnerResponse, error)
+	CheckFieldOwner(ctx context.Context, in *CheckFieldRequest, opts ...grpc.CallOption) (*CheckFieldResponse, error)
 	CreateWorker(ctx context.Context, in *Worker, opts ...grpc.CallOption) (*GetWorkerRequest, error)
 	GetWorker(ctx context.Context, in *GetWorkerRequest, opts ...grpc.CallOption) (*Worker, error)
 	UpdateWorker(ctx context.Context, in *Worker, opts ...grpc.CallOption) (*Worker, error)
 	DeleteWorker(ctx context.Context, in *GetWorkerRequest, opts ...grpc.CallOption) (*DeletedWorker, error)
 	ListWorker(ctx context.Context, in *GetAllWorkerRequest, opts ...grpc.CallOption) (*GetAllWorkerResponse, error)
+	CheckFieldWorker(ctx context.Context, in *CheckFieldRequest, opts ...grpc.CallOption) (*CheckFieldResponse, error)
 	CreateGeolocation(ctx context.Context, in *Geolocation, opts ...grpc.CallOption) (*GetGeolocationRequest, error)
 	GetGeolocation(ctx context.Context, in *GetGeolocationRequest, opts ...grpc.CallOption) (*Geolocation, error)
 	UpdateGeolocation(ctx context.Context, in *Geolocation, opts ...grpc.CallOption) (*Geolocation, error)
@@ -65,8 +69,8 @@ func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
 }
 
-func (c *userServiceClient) CreateOwner(ctx context.Context, in *Owner, opts ...grpc.CallOption) (*GetOwnerRequest, error) {
-	out := new(GetOwnerRequest)
+func (c *userServiceClient) CreateOwner(ctx context.Context, in *Owner, opts ...grpc.CallOption) (*Owner, error) {
+	out := new(Owner)
 	err := c.cc.Invoke(ctx, UserService_CreateOwner_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -92,8 +96,8 @@ func (c *userServiceClient) UpdateOwner(ctx context.Context, in *Owner, opts ...
 	return out, nil
 }
 
-func (c *userServiceClient) DeleteOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*DeletedOwner, error) {
-	out := new(DeletedOwner)
+func (c *userServiceClient) DeleteOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*Owner, error) {
+	out := new(Owner)
 	err := c.cc.Invoke(ctx, UserService_DeleteOwner_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -104,6 +108,15 @@ func (c *userServiceClient) DeleteOwner(ctx context.Context, in *GetOwnerRequest
 func (c *userServiceClient) ListOwner(ctx context.Context, in *GetAllOwnerRequest, opts ...grpc.CallOption) (*GetAllOwnerResponse, error) {
 	out := new(GetAllOwnerResponse)
 	err := c.cc.Invoke(ctx, UserService_ListOwner_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) CheckFieldOwner(ctx context.Context, in *CheckFieldRequest, opts ...grpc.CallOption) (*CheckFieldResponse, error) {
+	out := new(CheckFieldResponse)
+	err := c.cc.Invoke(ctx, UserService_CheckFieldOwner_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -149,6 +162,15 @@ func (c *userServiceClient) DeleteWorker(ctx context.Context, in *GetWorkerReque
 func (c *userServiceClient) ListWorker(ctx context.Context, in *GetAllWorkerRequest, opts ...grpc.CallOption) (*GetAllWorkerResponse, error) {
 	out := new(GetAllWorkerResponse)
 	err := c.cc.Invoke(ctx, UserService_ListWorker_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) CheckFieldWorker(ctx context.Context, in *CheckFieldRequest, opts ...grpc.CallOption) (*CheckFieldResponse, error) {
+	out := new(CheckFieldResponse)
+	err := c.cc.Invoke(ctx, UserService_CheckFieldWorker_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -204,16 +226,18 @@ func (c *userServiceClient) ListGeolocation(ctx context.Context, in *GetAllGeolo
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
 type UserServiceServer interface {
-	CreateOwner(context.Context, *Owner) (*GetOwnerRequest, error)
+	CreateOwner(context.Context, *Owner) (*Owner, error)
 	GetOwner(context.Context, *GetOwnerRequest) (*Owner, error)
 	UpdateOwner(context.Context, *Owner) (*Owner, error)
-	DeleteOwner(context.Context, *GetOwnerRequest) (*DeletedOwner, error)
+	DeleteOwner(context.Context, *GetOwnerRequest) (*Owner, error)
 	ListOwner(context.Context, *GetAllOwnerRequest) (*GetAllOwnerResponse, error)
+	CheckFieldOwner(context.Context, *CheckFieldRequest) (*CheckFieldResponse, error)
 	CreateWorker(context.Context, *Worker) (*GetWorkerRequest, error)
 	GetWorker(context.Context, *GetWorkerRequest) (*Worker, error)
 	UpdateWorker(context.Context, *Worker) (*Worker, error)
 	DeleteWorker(context.Context, *GetWorkerRequest) (*DeletedWorker, error)
 	ListWorker(context.Context, *GetAllWorkerRequest) (*GetAllWorkerResponse, error)
+	CheckFieldWorker(context.Context, *CheckFieldRequest) (*CheckFieldResponse, error)
 	CreateGeolocation(context.Context, *Geolocation) (*GetGeolocationRequest, error)
 	GetGeolocation(context.Context, *GetGeolocationRequest) (*Geolocation, error)
 	UpdateGeolocation(context.Context, *Geolocation) (*Geolocation, error)
@@ -226,7 +250,7 @@ type UserServiceServer interface {
 type UnimplementedUserServiceServer struct {
 }
 
-func (UnimplementedUserServiceServer) CreateOwner(context.Context, *Owner) (*GetOwnerRequest, error) {
+func (UnimplementedUserServiceServer) CreateOwner(context.Context, *Owner) (*Owner, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateOwner not implemented")
 }
 func (UnimplementedUserServiceServer) GetOwner(context.Context, *GetOwnerRequest) (*Owner, error) {
@@ -235,11 +259,14 @@ func (UnimplementedUserServiceServer) GetOwner(context.Context, *GetOwnerRequest
 func (UnimplementedUserServiceServer) UpdateOwner(context.Context, *Owner) (*Owner, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOwner not implemented")
 }
-func (UnimplementedUserServiceServer) DeleteOwner(context.Context, *GetOwnerRequest) (*DeletedOwner, error) {
+func (UnimplementedUserServiceServer) DeleteOwner(context.Context, *GetOwnerRequest) (*Owner, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOwner not implemented")
 }
 func (UnimplementedUserServiceServer) ListOwner(context.Context, *GetAllOwnerRequest) (*GetAllOwnerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListOwner not implemented")
+}
+func (UnimplementedUserServiceServer) CheckFieldOwner(context.Context, *CheckFieldRequest) (*CheckFieldResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckFieldOwner not implemented")
 }
 func (UnimplementedUserServiceServer) CreateWorker(context.Context, *Worker) (*GetWorkerRequest, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateWorker not implemented")
@@ -255,6 +282,9 @@ func (UnimplementedUserServiceServer) DeleteWorker(context.Context, *GetWorkerRe
 }
 func (UnimplementedUserServiceServer) ListWorker(context.Context, *GetAllWorkerRequest) (*GetAllWorkerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListWorker not implemented")
+}
+func (UnimplementedUserServiceServer) CheckFieldWorker(context.Context, *CheckFieldRequest) (*CheckFieldResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckFieldWorker not implemented")
 }
 func (UnimplementedUserServiceServer) CreateGeolocation(context.Context, *Geolocation) (*GetGeolocationRequest, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateGeolocation not implemented")
@@ -374,6 +404,24 @@ func _UserService_ListOwner_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_CheckFieldOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckFieldRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).CheckFieldOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_CheckFieldOwner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).CheckFieldOwner(ctx, req.(*CheckFieldRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _UserService_CreateWorker_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Worker)
 	if err := dec(in); err != nil {
@@ -460,6 +508,24 @@ func _UserService_ListWorker_Handler(srv interface{}, ctx context.Context, dec f
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).ListWorker(ctx, req.(*GetAllWorkerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_CheckFieldWorker_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckFieldRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).CheckFieldWorker(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_CheckFieldWorker_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).CheckFieldWorker(ctx, req.(*CheckFieldRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -582,6 +648,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_ListOwner_Handler,
 		},
 		{
+			MethodName: "CheckFieldOwner",
+			Handler:    _UserService_CheckFieldOwner_Handler,
+		},
+		{
 			MethodName: "CreateWorker",
 			Handler:    _UserService_CreateWorker_Handler,
 		},
@@ -600,6 +670,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ListWorker",
 			Handler:    _UserService_ListWorker_Handler,
+		},
+		{
+			MethodName: "CheckFieldWorker",
+			Handler:    _UserService_CheckFieldWorker_Handler,
 		},
 		{
 			MethodName: "CreateGeolocation",

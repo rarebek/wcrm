@@ -194,7 +194,7 @@ func (h *HandlerV1) DeleteOrder(c *gin.Context)  {
 // @Success 200 {object} models.OrderList
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/orders/get [GET]
+// @Router /v1/orders/get/{page}/{limit} [GET]
 func (h *HandlerV1) ListOrder(c *gin.Context)  {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true

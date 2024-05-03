@@ -13,27 +13,27 @@ import (
 
 	// grpcClient "evrone_service/api_gateway/internal/infrastructure/grpc_service_client"
 	// "evrone_service/api_gateway/internal/pkg/config"
+
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/k0kubun/pp"
 	"github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
-// Create Owner
-// @Summary Create Owner
-// @Description Api for create owner
-// @Tags User
+// Create Worker
+// @Summary Create Worker
+// @Description Api for create worker
+// @Tags Worker
 // @Accept json
 // @Produce json
-// @Param Product body models.CreateOwner true "Create Owner"
-// @Success 200 {object} models.Owner
+// @Param Worker body models.CreateWorker true "Create Worker"
+// @Success 200 {object} models.Worker
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/owner/create [POST]
-func (h HandlerV1) CreateOwner(c *gin.Context) {
+// @Router /v1/worker/create [POST]
+func (h HandlerV1) CreateWorker(c *gin.Context) {
 	var (
-		body        models.CreateOwner
+		body        models.CreateWorker
 		jspbMarshal protojson.MarshalOptions
 	)
 
@@ -43,7 +43,7 @@ func (h HandlerV1) CreateOwner(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error marshal": err.Error(),
+			"error": err.Error(),
 		})
 	}
 
@@ -52,14 +52,12 @@ func (h HandlerV1) CreateOwner(c *gin.Context) {
 
 	id := uuid.New().String()
 
-	response, err := h.Service.UserService().CreateOwner(ctx, &pbu.Owner{
-		Id:          id,
-		FullName:    body.FullName,
-		CompanyName: body.CompanyName,
-		Email:       body.Email,
-		Password:    body.Password,
-		Avatar:      body.Avatar,
-		Tax:         body.Tax,
+	response, err := h.Service.UserService().CreateWorker(ctx, &pbu.Worker{
+		Id:       id,
+		FullName: body.FullName,
+		LoginKey: body.LoginKey,
+		Password: body.Password,
+		OwnerId:  body.OwnerId,
 	})
 
 	if err != nil {
@@ -72,28 +70,27 @@ func (h HandlerV1) CreateOwner(c *gin.Context) {
 	c.JSON(http.StatusCreated, response)
 }
 
-// Get Owner
-// @Summary Get Owner
-// @Description Api for get product
-// @Tags User
+// Get Worker
+// @Summary Get Worker
+// @Description Api for get worker
+// @Tags Worker
 // @Accept json
 // @Produce json
-// @Param id path string true "Id Owner"
-// @Success 200 {object} models.Owner
+// @Param id path string true "Id Worker"
+// @Success 200 {object} models.Worker
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/owner/get/{id} [GET]
-func (h *HandlerV1) GetOwner(c *gin.Context) {
+// @Router /v1/worker/get/{id} [GET]
+func (h *HandlerV1) GetWorker(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
 	id := c.Param("id")
-	pp.Println(id)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	response, err := h.Service.UserService().GetOwner(ctx, &pbu.GetOwnerRequest{
+	response, err := h.Service.UserService().GetWorker(ctx, &pbu.GetWorkerRequest{
 		Id: id,
 	})
 
@@ -107,20 +104,20 @@ func (h *HandlerV1) GetOwner(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
-// Update Owner
-// @Summary Update Owner
-// @Description Api for update product
-// @Tags User
+// Update Worker
+// @Summary Update Worker
+// @Description Api for update worker
+// @Tags Worker
 // @Accept json
 // @Produce json
-// @Param Owner body models.UpdateOwner true "Update Owner"
-// @Success 200 {object} models.Owner
+// @Param Worker body models.UpdateProduct true "Update Worker"
+// @Success 200 {object} models.Worker
 // @Failure 400 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/owner/update [PUT]
-func (h *HandlerV1) UpdateOwner(c *gin.Context) {
+// @Router /v1/worker/update [PUT]
+func (h *HandlerV1) UpdateWorker(c *gin.Context) {
 	var (
-		body        models.UpdateOwner
+		body        models.UpdateWorker
 		jspbMarshal protojson.MarshalOptions
 	)
 	jspbMarshal.UseProtoNames = true
@@ -136,14 +133,12 @@ func (h *HandlerV1) UpdateOwner(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	response, err := h.Service.UserService().UpdateOwner(ctx, &pbu.Owner{
-		Id:          body.Id,
-		FullName:    body.FullName,
-		CompanyName: body.CompanyName,
-		Email:       body.Email,
-		Password:    body.Password,
-		Avatar:      body.Avatar,
-		Tax:         body.Tax,
+	response, err := h.Service.UserService().UpdateWorker(ctx, &pbu.Worker{
+		Id:        body.Id,
+		FullName:  body.FullName,
+		LoginKey:  body.LoginKey,
+		Password:  body.Password,
+		OwnerId:   body.OwnerId,
 	})
 
 	if err != nil {
@@ -156,18 +151,18 @@ func (h *HandlerV1) UpdateOwner(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
-// Delete Owner
-// @Summary Delete Owner
-// @Description Api for delete product
-// @Tags User
+// Delete Worker
+// @Summary Delete Worker
+// @Description Api for delete worker
+// @Tags Worker
 // @Accept json
 // @Produce json
-// @Param id path string true "Id Owner"
+// @Param id path string true "Id Worker"
 // @Success 200 {object} models.CheckResponse
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/owner/delete/{id} [DELETE]
-func (h *HandlerV1) DeleteOwner(c *gin.Context) {
+// @Router /v1/worker/delete/{id} [DELETE]
+func (h *HandlerV1) DeleteWorker(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
@@ -176,7 +171,7 @@ func (h *HandlerV1) DeleteOwner(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	response, err := h.Service.UserService().DeleteOwner(ctx, &pbu.GetOwnerRequest{
+	response, err := h.Service.UserService().DeleteWorker(ctx, &pbu.GetWorkerRequest{
 		Id: id,
 	})
 
@@ -190,19 +185,19 @@ func (h *HandlerV1) DeleteOwner(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
-// Get List Owner
-// @Summary Get List Owner
-// @Description Api for get all product
-// @Tags User
+// Get List Worker
+// @Summary Get List Worker
+// @Description Api for get all worker
+// @Tags Worker
 // @Accept json
 // @Produce json
-// @Param page path string true "Page Owner"
-// @Param limit path string true "Limit Owner"
-// @Success 200 {object} models.OwnerList
+// @Param page path string true "Page Worker"
+// @Param limit path string true "Limit Worker"
+// @Success 200 {object} models.WorkerList
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
-// @Router /v1/owners/get/{page}/{limit} [GET]
-func (h *HandlerV1) ListOwner(c *gin.Context) {
+// @Router /v1/workers/get/{page}/{limit} [GET]
+func (h *HandlerV1) ListWorker(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
@@ -212,8 +207,8 @@ func (h *HandlerV1) ListOwner(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
 	defer cancel()
 
-	response, err := h.Service.UserService().ListOwner(ctx, &pbu.GetAllOwnerRequest{
-		Page:  cast.ToInt64(page),
+	response, err := h.Service.UserService().ListWorker(ctx, &pbu.GetAllWorkerRequest{
+		Page: cast.ToInt64(page),
 		Limit: cast.ToInt64(limit),
 	})
 
