@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"user-service/internal/entity"
+	"user-service/internal/pkg/otlp"
 	"user-service/internal/pkg/postgres"
 
 	"github.com/Masterminds/squirrel"
@@ -12,7 +13,7 @@ import (
 const (
 	geolocationsTableName      = "geolocations"
 	geolocationsServiceName    = "geolocationService"
-	geolocationsSpanRepoPrefix = "geolocationsRepo"
+	geolocationsSpanRepoPrefix = "geolocationRepo"
 )
 
 type geolocationsRepo struct {
@@ -37,7 +38,9 @@ func (p *geolocationsRepo) geolocationsSelectQueryPrefix() squirrel.SelectBuilde
 		).From(p.tableName)
 }
 
-func (p geolocationsRepo) Create(ctx context.Context, geolocation *entity.Geolocation) error {
+func (p geolocationsRepo) Create(ctx context.Context, geolocation *entity.Geolocation) (*entity.Geolocation, error) {
+	ctx, span := otlp.Start(ctx, geolocationsServiceName, geolocationsSpanRepoPrefix+"Create")
+	defer span.End()
 	data := map[string]any{
 		"id":         geolocation.Id,
 		"latitude":  geolocation.Latitude,
@@ -46,18 +49,23 @@ func (p geolocationsRepo) Create(ctx context.Context, geolocation *entity.Geoloc
 	}
 	query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
 	if err != nil {
-		return p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
+		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	_, err = p.db.Exec(ctx, query, args...)
-	if err != nil {
-		return p.db.Error(err)
+	query += "RETURNING id, latitude, longitude, owner_id"
+
+	row := p.db.QueryRow(ctx, query, args...)
+
+	if err = row.Scan(&geolocation.Id, &geolocation.Latitude, &geolocation.Longitude, &geolocation.OwnerId); err != nil {
+		return nil, err
 	}
 
-	return nil
+	return geolocation, nil
 }
 
 func (p geolocationsRepo) Get(ctx context.Context, params map[string]int64) (*entity.Geolocation, error) {
+	ctx, span := otlp.Start(ctx, geolocationsServiceName, geolocationsSpanRepoPrefix+"Create")
+	defer span.End()
 	var (
 		geolocation entity.Geolocation
 	)
@@ -85,7 +93,9 @@ func (p geolocationsRepo) Get(ctx context.Context, params map[string]int64) (*en
 	return &geolocation, nil
 }
 
-func (p geolocationsRepo) Update(ctx context.Context, geolocations *entity.Geolocation) error {
+func (p geolocationsRepo) Update(ctx context.Context, geolocations *entity.Geolocation) (*entity.Geolocation, error) {
+	ctx, span := otlp.Start(ctx, geolocationsServiceName, geolocationsSpanRepoPrefix+"Create")
+	defer span.End()
 	clauses := map[string]any{
 		"latitude":  geolocations.Latitude,	
 		"longitude":  geolocations.Longitude,
@@ -97,22 +107,23 @@ func (p geolocationsRepo) Update(ctx context.Context, geolocations *entity.Geolo
 		Where(p.db.Sq.Equal("id", geolocations.Id)).
 		ToSql()
 	if err != nil {
-		return p.db.ErrSQLBuild(err, p.tableName+" update")
+		return nil, p.db.ErrSQLBuild(err, p.tableName+" update")
 	}
 
-	commandTag, err := p.db.Exec(ctx, sqlStr, args...)
-	if err != nil {
-		return p.db.Error(err)
+	sqlStr += " RETURNING id, full_name, username, email, password, avatar, resume, created_at, updated_at"
+
+	row := p.db.QueryRow(ctx, sqlStr, args...)
+	var resclient entity.Geolocation
+	if err = row.Scan(&resclient.Id, &resclient.Latitude, &resclient.Longitude, &resclient.OwnerId); err != nil {
+		return nil, err
 	}
 
-	if commandTag.RowsAffected() == 0 {
-		return p.db.Error(fmt.Errorf("no sql rows"))
-	}
-
-	return nil
+	return &resclient, nil
 }
 
 func (p geolocationsRepo) Delete(ctx context.Context, guid int64) error {
+	ctx, span := otlp.Start(ctx, geolocationsServiceName, geolocationsSpanRepoPrefix+"Create")
+	defer span.End()
 	sqlStr, args, err := p.db.Sq.Builder.
 		Delete(p.tableName).
 		Where(p.db.Sq.Equal("id", guid)).
@@ -134,6 +145,8 @@ func (p geolocationsRepo) Delete(ctx context.Context, guid int64) error {
 }
 
 func (p geolocationsRepo) List(ctx context.Context, filter map[string]string) ([]*entity.Geolocation, error) {
+	ctx, span := otlp.Start(ctx, geolocationsServiceName, geolocationsSpanRepoPrefix+"Create")
+	defer span.End()
 	var (
 		geolocations []*entity.Geolocation
 	)

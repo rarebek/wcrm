@@ -6,6 +6,7 @@ import (
 	"time"
 	"user-service/internal/entity"
 	repo "user-service/internal/infrastructure/repository"
+	trepo "user-service/internal/infrastructure/repository/postgresql"
 	"user-service/internal/pkg/config"
 	"user-service/internal/pkg/postgres"
 
@@ -42,8 +43,8 @@ func (s *WorkerReposisitoryTestSuite) TestWorkerCRUD() {
 
 	s.DB = db
 
-	workerRepo := NewWorkersRepo(s.DB)
-	ownerRepo := NewOwnersRepo(s.DB)
+	workerRepo := trepo.NewWorkersRepo(s.DB)
+	ownerRepo := trepo.NewOwnersRepo(s.DB)
 	ctx := context.Background()
 
 	// struct for create owner
@@ -60,7 +61,7 @@ func (s *WorkerReposisitoryTestSuite) TestWorkerCRUD() {
 	}
 	// uuid generating
 
-	err = ownerRepo.Create(ctx, &owner)
+	_, err = ownerRepo.Create(ctx, &owner)
 	s.Suite.NoError(err)
 
 	// struct for create worker
@@ -84,7 +85,7 @@ func (s *WorkerReposisitoryTestSuite) TestWorkerCRUD() {
 	}
 
 	// check create worker method
-	err = workerRepo.Create(ctx, &worker)
+	_, err = workerRepo.Create(ctx, &worker)
 	s.Suite.NoError(err)
 	Params := make(map[string]string)
 	Params["id"] = worker.Id
@@ -100,7 +101,7 @@ func (s *WorkerReposisitoryTestSuite) TestWorkerCRUD() {
 	s.Suite.Equal(getWorker.OwnerId, worker.OwnerId)
 
 	// check update worker method
-	err = workerRepo.Update(ctx, &updWorker)
+	_, err = workerRepo.Update(ctx, &updWorker)
 	s.Suite.NoError(err)
 	updGetWorker, err := workerRepo.Get(ctx, Params)
 	s.Suite.NoError(err)

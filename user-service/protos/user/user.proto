@@ -4,21 +4,21 @@ package user_service;
 option go_package = "genproto/user_service";
 
 service UserService {
-  rpc CreateOwner(Owner) returns (GetOwnerRequest);
+  rpc CreateOwner(Owner) returns (Owner);
   rpc GetOwner(GetOwnerRequest) returns (Owner);
   rpc UpdateOwner(Owner) returns (Owner);
   rpc DeleteOwner(GetOwnerRequest) returns (DeletedOwner);
   rpc ListOwner(GetAllOwnerRequest) returns (GetAllOwnerResponse);
   rpc CheckFieldOwner(CheckFieldRequest) returns (CheckFieldResponse);
 
-  rpc CreateWorker(Worker) returns (GetWorkerRequest);
+  rpc CreateWorker(Worker) returns (Worker);
   rpc GetWorker(GetWorkerRequest) returns (Worker);
   rpc UpdateWorker(Worker) returns (Worker);
   rpc DeleteWorker(GetWorkerRequest) returns (DeletedWorker);
   rpc ListWorker(GetAllWorkerRequest) returns (GetAllWorkerResponse);
   rpc CheckFieldWorker(CheckFieldRequest) returns (CheckFieldResponse);
 
-  rpc CreateGeolocation(Geolocation) returns (GetGeolocationRequest);
+  rpc CreateGeolocation(Geolocation) returns (Geolocation);
   rpc GetGeolocation(GetGeolocationRequest) returns (Geolocation);
   rpc UpdateGeolocation(Geolocation) returns (Geolocation);
   rpc DeleteGeolocation(GetGeolocationRequest) returns (DeletedGeolocation);

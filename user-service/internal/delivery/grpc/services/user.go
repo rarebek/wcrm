@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"strconv"
 	"time"
 	userproto "user-service/genproto/user_service"
 	"user-service/internal/entity"
@@ -9,6 +10,7 @@ import (
 	"user-service/internal/usecase/event"
 
 	"user-service/internal/pkg/otlp"
+
 	"go.opentelemetry.io/otel/attribute"
 
 	"go.uber.org/zap"
@@ -36,14 +38,14 @@ func NewRPC(logger *zap.Logger,
 	}
 }
 
-func (s userRPC) CreateOwner(ctx context.Context, in *userproto.Owner) (*userproto.GetOwnerRequest, error) {
+func (s userRPC) CreateOwner(ctx context.Context, in *userproto.Owner) (*userproto.Owner, error) {
 	//tracing
 	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "CreateOwner")
 	span.SetAttributes(
 		attribute.Key("id").String(in.Id),
 	)
 	defer span.End()
-	guid, err := s.ownerUsecase.Create(ctx, &entity.Owner{
+	owner, err := s.ownerUsecase.Create(ctx, &entity.Owner{
 		Id:          in.Id,
 		FullName:    in.FullName,
 		CompanyName: in.CompanyName,
@@ -60,8 +62,16 @@ func (s userRPC) CreateOwner(ctx context.Context, in *userproto.Owner) (*userpro
 		return nil, err
 	}
 
-	return &userproto.GetOwnerRequest{
-		Id: guid,
+	return &userproto.Owner{
+		Id:          owner.Id,
+		FullName:    owner.FullName,
+		CompanyName: owner.CompanyName,
+		Email:       owner.Email,
+		Password:    owner.Password,
+		Avatar:      owner.Avatar,
+		Tax:         owner.Tax,
+		CreatedAt:   owner.CreatedAt.Format("Jan 2, 2006 - 03:04 PM"),
+		UpdatedAt:   owner.UpdatedAt.Format("Jan 2, 2006 - 03:04 PM"),
 	}, nil
 }
 
@@ -72,7 +82,7 @@ func (s userRPC) UpdateOwner(ctx context.Context, in *userproto.Owner) (*userpro
 		attribute.Key("id").String(in.Id),
 	)
 	defer span.End()
-	err := s.ownerUsecase.Update(ctx, &entity.Owner{
+	owner, err := s.ownerUsecase.Update(ctx, &entity.Owner{
 		Id:          in.Id,
 		FullName:    in.FullName,
 		CompanyName: in.CompanyName,
@@ -86,20 +96,27 @@ func (s userRPC) UpdateOwner(ctx context.Context, in *userproto.Owner) (*userpro
 		s.logger.Error(err.Error())
 		return nil, err
 	}
+
 	return &userproto.Owner{
-		Id:          in.Id,
-		FullName:    in.FullName,
-		CompanyName: in.CompanyName,
-		Avatar:      in.Avatar,
-		Email:       in.Email,
-		Password:    in.Password,
-		Tax:         in.Tax,
+		Id:          owner.Id,
+		FullName:    owner.FullName,
+		CompanyName: owner.CompanyName,
+		Avatar:      owner.Avatar,
+		Email:       owner.Email,
+		Password:    owner.Password,
+		Tax:         owner.Tax,
 		CreatedAt:   in.CreatedAt,
 		UpdatedAt:   in.UpdatedAt,
 	}, nil
 }
 
 func (s userRPC) DeleteOwner(ctx context.Context, in *userproto.GetOwnerRequest) (*userproto.DeletedOwner, error) {
+	//tracing
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "DeleteOwner")
+	span.SetAttributes(
+		attribute.Key("id").String(in.Id),
+	)
+	defer span.End()
 	if err := s.ownerUsecase.Delete(ctx, in.Id); err != nil {
 		s.logger.Error(err.Error())
 		return &userproto.DeletedOwner{Status: false}, err
@@ -114,6 +131,7 @@ func (s userRPC) GetOwner(ctx context.Context, in *userproto.GetOwnerRequest) (*
 		attribute.Key("id").String(in.Id),
 	)
 	defer span.End()
+
 	user, err := s.ownerUsecase.Get(ctx, map[string]string{
 		"id": in.Id,
 	})
@@ -137,6 +155,10 @@ func (s userRPC) GetOwner(ctx context.Context, in *userproto.GetOwnerRequest) (*
 }
 
 func (s userRPC) ListOwner(ctx context.Context, in *userproto.GetAllOwnerRequest) (*userproto.GetAllOwnerResponse, error) {
+	//tracing start
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "ListOwner")
+	defer span.End()
+	//tracing end
 	offset := in.Limit * (in.Page - 1)
 	users, err := s.ownerUsecase.List(ctx, uint64(in.Limit), uint64(offset), map[string]string{})
 	if err != nil {
@@ -165,8 +187,15 @@ func (s userRPC) ListOwner(ctx context.Context, in *userproto.GetAllOwnerRequest
 	return &response, nil
 }
 
-func (s userRPC) CreateWorker(ctx context.Context, in *userproto.Worker) (*userproto.GetWorkerRequest, error) {
-	guid, err := s.workerUsecase.Create(ctx, &entity.Worker{
+func (s userRPC) CreateWorker(ctx context.Context, in *userproto.Worker) (*userproto.Worker, error) {
+	//tracing start
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "CreateWorker")
+	span.SetAttributes(
+		attribute.Key("id").String(in.Id),
+	)
+	defer span.End()
+	//tracing end
+	worker, err := s.workerUsecase.Create(ctx, &entity.Worker{
 		Id:        in.Id,
 		FullName:  in.FullName,
 		LoginKey:  in.LoginKey,
@@ -181,13 +210,26 @@ func (s userRPC) CreateWorker(ctx context.Context, in *userproto.Worker) (*userp
 		return nil, err
 	}
 
-	return &userproto.GetWorkerRequest{
-		Id: guid,
+	return &userproto.Worker{
+		Id:        worker.Id,
+		FullName:  worker.FullName,
+		LoginKey:  worker.LoginKey,
+		Password:  worker.Password,
+		OwnerId:   worker.OwnerId,
+		CreatedAt: worker.CreatedAt.Format("Jan 2, 2006 - 03:04 PM"),
+		UpdatedAt: worker.UpdatedAt.Format("Jan 2, 2006 - 03:04 PM"),
 	}, nil
 }
 
 func (s userRPC) UpdateWorker(ctx context.Context, in *userproto.Worker) (*userproto.Worker, error) {
-	err := s.workerUsecase.Update(ctx, &entity.Worker{
+	//tracing
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "UpdateWorker")
+	span.SetAttributes(
+		attribute.Key("id").String(in.Id),
+	)
+	defer span.End()
+	//tracing end
+	worker, err := s.workerUsecase.Update(ctx, &entity.Worker{
 		Id:        in.Id,
 		FullName:  in.FullName,
 		LoginKey:  in.LoginKey,
@@ -200,17 +242,24 @@ func (s userRPC) UpdateWorker(ctx context.Context, in *userproto.Worker) (*userp
 		return nil, err
 	}
 	return &userproto.Worker{
-		Id:        in.Id,
-		FullName:  in.FullName,
-		LoginKey:  in.LoginKey,
-		Password:  in.Password,
-		OwnerId:   in.OwnerId,
-		CreatedAt: in.CreatedAt,
-		UpdatedAt: in.UpdatedAt,
+		Id:        worker.Id,
+		FullName:  worker.FullName,
+		LoginKey:  worker.LoginKey,
+		Password:  worker.Password,
+		OwnerId:   worker.OwnerId,
+		CreatedAt: worker.CreatedAt.Format("Jan 2, 2006 - 03:04 PM"),
+		UpdatedAt: worker.UpdatedAt.Format("Jan 2, 2006 - 03:04 PM"),
 	}, nil
 }
 
 func (s userRPC) DeleteWorker(ctx context.Context, in *userproto.GetWorkerRequest) (*userproto.DeletedWorker, error) {
+	//tracing
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "DeleteWorker")
+	span.SetAttributes(
+		attribute.Key("id").String(in.Id),
+	)
+	defer span.End()
+	//tracing end
 	if err := s.workerUsecase.Delete(ctx, in.Id); err != nil {
 		s.logger.Error(err.Error())
 		return &userproto.DeletedWorker{Status: false}, err
@@ -219,6 +268,13 @@ func (s userRPC) DeleteWorker(ctx context.Context, in *userproto.GetWorkerReques
 }
 
 func (s userRPC) GetWorker(ctx context.Context, in *userproto.GetWorkerRequest) (*userproto.Worker, error) {
+	//tracing
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "GetWorker")
+	span.SetAttributes(
+		attribute.Key("id").String(in.Id),
+	)
+	defer span.End()
+	//tracing end
 	user, err := s.workerUsecase.Get(ctx, map[string]string{
 		"id": in.Id,
 	})
@@ -240,6 +296,11 @@ func (s userRPC) GetWorker(ctx context.Context, in *userproto.GetWorkerRequest) 
 }
 
 func (s userRPC) ListWorker(ctx context.Context, in *userproto.GetAllWorkerRequest) (*userproto.GetAllWorkerResponse, error) {
+	//tracing start
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "ListWorker")
+	defer span.End()
+	//tracing end
+
 	offset := in.Limit * (in.Page - 1)
 	users, err := s.workerUsecase.List(ctx, uint64(in.Limit), uint64(offset), map[string]string{})
 	if err != nil {
@@ -268,13 +329,18 @@ func (s userRPC) ListWorker(ctx context.Context, in *userproto.GetAllWorkerReque
 
 // --------------------------------------
 
-
-
-func (s userRPC) CreateGeolocation(ctx context.Context, in *userproto.Geolocation) (*userproto.GetGeolocationRequest, error) {
-	guid, err := s.geolocationUsecase.Create(ctx, &entity.Geolocation{
+func (s userRPC) CreateGeolocation(ctx context.Context, in *userproto.Geolocation) (*userproto.Geolocation, error) {
+	//tracing
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "CreateGeolocation")
+	span.SetAttributes(
+		attribute.Key("id").String(strconv.Itoa(int(in.Id))),
+	)
+	defer span.End()
+	//tracing end
+	geolocation, err := s.geolocationUsecase.Create(ctx, &entity.Geolocation{
 		Id:        in.Id,
 		Latitude:  in.Latitude,
-		Longitude:  in.Longitude,
+		Longitude: in.Longitude,
 		OwnerId:   in.OwnerId,
 	})
 
@@ -283,16 +349,25 @@ func (s userRPC) CreateGeolocation(ctx context.Context, in *userproto.Geolocatio
 		return nil, err
 	}
 
-	return &userproto.GetGeolocationRequest{
-		Id: guid,
+	return &userproto.Geolocation{
+		Id:        geolocation.Id,
+		Latitude:  geolocation.Latitude,
+		Longitude: geolocation.Longitude,
+		OwnerId:   geolocation.OwnerId,
 	}, nil
 }
 
 func (s userRPC) UpdateGeolocation(ctx context.Context, in *userproto.Geolocation) (*userproto.Geolocation, error) {
-	err := s.geolocationUsecase.Update(ctx, &entity.Geolocation{
+	//tracing
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "UpdateGeolocation")
+	span.SetAttributes(
+		attribute.Key("id").String(strconv.Itoa(int(in.Id))),
+	)
+	defer span.End()
+	geolocation, err := s.geolocationUsecase.Update(ctx, &entity.Geolocation{
 		Id:        in.Id,
 		Latitude:  in.Latitude,
-		Longitude:  in.Longitude,
+		Longitude: in.Longitude,
 		OwnerId:   in.OwnerId,
 	})
 	if err != nil {
@@ -300,14 +375,21 @@ func (s userRPC) UpdateGeolocation(ctx context.Context, in *userproto.Geolocatio
 		return nil, err
 	}
 	return &userproto.Geolocation{
-		Id:        in.Id,
-		Latitude:  in.Latitude,
-		Longitude:  in.Longitude,
-		OwnerId:   in.OwnerId,
+		Id:        geolocation.Id,
+		Latitude:  geolocation.Latitude,
+		Longitude: geolocation.Longitude,
+		OwnerId:   geolocation.OwnerId,
 	}, nil
 }
 
 func (s userRPC) DeleteGeolocation(ctx context.Context, in *userproto.GetGeolocationRequest) (*userproto.DeletedGeolocation, error) {
+	//tracing
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "DeleteGeolocation")
+	span.SetAttributes(
+		attribute.Key("id").String(strconv.Itoa(int(in.Id))),
+	)
+	defer span.End()
+	//tracing end
 	if err := s.geolocationUsecase.Delete(ctx, in.Id); err != nil {
 		s.logger.Error(err.Error())
 		return &userproto.DeletedGeolocation{Status: false}, err
@@ -316,6 +398,13 @@ func (s userRPC) DeleteGeolocation(ctx context.Context, in *userproto.GetGeoloca
 }
 
 func (s userRPC) GetGeolocation(ctx context.Context, in *userproto.GetGeolocationRequest) (*userproto.Geolocation, error) {
+	//tracing
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "GetGeolocation")
+	span.SetAttributes(
+		attribute.Key("id").String(strconv.Itoa(int(in.Id))),
+	)
+	defer span.End()
+	//tracing end
 	user, err := s.geolocationUsecase.Get(ctx, map[string]int64{
 		"id": in.Id,
 	})
@@ -328,13 +417,16 @@ func (s userRPC) GetGeolocation(ctx context.Context, in *userproto.GetGeolocatio
 	return &userproto.Geolocation{
 		Id:        user.Id,
 		Latitude:  user.Latitude,
-		Longitude:  user.Longitude,
+		Longitude: user.Longitude,
 		OwnerId:   user.OwnerId,
-	
 	}, nil
 }
 
 func (s userRPC) ListGeolocation(ctx context.Context, in *userproto.GetAllGeolocationRequest) (*userproto.GetAllGeolocationResponse, error) {
+	//tracing start
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "ListGeolocation")
+	defer span.End()
+	//tracing end
 	users, err := s.geolocationUsecase.List(ctx, map[string]string{})
 	if err != nil {
 		s.logger.Error(err.Error())
@@ -347,7 +439,7 @@ func (s userRPC) ListGeolocation(ctx context.Context, in *userproto.GetAllGeoloc
 		temp := &userproto.Geolocation{
 			Id:        u.Id,
 			Latitude:  u.Latitude,
-			Longitude:  u.Longitude,
+			Longitude: u.Longitude,
 			OwnerId:   u.OwnerId,
 		}
 
@@ -357,8 +449,15 @@ func (s userRPC) ListGeolocation(ctx context.Context, in *userproto.GetAllGeoloc
 	return &response, nil
 }
 
-
 func (s userRPC) CheckFieldOwner(ctx context.Context, in *userproto.CheckFieldRequest) (*userproto.CheckFieldResponse, error) {
+	//tracing start
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "CheckFieldOwner")
+	span.SetAttributes(
+		attribute.Key(in.Field).String(in.Value),
+	)
+	defer span.End()
+	//tracing end
+
 	exist, err := s.ownerUsecase.CheckField(ctx, in.Field, in.Value)
 	if err != nil {
 		s.logger.Error(err.Error())
@@ -369,6 +468,14 @@ func (s userRPC) CheckFieldOwner(ctx context.Context, in *userproto.CheckFieldRe
 }
 
 func (s userRPC) CheckFieldWorker(ctx context.Context, in *userproto.CheckFieldRequest) (*userproto.CheckFieldResponse, error) {
+	//tracing start
+	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "CheckFieldWorker")
+	span.SetAttributes(
+		attribute.Key(in.Field).String(in.Value),
+	)
+	defer span.End()
+	//tracing end
+
 	exist, err := s.workerUsecase.CheckField(ctx, in.Field, in.Value)
 	if err != nil {
 		s.logger.Error(err.Error())

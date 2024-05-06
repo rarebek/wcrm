@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"time"
 	"user-service/internal/entity"
+	"user-service/internal/pkg/otlp"
 	"user-service/internal/pkg/postgres"
 
 	"github.com/Masterminds/squirrel"
@@ -41,7 +42,10 @@ func (p *workersRepo) workersSelectQueryPrefix() squirrel.SelectBuilder {
 		).From(p.tableName)
 }
 
-func (p workersRepo) Create(ctx context.Context, worker *entity.Worker) error {
+func (p workersRepo) Create(ctx context.Context, worker *entity.Worker) (*entity.Worker, error) {
+	ctx, span := otlp.Start(ctx, workersServiceName, workersSpanRepoPrefix+"Create")
+	defer span.End()
+
 	data := map[string]any{
 		"id":         worker.Id,
 		"full_name":  worker.FullName,
@@ -53,18 +57,23 @@ func (p workersRepo) Create(ctx context.Context, worker *entity.Worker) error {
 	}
 	query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
 	if err != nil {
-		return p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
+		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	_, err = p.db.Exec(ctx, query, args...)
-	if err != nil {
-		return p.db.Error(err)
+	query += "RETURNING id, full_name, login_key, password, owner_id, created_at, updated_at"
+
+	row := p.db.QueryRow(ctx, query, args...)
+
+	if err = row.Scan(&worker.Id, &worker.FullName, &worker.LoginKey, &worker.Password, &worker.OwnerId, &worker.CreatedAt, &worker.UpdatedAt); err != nil {
+		return nil, err
 	}
 
-	return nil
+	return worker, nil
 }
 
 func (p workersRepo) Get(ctx context.Context, params map[string]string) (*entity.Worker, error) {
+	ctx, span := otlp.Start(ctx, workersServiceName, workersSpanRepoPrefix+"Create")
+	defer span.End()
 	var (
 		worker entity.Worker
 	)
@@ -95,7 +104,9 @@ func (p workersRepo) Get(ctx context.Context, params map[string]string) (*entity
 	return &worker, nil
 }
 
-func (p workersRepo) Update(ctx context.Context, workers *entity.Worker) error {
+func (p workersRepo) Update(ctx context.Context, workers *entity.Worker) (*entity.Worker, error) {
+	ctx, span := otlp.Start(ctx, workersServiceName, workersSpanRepoPrefix+"Create")
+	defer span.End()
 	clauses := map[string]any{
 		"full_name":  workers.FullName,
 		"login_key":  workers.LoginKey,
@@ -109,23 +120,24 @@ func (p workersRepo) Update(ctx context.Context, workers *entity.Worker) error {
 		Where(p.db.Sq.Equal("id", workers.Id)).
 		ToSql()
 	if err != nil {
-		return p.db.ErrSQLBuild(err, p.tableName+" update")
+		return nil, p.db.ErrSQLBuild(err, p.tableName+" update")
 	}
 
-	commandTag, err := p.db.Exec(ctx, sqlStr, args...)
-	if err != nil {
-		return p.db.Error(err)
+	sqlStr += " RETURNING id, full_name, login_key, password, owner_id, created_at, updated_at"
+
+	row := p.db.QueryRow(ctx, sqlStr, args...)
+	var resWorker entity.Worker
+	if err = row.Scan(&resWorker.Id, &resWorker.FullName, &resWorker.LoginKey, &resWorker.Password, &resWorker.OwnerId, &resWorker.CreatedAt, &resWorker.UpdatedAt); err != nil {
+		return nil, err
 	}
 
-	if commandTag.RowsAffected() == 0 {
-		return p.db.Error(fmt.Errorf("no sql rows"))
-	}
-
-	return nil
+	return &resWorker, nil
 }
 
-// For soft delete 
+// For soft delete
 func (p workersRepo) Delete(ctx context.Context, guid string) error {
+	ctx, span := otlp.Start(ctx, workersServiceName, workersSpanRepoPrefix+"Create")
+	defer span.End()
 	data := map[string]any{
 		"deleted_at": time.Now(),
 	}
@@ -152,6 +164,8 @@ func (p workersRepo) Delete(ctx context.Context, guid string) error {
 }
 
 func (p workersRepo) List(ctx context.Context, limit uint64, offset uint64, filter map[string]string) ([]*entity.Worker, error) {
+	ctx, span := otlp.Start(ctx, workersServiceName, workersSpanRepoPrefix+"Create")
+	defer span.End()
 	var (
 		workers []*entity.Worker
 	)
@@ -192,7 +206,6 @@ func (p workersRepo) List(ctx context.Context, limit uint64, offset uint64, filt
 
 	return workers, nil
 }
-
 
 func (p workersRepo) CheckField(ctx context.Context, field, value string) (bool, error) {
 	query := fmt.Sprintf(

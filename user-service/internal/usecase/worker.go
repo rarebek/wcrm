@@ -5,12 +5,18 @@ import (
 	"time"
 	"user-service/internal/entity"
 	"user-service/internal/infrastructure/repository"
+	"user-service/internal/pkg/otlp"
+)
+
+const (
+	serviceNameWorker = "workerService"
+	spanNameWorker    = "workerUsecase"
 )
 
 type Worker interface {
-	Create(ctx context.Context, worker *entity.Worker) (string, error)
+	Create(ctx context.Context, worker *entity.Worker) (*entity.Worker, error)
 	Get(ctx context.Context, params map[string]string) (*entity.Worker, error)
-	Update(ctx context.Context, worker *entity.Worker) error
+	Update(ctx context.Context, worker *entity.Worker) (*entity.Worker, error)
 	Delete(ctx context.Context, guid string) error
 	List(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Worker, error)
 	CheckField(ctx context.Context, field, value string) (bool, error)
@@ -29,25 +35,34 @@ func NewWorkerService(ctxTimeout time.Duration, repo repository.Workers) workerS
 	}
 }
 
-func (u workerService) Create(ctx context.Context, worker *entity.Worker) (string, error) {
+func (u workerService) Create(ctx context.Context, worker *entity.Worker) (*entity.Worker, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
+	ctx, span := otlp.Start(ctx, serviceNameWorker, spanNameWorker+"Create")
+	defer span.End()
+
 	u.beforeRequest(&worker.Id, &worker.CreatedAt, &worker.UpdatedAt)
 
-	return worker.Id, u.repo.Create(ctx, worker)
+	return u.repo.Create(ctx, worker)
 }
 
 func (u workerService) Get(ctx context.Context, params map[string]string) (*entity.Worker, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
+	ctx, span := otlp.Start(ctx, serviceNameWorker, spanNameWorker+"Get")
+	defer span.End()
+
 	return u.repo.Get(ctx, params)
 }
 
-func (u workerService) Update(ctx context.Context, worker *entity.Worker) error {
+func (u workerService) Update(ctx context.Context, worker *entity.Worker) (*entity.Worker, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
+
+	ctx, span := otlp.Start(ctx, serviceNameWorker, spanNameWorker+"Update")
+	defer span.End()
 
 	u.beforeRequest(nil, nil, &worker.UpdatedAt)
 
@@ -65,12 +80,18 @@ func (u workerService) List(ctx context.Context, limit, offset uint64, filter ma
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
+	ctx, span := otlp.Start(ctx, serviceNameWorker, spanNameWorker+"List")
+	defer span.End()
+
 	return u.repo.List(ctx, limit, offset, filter)
 }
 
 func (u workerService) CheckField(ctx context.Context, field, value string) (bool, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
+
+	ctx, span := otlp.Start(ctx, serviceNameWorker, spanNameWorker+"CheckField")
+	defer span.End()
 
 	return u.repo.CheckField(ctx, field, value)
 }

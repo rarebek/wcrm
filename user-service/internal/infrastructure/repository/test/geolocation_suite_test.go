@@ -6,6 +6,7 @@ import (
 	"time"
 	"user-service/internal/entity"
 	repo "user-service/internal/infrastructure/repository"
+	trepo "user-service/internal/infrastructure/repository/postgresql"
 	"user-service/internal/pkg/config"
 	"user-service/internal/pkg/postgres"
 
@@ -42,8 +43,8 @@ func (s *GeolocationReposisitoryTestSuite) TestGeolocationCRUD() {
 
 	s.DB = db
 
-	userRepo := NewGeolocationsRepo(s.DB)
-	ownerRepo := NewOwnersRepo(s.DB)
+	userRepo := trepo.NewGeolocationsRepo(s.DB)
+	ownerRepo := trepo.NewOwnersRepo(s.DB)
 	ctx := context.Background()
 
 	owner := entity.Owner{
@@ -59,7 +60,7 @@ func (s *GeolocationReposisitoryTestSuite) TestGeolocationCRUD() {
 	}
 	// uuid generating
 
-	err = ownerRepo.Create(ctx, &owner)
+	_, err = ownerRepo.Create(ctx, &owner)
 	s.Suite.NoError(err)
 
 
@@ -78,7 +79,7 @@ func (s *GeolocationReposisitoryTestSuite) TestGeolocationCRUD() {
 	}
 
 	// check create geolocation method
-	err = userRepo.Create(ctx, &geolocation)
+	_, err = userRepo.Create(ctx, &geolocation)
 	s.Suite.NoError(err)
 	Params := make(map[string]int64)
 	Params["id"] = geolocation.Id
@@ -93,7 +94,7 @@ func (s *GeolocationReposisitoryTestSuite) TestGeolocationCRUD() {
 	s.Suite.Equal(getGeolocation.OwnerId, geolocation.OwnerId)
 
 	// check update geolocation method
-	err = userRepo.Update(ctx, &updGeolocation)
+	_, err = userRepo.Update(ctx, &updGeolocation)
 	s.Suite.NoError(err)
 	updGetGeolocation, err := userRepo.Get(ctx, Params)
 	s.Suite.NoError(err)

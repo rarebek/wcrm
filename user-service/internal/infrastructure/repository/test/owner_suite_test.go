@@ -6,6 +6,7 @@ import (
 	"time"
 	"user-service/internal/entity"
 	repo "user-service/internal/infrastructure/repository"
+	trepo "user-service/internal/infrastructure/repository/postgresql"
 	"user-service/internal/pkg/config"
 	"user-service/internal/pkg/postgres"
 
@@ -42,7 +43,7 @@ func (s *OwnerReposisitoryTestSuite) TestOwnerCRUD() {
 
 	s.DB = db
 
-	ownerRepo := NewOwnersRepo(s.DB)
+	ownerRepo := trepo.NewOwnersRepo(s.DB)
 	ctx := context.Background()
 
 	// struct for create owner
@@ -70,7 +71,7 @@ func (s *OwnerReposisitoryTestSuite) TestOwnerCRUD() {
 	}
 
 	// check create owner method
-	err = ownerRepo.Create(ctx, &owner)
+	_, err = ownerRepo.Create(ctx, &owner)
 	s.Suite.NoError(err)
 	Params := make(map[string]string)
 	Params["id"] = owner.Id
@@ -88,7 +89,7 @@ func (s *OwnerReposisitoryTestSuite) TestOwnerCRUD() {
 	s.Suite.Equal(getOwner.Tax, owner.Tax)
 
 	// check update owner method
-	err = ownerRepo.Update(ctx, &updOwner)
+	_, err = ownerRepo.Update(ctx, &updOwner)
 	s.Suite.NoError(err)
 	updGetOwner, err := ownerRepo.Get(ctx, Params)
 	s.Suite.NoError(err)
