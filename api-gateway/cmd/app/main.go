@@ -8,19 +8,16 @@ import (
 
 	"go.uber.org/zap"
 
-	"evrone_service/api_gateway/internal/app"
-	configpkg "evrone_service/api_gateway/internal/pkg/config"
+	"api-gateway/internal/app"
+	configpkg "api-gateway/internal/pkg/config"
 )
 
 func main() {
 	// config
-	config, err := configpkg.NewConfig()
-	if err != nil {
-		log.Fatal(err)
-	}
+	config := configpkg.NewConfig()
 
 	// app
-	app, err := app.NewApp(*config)
+	app, err := app.NewApp(config)
 	if err != nil {
 		log.Fatal(err)
 	}

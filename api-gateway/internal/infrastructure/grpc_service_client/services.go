@@ -3,14 +3,14 @@ package grpc_service_clients
 import (
 	"fmt"
 
-	pbo "evrone_service/api_gateway/genproto/order"
-	pbp "evrone_service/api_gateway/genproto/product"
-	pbu "evrone_service/api_gateway/genproto/user"
+	pbo "api-gateway/genproto/order"
+	pbp "api-gateway/genproto/product"
+	pbu "api-gateway/genproto/user"
 
 	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
 	"google.golang.org/grpc"
 
-	"evrone_service/api_gateway/internal/pkg/config"
+	"api-gateway/internal/pkg/config"
 )
 
 type ServiceClient interface {

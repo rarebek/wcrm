@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"evrone_service/api_gateway/internal/pkg/config"
+	"api-gateway/internal/pkg/config"
 )
 
 func NewServer(cfg *config.Config, handler http.Handler) (*http.Server, error) {

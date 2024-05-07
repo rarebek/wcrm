@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"evrone_service/api_gateway/internal/entity"
-	"evrone_service/api_gateway/internal/infrastructure/repository/postgresql/repo"
-	"evrone_service/api_gateway/internal/pkg/otlp"
+	"api-gateway/internal/entity"
+	"api-gateway/internal/infrastructure/repository/postgresql/repo"
+	"api-gateway/internal/pkg/otlp"
 )
 
 type appVersionService struct {

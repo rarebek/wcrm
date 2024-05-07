@@ -1,77 +1,109 @@
-package token
+package tokens
 
 import (
-	"errors"
-	"fmt"
+	// "api-gateway/pkg/logger"
+	// "api-gateway/internal/pkg/config
+	"api-gateway/internal/pkg/config"
+	"log"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
 )
 
-var (
-	ErrValidationErrorMalformed  = errors.New("Token is malformed")
-	ErrTokenExpiredOrNotValidYet = errors.New("Token is either expired or not active yet")
-)
-
-func GenerateJwtToken(jwtsecret string, claims *jwt.MapClaims) (string, error) {
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	// Sign and get the complete encoded token as a string using the secret
-	return token.SignedString([]byte(jwtsecret))
+// JWTHandler ...
+type JWTHandler struct {
+	Sub       string
+	Iss       string
+	Exp       string
+	Iat       string
+	Aud       []string
+	Role      string
+	SigninKey string
+	Log       *log.Logger
+	Token     string
+	Timeot    int
 }
 
-func GenerateToken(sub, token_type, jwtsecret string, access_ttl, refresh_ttl time.Duration, optionalFields ...map[string]interface{}) (string, string, error) {
-	accessClaims := jwt.MapClaims{
-		"sub":  sub,
-		"type": token_type,
-		"exp":  time.Now().Add(access_ttl).Unix(),
-	}
-
-	for _, fields := range optionalFields {
-		for key, value := range fields {
-			accessClaims[key] = value
-		}
-	}
-
-	// generate access token
-	access_token, err := GenerateJwtToken(jwtsecret, &accessClaims)
-	if err != nil {
-		return "", "", err
-	}
-
-	// generate refresh token
-	refresh_token, err := GenerateJwtToken(jwtsecret, &jwt.MapClaims{
-		"exp": time.Now().Add(refresh_ttl).Unix(),
-		"sub": sub,
-	})
-	if err != nil {
-		return "", "", err
-	}
-	return access_token, refresh_token, err
+type CustomClaims struct {
+	*jwt.Token
+	Sub  string   `json:"sub"`
+	Exp  float64  `json:"exp"`
+	Iat  float64  `json:"iat"`
+	Aud  []string `json:"aud"`
+	Role string   `json:"role"`
 }
 
-func ParseJwtToken(tokenStr, jwtsecret string) (map[string]interface{}, error) {
-	var claims map[string]interface{}
-	token, err := jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
-		}
-		return []byte(jwtsecret), nil
-	})
-
+// GenerateAuthJWT ...
+func (jwtHandler *JWTHandler) GenerateAuthJWT() (access, refresh string, err error) {
+	var (
+		accessToken  *jwt.Token
+		refreshToken *jwt.Token
+		claims       jwt.MapClaims
+		rtClaims     jwt.MapClaims
+	)
+	accessToken = jwt.New(jwt.SigningMethodHS256)
+	refreshToken = jwt.New(jwt.SigningMethodHS256)
+	claims = accessToken.Claims.(jwt.MapClaims)
+	claims["sub"] = jwtHandler.Sub
+	claims["exp"] = time.Now().Add(time.Minute * time.Duration(jwtHandler.Timeot)).Unix()
+	claims["iat"] = time.Now().Unix()
+	claims["role"] = jwtHandler.Role
+	claims["aud"] = jwtHandler.Aud
+	access, err = accessToken.SignedString([]byte(config.NewConfig().SigningKey))
 	if err != nil {
-		if ve, ok := err.(*jwt.ValidationError); ok {
-			if ve.Errors&jwt.ValidationErrorMalformed != 0 {
-				return claims, ErrValidationErrorMalformed
-			}
-			if ve.Errors&(jwt.ValidationErrorExpired|jwt.ValidationErrorNotValidYet) != 0 {
-				return claims, ErrTokenExpiredOrNotValidYet
-			}
-		}
-		return claims, fmt.Errorf("Couldn't handle this token: %w", err)
+		log.Println("error generating access token", err)
+		return
 	}
-	// get claims
-	if mapClaims, ok := token.Claims.(jwt.MapClaims); ok {
-		claims = mapClaims
+
+	rtClaims = refreshToken.Claims.(jwt.MapClaims)
+	rtClaims["sub"] = jwtHandler.Sub
+	refresh, err = refreshToken.SignedString([]byte(jwtHandler.SigninKey))
+	if err != nil {
+		log.Println("error generating refresh token", err)
+		return
+	}
+	return
+}
+
+// ExtractClaims ...
+func (jwtHandler *JWTHandler) ExtractClaims() (jwt.MapClaims, error) {
+	var (
+		token *jwt.Token
+		err   error
+	)
+
+	token, err = jwt.Parse(jwtHandler.Token, func(t *jwt.Token) (interface{}, error) {
+		return []byte(jwtHandler.SigninKey), nil
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !(ok && token.Valid) {
+		log.Println("invalid jwt token")
+		return nil, err
+	}
+	return claims, nil
+}
+
+// ExtractClaim extracts claims from given token
+func ExtractClaim(tokenStr string, signinigKey []byte) (jwt.MapClaims, error) {
+	var (
+		token *jwt.Token
+		err   error
+	)
+	token, err = jwt.Parse(tokenStr, func(token *jwt.Token) (interface{}, error) {
+		// check token signing method etc
+		return signinigKey, nil
+	})
+	if err != nil {
+		return nil, err
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !(ok && token.Valid) {
+		return nil, err
 	}
 	return claims, nil
 }

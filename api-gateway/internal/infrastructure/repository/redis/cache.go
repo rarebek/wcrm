@@ -7,8 +7,8 @@ package redis
 
 // 	// "go.opentelemetry.io/otel/attribute"
 
-// 	// otlp_pkg "evrone_service/api_gateway/internal/pkg/otlp"
-// 	"evrone_service/api_gateway/internal/pkg/redis"
+// 	// otlp_pkg "api-gateway/internal/pkg/otlp"
+// 	"api-gateway/internal/pkg/redis"
 // )
 
 // type Cache interface {

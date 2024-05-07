@@ -2,7 +2,9 @@ package config
 
 import (
 	"os"
-	"strings"
+	// "time"
+
+	"github.com/spf13/cast"
 )
 
 const (
@@ -36,12 +38,17 @@ type Config struct {
 	Context struct {
 		Timeout string
 	}
-	// Redis struct {
-	// 	Host     string
-	// 	Port     string
-	// 	Password string
-	// 	Name     string
-	// }
+
+	Redis struct {
+		Host     string
+		Port     string
+		Password string
+		Name     string
+	}
+
+	// context timeout in seconds
+	CtxTimeout int
+
 	// Token struct {
 	// 	Secret     string
 	// 	AccessTTL  time.Duration
@@ -54,24 +61,26 @@ type Config struct {
 	// 	Location              string
 	// 	MovieUploadBucketName string
 	// }
-	Kafka struct {
-		Address []string
-		Topic   struct {
-			UserCreateTopic string
-		}
-	}
+
+	// Jwt
+	SigningKey        string
+	AccessTokenTimout int
+
+	// casbin
+	AuthConfigPath string
+	CSVFilePath    string
 
 	// services
-	UserService webAddress
+	UserService    webAddress
 	ProductService webAddress
-	OrderService webAddress
+	OrderService   webAddress
 
 	// otlp
 	OTLPCollector webAddress
 }
 
-func NewConfig() (*Config, error) {
-	var config Config
+func NewConfig() Config {
+	config := Config{}
 
 	// general configuration
 	config.APP = getEnv("APP", "app")
@@ -86,6 +95,9 @@ func NewConfig() (*Config, error) {
 	config.Server.WriteTimeout = getEnv("SERVER_WRITE_TIMEOUT", "10s")
 	config.Server.IdleTimeout = getEnv("SERVER_IDLE_TIMEOUT", "120s")
 
+	config.SigningKey = cast.ToString(getEnv("SIGNING_KEY", "test-key"))
+	config.AccessTokenTimout = cast.ToInt(getEnv("ACCESS_TOKEN_TIMOUT", "30000"))
+
 	// db configuration
 	// config.DB.Host = getEnv("POSTGRES_HOST", "localhost")
 	// config.DB.Port = getEnv("POSTGRES_PORT", "5432")
@@ -95,10 +107,10 @@ func NewConfig() (*Config, error) {
 	// config.DB.SSLMode = getEnv("POSTGRES_SSLMODE", "disable")
 
 	// redis configuration
-	// config.Redis.Host = getEnv("REDIS_HOST", "localhost")
-	// config.Redis.Port = getEnv("REDIS_PORT", "6379")
-	// config.Redis.Password = getEnv("REDIS_PASSWORD", "")
-	// config.Redis.Name = getEnv("REDIS_DATABASE", "0")
+	config.Redis.Host = getEnv("REDIS_HOST", "localhost")
+	config.Redis.Port = getEnv("REDIS_PORT", "6379")
+	config.Redis.Password = getEnv("REDIS_PASSWORD", "")
+	config.Redis.Name = getEnv("REDIS_DATABASE", "0")
 
 	// USER
 	config.UserService.Host = getEnv("USER_SERVICE_GRPC_HOST", "127.0.0.1")
@@ -112,31 +124,17 @@ func NewConfig() (*Config, error) {
 	config.OrderService.Host = getEnv("ORDER_SERVICE_GRPC_HOST", "127.0.0.1")
 	config.OrderService.Port = getEnv("ORDER_SERVICE_GRPC_PORT", ":3333")
 
-	// token configuration
-	// config.Token.Secret = getEnv("TOKEN_SECRET", "token_secret")
-
-	// access ttl parse
-	// accessTTl, err := time.ParseDuration(getEnv("TOKEN_ACCESS_TTL", "1h"))
-	// if err != nil {
-	// 	return nil, err
-	// }
-	// // refresh ttl parse
-	// refreshTTL, err := time.ParseDuration(getEnv("TOKEN_REFRESH_TTL", "24h"))
-	// if err != nil {
-	// 	return nil, err
-	// }
-	// config.Token.AccessTTL = accessTTl
-	// config.Token.RefreshTTL = refreshTTL
+	// casbin
+	config.AuthConfigPath = cast.ToString(getEnv("AUTH_CONFIG_PATH", "auth.conf"))
+	config.CSVFilePath = cast.ToString(getEnv("CSV_FILE_PATH", "auth.csv"))
 
 	// otlp collector configuration
 	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "localhost")
 	config.OTLPCollector.Port = getEnv("OTLP_COLLECTOR_PORT", ":4317")
 
-	// kafka configuration
-	config.Kafka.Address = strings.Split(getEnv("KAFKA_ADDRESS", "localhost:29092"), ",")
-	config.Kafka.Topic.UserCreateTopic = getEnv("KAFKA_USER_CREATE_TOPIC", "api.create.user")
+	config.CtxTimeout = cast.ToInt(getEnv("CTX_TIMEOUT", "7"))
 
-	return &config, nil
+	return config
 }
 
 func getEnv(key, defaultValue string) string {

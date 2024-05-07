@@ -3,39 +3,31 @@ package app
 import (
 	"context"
 	"fmt"
+	"log"
 	"net/http"
 	"time"
 
-	// "github.com/casbin/casbin/v2"
+	"github.com/casbin/casbin/v2"
+	defaultrolemanager "github.com/casbin/casbin/v2/rbac/default-role-manager"
 	"go.uber.org/zap"
 
-	"evrone_service/api_gateway/api"
-	grpcService "evrone_service/api_gateway/internal/infrastructure/grpc_service_client"
-	// "evrone_service/api_gateway/internal/infrastructure/kafka"
-	// "evrone_service/api_gateway/internal/infrastructure/repository/postgresql"
-	// redisrepo "evrone_service/api_gateway/internal/infrastructure/repository/redis"
-	"evrone_service/api_gateway/internal/pkg/config"
-	"evrone_service/api_gateway/internal/pkg/logger"
-	"evrone_service/api_gateway/internal/pkg/otlp"
-	// "evrone_service/api_gateway/internal/pkg/policy"
-	// "evrone_service/api_gateway/internal/pkg/postgres"
-	// "evrone_service/api_gateway/internal/pkg/redis"
-	// "evrone_service/api_gateway/internal/usecase/app_version"
-	// "evrone_service/api_gateway/internal/usecase/event"
-	// "evrone_service/api_gateway/internal/usecase/refresh_token"
+	"api-gateway/api"
+	grpcService "api-gateway/internal/infrastructure/grpc_service_client"
+	"api-gateway/internal/pkg/config"
+	"api-gateway/internal/pkg/logger"
+	"api-gateway/internal/pkg/otlp"
+
+	"github.com/casbin/casbin/v2/util"
 )
 
 type App struct {
-	Config         *config.Config
-	Logger         *zap.Logger
-	// DB             *postgres.PostgresDB
-	// RedisDB        *redis.RedisDB
-	server         *http.Server
-	// Enforcer       *casbin.CachedEnforcer
-	Clients        grpcService.ServiceClient
-	ShutdownOTLP   func() error
-	// BrokerProducer event.BrokerProducer
-	// appVersion     app_version.AppVersion
+	Config *config.Config
+	Logger *zap.Logger
+
+	server       *http.Server
+	Enforcer     *casbin.Enforcer
+	Clients      grpcService.ServiceClient
+	ShutdownOTLP func() error
 }
 
 func NewApp(cfg config.Config) (*App, error) {
@@ -45,20 +37,12 @@ func NewApp(cfg config.Config) (*App, error) {
 		return nil, err
 	}
 
-	// kafka producer init
-	// kafkaProducer := kafka.NewProducer(&cfg, logger)
-
-	// // postgres init
-	// db, err := postgres.New(&cfg)
-	// if err != nil {
-	// 	return nil, err
-	// }
-
-	// // redis init
-	// redisdb, err := redis.New(&cfg)
-	// if err != nil {
-	// 	return nil, err
-	// }
+	// csv file bn accses berish
+	casbinEnforcer, err := casbin.NewEnforcer(cfg.AuthConfigPath, cfg.CSVFilePath)
+	if err != nil {
+		log.Fatal("casbin enforcer error", err)
+		return nil, err
+	}
 
 	// otlp collector init
 	shutdownOTLP, err := otlp.InitOTLPProvider(&cfg)
@@ -66,37 +50,11 @@ func NewApp(cfg config.Config) (*App, error) {
 		return nil, err
 	}
 
-	// // initialization enforcer
-	// enforcer, err := policy.NewCachedEnforcer(&cfg, logger)
-	// if err != nil {
-	// 	return nil, err
-	// }
-
-	// enforcer.SetCache(policy.NewCache(&redisdb.Client))
-
-	// var (
-	// 	contextTimeout time.Duration
-	// )
-
-	// context timeout initialization
-	// contextTimeout, err = time.ParseDuration(cfg.Context.Timeout)
-	// if err != nil {
-	// 	return nil, err
-	// }
-
-	// appVersionRepo := postgresql.NewAppVersionRepo(db)
-
-	// appVersionUseCase := app_version.NewAppVersionService(contextTimeout, appVersionRepo)
-
 	return &App{
-		Config:         &cfg,
-		Logger:         logger,
-		// DB:             db,
-		// RedisDB:        redisdb,
-		// Enforcer:       enforcer,
-		// BrokerProducer: kafkaProducer,
-		ShutdownOTLP:   shutdownOTLP,
-		// appVersion:     appVersionUseCase,
+		Config:       &cfg,
+		Logger:       logger,
+		Enforcer:     casbinEnforcer,
+		ShutdownOTLP: shutdownOTLP,
 	}, nil
 }
 
@@ -112,29 +70,23 @@ func (a *App) Run() error {
 	}
 	a.Clients = clients
 
-	// initialize cache
-	// cache := redisrepo.NewCache(a.RedisDB)
-
-	// tokenRepo := postgresql.NewRefreshTokenRepo(a.DB)
-
-	// initialize token service
-	// refreshTokenService := refresh_token.NewRefreshTokenService(contextTimeout, tokenRepo)
-
 	// api init
 	handler := api.NewRoute(api.RouteOption{
 		Config:         a.Config,
 		Logger:         a.Logger,
 		ContextTimeout: contextTimeout,
-		// Cache:          cache,
-		// Enforcer:       a.Enforcer,
-		// RefreshToken:   refreshTokenService,
+		CasbinEnforcer: a.Enforcer,
 		Service:        clients,
-		// BrokerProducer: a.BrokerProducer,
-		// AppVersion:     a.appVersion,
 	})
-	// if err = a.Enforcer.LoadPolicy(); err != nil {
-	// 	return fmt.Errorf("error during enforcer load policy: %w", err)
-	// }
+
+	// casbin
+	err = a.Enforcer.LoadPolicy()
+	if err != nil {
+		log.Fatal("casbin error load policy", err)
+		return err
+	}
+	a.Enforcer.GetRoleManager().(*defaultrolemanager.RoleManagerImpl).AddMatchingFunc("keyMatch", util.KeyMatch)
+	a.Enforcer.GetRoleManager().(*defaultrolemanager.RoleManagerImpl).AddMatchingFunc("keyMatch3", util.KeyMatch3)
 
 	// server init
 	a.server, err = api.NewServer(a.Config, handler)
@@ -146,9 +98,6 @@ func (a *App) Run() error {
 }
 
 func (a *App) Stop() {
-
-	// // close database
-	// a.DB.Close()
 
 	// close grpc connections
 	a.Clients.Close()

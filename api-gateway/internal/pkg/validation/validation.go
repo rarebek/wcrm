@@ -11,7 +11,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	validatorEn "github.com/go-playground/validator/v10/translations/en"
 
-	errorpkg "evrone_service/api_gateway/internal/errors"
+	errorpkg "api-gateway/internal/errors"
 )
 
 func Validator(s interface{}) error {

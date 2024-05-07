@@ -2,7 +2,7 @@ package event
 
 // import (
 // 	"context"
-// 	"evrone_service/api_gateway/api/models"
+// 	"api-gateway/api/models"
 // )
 
 // type ConsumerConfig interface {

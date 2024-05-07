@@ -4,6 +4,15 @@ definitions:
       chack:
         type: boolean
     type: object
+  models.CreateGeolocation:
+    properties:
+      latitude:
+        type: number
+      longitude:
+        type: number
+      owner_id:
+        type: string
+    type: object
   models.CreateOrder:
     properties:
       discount:
@@ -138,6 +147,25 @@ definitions:
           $ref: '#/definitions/models.Owner'
         type: array
     type: object
+  models.OwnerResponse:
+    properties:
+      access_token:
+        type: string
+      avatar:
+        type: string
+      company_name:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      password:
+        type: string
+      tax:
+        type: integer
+    type: object
   models.Product:
     properties:
       category_id:
@@ -165,6 +193,21 @@ definitions:
         items:
           $ref: '#/definitions/models.Product'
         type: array
+    type: object
+  models.RegisterOwner:
+    properties:
+      avatar:
+        type: string
+      company_name:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      password:
+        type: string
+      tax:
+        type: integer
     type: object
   models.StandartError:
     properties:
@@ -247,6 +290,37 @@ info:
   title: WCRM
   version: "1.0"
 paths:
+  /v1/file-upload:
+    post:
+      consumes:
+      - application/json
+      description: Api for image upload
+      parameters:
+      - description: Image
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Image upload
+      tags:
+      - file-upload
   /v1/geolocation/create:
     post:
       consumes:
@@ -258,7 +332,7 @@ paths:
         name: Geolocation
         required: true
         schema:
-          $ref: '#/definitions/models.CreateProduct'
+          $ref: '#/definitions/models.CreateGeolocation'
       produces:
       - application/json
       responses:
@@ -274,6 +348,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Create Geolocation
       tags:
       - Geolocation
@@ -303,6 +379,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Delete Geolocation
       tags:
       - Geolocation
@@ -332,6 +410,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Get Geolocation
       tags:
       - Geolocation
@@ -362,6 +442,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Update Geolocation
       tags:
       - Geolocation
@@ -391,6 +473,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Get List Geolocation
       tags:
       - Geolocation
@@ -421,6 +505,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Create Order
       tags:
       - Order
@@ -450,6 +536,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Delete Order
       tags:
       - Order
@@ -479,6 +567,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Get Order
       tags:
       - Order
@@ -497,10 +587,6 @@ paths:
       produces:
       - application/json
       responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models.Order'
         "400":
           description: Bad Request
           schema:
@@ -509,6 +595,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Update Order
       tags:
       - Order
@@ -543,6 +631,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Get List Order
       tags:
       - Order
@@ -573,6 +663,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Create Owner
       tags:
       - User
@@ -602,6 +694,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Delete Owner
       tags:
       - User
@@ -631,6 +725,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Get Owner
       tags:
       - User
@@ -661,6 +757,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Update Owner
       tags:
       - User
@@ -695,6 +793,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Get List Owner
       tags:
       - User
@@ -725,6 +825,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Create Product
       tags:
       - Product
@@ -754,6 +856,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Delete Product
       tags:
       - Product
@@ -783,6 +887,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Get Product
       tags:
       - Product
@@ -813,6 +919,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Update Product
       tags:
       - Product
@@ -847,9 +955,75 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Get List Product
       tags:
       - Product
+  /v1/register:
+    post:
+      consumes:
+      - application/json
+      description: Api for Registering
+      parameters:
+      - description: owner
+        in: body
+        name: Owner
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterOwner'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Register
+      tags:
+      - Register
+  /v1/verification:
+    get:
+      consumes:
+      - application/json
+      description: LogIn - Verify a user with code sent to their email
+      parameters:
+      - description: Email
+        in: query
+        name: email
+        required: true
+        type: string
+      - description: Code
+        in: query
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.OwnerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Verify owner
+      tags:
+      - Register
   /v1/worker/create:
     post:
       consumes:
@@ -877,6 +1051,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Create Worker
       tags:
       - Worker
@@ -906,6 +1082,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Delete Worker
       tags:
       - Worker
@@ -935,6 +1113,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Get Worker
       tags:
       - Worker
@@ -965,6 +1145,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Update Worker
       tags:
       - Worker
@@ -999,6 +1181,8 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
       summary: Get List Worker
       tags:
       - Worker

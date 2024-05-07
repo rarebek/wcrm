@@ -6,9 +6,9 @@ package refresh_token
 
 // 	"github.com/google/uuid"
 
-// 	"evrone_service/api_gateway/internal/entity"
-// 	"evrone_service/api_gateway/internal/pkg/otlp"
-// 	"evrone_service/api_gateway/internal/pkg/token"
+// 	"api-gateway/internal/entity"
+// 	"api-gateway/internal/pkg/otlp"
+// 	"api-gateway/internal/pkg/token"
 // )
 
 // type refreshTokenService struct {

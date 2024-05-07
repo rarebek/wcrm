@@ -4,16 +4,20 @@ import (
 	// "github.com/casbin/casbin/v2"
 	"time"
 
-	v1 "evrone_service/api_gateway/api/handlers/v1"
+	v1 "api-gateway/api/handlers/v1"
+	"api-gateway/api/middleware"
 
+	"github.com/casbin/casbin/v2"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/zap"
 
-	grpcClients "evrone_service/api_gateway/internal/infrastructure/grpc_service_client"
-	"evrone_service/api_gateway/internal/pkg/config"
-	// "evrone_service/api_gateway/internal/usecase/event"
+	grpcClients "api-gateway/internal/infrastructure/grpc_service_client"
+	"api-gateway/internal/pkg/config"
+	"api-gateway/internal/pkg/token"
+
+	// "api-gateway/internal/usecase/event"
 )
 
 type RouteOption struct {
@@ -21,6 +25,7 @@ type RouteOption struct {
 	Logger         *zap.Logger
 	ContextTimeout time.Duration
 	Service        grpcClients.ServiceClient
+	CasbinEnforcer *casbin.Enforcer
 	// BrokerProducer event.BrokerProducer
 }
 
@@ -35,15 +40,19 @@ type RouteOption struct {
 func NewRoute(option RouteOption) *gin.Engine {
 	router := gin.New()
 
+	jwtHandler := tokens.JWTHandler{
+		SigninKey: option.Config.SigningKey,
+	}
+
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
+	router.Use(middleware.NewAuthorizer(option.CasbinEnforcer, jwtHandler, *option.Config))
 
 	HandlerV1 := v1.New(&v1.HandlerV1Config{
 		Config:         option.Config,
 		Logger:         option.Logger,
 		ContextTimeout: option.ContextTimeout,
 		Service:        option.Service,
-		// BrokerProducer: option.BrokerProducer,
 	})
 
 	api := router.Group("/v1")
@@ -83,9 +92,12 @@ func NewRoute(option RouteOption) *gin.Engine {
 	api.DELETE("/order/delete/:id", HandlerV1.DeleteOrder)
 	api.GET("/orders/get/:page/:limit", HandlerV1.ListOrder)
 
-	
+	// registration
+	api.POST("/register", HandlerV1.Register)
+	api.GET("/verification", HandlerV1.Verify)
 
-
+	// upload file
+	api.POST("/file-upload", HandlerV1.UploadImage)
 
 	url := ginSwagger.URL("swagger/doc.json")
 	api.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))

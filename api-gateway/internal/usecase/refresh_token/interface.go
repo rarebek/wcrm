@@ -4,7 +4,7 @@ package refresh_token
 // 	"context"
 // 	"time"
 
-// 	"evrone_service/api_gateway/internal/entity"
+// 	"api-gateway/internal/entity"
 // )
 
 // type RefreshToken interface {

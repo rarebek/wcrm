@@ -3,11 +3,11 @@ package postgresql
 // import (
 // 	"context"
 
-// 	"evrone_service/api_gateway/internal/entity"
-// 	"evrone_service/api_gateway/internal/infrastructure/repository/postgresql/repo"
+// 	"api-gateway/internal/entity"
+// 	"api-gateway/internal/infrastructure/repository/postgresql/repo"
 
-// 	// "evrone_service/api_gateway/internal/pkg/otlp"
-// 	"evrone_service/api_gateway/internal/pkg/postgres"
+// 	// "api-gateway/internal/pkg/otlp"
+// 	"api-gateway/internal/pkg/postgres"
 // )
 
 // type appVersionRepo struct {

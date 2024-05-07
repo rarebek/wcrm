@@ -3,7 +3,7 @@ package repo
 import (
 	"context"
 
-	"evrone_service/api_gateway/internal/entity"
+	"api-gateway/internal/entity"
 )
 
 type AppVersionRepo interface {

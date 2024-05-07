@@ -5,8 +5,8 @@ package middleware
 
 // 	"go.opentelemetry.io/otel/attribute"
 
-// 	"evrone_service/api_gateway/api/response"
-// 	"evrone_service/api_gateway/internal/pkg/otlp"
+// 	"api-gateway/api/response"
+// 	"api-gateway/internal/pkg/otlp"
 // )
 
 // func Tracing(next http.Handler) http.Handler {

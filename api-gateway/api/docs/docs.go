@@ -15,8 +15,62 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/v1/file-upload": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for image upload",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "file-upload"
+                ],
+                "summary": "Image upload",
+                "parameters": [
+                    {
+                        "type": "file",
+                        "description": "Image",
+                        "name": "file",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/geolocation/create": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for create geolocation",
                 "consumes": [
                     "application/json"
@@ -35,7 +89,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.CreateProduct"
+                            "$ref": "#/definitions/models.CreateGeolocation"
                         }
                     }
                 ],
@@ -63,6 +117,11 @@ const docTemplate = `{
         },
         "/v1/geolocation/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for delete geolocation",
                 "consumes": [
                     "application/json"
@@ -107,6 +166,11 @@ const docTemplate = `{
         },
         "/v1/geolocation/get/{id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for get geolocation",
                 "consumes": [
                     "application/json"
@@ -151,6 +215,11 @@ const docTemplate = `{
         },
         "/v1/geolocation/update": {
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for update geolocation",
                 "consumes": [
                     "application/json"
@@ -197,6 +266,11 @@ const docTemplate = `{
         },
         "/v1/geolocations/get{page}/{limit}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for get all geolocation",
                 "consumes": [
                     "application/json"
@@ -241,6 +315,11 @@ const docTemplate = `{
         },
         "/v1/order/create": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for create oder",
                 "consumes": [
                     "application/json"
@@ -287,6 +366,11 @@ const docTemplate = `{
         },
         "/v1/order/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for delete order",
                 "consumes": [
                     "application/json"
@@ -331,6 +415,11 @@ const docTemplate = `{
         },
         "/v1/order/get/{id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for get order",
                 "consumes": [
                     "application/json"
@@ -375,6 +464,11 @@ const docTemplate = `{
         },
         "/v1/order/update": {
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for update order",
                 "consumes": [
                     "application/json"
@@ -398,12 +492,6 @@ const docTemplate = `{
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.Order"
-                        }
-                    },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
@@ -421,6 +509,11 @@ const docTemplate = `{
         },
         "/v1/orders/get/{page}/{limit}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for get all product",
                 "consumes": [
                     "application/json"
@@ -472,6 +565,11 @@ const docTemplate = `{
         },
         "/v1/owner/create": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for create owner",
                 "consumes": [
                     "application/json"
@@ -518,6 +616,11 @@ const docTemplate = `{
         },
         "/v1/owner/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for delete product",
                 "consumes": [
                     "application/json"
@@ -562,6 +665,11 @@ const docTemplate = `{
         },
         "/v1/owner/get/{id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for get product",
                 "consumes": [
                     "application/json"
@@ -606,6 +714,11 @@ const docTemplate = `{
         },
         "/v1/owner/update": {
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for update product",
                 "consumes": [
                     "application/json"
@@ -652,6 +765,11 @@ const docTemplate = `{
         },
         "/v1/owners/get/{page}/{limit}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for get all product",
                 "consumes": [
                     "application/json"
@@ -703,6 +821,11 @@ const docTemplate = `{
         },
         "/v1/product/create": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for create product",
                 "consumes": [
                     "application/json"
@@ -749,6 +872,11 @@ const docTemplate = `{
         },
         "/v1/product/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for delete product",
                 "consumes": [
                     "application/json"
@@ -793,6 +921,11 @@ const docTemplate = `{
         },
         "/v1/product/get/{id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for get product",
                 "consumes": [
                     "application/json"
@@ -837,6 +970,11 @@ const docTemplate = `{
         },
         "/v1/product/update": {
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for update product",
                 "consumes": [
                     "application/json"
@@ -883,6 +1021,11 @@ const docTemplate = `{
         },
         "/v1/products/get/{page}/{limit}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for get all product",
                 "consumes": [
                     "application/json"
@@ -932,8 +1075,110 @@ const docTemplate = `{
                 }
             }
         },
+        "/v1/register": {
+            "post": {
+                "description": "Api for Registering",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Register",
+                "parameters": [
+                    {
+                        "description": "owner",
+                        "name": "Owner",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.RegisterOwner"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/verification": {
+            "get": {
+                "description": "LogIn - Verify a user with code sent to their email",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Verify owner",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Email",
+                        "name": "email",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Code",
+                        "name": "code",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.OwnerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/worker/create": {
             "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for create worker",
                 "consumes": [
                     "application/json"
@@ -980,6 +1225,11 @@ const docTemplate = `{
         },
         "/v1/worker/delete/{id}": {
             "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for delete worker",
                 "consumes": [
                     "application/json"
@@ -1024,6 +1274,11 @@ const docTemplate = `{
         },
         "/v1/worker/get/{id}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for get worker",
                 "consumes": [
                     "application/json"
@@ -1068,6 +1323,11 @@ const docTemplate = `{
         },
         "/v1/worker/update": {
             "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for update worker",
                 "consumes": [
                     "application/json"
@@ -1114,6 +1374,11 @@ const docTemplate = `{
         },
         "/v1/workers/get/{page}/{limit}": {
             "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
                 "description": "Api for get all worker",
                 "consumes": [
                     "application/json"
@@ -1170,6 +1435,20 @@ const docTemplate = `{
             "properties": {
                 "chack": {
                     "type": "boolean"
+                }
+            }
+        },
+        "models.CreateGeolocation": {
+            "type": "object",
+            "properties": {
+                "latitude": {
+                    "type": "number"
+                },
+                "longitude": {
+                    "type": "number"
+                },
+                "owner_id": {
+                    "type": "string"
                 }
             }
         },
@@ -1377,6 +1656,35 @@ const docTemplate = `{
                 }
             }
         },
+        "models.OwnerResponse": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "avatar": {
+                    "type": "string"
+                },
+                "company_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "tax": {
+                    "type": "integer"
+                }
+            }
+        },
         "models.Product": {
             "type": "object",
             "properties": {
@@ -1417,6 +1725,29 @@ const docTemplate = `{
                     "items": {
                         "$ref": "#/definitions/models.Product"
                     }
+                }
+            }
+        },
+        "models.RegisterOwner": {
+            "type": "object",
+            "properties": {
+                "avatar": {
+                    "type": "string"
+                },
+                "company_name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "tax": {
+                    "type": "integer"
                 }
             }
         },
@@ -1554,6 +1885,8 @@ var SwaggerInfo = &swag.Spec{
 	Description:      "wcrm-system",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
+	LeftDelim:        "{{",
+	RightDelim:       "}}",
 }
 
 func init() {

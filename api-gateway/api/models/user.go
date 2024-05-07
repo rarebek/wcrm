@@ -7,7 +7,7 @@ type Owner struct {
 	Email       string `json:"email"`
 	Password    string `json:"password"`
 	Avatar      string `json:"avatar"`
-	Tax         int64 `json:"tax"`
+	Tax         int64  `json:"tax"`
 	CreatedAt   string `json:"created_at"`
 	UpdatedAt   string `json:"updated_at"`
 }
@@ -22,7 +22,7 @@ type CreateOwner struct {
 	Email       string `json:"email"`
 	Password    string `json:"password"`
 	Avatar      string `json:"avatar"`
-	Tax         int64 `json:"tax"`
+	Tax         int64  `json:"tax"`
 }
 
 type UpdateOwner struct {
@@ -32,8 +32,9 @@ type UpdateOwner struct {
 	Email       string `json:"email"`
 	Password    string `json:"password"`
 	Avatar      string `json:"avatar"`
-	Tax         int64 `json:"tax"`
+	Tax         int64  `json:"tax"`
 }
+
 
 // type CheckResponse struct {
 // 	Check bool `json:"chack"`

@@ -6,7 +6,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 
-	"evrone_service/api_gateway/internal/pkg/app"
+	"api-gateway/internal/pkg/app"
 )
 
 func productionConfig(file string) zap.Config {

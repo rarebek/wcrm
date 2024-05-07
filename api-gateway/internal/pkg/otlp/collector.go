@@ -12,7 +12,7 @@ import (
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 	semconv "go.opentelemetry.io/otel/semconv/v1.7.0"
 
-	configpkg "evrone_service/api_gateway/internal/pkg/config"
+	configpkg "api-gateway/internal/pkg/config"
 )
 
 // Initializes an OTLP exporter, and configures the corresponding trace
