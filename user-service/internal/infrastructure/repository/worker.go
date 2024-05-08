@@ -6,7 +6,7 @@ import (
 )
 
 type Workers interface {
-	Create(ctx context.Context, kyc *entity.Worker) error
+	// Create(ctx context.Context, kyc *entity.Worker) error
 	Get(ctx context.Context, params map[string]string) (*entity.Worker, error)
 	Update(ctx context.Context, kyc *entity.Worker) error
 	Delete(ctx context.Context, guid string) error

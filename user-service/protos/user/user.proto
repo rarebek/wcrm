@@ -11,7 +11,7 @@ service UserService {
   rpc ListOwner(GetAllOwnerRequest) returns (GetAllOwnerResponse);
   rpc CheckFieldOwner(CheckFieldRequest) returns (CheckFieldResponse);
 
-  rpc CreateWorker(Worker) returns (GetWorkerRequest);
+  // rpc CreateWorker(Worker) returns (GetWorkerRequest);
   rpc GetWorker(GetWorkerRequest) returns (Worker);
   rpc UpdateWorker(Worker) returns (Worker);
   rpc DeleteWorker(GetWorkerRequest) returns (DeletedWorker);
@@ -58,7 +58,7 @@ message Geolocation {
 }
 
 message GetOwnerRequest {
-  string id = 1;
+  map<string, string> filter=1;
 }
 
 message GetWorkerRequest {

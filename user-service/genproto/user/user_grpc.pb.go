@@ -25,7 +25,6 @@ const (
 	UserService_DeleteOwner_FullMethodName       = "/user_service.UserService/DeleteOwner"
 	UserService_ListOwner_FullMethodName         = "/user_service.UserService/ListOwner"
 	UserService_CheckFieldOwner_FullMethodName   = "/user_service.UserService/CheckFieldOwner"
-	UserService_CreateWorker_FullMethodName      = "/user_service.UserService/CreateWorker"
 	UserService_GetWorker_FullMethodName         = "/user_service.UserService/GetWorker"
 	UserService_UpdateWorker_FullMethodName      = "/user_service.UserService/UpdateWorker"
 	UserService_DeleteWorker_FullMethodName      = "/user_service.UserService/DeleteWorker"
@@ -48,7 +47,7 @@ type UserServiceClient interface {
 	DeleteOwner(ctx context.Context, in *GetOwnerRequest, opts ...grpc.CallOption) (*Owner, error)
 	ListOwner(ctx context.Context, in *GetAllOwnerRequest, opts ...grpc.CallOption) (*GetAllOwnerResponse, error)
 	CheckFieldOwner(ctx context.Context, in *CheckFieldRequest, opts ...grpc.CallOption) (*CheckFieldResponse, error)
-	CreateWorker(ctx context.Context, in *Worker, opts ...grpc.CallOption) (*GetWorkerRequest, error)
+	// rpc CreateWorker(Worker) returns (GetWorkerRequest);
 	GetWorker(ctx context.Context, in *GetWorkerRequest, opts ...grpc.CallOption) (*Worker, error)
 	UpdateWorker(ctx context.Context, in *Worker, opts ...grpc.CallOption) (*Worker, error)
 	DeleteWorker(ctx context.Context, in *GetWorkerRequest, opts ...grpc.CallOption) (*DeletedWorker, error)
@@ -117,15 +116,6 @@ func (c *userServiceClient) ListOwner(ctx context.Context, in *GetAllOwnerReques
 func (c *userServiceClient) CheckFieldOwner(ctx context.Context, in *CheckFieldRequest, opts ...grpc.CallOption) (*CheckFieldResponse, error) {
 	out := new(CheckFieldResponse)
 	err := c.cc.Invoke(ctx, UserService_CheckFieldOwner_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userServiceClient) CreateWorker(ctx context.Context, in *Worker, opts ...grpc.CallOption) (*GetWorkerRequest, error) {
-	out := new(GetWorkerRequest)
-	err := c.cc.Invoke(ctx, UserService_CreateWorker_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -232,7 +222,7 @@ type UserServiceServer interface {
 	DeleteOwner(context.Context, *GetOwnerRequest) (*Owner, error)
 	ListOwner(context.Context, *GetAllOwnerRequest) (*GetAllOwnerResponse, error)
 	CheckFieldOwner(context.Context, *CheckFieldRequest) (*CheckFieldResponse, error)
-	CreateWorker(context.Context, *Worker) (*GetWorkerRequest, error)
+	// rpc CreateWorker(Worker) returns (GetWorkerRequest);
 	GetWorker(context.Context, *GetWorkerRequest) (*Worker, error)
 	UpdateWorker(context.Context, *Worker) (*Worker, error)
 	DeleteWorker(context.Context, *GetWorkerRequest) (*DeletedWorker, error)
@@ -243,6 +233,7 @@ type UserServiceServer interface {
 	UpdateGeolocation(context.Context, *Geolocation) (*Geolocation, error)
 	DeleteGeolocation(context.Context, *GetGeolocationRequest) (*DeletedGeolocation, error)
 	ListGeolocation(context.Context, *GetAllGeolocationRequest) (*GetAllGeolocationResponse, error)
+	// mustEmbedUnimplementedUserServiceServer()
 }
 
 // UnimplementedUserServiceServer must be embedded to have forward compatible implementations.
@@ -266,9 +257,6 @@ func (UnimplementedUserServiceServer) ListOwner(context.Context, *GetAllOwnerReq
 }
 func (UnimplementedUserServiceServer) CheckFieldOwner(context.Context, *CheckFieldRequest) (*CheckFieldResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CheckFieldOwner not implemented")
-}
-func (UnimplementedUserServiceServer) CreateWorker(context.Context, *Worker) (*GetWorkerRequest, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateWorker not implemented")
 }
 func (UnimplementedUserServiceServer) GetWorker(context.Context, *GetWorkerRequest) (*Worker, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetWorker not implemented")
@@ -417,24 +405,6 @@ func _UserService_CheckFieldOwner_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).CheckFieldOwner(ctx, req.(*CheckFieldRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_CreateWorker_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Worker)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).CreateWorker(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_CreateWorker_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CreateWorker(ctx, req.(*Worker))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -649,10 +619,6 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CheckFieldOwner",
 			Handler:    _UserService_CheckFieldOwner_Handler,
-		},
-		{
-			MethodName: "CreateWorker",
-			Handler:    _UserService_CreateWorker_Handler,
 		},
 		{
 			MethodName: "GetWorker",

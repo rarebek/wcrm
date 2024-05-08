@@ -41,34 +41,34 @@ func (p *workersRepo) workersSelectQueryPrefix() squirrel.SelectBuilder {
 		).From(p.tableName)
 }
 
-func (p workersRepo) Create(ctx context.Context, worker *entity.Worker) (*entity.Worker, error) {
-	data := map[string]any{
-		"id":         worker.Id,
-		"full_name":  worker.FullName,
-		"login_key":  worker.LoginKey,
-		"password":   worker.Password,
-		"owner_id":   worker.OwnerId,
-		"created_at": worker.CreatedAt,
-		"updated_at": worker.UpdatedAt,
-	}
-	query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
-	if err != nil {
-		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
-	}
+// func (p workersRepo) Create(ctx context.Context, worker *entity.Worker) (*entity.Worker, error) {
+// 	// data := map[string]any{
+// 	// 	"id":         worker.Id,
+// 	// 	"full_name":  worker.FullName,
+// 	// 	"login_key":  worker.LoginKey,
+// 	// 	"password":   worker.Password,
+// 	// 	"owner_id":   worker.OwnerId,
+// 	// 	"created_at": worker.CreatedAt,
+// 	// 	"updated_at": worker.UpdatedAt,
+// 	// }
+// 	// query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
+// 	// if err != nil {
+// 	// 	return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
+// 	// }
 
-	query += " RETURNING id, full_name, login_key, password, owner_id, created_at, updated_at"
+// 	// query += " RETURNING id, full_name, login_key, password, owner_id, created_at, updated_at"
 
-	row := p.db.QueryRow(ctx, query, args...)
-	if err != nil {
-		return nil, p.db.Error(err)
-	}
+// 	// row := p.db.QueryRow(ctx, query, args...)
+// 	// if err != nil {
+// 	// 	return nil, p.db.Error(err)
+// 	// }
 
-	var createdWorker entity.Worker
+// 	// var createdWorker entity.Worker
 
-	row.Scan(&createdWorker.Id, &createdWorker.)
+// 	// row.Scan(&createdWorker.Id, &createdWorker.)
 
-	return nil
-}
+// 	return nil, nil
+// }
 
 func (p workersRepo) Get(ctx context.Context, params map[string]string) (*entity.Worker, error) {
 	var (

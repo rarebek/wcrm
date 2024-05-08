@@ -8,6 +8,7 @@ import (
 	"user-service/internal/pkg/postgres"
 
 	"github.com/Masterminds/squirrel"
+	"github.com/k0kubun/pp"
 )
 
 const (
@@ -63,7 +64,7 @@ func (p ownersRepo) Create(ctx context.Context, owner *entity.Owner) (*entity.Ow
 	query += "RETURNING id, full_name, company_name, email, password, avatar, tax, created_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
-	
+
 	if err = row.Scan(&owner.Id, &owner.FullName, &owner.CompanyName, &owner.Email, &owner.Password, &owner.Avatar, &owner.Tax, &owner.CreatedAt); err != nil {
 		return nil, err
 	}
@@ -76,10 +77,15 @@ func (p ownersRepo) Get(ctx context.Context, params map[string]string) (*entity.
 		owner entity.Owner
 	)
 
+	pp.Println(params)
+
 	queryBuilder := p.ownersSelectQueryPrefix()
 
 	for key, value := range params {
 		if key == "id" {
+			queryBuilder = queryBuilder.Where(p.db.Sq.Equal(key, value))
+		}
+		if key == "email" {
 			queryBuilder = queryBuilder.Where(p.db.Sq.Equal(key, value))
 		}
 	}
@@ -157,7 +163,7 @@ func (p ownersRepo) Delete(ctx context.Context, guid string) (*entity.Owner, err
 	query += " RETURNING id, full_name, company_name, email, password, avatar, tax, created_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
-	
+
 	var owner entity.Owner
 
 	if err = row.Scan(&owner.Id, &owner.FullName, &owner.CompanyName, &owner.Email, &owner.Password, &owner.Avatar, &owner.Tax, &owner.CreatedAt); err != nil {

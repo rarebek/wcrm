@@ -8,7 +8,7 @@ import (
 )
 
 type Worker interface {
-	Create(ctx context.Context, worker *entity.Worker) (string, error)
+	// Create(ctx context.Context, worker *entity.Worker) (string, error)
 	Get(ctx context.Context, params map[string]string) (*entity.Worker, error)
 	Update(ctx context.Context, worker *entity.Worker) error
 	Delete(ctx context.Context, guid string) error
@@ -29,14 +29,14 @@ func NewWorkerService(ctxTimeout time.Duration, repo repository.Workers) workerS
 	}
 }
 
-func (u workerService) Create(ctx context.Context, worker *entity.Worker) (string, error) {
-	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
-	defer cancel()
+// func (u workerService) Create(ctx context.Context, worker *entity.Worker) (string, error) {
+// 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
+// 	defer cancel()
 
-	u.beforeRequest(&worker.Id, &worker.CreatedAt, &worker.UpdatedAt)
+// 	u.beforeRequest(&worker.Id, &worker.CreatedAt, &worker.UpdatedAt)
 
-	return worker.Id, u.repo.Create(ctx, worker)
-}
+// 	return worker.Id, u.repo.Create(ctx, worker)
+// }
 
 func (u workerService) Get(ctx context.Context, params map[string]string) (*entity.Worker, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)

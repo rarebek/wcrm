@@ -20,7 +20,7 @@ type userRPC struct {
 	ownerUsecase       usecase.Owner
 	workerUsecase      usecase.Worker
 	geolocationUsecase usecase.Geolocation
-	brokerProducer     event.BrokerProducer
+	// brokerProducer     event.BrokerConsumer
 }
 
 func NewRPC(logger *zap.Logger,
@@ -33,7 +33,7 @@ func NewRPC(logger *zap.Logger,
 		ownerUsecase:       ownerUsecase,
 		workerUsecase:      workerUsecase,
 		geolocationUsecase: geolocationUsecase,
-		brokerProducer:     brokerProducer,
+		// brokerProducer:     brokerProducer,
 	}
 }
 
@@ -108,7 +108,7 @@ func (s userRPC) UpdateOwner(ctx context.Context, in *userproto.Owner) (*userpro
 }
 
 func (s userRPC) DeleteOwner(ctx context.Context, in *userproto.GetOwnerRequest) (*userproto.Owner, error) {
-	owner, err := s.ownerUsecase.Delete(ctx, in.Id)
+	owner, err := s.ownerUsecase.Delete(ctx, in.Filter["id"])
 	if err != nil {
 		s.logger.Error(err.Error())
 		return nil, err
@@ -130,12 +130,10 @@ func (s userRPC) GetOwner(ctx context.Context, in *userproto.GetOwnerRequest) (*
 	//tracing
 	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "GetOwner")
 	span.SetAttributes(
-		attribute.Key("id").String(in.Id),
+		attribute.Key("id").String(in.Filter["id"]),
 	)
 	defer span.End()
-	user, err := s.ownerUsecase.Get(ctx, map[string]string{
-		"id": in.Id,
-	})
+	user, err := s.ownerUsecase.Get(ctx, in.Filter)
 
 	if err != nil {
 		s.logger.Error(err.Error())
@@ -184,26 +182,26 @@ func (s userRPC) ListOwner(ctx context.Context, in *userproto.GetAllOwnerRequest
 	return &response, nil
 }
 
-func (s userRPC) CreateWorker(ctx context.Context, in *userproto.Worker) (*userproto.GetWorkerRequest, error) {
-	guid, err := s.workerUsecase.Create(ctx, &entity.Worker{
-		Id:        in.Id,
-		FullName:  in.FullName,
-		LoginKey:  in.LoginKey,
-		Password:  in.Password,
-		OwnerId:   in.OwnerId,
-		CreatedAt: time.Now().UTC(),
-		UpdatedAt: time.Now().UTC(),
-	})
+// func (s userRPC) CreateWorker(ctx context.Context, in *userproto.Worker) (*userproto.GetWorkerRequest, error) {
+// 	guid, err := s.workerUsecase.Create(ctx, &entity.Worker{
+// 		Id:        in.Id,
+// 		FullName:  in.FullName,
+// 		LoginKey:  in.LoginKey,
+// 		Password:  in.Password,
+// 		OwnerId:   in.OwnerId,
+// 		CreatedAt: time.Now().UTC(),
+// 		UpdatedAt: time.Now().UTC(),
+// 	})
 
-	if err != nil {
-		s.logger.Error(err.Error())
-		return nil, err
-	}
+// 	if err != nil {
+// 		s.logger.Error(err.Error())
+// 		return nil, err
+// 	}
 
-	return &userproto.GetWorkerRequest{
-		Id: guid,
-	}, nil
-}
+// 	return &userproto.GetWorkerRequest{
+// 		Id: guid,
+// 	}, nil
+// }
 
 func (s userRPC) UpdateWorker(ctx context.Context, in *userproto.Worker) (*userproto.Worker, error) {
 	err := s.workerUsecase.Update(ctx, &entity.Worker{
