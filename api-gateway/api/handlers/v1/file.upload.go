@@ -8,11 +8,13 @@ import (
 	"mime/multipart"
 	"net/http"
 	"path/filepath"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
+	"github.com/spf13/cast"
 )
 
 type File struct {
@@ -25,6 +27,7 @@ type File struct {
 // @Tags 			file-upload
 // @Accept 			json
 // @Produce 		json
+// @Param 			id path string true "Id Product"
 // @Param 			file formData file true "Image"
 // @Success 		200 {object} string
 // @Failure 		400 {object} string
@@ -32,11 +35,14 @@ type File struct {
 // @Router 			/v1/file-upload [post]
 func (h *HandlerV1) UploadImage(c *gin.Context) {
 
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
+	defer cancel()
+
 	// MinIO serveriga bog'lanish
-	endpoint := "localhost:9000"  	// MinIO serveringizning manzili
-	accessKeyID := "fnatic1111"     // MinIO serveringizning foydalanuvchi nomi
-	secretAccessKey := "12345678"   // MinIO serveringizning maxfiy kodi
-	bucketName := "picture"         // Saqlash uchun tanlangan kovatcha (bucket) nomi
+	endpoint := "localhost:9000"  // MinIO serveringizning manzili
+	accessKeyID := "fnatic1111"   // MinIO serveringizning foydalanuvchi nomi
+	secretAccessKey := "12345678" // MinIO serveringizning maxfiy kodi
+	bucketName := "picture"       // Saqlash uchun tanlangan kovatcha (bucket) nomi
 	minioClient, err := minio.New(endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(accessKeyID, secretAccessKey, ""),
 		Secure: false,
@@ -88,9 +94,11 @@ func (h *HandlerV1) UploadImage(c *gin.Context) {
 	// MinIO serverining URL manzili
 	minioURL := fmt.Sprintf("http://%s/%s/%s", endpoint, bucketName, objectName)
 
-	h.Service.ProductService().UpdateProduct(context.TODO(), &pbu.Product{
-		// Id:          ,
-		Picture:     minioURL,
+	id = c.Param("id")
+
+	h.Service.ProductService().UpdateProduct(ctx, &pbu.Product{
+		Id:      cast.ToInt64(id),
+		Picture: minioURL,
 	})
 
 	c.JSON(http.StatusOK, minioURL)

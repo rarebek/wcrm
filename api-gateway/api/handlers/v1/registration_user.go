@@ -23,8 +23,6 @@ import (
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
-// jwt
-
 // @Summary 		Register
 // @Description 	Api for Registering
 // @Tags 			Register
@@ -258,7 +256,7 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 	}
 
 	response := &models.OwnerResponse{
-		Id:          id,
+		Id:          createdOwner.Id,
 		FullName:    createdOwner.FullName,
 		CompanyName: createdOwner.CompanyName,
 		Email:       createdOwner.Email,
@@ -269,4 +267,86 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, response)
+}
+
+// @Summary 		Login owner
+// @Description 	Api for Login
+// @Tags 			Register
+// @Accept 			json
+// @Produce 		json
+// @Param 			email query string true "EMAIL"
+// @Param 			password query string true "PASSWORD"
+// @Success 		200 {object} models.ResponseAccessToken
+// @Failure 		400 {object} models.StandartError
+// @Failure 		500 {object} models.StandartError
+// @Router 			/v1/login [get]
+func (h *HandlerV1) LogIn(c *gin.Context) {
+
+	var jspbMarshal protojson.MarshalOptions
+	jspbMarshal.UseProtoNames = true
+
+	email := c.Query("email")
+	password := c.Query("password")
+
+	email = strings.TrimSpace(email)
+	email = strings.ToLower(email)
+
+	// pp.Println("email", email)
+	// pp.Println("password", password)
+
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
+	defer cancel()
+
+	filter := map[string]string{
+		"email": email,
+	}
+
+	// pp.Println("111111111", filter)
+
+	response, err := h.Service.UserService().GetOwner(ctx, &pbu.GetOwnerRequest{
+		Filter: filter,
+	})
+
+	// pp.Println("owner", response)
+
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Incorrect email. Please try again",
+		})
+		h.Logger.Error(err.Error())
+		return
+	}
+
+	if !etc.CheckPasswordHash(password, response.Password) {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Incorrect password. Please try again",
+		})
+		h.Logger.Error("Incorrect password. Please try again")
+		return
+	}
+
+	// Create access and refresh tokens JWT
+	h.jwthandler = token.JWTHandler{
+		Sub:       response.Id,
+		Iss:       time.Now().String(),
+		Exp:       time.Now().Add(time.Hour * 6).String(),
+		Role:      "owner",
+		SigninKey: h.Config.SigningKey,
+		Timeot:    h.Config.AccessTokenTimout,
+	}
+
+	// aksestoken bn refreshtokeni generatsa qiliah
+	access, _, err := h.jwthandler.GenerateAuthJWT()
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "error generating token",
+		})
+		h.Logger.Error(err.Error())
+		return
+	}
+
+	c.JSON(http.StatusOK, models.ResponseAccessToken{
+		AccessToken: access,
+	})
 }

@@ -56,7 +56,7 @@ message Geolocation {
 }
 
 message GetOwnerRequest {
-  string id = 1;
+  map<string, string> filter=1;
 }
 
 message GetWorkerRequest {

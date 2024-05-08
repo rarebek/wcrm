@@ -209,6 +209,11 @@ definitions:
       tax:
         type: integer
     type: object
+  models.ResponseAccessToken:
+    properties:
+      accessToken:
+        type: string
+    type: object
   models.StandartError:
     properties:
       error:
@@ -296,6 +301,11 @@ paths:
       - application/json
       description: Api for image upload
       parameters:
+      - description: Id Product
+        in: path
+        name: id
+        required: true
+        type: string
       - description: Image
         in: formData
         name: file
@@ -478,6 +488,40 @@ paths:
       summary: Get List Geolocation
       tags:
       - Geolocation
+  /v1/login:
+    get:
+      consumes:
+      - application/json
+      description: Api for Login
+      parameters:
+      - description: EMAIL
+        in: query
+        name: email
+        required: true
+        type: string
+      - description: PASSWORD
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ResponseAccessToken'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Login owner
+      tags:
+      - Register
   /v1/order/create:
     post:
       consumes:

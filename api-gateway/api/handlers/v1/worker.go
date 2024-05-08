@@ -99,7 +99,6 @@ func (h *HandlerV1) GetWorker(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 }
 
-
 // @Summary 		Update Worker
 // @Security 		ApiKeyAuth
 // @Description 	Api for update worker

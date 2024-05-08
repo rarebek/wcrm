@@ -3,6 +3,7 @@ p, unauthorized, /v1/swagger/index.html, GET
 p, unauthorized, /v1/swagger/index.html, POST
 p, unauthorized, /v1/register, POST
 p, unauthorized, /v1/verification, GET
+p, unauthorized, /v1/login, GET
 p, owner, /v1/product/create, POST
 p, owner, /v1/product/get/{id}, GET
 p, owner, /v1/product/update, PUT

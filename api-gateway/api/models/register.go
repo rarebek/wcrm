@@ -31,6 +31,10 @@ type OwnerResponse struct {
 	AccessToken  string `json:"access_token"`
 }
 
+type ResponseAccessToken struct {
+	AccessToken string
+}
+
 func (rm *RegisterOwner) IsEmail() error {
 	return validation.ValidateStruct(
 		rm,

@@ -35,6 +35,13 @@ const docTemplate = `{
                 "summary": "Image upload",
                 "parameters": [
                     {
+                        "type": "string",
+                        "description": "Id Product",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
                         "type": "file",
                         "description": "Image",
                         "name": "file",
@@ -300,6 +307,57 @@ const docTemplate = `{
                     },
                     "404": {
                         "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/login": {
+            "get": {
+                "description": "Api for Login",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Login owner",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "EMAIL",
+                        "name": "email",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "PASSWORD",
+                        "name": "password",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.ResponseAccessToken"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
                         "schema": {
                             "$ref": "#/definitions/models.StandartError"
                         }
@@ -1748,6 +1806,14 @@ const docTemplate = `{
                 },
                 "tax": {
                     "type": "integer"
+                }
+            }
+        },
+        "models.ResponseAccessToken": {
+            "type": "object",
+            "properties": {
+                "accessToken": {
+                    "type": "string"
                 }
             }
         },

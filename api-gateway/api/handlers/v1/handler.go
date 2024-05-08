@@ -3,11 +3,13 @@ package v1
 import (
 	"time"
 
+	tokens "api-gateway/internal/pkg/token"
+
 	"go.uber.org/zap"
-	"api-gateway/internal/pkg/token"
 
 	grpcClients "api-gateway/internal/infrastructure/grpc_service_client"
 	"api-gateway/internal/pkg/config"
+
 	// "api-gateway/internal/usecase/event"
 	"github.com/casbin/casbin/v2"
 )

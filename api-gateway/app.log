@@ -1255,3 +1255,320 @@ net/http.(*conn).serve
 main.main.func1
 	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:29
 2024-05-07T18:19:18.668+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-07T19:21:45.052+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-07T19:21:45.054+0500	ERROR	app/main.go:29	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:29
+2024-05-07T19:21:52.897+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-07T21:10:15.690+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-07T21:10:15.692+0500	ERROR	app/main.go:29	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:29
+2024-05-07T21:10:22.288+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-07T21:13:30.489+0500	ERROR	v1/registration_user.go:65	Incorrect email format	{"error": "email: must be a valid email address."}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-07T21:28:51.694+0500	INFO	app/main.go:38	api gateway service stops
+2024-05-07T21:28:51.695+0500	ERROR	app/main.go:29	app run	{"error": "http: Server closed"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:29
+2024-05-07T21:35:46.514+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-07T21:39:14.299+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-07T21:39:14.300+0500	ERROR	app/main.go:29	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:29
+2024-05-07T21:39:20.925+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-07T21:39:32.363+0500	ERROR	v1/registration_user.go:304	rpc error: code = Unknown desc = object not found
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:304
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-07T21:42:59.693+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-07T21:43:05.030+0500	ERROR	v1/registration_user.go:309	rpc error: code = Unknown desc = object not found
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:309
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-07T21:44:29.101+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-07T21:44:41.385+0500	ERROR	v1/registration_user.go:311	rpc error: code = Unknown desc = object not found
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:311
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-07T21:52:32.516+0500	ERROR	v1/registration_user.go:311	rpc error: code = Unknown desc = object not found
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:311
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-07T21:52:44.363+0500	ERROR	v1/registration_user.go:311	rpc error: code = Unknown desc = object not found
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:311
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-08T15:12:04.061+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-08T15:15:28.503+0500	ERROR	v1/registration_user.go:313	rpc error: code = Unknown desc = ERROR: invalid input syntax for type uuid: "
+emailnimagap@gmail.com" (SQLSTATE 22P02)
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:313
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-08T15:17:54.703+0500	ERROR	v1/registration_user.go:313	rpc error: code = Unknown desc = ERROR: invalid input syntax for type uuid: "
+emailnimagap@gmail.com" (SQLSTATE 22P02)
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:313
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-08T15:22:11.341+0500	ERROR	v1/registration_user.go:313	rpc error: code = Unknown desc = ERROR: invalid input syntax for type uuid: "
+emailnimagap@gmail.com" (SQLSTATE 22P02)
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:313
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-08T15:29:28.891+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-08T15:29:28.892+0500	ERROR	app/main.go:29	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:29
+2024-05-08T15:29:34.078+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-08T15:30:48.421+0500	ERROR	v1/registration_user.go:315	rpc error: code = Unknown desc = ERROR: invalid input syntax for type uuid: "
+emailnimagap@gmail.com" (SQLSTATE 22P02)
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:315
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-08T15:53:38.916+0500	ERROR	v1/registration_user.go:315	rpc error: code = Unknown desc = ERROR: invalid input syntax for type uuid: "
+emailnimagap@gmail.com" (SQLSTATE 22P02)
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:315
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-08T15:59:53.682+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-08T16:00:23.221+0500	ERROR	v1/registration_user.go:315	rpc error: code = Unknown desc = ERROR: invalid input syntax for type uuid: "" (SQLSTATE 22P02)
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:315
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-08T16:02:51.904+0500	ERROR	v1/registration_user.go:315	rpc error: code = Unknown desc = ERROR: invalid input syntax for type uuid: "" (SQLSTATE 22P02)
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration_user.go:315
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10585/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10585/src/net/http/server.go:2039
+2024-05-08T16:10:54.008+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-08T16:22:58.535+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-08T16:22:58.537+0500	ERROR	app/main.go:29	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:29
+2024-05-08T17:33:03.876+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-08T17:33:03.877+0500	ERROR	app/main.go:29	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:29
+2024-05-08T17:33:08.639+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}

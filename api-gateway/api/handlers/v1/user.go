@@ -87,8 +87,12 @@ func (h *HandlerV1) GetOwner(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 
+	filter := map[string]string{
+        "id": id,
+    }
+
 	response, err := h.Service.UserService().GetOwner(ctx, &pbu.GetOwnerRequest{
-		Id: id,
+		Filter: filter,
 	})
 
 	if err != nil {
@@ -170,8 +174,12 @@ func (h *HandlerV1) DeleteOwner(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 
+	filter := map[string]string{
+        "id": id,
+    }
+
 	response, err := h.Service.UserService().DeleteOwner(ctx, &pbu.GetOwnerRequest{
-		Id: id,
+		Filter: filter,
 	})
 
 	if err != nil {

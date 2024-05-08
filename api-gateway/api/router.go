@@ -1,7 +1,6 @@
 package api
 
 import (
-	// "github.com/casbin/casbin/v2"
 	"time"
 
 	v1 "api-gateway/api/handlers/v1"
@@ -17,7 +16,6 @@ import (
 	"api-gateway/internal/pkg/config"
 	"api-gateway/internal/pkg/token"
 
-	// "api-gateway/internal/usecase/event"
 )
 
 type RouteOption struct {
@@ -26,7 +24,6 @@ type RouteOption struct {
 	ContextTimeout time.Duration
 	Service        grpcClients.ServiceClient
 	CasbinEnforcer *casbin.Enforcer
-	// BrokerProducer event.BrokerProducer
 }
 
 // NewRoute
@@ -95,6 +92,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	// registration
 	api.POST("/register", HandlerV1.Register)
 	api.GET("/verification", HandlerV1.Verify)
+	api.GET("/login", HandlerV1.LogIn)
 
 	// upload file
 	api.POST("/file-upload", HandlerV1.UploadImage)
