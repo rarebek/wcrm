@@ -1,0 +1,1343 @@
+definitions:
+  models.CheckResponse:
+    properties:
+      chack:
+        type: boolean
+    type: object
+  models.CreateGeolocation:
+    properties:
+      latitude:
+        type: number
+      longitude:
+        type: number
+      owner_id:
+        type: string
+    type: object
+  models.CreateOrder:
+    properties:
+      discount:
+        type: integer
+      product_id:
+        type: integer
+      tax:
+        type: integer
+      total_price:
+        type: integer
+      worker_id:
+        type: integer
+    type: object
+  models.CreateOwner:
+    properties:
+      avatar:
+        type: string
+      company_name:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      password:
+        type: string
+      tax:
+        type: integer
+    type: object
+  models.CreateProduct:
+    properties:
+      category_id:
+        example: 7
+        type: integer
+      description:
+        example: Juda mazzali
+        type: string
+      discount:
+        example: 12
+        type: integer
+      picture:
+        example: http://static/images/myimage.jpg
+        type: string
+      price:
+        example: 20000
+        type: integer
+      title:
+        type: string
+    type: object
+  models.CreateWorker:
+    properties:
+      full_name:
+        type: string
+      login_key:
+        type: string
+      owner_id:
+        type: string
+      password:
+        type: string
+    type: object
+  models.Error:
+    properties:
+      message:
+        type: string
+    type: object
+  models.Geolocation:
+    properties:
+      id:
+        type: integer
+      latitude:
+        type: number
+      longitude:
+        type: number
+      owner_id:
+        type: string
+    type: object
+  models.GeolocationList:
+    properties:
+      geolocations:
+        items:
+          $ref: '#/definitions/models.Geolocation'
+        type: array
+    type: object
+  models.GetAllProductByCategoryIdRequest:
+    properties:
+      category_id:
+        type: integer
+      limit:
+        type: integer
+      page:
+        type: integer
+    type: object
+  models.Order:
+    properties:
+      created_at:
+        type: string
+      discount:
+        type: integer
+      id:
+        type: integer
+      product_id:
+        type: integer
+      tax:
+        type: integer
+      total_price:
+        type: integer
+      worker_id:
+        type: integer
+    type: object
+  models.OrderList:
+    properties:
+      orders:
+        items:
+          $ref: '#/definitions/models.Order'
+        type: array
+    type: object
+  models.Owner:
+    properties:
+      avatar:
+        type: string
+      company_name:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      password:
+        type: string
+      tax:
+        type: integer
+      updated_at:
+        type: string
+    type: object
+  models.OwnerList:
+    properties:
+      owners:
+        items:
+          $ref: '#/definitions/models.Owner'
+        type: array
+    type: object
+  models.OwnerResponse:
+    properties:
+      access_token:
+        type: string
+      avatar:
+        type: string
+      company_name:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      password:
+        type: string
+      tax:
+        type: integer
+    type: object
+  models.Product:
+    properties:
+      category_id:
+        type: integer
+      created_at:
+        type: string
+      description:
+        type: string
+      discount:
+        type: integer
+      id:
+        type: integer
+      picture:
+        type: string
+      price:
+        type: integer
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.ProductList:
+    properties:
+      products:
+        items:
+          $ref: '#/definitions/models.Product'
+        type: array
+    type: object
+  models.RegisterOwner:
+    properties:
+      avatar:
+        type: string
+      company_name:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      password:
+        type: string
+      tax:
+        type: integer
+    type: object
+  models.ResponseAccessToken:
+    properties:
+      accessToken:
+        type: string
+    type: object
+  models.SearchProductRequest:
+    properties:
+      limit:
+        type: integer
+      page:
+        type: integer
+      title:
+        type: string
+    type: object
+  models.StandartError:
+    properties:
+      error:
+        $ref: '#/definitions/models.Error'
+    type: object
+  models.UpdateGeolocation:
+    properties:
+      id:
+        type: integer
+      latitude:
+        type: number
+      longitude:
+        type: number
+      owner_id:
+        type: string
+    type: object
+  models.UpdateOrder:
+    properties:
+      discount:
+        type: integer
+      id:
+        type: integer
+      tax:
+        type: integer
+      total_price:
+        type: integer
+    type: object
+  models.UpdateOwner:
+    properties:
+      avatar:
+        type: string
+      company_name:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      password:
+        type: string
+      tax:
+        type: integer
+    type: object
+  models.UpdateProduct:
+    properties:
+      category_id:
+        type: integer
+      description:
+        type: string
+      discount:
+        type: integer
+      id:
+        type: integer
+      picture:
+        type: string
+      price:
+        type: integer
+      title:
+        type: string
+    type: object
+  models.UpdateWorker:
+    properties:
+      full_name:
+        type: string
+      id:
+        type: string
+      login_key:
+        type: string
+      owner_id:
+        type: string
+      password:
+        type: string
+    type: object
+  models.Worker:
+    properties:
+      created_at:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      login_key:
+        type: string
+      owner_id:
+        type: string
+      password:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.WorkerList:
+    properties:
+      workers:
+        items:
+          $ref: '#/definitions/models.Worker'
+        type: array
+    type: object
+info:
+  contact: {}
+  description: wcrm-system
+  title: WCRM
+  version: "1.0"
+paths:
+  /v1/file-upload/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Api for image upload
+      parameters:
+      - description: Id Product
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Image
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      summary: Image upload
+      tags:
+      - file-upload
+  /v1/geolocation/create:
+    post:
+      consumes:
+      - application/json
+      description: Api for create geolocation
+      parameters:
+      - description: Create Geolocation
+        in: body
+        name: Geolocation
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateGeolocation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Geolocation'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Create Geolocation
+      tags:
+      - Geolocation
+  /v1/geolocation/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Api for delete geolocation
+      parameters:
+      - description: Id Geolocation
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CheckResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Geolocation
+      tags:
+      - Geolocation
+  /v1/geolocation/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get geolocation
+      parameters:
+      - description: Id Geolocation
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Geolocation'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Geolocation
+      tags:
+      - Geolocation
+  /v1/geolocation/update:
+    put:
+      consumes:
+      - application/json
+      description: Api for update geolocation
+      parameters:
+      - description: Update Geolocation
+        in: body
+        name: Geolocation
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateGeolocation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Geolocation'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Update Geolocation
+      tags:
+      - Geolocation
+  /v1/geolocations/get/{page}/{limit}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get all geolocation
+      parameters:
+      - description: Owner Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.GeolocationList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get List Geolocation
+      tags:
+      - Geolocation
+  /v1/login:
+    get:
+      consumes:
+      - application/json
+      description: Api for Login
+      parameters:
+      - description: EMAIL
+        in: query
+        name: email
+        required: true
+        type: string
+      - description: PASSWORD
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ResponseAccessToken'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Login owner
+      tags:
+      - Register
+  /v1/order/create:
+    post:
+      consumes:
+      - application/json
+      description: Api for create oder
+      parameters:
+      - description: Create Order
+        in: body
+        name: Order
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateOrder'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Order'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Create Order
+      tags:
+      - Order
+  /v1/order/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Api for delete order
+      parameters:
+      - description: Id Order
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CheckResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Order
+      tags:
+      - Order
+  /v1/order/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get order
+      parameters:
+      - description: Id Order
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Order'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Order
+      tags:
+      - Order
+  /v1/order/update:
+    put:
+      consumes:
+      - application/json
+      description: Api for update order
+      parameters:
+      - description: Update Order
+        in: body
+        name: Order
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateOrder'
+      produces:
+      - application/json
+      responses:
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Update Order
+      tags:
+      - Order
+  /v1/orders/get/{page}/{limit}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get all product
+      parameters:
+      - description: Page Order
+        in: path
+        name: page
+        required: true
+        type: string
+      - description: Limit Order
+        in: path
+        name: limit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.OrderList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get List Order
+      tags:
+      - Order
+  /v1/owner/create:
+    post:
+      consumes:
+      - application/json
+      description: Api for create owner
+      parameters:
+      - description: Create Owner
+        in: body
+        name: Product
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateOwner'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Owner'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Create Owner
+      tags:
+      - User
+  /v1/owner/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Api for delete product
+      parameters:
+      - description: Id Owner
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CheckResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Owner
+      tags:
+      - User
+  /v1/owner/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get product
+      parameters:
+      - description: Id Owner
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Owner'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Owner
+      tags:
+      - User
+  /v1/owner/update:
+    put:
+      consumes:
+      - application/json
+      description: Api for update product
+      parameters:
+      - description: Update Owner
+        in: body
+        name: Owner
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateOwner'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Owner'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Update Owner
+      tags:
+      - User
+  /v1/owners/get/{page}/{limit}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get all product
+      parameters:
+      - description: Page Owner
+        in: path
+        name: page
+        required: true
+        type: string
+      - description: Limit Owner
+        in: path
+        name: limit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.OwnerList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get List Owner
+      tags:
+      - User
+  /v1/product/create:
+    post:
+      consumes:
+      - application/json
+      description: Api for create product
+      parameters:
+      - description: Create Product
+        in: body
+        name: Product
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateProduct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Product'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Create Product
+      tags:
+      - Product
+  /v1/product/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Api for delete product
+      parameters:
+      - description: Id Product
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CheckResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Product
+      tags:
+      - Product
+  /v1/product/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get product
+      parameters:
+      - description: Id Product
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Product'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Product
+      tags:
+      - Product
+  /v1/product/search:
+    post:
+      consumes:
+      - application/json
+      description: Api for search product by title
+      parameters:
+      - description: Search Products
+        in: body
+        name: Product
+        required: true
+        schema:
+          $ref: '#/definitions/models.SearchProductRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ProductList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Search Product
+      tags:
+      - Product
+  /v1/product/update:
+    put:
+      consumes:
+      - application/json
+      description: Api for update product
+      parameters:
+      - description: Update Product
+        in: body
+        name: Product
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateProduct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Product'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Update Product
+      tags:
+      - Product
+  /v1/products/get/{page}/{limit}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get all product
+      parameters:
+      - description: Page Product
+        in: path
+        name: page
+        required: true
+        type: string
+      - description: Limit Product
+        in: path
+        name: limit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ProductList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get List Product
+      tags:
+      - Product
+  /v1/products/get_category_id:
+    post:
+      consumes:
+      - application/json
+      description: Api for get all product by category_id
+      parameters:
+      - description: Get Products
+        in: body
+        name: Product
+        required: true
+        schema:
+          $ref: '#/definitions/models.GetAllProductByCategoryIdRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.ProductList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get all product by category_id
+      tags:
+      - Product
+  /v1/register:
+    post:
+      consumes:
+      - application/json
+      description: Api for Registering
+      parameters:
+      - description: owner
+        in: body
+        name: Owner
+        required: true
+        schema:
+          $ref: '#/definitions/models.RegisterOwner'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Register
+      tags:
+      - Register
+  /v1/verification:
+    get:
+      consumes:
+      - application/json
+      description: LogIn - Verify a user with code sent to their email
+      parameters:
+      - description: Email
+        in: query
+        name: email
+        required: true
+        type: string
+      - description: Code
+        in: query
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.OwnerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      summary: Verify owner
+      tags:
+      - Register
+  /v1/worker/create:
+    post:
+      consumes:
+      - application/json
+      description: Api for create worker
+      parameters:
+      - description: Create Worker
+        in: body
+        name: Worker
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateWorker'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Worker'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Create Worker
+      tags:
+      - Worker
+  /v1/worker/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Api for delete worker
+      parameters:
+      - description: Id Worker
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CheckResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Worker
+      tags:
+      - Worker
+  /v1/worker/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get worker
+      parameters:
+      - description: Id Worker
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Worker'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Worker
+      tags:
+      - Worker
+  /v1/worker/update:
+    put:
+      consumes:
+      - application/json
+      description: Api for update worker
+      parameters:
+      - description: Update Worker
+        in: body
+        name: Worker
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateWorker'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Worker'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Update Worker
+      tags:
+      - Worker
+  /v1/workers/get/{page}/{limit}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get all worker
+      parameters:
+      - description: Page Worker
+        in: path
+        name: page
+        required: true
+        type: string
+      - description: Limit Worker
+        in: path
+        name: limit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.WorkerList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get List Worker
+      tags:
+      - Worker
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

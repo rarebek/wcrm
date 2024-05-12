@@ -1,0 +1,1058 @@
+2024-04-18T12:23:07.338+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T12:59:42.671+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:11:33.778+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:23:17.277+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:23:21.408+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:23:21+05:00", "grpc.request.deadline": "2024-04-18T13:23:51+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:46208", "grpc.code": "OK", "grpc.time_ms": 3.421}
+2024-04-18T13:23:42.195+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:23:42+05:00", "grpc.request.deadline": "2024-04-18T13:24:12+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:46208", "grpc.code": "OK", "grpc.time_ms": 0.362}
+2024-04-18T13:26:54.052+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:26:59.777+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:26:59.777+0500	ERROR	app/main.go:27	app run	{"error": "gRPC fatal to serve grpc server over :50025 gRPC fatal to listen on :50025 listen tcp :50025: bind: address already in use"}
+main.main.func1
+	/home/gopher/projects/go/src/user-service/cmd/app/main.go:27
+2024-04-18T13:27:01.680+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-18T13:27:03.747+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:27:03.748+0500	ERROR	app/main.go:27	app run	{"error": "gRPC fatal to serve grpc server over :50025 gRPC fatal to listen on :50025 listen tcp :50025: bind: address already in use"}
+main.main.func1
+	/home/gopher/projects/go/src/user-service/cmd/app/main.go:27
+2024-04-18T13:27:09.735+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:27:09.736+0500	ERROR	app/main.go:27	app run	{"error": "gRPC fatal to serve grpc server over :50025 gRPC fatal to listen on :50025 listen tcp :50025: bind: address already in use"}
+main.main.func1
+	/home/gopher/projects/go/src/user-service/cmd/app/main.go:27
+2024-04-18T13:27:15.315+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:27:15.315+0500	ERROR	app/main.go:27	app run	{"error": "gRPC fatal to serve grpc server over :50025 gRPC fatal to listen on :50025 listen tcp :50025: bind: address already in use"}
+main.main.func1
+	/home/gopher/projects/go/src/user-service/cmd/app/main.go:27
+2024-04-18T13:27:28.000+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:27:36.082+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:27:36+05:00", "grpc.request.deadline": "2024-04-18T13:28:06+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:50500", "grpc.code": "OK", "grpc.time_ms": 0.873}
+2024-04-18T13:33:25.144+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:33:25+05:00", "grpc.request.deadline": "2024-04-18T13:33:55+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:50500", "grpc.code": "OK", "grpc.time_ms": 0.301}
+2024-04-18T13:33:47.489+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:33:47+05:00", "grpc.request.deadline": "2024-04-18T13:34:17+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:36436", "grpc.code": "OK", "grpc.time_ms": 0.24}
+2024-04-18T13:34:55.858+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:34:55+05:00", "grpc.request.deadline": "2024-04-18T13:35:25+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:36436", "grpc.code": "OK", "grpc.time_ms": 0.443}
+2024-04-18T13:35:02.778+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:35:02+05:00", "grpc.request.deadline": "2024-04-18T13:35:32+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:36436", "grpc.code": "OK", "grpc.time_ms": 0.455}
+2024-04-18T13:37:09.484+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-18T13:37:13.955+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:37:18.715+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:37:18+05:00", "grpc.request.deadline": "2024-04-18T13:37:48+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:56076", "grpc.code": "OK", "grpc.time_ms": 1.034}
+2024-04-18T13:41:15.139+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:41:15+05:00", "grpc.request.deadline": "2024-04-18T13:41:45+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:37218", "grpc.code": "OK", "grpc.time_ms": 0.366}
+2024-04-18T13:44:45.762+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:44:45+05:00", "grpc.request.deadline": "2024-04-18T13:45:15+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:37218", "grpc.code": "OK", "grpc.time_ms": 0.773}
+2024-04-18T13:44:50.441+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:44:50+05:00", "grpc.request.deadline": "2024-04-18T13:45:20+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:37218", "grpc.code": "OK", "grpc.time_ms": 0.442}
+2024-04-18T13:57:53.027+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-18T13:58:02.783+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:58:06.206+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:58:06+05:00", "grpc.request.deadline": "2024-04-18T13:58:36+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:38794", "grpc.code": "OK", "grpc.time_ms": 1.073}
+2024-04-18T13:58:51.108+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-18T13:58:55.974+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T13:58:58.006+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T13:58:58+05:00", "grpc.request.deadline": "2024-04-18T13:59:28+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:42806", "grpc.code": "OK", "grpc.time_ms": 1.582}
+2024-04-18T14:04:19.009+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:04:19+05:00", "grpc.request.deadline": "2024-04-18T14:04:49+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:58060", "grpc.code": "OK", "grpc.time_ms": 0.641}
+2024-04-18T14:04:22.602+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:04:22+05:00", "grpc.request.deadline": "2024-04-18T14:04:52+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:58060", "grpc.code": "OK", "grpc.time_ms": 1.219}
+2024-04-18T14:21:47.570+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T14:23:41.161+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:23:41+05:00", "grpc.request.deadline": "2024-04-18T14:24:11+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:46932", "grpc.code": "OK", "grpc.time_ms": 4.306}
+2024-04-18T14:24:25.213+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:24:25+05:00", "grpc.request.deadline": "2024-04-18T14:24:55+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:46932", "grpc.code": "OK", "grpc.time_ms": 2.063}
+2024-04-18T14:26:07.452+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:26:07+05:00", "grpc.request.deadline": "2024-04-18T14:26:37+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Update", "peer.address": "127.0.0.1:34956", "grpc.code": "OK", "grpc.time_ms": 3.935}
+2024-04-18T14:32:14.561+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:32:14+05:00", "grpc.request.deadline": "2024-04-18T14:32:44+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Get", "peer.address": "127.0.0.1:38272", "grpc.code": "OK", "grpc.time_ms": 0.544}
+2024-04-18T14:32:41.962+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:32:41+05:00", "grpc.request.deadline": "2024-04-18T14:33:11+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:38272", "grpc.code": "OK", "grpc.time_ms": 0.525}
+2024-04-18T14:33:00.801+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:33:00+05:00", "grpc.request.deadline": "2024-04-18T14:33:30+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:38272", "grpc.code": "OK", "grpc.time_ms": 0.525}
+2024-04-18T14:34:23.368+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:34:23+05:00", "grpc.request.deadline": "2024-04-18T14:34:53+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Delete", "peer.address": "127.0.0.1:36650", "grpc.code": "OK", "grpc.time_ms": 2.005}
+2024-04-18T14:34:40.924+0500	ERROR	services/user.go:84	no sql rows
+user-service/internal/delivery/grpc/services.userRPC.Delete
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/services/user.go:84
+user-service/genproto/user_service._UserService_Delete_Handler.func1
+	/home/gopher/projects/go/src/user-service/genproto/user_service/user_service.pb.go:218
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_Delete_Handler
+	/home/gopher/projects/go/src/user-service/genproto/user_service/user_service.pb.go:220
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-18T14:34:40.925+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-18T14:34:40+05:00", "grpc.request.deadline": "2024-04-18T14:35:10+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Delete", "peer.address": "127.0.0.1:36650", "error": "no sql rows", "grpc.code": "Unknown", "grpc.time_ms": 0.522}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_Delete_Handler
+	/home/gopher/projects/go/src/user-service/genproto/user_service/user_service.pb.go:220
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-18T14:35:45.520+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T14:35:54.150+0500	ERROR	services/user.go:84	no sql rows
+user-service/internal/delivery/grpc/services.userRPC.Delete
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/services/user.go:84
+user-service/genproto/user_service._UserService_Delete_Handler.func1
+	/home/gopher/projects/go/src/user-service/genproto/user_service/user_service.pb.go:218
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_Delete_Handler
+	/home/gopher/projects/go/src/user-service/genproto/user_service/user_service.pb.go:220
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-18T14:35:54.150+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-18T14:35:54+05:00", "grpc.request.deadline": "2024-04-18T14:36:24+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Delete", "peer.address": "127.0.0.1:59970", "error": "no sql rows", "grpc.code": "Unknown", "grpc.time_ms": 1.179}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_Delete_Handler
+	/home/gopher/projects/go/src/user-service/genproto/user_service/user_service.pb.go:220
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-18T14:36:32.968+0500	ERROR	services/user.go:84	no sql rows
+user-service/internal/delivery/grpc/services.userRPC.Delete
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/services/user.go:84
+user-service/genproto/user_service._UserService_Delete_Handler.func1
+	/home/gopher/projects/go/src/user-service/genproto/user_service/user_service.pb.go:218
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_Delete_Handler
+	/home/gopher/projects/go/src/user-service/genproto/user_service/user_service.pb.go:220
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-18T14:36:32.968+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-18T14:36:32+05:00", "grpc.request.deadline": "2024-04-18T14:37:02+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Delete", "peer.address": "127.0.0.1:59970", "error": "no sql rows", "grpc.code": "Unknown", "grpc.time_ms": 0.448}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/gopher/mod-cache/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/gopher/projects/go/src/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_Delete_Handler
+	/home/gopher/projects/go/src/user-service/genproto/user_service/user_service.pb.go:220
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/gopher/mod-cache/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-18T14:38:41.037+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:38:41+05:00", "grpc.request.deadline": "2024-04-18T14:39:11+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:59970", "grpc.code": "OK", "grpc.time_ms": 1.952}
+2024-04-18T14:38:57.512+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T14:38:57+05:00", "grpc.request.deadline": "2024-04-18T14:39:27+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Delete", "peer.address": "127.0.0.1:59970", "grpc.code": "OK", "grpc.time_ms": 31.334}
+2024-04-18T16:56:07.244+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T17:27:33.223+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-18T17:31:01.935+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T17:33:42.977+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T17:33:42+05:00", "grpc.request.deadline": "2024-04-18T17:34:12+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Create", "peer.address": "127.0.0.1:36008", "grpc.code": "OK", "grpc.time_ms": 1.452}
+2024-04-18T17:35:21.421+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T17:35:21+05:00", "grpc.request.deadline": "2024-04-18T17:35:51+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Get", "peer.address": "127.0.0.1:36008", "grpc.code": "OK", "grpc.time_ms": 1.011}
+2024-04-18T17:36:32.900+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T17:36:32+05:00", "grpc.request.deadline": "2024-04-18T17:37:02+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "GetAll", "peer.address": "127.0.0.1:36008", "grpc.code": "OK", "grpc.time_ms": 0.471}
+2024-04-18T17:39:42.707+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T17:39:42+05:00", "grpc.request.deadline": "2024-04-18T17:40:12+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Update", "peer.address": "127.0.0.1:36008", "grpc.code": "OK", "grpc.time_ms": 1.08}
+2024-04-18T17:39:48.131+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-04-18T17:39:48+05:00", "grpc.request.deadline": "2024-04-18T17:40:18+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "Delete", "peer.address": "127.0.0.1:36008", "grpc.code": "OK", "grpc.time_ms": 0.859}
+2024-04-18T18:10:23.790+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-18T18:16:28.790+0500	INFO	app/app.go:102	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T18:21:53.914+0500	INFO	app/main.go:36	Conten service stops !
+2024-04-18T21:29:50.802+0500	INFO	app/app.go:106	gRPC Server Listening	{"url": ":50025"}
+2024-04-18T21:29:52.164+0500	INFO	app/main.go:43	Conten service stops !
+2024-04-22T16:57:28.323+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-22T16:57:44.260+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-22T20:36:56.592+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-22T20:36:58.704+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T16:55:15.421+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T16:55:16.890+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T19:09:35.384+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T19:14:10.215+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T19:14:11.436+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T19:17:39.954+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T19:17:40.911+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T19:18:01.518+0500	ERROR	services/user.go:50	ERROR: relation "owners" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:18:01.518+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:18:01+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:48754", "error": "ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 1.254}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:20:23.303+0500	ERROR	services/user.go:50	ERROR: relation "owners" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:20:23.303+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:20:23+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:44868", "error": "ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.3}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:20:25.721+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T19:20:26.813+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T19:20:28.430+0500	ERROR	services/user.go:50	ERROR: relation "owners" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:20:28.430+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:20:28+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:44878", "error": "ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.484}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:20:51.849+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T19:22:42.234+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T19:22:59.783+0500	ERROR	services/user.go:50	ERROR: relation "owners" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:22:59.783+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:22:59+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:51974", "error": "ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.545}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:15.161+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T19:23:16.065+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T19:23:19.735+0500	ERROR	services/user.go:50	ERROR: relation "owners" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:19.735+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:23:19+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:53302", "error": "ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.564}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:20.745+0500	ERROR	services/user.go:50	ERROR: relation "owners" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:20.745+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:23:20+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:53312", "error": "ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.384}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:20.931+0500	ERROR	services/user.go:50	ERROR: relation "owners" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:20.932+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:23:20+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:53318", "error": "ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.413}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:24.061+0500	ERROR	services/user.go:50	ERROR: relation "owners" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:24.062+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:23:24+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:60128", "error": "ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.447}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:24.592+0500	ERROR	services/user.go:50	ERROR: relation "owners" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:24.592+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:23:24+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:60136", "error": "ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.522}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:24.734+0500	ERROR	services/user.go:50	ERROR: relation "owners" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:24.734+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:23:24+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:60144", "error": "ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.43}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:26.356+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T19:23:27.538+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T19:23:28.818+0500	ERROR	services/user.go:50	ERROR: column "avatar" of relation "users" does not exist (SQLSTATE 42703)
+user-service/internal/delivery/grpc/services.userRPC.CreateOwner
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:50
+user-service/genproto/user_service._UserService_CreateOwner_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:164
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:23:28.818+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T19:23:28+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateOwner", "peer.address": "127.0.0.1:60158", "error": "ERROR: column \"avatar\" of relation \"users\" does not exist (SQLSTATE 42703)", "grpc.code": "Unknown", "grpc.time_ms": 1.907}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateOwner_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:166
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T19:24:48.790+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T19:42:39.884+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T19:42:40.854+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T20:23:40.723+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T20:23:42.661+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T20:48:13.108+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T20:48:17.986+0500	ERROR	services/user.go:159	ERROR: relation "workers" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateWorker
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:159
+user-service/genproto/user_service._UserService_CreateWorker_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:330
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateWorker_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:332
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T20:48:17.987+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T20:48:17+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateWorker", "peer.address": "127.0.0.1:54662", "error": "ERROR: relation \"workers\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.648}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateWorker_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:332
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T20:49:53.639+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T20:49:54.680+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T20:49:58.802+0500	ERROR	services/user.go:159	ERROR: relation "workers" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.CreateWorker
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:159
+user-service/genproto/user_service._UserService_CreateWorker_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:330
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateWorker_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:332
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T20:49:58.803+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T20:49:58+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "CreateWorker", "peer.address": "127.0.0.1:33136", "error": "ERROR: relation \"workers\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.486}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_CreateWorker_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:332
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T20:50:09.674+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-23T21:03:31.547+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50025"}
+2024-04-23T21:03:35.188+0500	ERROR	services/user.go:194	ERROR: relation "workers" does not exist (SQLSTATE 42P01)
+user-service/internal/delivery/grpc/services.userRPC.DeleteWorker
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/services/user.go:194
+user-service/genproto/user_service._UserService_DeleteWorker_Handler.func1
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:384
+user-service/internal/app.NewApp.UnaryInterceptorData.func6
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:34
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+github.com/grpc-ecosystem/go-grpc-middleware/recovery.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/recovery/interceptors.go:33
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:31
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_DeleteWorker_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:386
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T21:03:35.188+0500	ERROR	zap/options.go:212	finished unary call with code Unknown	{"grpc.start_time": "2024-04-23T21:03:35+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "user_service.UserService", "grpc.method": "DeleteWorker", "peer.address": "127.0.0.1:39320", "error": "ERROR: relation \"workers\" does not exist (SQLSTATE 42P01)", "grpc.code": "Unknown", "grpc.time_ms": 0.482}
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.DefaultMessageProducer
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/options.go:212
+github.com/grpc-ecosystem/go-grpc-middleware/logging/zap.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/logging/zap/server_interceptors.go:39
+user-service/internal/app.NewApp.ChainUnaryServer.func5.1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:48
+github.com/grpc-ecosystem/go-grpc-middleware/tags.UnaryServerInterceptor.func1
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/tags/interceptors.go:23
+user-service/internal/app.NewApp.ChainUnaryServer.func5
+	/home/oybek/projects/go/pkg/mod/github.com/grpc-ecosystem/go-grpc-middleware@v1.4.0/chain.go:53
+user-service/internal/app.NewApp.UnaryInterceptor.func7.1.1
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:16
+user-service/internal/app.NewApp.UnaryInterceptor.func7
+	/home/oybek/projects/go/wcrm/user-service/internal/delivery/grpc/server/middleware.go:23
+user-service/genproto/user_service._UserService_DeleteWorker_Handler
+	/home/oybek/projects/go/wcrm/user-service/genproto/user_service/user_service.pb.go:386
+google.golang.org/grpc.(*Server).processUnaryRPC
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1369
+google.golang.org/grpc.(*Server).handleStream
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1780
+google.golang.org/grpc.(*Server).serveStreams.func2.1
+	/home/oybek/projects/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
+2024-04-23T21:03:39.021+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-24T21:50:28.804+0500	INFO	app/app.go:111	gRPC Server Listening	{"url": ":50025"}
+2024-04-24T21:54:22.278+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T13:50:08.264+0500	INFO	app/app.go:110	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T13:50:09.663+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T19:47:54.660+0500	INFO	app/app.go:119	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T20:01:40.689+0500	INFO	app/main.go:42	Conten service stops !
+2024-04-25T20:01:41.550+0500	INFO	app/app.go:119	gRPC Server Listening	{"url": ":50025"}
+2024-04-25T20:39:00.647+0500	INFO	app/main.go:42	Conten service stops !
