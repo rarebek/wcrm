@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OTP Visualization</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  }
+  .container {
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  h1 {
+    margin-bottom: 30px;
+    color: #444;
+  }
+  .otp-display {
+    font-size: 48px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  p {
+    font-size: 18px;
+    color: #666;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Your OTP Code</h1>
+  <div class="otp-display">{{.OTP}}</div>
+  <p>Check your email for the OTP code.</p>
+</div>
+</body>
+</html>

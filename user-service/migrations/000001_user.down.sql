@@ -1,0 +1,3 @@
+DROP TABLE IF EXISTS geolocations;
+DROP TABLE IF EXISTS workers;
+DROP TABLE IF EXISTS owners;
