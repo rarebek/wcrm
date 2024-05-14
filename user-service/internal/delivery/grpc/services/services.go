@@ -14,7 +14,14 @@ type userRPC struct {
 	geolocationUsecase usecase.Geolocation
 	userproto.UnimplementedUserServiceServer
 }
-
+	// CREATE TABLE IF NOT EXISTS categories_products (
+	// 	id SERIAL PRIMARY KEY,
+	// 	product_id INT REFERENCES products(id),
+	// 	category_id INT REFERENCES categories(id), 
+	// 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	// 	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+	// );
+		
 func NewRPC(logger *zap.Logger,
 	ownerUsecase usecase.Owner,
 	workerUsecase usecase.Worker,

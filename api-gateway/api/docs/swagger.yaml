@@ -186,8 +186,6 @@ definitions:
     type: object
   models.Product:
     properties:
-      category_id:
-        type: integer
       created_at:
         type: string
       description:
@@ -287,8 +285,6 @@ definitions:
     type: object
   models.UpdateProduct:
     properties:
-      category_id:
-        type: integer
       description:
         type: string
       discount:

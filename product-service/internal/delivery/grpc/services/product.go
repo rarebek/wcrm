@@ -6,30 +6,13 @@ import (
 
 	pbp "wcrm/product-service/genproto/product"
 	"wcrm/product-service/internal/entity"
-	"wcrm/product-service/internal/usecase"
-
-	// grpcClient "wcrm/product-service/internal/infrastructure/grpc_service_clients"
 
 	"go.uber.org/zap"
 )
 
-type productRPC struct {
-	logger  *zap.Logger
-	product usecase.Product
-	// client  grpcClient.ServiceClients
-	pbp.UnimplementedProductServiceServer
-}
+func (u UserRPC) CreateProduct(ctx context.Context, product *pbp.ProductWithCategoryId) (*pbp.Product, error) {
 
-func UserRPC(logger *zap.Logger, productUsecase usecase.Product) pbp.ProductServiceServer {
-	return &productRPC{
-		logger:  logger,
-		product: productUsecase,
-	}
-}
-
-func (u productRPC) CreateProduct(ctx context.Context, product *pbp.Product) (*pbp.Product, error) {
-
-	req_product := entity.Product{
+	req_product := entity.ProductWithCategoryId{
 		Title:       product.Title,
 		Description: product.Description,
 		Price:       product.Price,
@@ -54,13 +37,12 @@ func (u productRPC) CreateProduct(ctx context.Context, product *pbp.Product) (*p
 		Price:       res_product.Price,
 		Discount:    res_product.Discount,
 		Picture:     res_product.Picture,
-		CategoryId:  res_product.CategoryId,
 		CreatedAt:   res_product.CreatedAt.Format("2006-01-02 15:04:05"),
 		UpdatedAt:   res_product.UpdatedAt.Format("2006-01-02 15:04:05"),
 		DeletedAt:   "",
 	}, nil
 }
-func (u productRPC) GetProduct(ctx context.Context, id *pbp.GetProductRequest) (*pbp.Product, error) {
+func (u UserRPC) GetProduct(ctx context.Context, id *pbp.GetProductRequest) (*pbp.Product, error) {
 
 	reqMap := make(map[string]int64)
 	reqMap["id"] = id.Id
@@ -79,13 +61,12 @@ func (u productRPC) GetProduct(ctx context.Context, id *pbp.GetProductRequest) (
 		Price:       res.Price,
 		Discount:    res.Discount,
 		Picture:     res.Picture,
-		CategoryId:  res.CategoryId,
 		CreatedAt:   res.CreatedAt.Format("2006-01-02 15:04:05"),
 		UpdatedAt:   res.UpdatedAt.Format("2006-01-02 15:04:05"),
 		DeletedAt:   "",
 	}, nil
 }
-func (u productRPC) DeleteProduct(ctx context.Context, id *pbp.DeleteProductRequest) (*pbp.CheckResponse, error) {
+func (u UserRPC) DeleteProduct(ctx context.Context, id *pbp.DeleteProductRequest) (*pbp.CheckResponse, error) {
 
 	productReq, err := u.product.DeleteProduct(ctx, id.Id)
 
@@ -98,7 +79,7 @@ func (u productRPC) DeleteProduct(ctx context.Context, id *pbp.DeleteProductRequ
 		Check: productReq.Check,
 	}, nil
 }
-func (u productRPC) UpdateProduct(ctx context.Context, product *pbp.Product) (*pbp.Product, error) {
+func (u UserRPC) UpdateProduct(ctx context.Context, product *pbp.Product) (*pbp.Product, error) {
 
 	updated_product := entity.Product{
 		Id:          product.Id,
@@ -107,7 +88,6 @@ func (u productRPC) UpdateProduct(ctx context.Context, product *pbp.Product) (*p
 		Price:       product.Price,
 		Discount:    product.Discount,
 		Picture:     product.Picture,
-		CategoryId:  product.CategoryId,
 		UpdatedAt:   time.Now(),
 	}
 
@@ -125,12 +105,11 @@ func (u productRPC) UpdateProduct(ctx context.Context, product *pbp.Product) (*p
 		Price:       row.Price,
 		Discount:    row.Discount,
 		Picture:     row.Picture,
-		CategoryId:  row.CategoryId,
 		CreatedAt:   row.CreatedAt.Format("2006-01-02 15:04:05"),
 		UpdatedAt:   row.UpdatedAt.Format("2006-01-02 15:04:05"),
 	}, nil
 }
-func (u productRPC) ListProduct(ctx context.Context, req *pbp.GetAllRequest) (*pbp.GetAllResponse, error) {
+func (u UserRPC) ListProduct(ctx context.Context, req *pbp.GetAllRequest) (*pbp.GetAllResponse, error) {
 	offset := req.Limit * (req.Page - 1)
 
 	res_products, err := u.product.ListProduct(ctx, uint64(req.Limit), uint64(offset), map[string]string{})
@@ -150,7 +129,6 @@ func (u productRPC) ListProduct(ctx context.Context, req *pbp.GetAllRequest) (*p
 			Price:       in.Price,
 			Discount:    in.Discount,
 			Picture:     in.Picture,
-			CategoryId:  in.CategoryId,
 			CreatedAt:   in.CreatedAt.Format("2006-01-02 15:04:05"),
 			UpdatedAt:   in.UpdatedAt.Format("2006-01-02 15:04:05"),
 		})
@@ -159,7 +137,7 @@ func (u productRPC) ListProduct(ctx context.Context, req *pbp.GetAllRequest) (*p
 	products.Count = int64(res_products.Count)
 	return &products, nil
 }
-func (u productRPC) SearchProduct(ctx context.Context, req *pbp.SearchProductRequest) (*pbp.SearchProductResponse, error) {
+func (u UserRPC) SearchProduct(ctx context.Context, req *pbp.SearchProductRequest) (*pbp.SearchProductResponse, error) {
 
 	offset := req.Limit * (req.Page - 1)
 
@@ -180,7 +158,6 @@ func (u productRPC) SearchProduct(ctx context.Context, req *pbp.SearchProductReq
 			Price:       in.Price,
 			Discount:    in.Discount,
 			Picture:     in.Picture,
-			CategoryId:  in.CategoryId,
 			CreatedAt:   in.CreatedAt.Format("2006-01-02 15:04:05"),
 			UpdatedAt:   in.UpdatedAt.Format("2006-01-02 15:04:05"),
 		})
@@ -190,7 +167,7 @@ func (u productRPC) SearchProduct(ctx context.Context, req *pbp.SearchProductReq
 	return &products, err
 }
 
-func (u productRPC) GetAllProductByCategoryId(ctx context.Context, req *pbp.GetProductsByCategoryIdRequest) (*pbp.GetProductsByCategoryIdResponse, error) {
+func (u UserRPC) GetAllProductByCategoryId(ctx context.Context, req *pbp.GetProductsByCategoryIdRequest) (*pbp.GetProductsByCategoryIdResponse, error) {
 
 	offset := req.Limit * (req.Page - 1)
 
@@ -211,7 +188,6 @@ func (u productRPC) GetAllProductByCategoryId(ctx context.Context, req *pbp.GetP
 			Price:       in.Price,
 			Discount:    in.Discount,
 			Picture:     in.Picture,
-			CategoryId:  in.CategoryId,
 			CreatedAt:   in.CreatedAt.Format("2006-01-02 15:04:05"),
 			UpdatedAt:   in.UpdatedAt.Format("2006-01-02 15:04:05"),
 		})
@@ -220,4 +196,3 @@ func (u productRPC) GetAllProductByCategoryId(ctx context.Context, req *pbp.GetP
 
 	return &products, err
 }
-

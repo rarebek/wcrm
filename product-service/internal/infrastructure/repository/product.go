@@ -6,7 +6,7 @@ import (
 )
 
 type Product interface {
-	CreateProduct(ctx context.Context, kyc *entity.Product) (*entity.Product, error)
+	CreateProduct(ctx context.Context, kyc *entity.ProductWithCategoryId) (*entity.Product, error)
 	GetProduct(ctx context.Context, params map[string]int64) (*entity.Product, error)
 	ListProduct(ctx context.Context, limit, offset uint64, filter map[string]string) (*entity.AllProduct, error)
 	UpdateProduct(ctx context.Context, kyc *entity.Product) (*entity.Product, error)

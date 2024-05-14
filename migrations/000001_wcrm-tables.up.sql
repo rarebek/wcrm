@@ -1,7 +1,17 @@
 CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
     name TEXT,
-    image TEXT 
+    image TEXT, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE categories_products (
+    id SERIAL PRIMARY KEY,
+    product_id REFERENCES products(id),
+    category_id REFERENCES categories(id), 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
@@ -29,7 +39,6 @@ CREATE TABLE IF NOT EXISTS products (
     price INT,
     discount INT, 
     picture TEXT,
-    category_id INT REFERENCES categories(id),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMP DEFAULT NULL

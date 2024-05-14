@@ -7,7 +7,6 @@ type Product struct {
 	Price       int64  `json:"price"`
 	Discount    int64  `json:"discount"`
 	Picture     string `json:"picture"`
-	CategoryId  int64  `json:"category_id"`
 	CreatedAt   string `json:"created_at"`
 	UpdatedAt   string `json:"updated_at"`
 }
@@ -32,7 +31,6 @@ type UpdateProduct struct {
 	Price       int64  `json:"price"`
 	Discount    int64  `json:"discount"`
 	Picture     string `json:"picture"`
-	CategoryId  int64  `json:"category_id"`
 }
 
 type SearchProductRequest struct {

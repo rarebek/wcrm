@@ -45,7 +45,7 @@ func (h HandlerV1) CreateProduct(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 
-	response, err := h.Service.ProductService().CreateProduct(ctx, &pbp.Product{
+	response, err := h.Service.ProductService().CreateProduct(ctx, &pbp.ProductWithCategoryId{
 		Title:       body.Title,
 		Description: body.Description,
 		Price:       body.Price,
@@ -137,7 +137,6 @@ func (h *HandlerV1) UpdateProduct(c *gin.Context) {
 		Price:       body.Price,
 		Discount:    body.Discount,
 		Picture:     body.Picture,
-		CategoryId:  body.CategoryId,
 	})
 
 	if err != nil {

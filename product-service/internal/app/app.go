@@ -95,12 +95,13 @@ func (a *App) Run() error {
 
 	// repositories initialization
 	productRepo := repo.NewProductRepo(a.DB)
+	categoryRepo := repo.NewCategoryRepo(a.DB)
 
 	// usecase initialization
 	productUsecase := usecase.NewProductService(contextTimeout, productRepo)
+	categoryUseCase := usecase.NewCategoryService(contextTimeout, categoryRepo)
 
-	pb.RegisterProductServiceServer(a.GrpcServer, invest_grpc.UserRPC(a.Logger, productUsecase))
-
+	pb.RegisterProductServiceServer(a.GrpcServer, invest_grpc.NewRPC(a.Logger, productUsecase, categoryUseCase))
 	a.Logger.Info("gRPC Server Listening", zap.String("url", a.Config.RPCPort))
 	if err := grpc_server.Run(a.Config, a.GrpcServer); err != nil {
 		return fmt.Errorf("gRPC fatal to serve grpc server over %s %w", a.Config.RPCPort, err)

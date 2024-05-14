@@ -15,7 +15,7 @@ const (
 )
 
 type Product interface {
-	CreateProduct(ctx context.Context, product *entity.Product) (*entity.Product, error)
+	CreateProduct(ctx context.Context, product *entity.ProductWithCategoryId) (*entity.Product, error)
 	GetProduct(ctx context.Context, params map[string]int64) (*entity.Product, error)
 	ListProduct(ctx context.Context, limit, offset uint64, filter map[string]string) (*entity.AllProduct, error)
 	UpdateProduct(ctx context.Context, product *entity.Product) (*entity.Product, error)
@@ -38,7 +38,7 @@ func NewProductService(ctxTimeout time.Duration, repo repository.Product) newsSe
 	}
 }
 
-func (u newsService) CreateProduct(ctx context.Context, product *entity.Product) (*entity.Product, error) {
+func (u newsService) CreateProduct(ctx context.Context, product *entity.ProductWithCategoryId) (*entity.Product, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 

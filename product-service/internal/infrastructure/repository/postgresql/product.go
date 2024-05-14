@@ -9,6 +9,8 @@ import (
 	"wcrm/product-service/internal/pkg/postgres"
 
 	"github.com/Masterminds/squirrel"
+	"github.com/k0kubun/pp"
+	"github.com/spf13/cast"
 )
 
 const (
@@ -16,10 +18,12 @@ const (
 	productServiceName    = "productService"
 	productSpanRepoPrefix = "productRepo"
 )
+
 type productRepo struct {
 	tableName string
 	db        *postgres.PostgresDB
 }
+
 func NewProductRepo(db *postgres.PostgresDB) *productRepo {
 	return &productRepo{
 		tableName: productTableName,
@@ -35,13 +39,17 @@ func (p *productRepo) productSelectQueryPrefix() squirrel.SelectBuilder {
 			"price",
 			"discount",
 			"picture",
-			"category_id",
 			"created_at",
 			"updated_at",
 		).From(p.tableName)
 }
-func (p productRepo) CreateProduct(ctx context.Context, product *entity.Product) (*entity.Product, error) {
+
+func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductWithCategoryId) (*entity.Product, error) {
 	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"Create")
+
+	pp.Println("postgesga keldi")
+	pp.Println(product)
+
 	defer span.End()
 	data := map[string]any{
 		"title":       product.Title,
@@ -49,7 +57,6 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.Product)
 		"price":       product.Price,
 		"discount":    product.Discount,
 		"picture":     product.Picture,
-		"category_id": product.CategoryId,
 		"created_at":  product.CreatedAt,
 		"updated_at":  product.UpdatedAt,
 	}
@@ -58,7 +65,10 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.Product)
 		return &entity.Product{}, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	query += "RETURNING id, title, description, price, discount, picture, category_id, created_at, updated_at"
+	query += " RETURNING id, title, description, price, discount, picture, created_at, updated_at"
+
+	pp.Println("query", query)
+	pp.Println("args", args)
 
 	row := p.db.QueryRow(ctx, query, args...)
 
@@ -70,13 +80,40 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.Product)
 		&createdProduct.Price,
 		&createdProduct.Discount,
 		&createdProduct.Picture,
-		&createdProduct.CategoryId,
 		&createdProduct.CreatedAt,
 		&createdProduct.UpdatedAt)
 
 	if err != nil {
+		pp.Println("Errorga>>>>>>")
 		return &entity.Product{}, err
 	}
+
+	pp.Println("cred bogan product")
+	pp.Println(createdProduct)
+
+	data = map[string]any{
+		"product_id":  createdProduct.Id,
+		"category_id": product.CategoryId,
+		"created_at":  product.CreatedAt,
+		"updated_at":  product.UpdatedAt,
+	}
+
+	query, args, err = p.db.Sq.Builder.Insert("categories_products").SetMap(data).ToSql()
+
+	pp.Println("query", query)
+	pp.Println("args", args)
+
+	if err != nil {
+		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", "categories_products", "create"))
+	}
+
+	_, err = p.db.Exec(ctx, query, args...)
+
+	if err != nil {
+		pp.Println(err)
+		return nil, err
+	}
+
 	return &createdProduct, nil
 }
 func (p productRepo) GetProduct(ctx context.Context, params map[string]int64) (*entity.Product, error) {
@@ -106,7 +143,6 @@ func (p productRepo) GetProduct(ctx context.Context, params map[string]int64) (*
 		&product.Price,
 		&product.Discount,
 		&product.Picture,
-		&product.CategoryId,
 		&product.CreatedAt,
 		&product.UpdatedAt,
 	); err != nil {
@@ -153,7 +189,6 @@ func (p productRepo) ListProduct(ctx context.Context, limit, offset uint64, filt
 			&product.Price,
 			&product.Discount,
 			&product.Picture,
-			&product.CategoryId,
 			&product.CreatedAt,
 			&product.UpdatedAt,
 		); err != nil {
@@ -177,7 +212,6 @@ func (p productRepo) UpdateProduct(ctx context.Context, product *entity.Product)
 		"price":       product.Price,
 		"discount":    product.Discount,
 		"picture":     product.Picture,
-		"category_id": product.CategoryId,
 		"updated_at":  product.UpdatedAt,
 	}
 
@@ -190,7 +224,7 @@ func (p productRepo) UpdateProduct(ctx context.Context, product *entity.Product)
 		return &entity.Product{}, p.db.ErrSQLBuild(err, p.tableName+" update")
 	}
 
-	query += " RETURNING id, title, description, price, discount, picture, category_id, created_at, updated_at"
+	query += " RETURNING id, title, description, price, discount, picture, created_at, updated_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
 
@@ -202,7 +236,6 @@ func (p productRepo) UpdateProduct(ctx context.Context, product *entity.Product)
 		&updatedProduct.Price,
 		&updatedProduct.Discount,
 		&updatedProduct.Picture,
-		&updatedProduct.CategoryId,
 		&updatedProduct.CreatedAt,
 		&updatedProduct.UpdatedAt)
 
@@ -274,7 +307,6 @@ func (p productRepo) SearchProduct(ctx context.Context, page, offset int64, titl
 			&product.Price,
 			&product.Discount,
 			&product.Picture,
-			&product.CategoryId,
 			&product.CreatedAt,
 			&product.UpdatedAt,
 		); err != nil {
@@ -292,47 +324,48 @@ func (p productRepo) GetAllProductByCategoryId(ctx context.Context, limit, offse
 	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"GetAllProductByCategoryId")
 	defer span.End()
 
-	queryBuilder := p.productSelectQueryPrefix()
+	queryBuilder := p.db.Sq.Builder.
+		Select(
+			"product_id",
+		).From("categories_products")
 
 	if limit != 0 {
 		queryBuilder = queryBuilder.Limit(limit).Offset(offset).Where(p.db.Sq.Equal("category_id", id))
 	}
 
-	query, args, err := queryBuilder.ToSql()
+	query, _, err := queryBuilder.ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "GetAllProductByCategoryId"))
 	}
 
-	rows, err := p.db.Query(ctx, query, args...)
+	rows, err := p.db.Query(ctx, query, id)
 	if err != nil {
 		return nil, p.db.Error(err)
 	}
 	defer rows.Close()
 
-	var count int
-	query = `SELECT COUNT(*) FROM products`
-	err = p.db.QueryRow(ctx, query).Scan(&count)
-	if err != nil {
-		return nil, p.db.Error(err)
-	}
-
 	products := []entity.Product{}
+
 	for rows.Next() {
-		var product entity.Product
+		var req int64
 		if err := rows.Scan(
-			&product.Id,
-			&product.Title,
-			&product.Description,
-			&product.Price,
-			&product.Discount,
-			&product.Picture,
-			&product.CategoryId,
-			&product.CreatedAt,
-			&product.UpdatedAt,
+			&req,
 		); err != nil {
 			return nil, p.db.Error(err)
 		}
-		products = append(products, product)
+		filter := map[string]int64{"id": req}
+		product, err := p.GetProduct(ctx, filter)
+		if err != nil {
+			return nil, p.db.Error(err)
+		}
+		products = append(products, *product)
+	}
+
+	var count int
+	query = `SELECT COUNT(*) FROM categories_products WHERE category_id =` + cast.ToString(id)
+	err = p.db.QueryRow(ctx, query).Scan(&count)
+	if err != nil {
+		return nil, p.db.Error(err)
 	}
 
 	return &entity.AllProduct{

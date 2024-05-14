@@ -1907,9 +1907,6 @@
         "models.Product": {
             "type": "object",
             "properties": {
-                "category_id": {
-                    "type": "integer"
-                },
                 "created_at": {
                     "type": "string"
                 },
@@ -2063,9 +2060,6 @@
         "models.UpdateProduct": {
             "type": "object",
             "properties": {
-                "category_id": {
-                    "type": "integer"
-                },
                 "description": {
                     "type": "string"
                 },

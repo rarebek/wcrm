@@ -3,16 +3,32 @@ syntax = "proto3";
 option go_package = ".";
 
 service ProductService {
-  rpc CreateProduct(Product) returns (Product);
+  rpc CreateProduct(ProductWithCategoryId) returns (Product);
   rpc UpdateProduct(Product) returns (Product);
   rpc DeleteProduct(DeleteProductRequest) returns (CheckResponse);
   rpc GetProduct(GetProductRequest) returns (Product);
   rpc ListProduct(GetAllRequest) returns (GetAllResponse);
   rpc SearchProduct(SearchProductRequest) returns (SearchProductResponse);
   rpc GetAllProductByCategoryId(GetProductsByCategoryIdRequest) returns (GetProductsByCategoryIdResponse);
+  rpc CreateCategory(Category) returns (Category);
+  rpc UpdateCategory(Category) returns (Category);
+  rpc DeleteCategory(DeleteCategoryRequest) returns (CheckResponse);
+  rpc GetCategory(GetCategoryRequest) returns (Category);
+  rpc ListCategory(GetAllRequest) returns (GetAllCategoryResponse);
 }
 
 message Product{
+  int64 id = 1;
+  string title = 2;
+  string description = 3;
+  int64 price = 4;
+  int64 discount = 5;
+  string picture = 6;
+  string createdAt = 8;
+  string updatedAt = 9;
+  string deletedAt = 10;
+}
+message ProductWithCategoryId{
   int64 id = 1;
   string title = 2;
   string description = 3;
@@ -28,18 +44,24 @@ message Product{
 message Category{
   int64 id = 1;
   string name = 2;
-  int64 ownerId = 3;
-  string picture = 4;
+  string image = 4;
   string createdAt = 5;
   string updatedAt =6;
-  string deletedAt = 7;
 }
 
 message DeleteProductRequest {
   int64 id = 1;
 }
 
+message DeleteCategoryRequest {
+  int64 id = 1;
+}
+
 message GetProductRequest{
+  int64 id = 1;
+}
+
+message GetCategoryRequest{
   int64 id = 1;
 }
 
@@ -52,6 +74,12 @@ message GetAllResponse{
   repeated Product products = 1;
   int64 count = 2; 
 }
+
+message GetAllCategoryResponse{
+  repeated Category Categories = 1;
+  int64 count = 2; 
+}
+
 
 message CheckResponse{
   bool check = 1;

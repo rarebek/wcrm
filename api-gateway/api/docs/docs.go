@@ -1915,9 +1915,6 @@ const docTemplate = `{
         "models.Product": {
             "type": "object",
             "properties": {
-                "category_id": {
-                    "type": "integer"
-                },
                 "created_at": {
                     "type": "string"
                 },
@@ -2071,9 +2068,6 @@ const docTemplate = `{
         "models.UpdateProduct": {
             "type": "object",
             "properties": {
-                "category_id": {
-                    "type": "integer"
-                },
                 "description": {
                     "type": "string"
                 },
