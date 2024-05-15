@@ -116,16 +116,16 @@ services:
 
 #
   migrate:
-   image: migrate/migrate
-   networks:
-     - db
-   volumes:
-     - ./migrations:/migrations
-   command: [ "-path", "/migrations", "-database",  "postgres://postgres:nodirbek@db:5432/productdb?sslmode=disable", "up"]
-   links:
-     - userdb
-   depends_on:
-     - "userdb"
+    image: migrate/migrate
+    networks:
+      - db
+    volumes:
+      - ./migrations:/migrations
+    command: [ "-path", "/migrations", "-database",  "postgres://postgres:nodirbek@db:5432/productdb?sslmode=disable", "up"]
+    links:
+      - userdb
+    depends_on:
+      - "userdb"
 
   redis:
     container_name: redis
