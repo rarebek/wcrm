@@ -351,8 +351,9 @@ func (h *HandlerV1) LogIn(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusOK, models.ResponseAccessToken{
+	c.JSON(http.StatusOK, models.ResponseOwnerLogin{
 		AccessToken: access,
+		OwnerId:     response.Id,
 	})
 }
 
@@ -361,7 +362,7 @@ func (h *HandlerV1) LogIn(c *gin.Context) {
 // @Tags       Register
 // @Accept       json
 // @Produce     json
-// @Param       Owner body  models.LoginWorker true "owner"
+// @Param       Owner body  models.LoginWorker true "worker"
 // @Success     200 {object} models.ResponseAccessToken
 // @Failure     400 {object} models.StandartError
 // @Failure     500 {object} models.StandartError
@@ -394,7 +395,6 @@ func (h *HandlerV1) LogInWorker(c *gin.Context) {
 	resWorker, err := h.Service.UserService().GetWorker(ctx, &pbu.GetWorkerRequest{
 		Filter: filter,
 	})
-
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Incorrect login key. Please try again",
@@ -458,5 +458,6 @@ func (h *HandlerV1) LogInWorker(c *gin.Context) {
 
 	c.JSON(http.StatusOK, models.ResponseAccessToken{
 		AccessToken: access,
+		WorkerId:    resWorker.Id,
 	})
 }

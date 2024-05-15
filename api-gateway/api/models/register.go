@@ -32,13 +32,19 @@ type OwnerResponse struct {
 }
 
 type ResponseAccessToken struct {
-	AccessToken string
+	AccessToken string `json:"access_token"`
+	WorkerId    string `json:"worker_id"`
+}
+
+type ResponseOwnerLogin struct {
+	AccessToken string `json:"access_token"`
+	OwnerId     string `json:"owner_id"`
 }
 
 type LoginWorker struct {
-	CompanyName string
-	LoginKey    string
-	Password    string
+	CompanyName string `json:"company_name"`
+	LoginKey    string `json:"login_key"`
+	Password    string `json:"password"`
 }
 
 func (rm *RegisterOwner) IsEmail() error {
