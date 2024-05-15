@@ -5,7 +5,8 @@ import (
 )
 
 type Category struct {
-	Id        int64
+	Id        string
+	OwnerId   string
 	Name      string
 	Image     string
 	CreatedAt time.Time

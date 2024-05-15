@@ -1,7 +1,7 @@
 package models
 
 type Product struct {
-	Id          int64  `json:"id"`
+	Id          string `json:"id"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Price       int64  `json:"price"`
@@ -13,10 +13,12 @@ type Product struct {
 
 type ProductList struct {
 	Products []Product `json:"products"`
+	Count    int64     `json:"count"`
 }
 
 type CreateProduct struct {
 	Title       string `json:"title" exmaple:"Lavash"`
+	OwnerId     string `json:"owner_id"`
 	Description string `json:"description" example:"Juda mazzali"`
 	Price       int64  `json:"price" example:"20000"`
 	Discount    int64  `json:"discount" example:"12"`
@@ -25,7 +27,7 @@ type CreateProduct struct {
 }
 
 type UpdateProduct struct {
-	Id          int64  `json:"id"`
+	Id          string `json:"id"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Price       int64  `json:"price"`
@@ -34,15 +36,16 @@ type UpdateProduct struct {
 }
 
 type SearchProductRequest struct {
-	Page  int64  `json:"page"`
-	Limit int64  `json:"limit"`
-	Title string `json:"title"`
+	Page    int64  `json:"page"`
+	Limit   int64  `json:"limit"`
+	Title   string `json:"title"`
+	OwnerId string `json:"owner_id"`
 }
 
 type GetAllProductByCategoryIdRequest struct {
-	CategoryId int64 `json:"category_id"`
-	Page       int64 `json:"page"`
-	Limit      int64 `json:"limit"`
+	CategoryId string `json:"category_id"`
+	Page       int64  `json:"page"`
+	Limit      int64  `json:"limit"`
 }
 
 type CheckResponse struct {

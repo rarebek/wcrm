@@ -33,6 +33,7 @@ func (p *categoryRepo) categorySelectQueryPrefix() squirrel.SelectBuilder {
 	return p.db.Sq.Builder.
 		Select(
 			"id",
+			"owner_id",
 			"name",
 			"image",
 			"created_at",
@@ -45,6 +46,7 @@ func (p categoryRepo) CreateCategory(ctx context.Context, category *entity.Categ
 
 	data := map[string]any{
 		"name":       category.Name,
+		"owner_id":   category.OwnerId,
 		"image":      category.Image,
 		"created_at": category.CreatedAt,
 		"updated_at": category.UpdatedAt,
@@ -54,13 +56,14 @@ func (p categoryRepo) CreateCategory(ctx context.Context, category *entity.Categ
 		return &entity.Category{}, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	query += " RETURNING id, name, image, created_at, updated_at"
+	query += " RETURNING id, owner_id, name, image, created_at, updated_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
 
 	var createdCategory entity.Category
 
 	err = row.Scan(&createdCategory.Id,
+		&createdCategory.OwnerId,
 		&createdCategory.Name,
 		&createdCategory.Image,
 		&createdCategory.CreatedAt,
@@ -73,7 +76,7 @@ func (p categoryRepo) CreateCategory(ctx context.Context, category *entity.Categ
 	return &createdCategory, nil
 
 }
-func (p categoryRepo) GetCategory(ctx context.Context, params map[string]int64) (*entity.Category, error) {
+func (p categoryRepo) GetCategory(ctx context.Context, params map[string]string) (*entity.Category, error) {
 	ctx, span := otlp.Start(ctx, categoryServiceName, categorySpanRepoPrefix+"Get")
 	defer span.End()
 
@@ -82,12 +85,21 @@ func (p categoryRepo) GetCategory(ctx context.Context, params map[string]int64) 
 	)
 
 	queryBuilder := p.categorySelectQueryPrefix()
-
 	for key, value := range params {
 		if key == "id" {
 			queryBuilder = queryBuilder.Where(p.db.Sq.Equal(key, value))
 		}
 	}
+
+	// queryBuilder.Where(
+	// 	squirrel.And{
+	// 		squirrel.Eq{
+	// 			"id":       params["id"],
+	// 			"owner_id": params["owner_id"],
+	// 		},
+	// 	},
+	// )
+
 	query, args, err := queryBuilder.ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "get"))
@@ -190,7 +202,7 @@ func (p categoryRepo) UpdateCategory(ctx context.Context, category *entity.Categ
 	}
 	return &updatedCategory, nil
 }
-func (p categoryRepo) DeleteCategory(ctx context.Context, id int64) (*entity.CheckResponse, error) {
+func (p categoryRepo) DeleteCategory(ctx context.Context, id string) (*entity.CheckResponse, error) {
 	ctx, span := otlp.Start(ctx, categoryServiceName, categorySpanRepoPrefix+"Delete")
 	defer span.End()
 

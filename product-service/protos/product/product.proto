@@ -9,7 +9,7 @@ service ProductService {
   rpc GetProduct(GetProductRequest) returns (Product);
   rpc ListProduct(GetAllRequest) returns (GetAllResponse);
   rpc SearchProduct(SearchProductRequest) returns (SearchProductResponse);
-  rpc GetAllProductByCategoryId(GetProductsByCategoryIdRequest) returns (GetProductsByCategoryIdResponse);
+  rpc GetAllProductByCategoryId(GetProductsByCategoryIdRequest) returns (GetAllResponse);
   rpc CreateCategory(Category) returns (Category);
   rpc UpdateCategory(Category) returns (Category);
   rpc DeleteCategory(DeleteCategoryRequest) returns (CheckResponse);
@@ -18,56 +18,61 @@ service ProductService {
 }
 
 message Product{
-  int64 id = 1;
-  string title = 2;
-  string description = 3;
-  int64 price = 4;
-  int64 discount = 5;
-  string picture = 6;
+  string id = 1;
+  string ownerId = 2;
+  string title = 3;
+  string description = 4;
+  int64 price = 5;
+  int64 discount = 6;
+  string picture = 7;
   string createdAt = 8;
   string updatedAt = 9;
   string deletedAt = 10;
 }
 message ProductWithCategoryId{
-  int64 id = 1;
-  string title = 2;
-  string description = 3;
-  int64 price = 4;
-  int64 discount = 5;
-  string picture = 6;
-  int64 categoryId = 7;
-  string createdAt = 8;
-  string updatedAt = 9;
-  string deletedAt = 10;
+  string id = 1;
+  string ownerId = 2;
+  string title = 3;
+  string description = 4;
+  int64 price = 5;
+  int64 discount = 6;
+  string picture = 7;
+  int64 categoryId = 8;
+  string createdAt = 9;
+  string updatedAt = 10;
+  string deletedAt = 11;
 }
 
 message Category{
-  int64 id = 1;
-  string name = 2;
+  string id = 1;
+  string ownerId = 2;
+  string name = 3;
   string image = 4;
   string createdAt = 5;
   string updatedAt =6;
 }
 
 message DeleteProductRequest {
-  int64 id = 1;
+  string id = 1;
 }
 
 message DeleteCategoryRequest {
-  int64 id = 1;
+  string id = 1;
 }
 
 message GetProductRequest{
-  int64 id = 1;
+  string id = 1;
 }
 
 message GetCategoryRequest{
-  int64 id = 1;
+  string id = 1;
+  string ownerId = 2;
 }
 
 message GetAllRequest{
   int64 page = 1;
   int64 limit = 2;
+  string ownerId = 3;
 }
 
 message GetAllResponse{
@@ -89,6 +94,7 @@ message SearchProductRequest{
   int64 page = 1;
   int64 limit = 2;
   string title = 3;
+  string ownerId = 4;
 }
 
 message SearchProductResponse{
@@ -97,12 +103,7 @@ message SearchProductResponse{
 }
 
 message GetProductsByCategoryIdRequest{
-  int64 id = 1;
+  string categoryId = 1;
   int64 page = 2;
   int64 limit = 3;
-}
-
-message GetProductsByCategoryIdResponse{
-  repeated Product products = 1;
-  int64 count = 2;
 }

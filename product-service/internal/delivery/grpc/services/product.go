@@ -16,6 +16,7 @@ func (u UserRPC) CreateProduct(ctx context.Context, product *pbp.ProductWithCate
 		Title:       product.Title,
 		Description: product.Description,
 		Price:       product.Price,
+		OwnerId:     product.OwnerId,
 		Discount:    product.Discount,
 		Picture:     product.Picture,
 		CategoryId:  product.CategoryId,
@@ -32,6 +33,7 @@ func (u UserRPC) CreateProduct(ctx context.Context, product *pbp.ProductWithCate
 
 	return &pbp.Product{
 		Id:          res_product.Id,
+		OwnerId:     req_product.OwnerId,
 		Title:       res_product.Title,
 		Description: res_product.Description,
 		Price:       res_product.Price,
@@ -44,7 +46,7 @@ func (u UserRPC) CreateProduct(ctx context.Context, product *pbp.ProductWithCate
 }
 func (u UserRPC) GetProduct(ctx context.Context, id *pbp.GetProductRequest) (*pbp.Product, error) {
 
-	reqMap := make(map[string]int64)
+	reqMap := make(map[string]string)
 	reqMap["id"] = id.Id
 
 	res, err := u.product.GetProduct(ctx, reqMap)
@@ -112,7 +114,11 @@ func (u UserRPC) UpdateProduct(ctx context.Context, product *pbp.Product) (*pbp.
 func (u UserRPC) ListProduct(ctx context.Context, req *pbp.GetAllRequest) (*pbp.GetAllResponse, error) {
 	offset := req.Limit * (req.Page - 1)
 
-	res_products, err := u.product.ListProduct(ctx, uint64(req.Limit), uint64(offset), map[string]string{})
+	filter := map[string]string{
+		"owner_id": req.OwnerId,
+	}
+
+	res_products, err := u.product.ListProduct(ctx, uint64(req.Limit), uint64(offset), filter)
 
 	if err != nil {
 		u.logger.Error("get all product error", zap.Error(err))
@@ -141,7 +147,7 @@ func (u UserRPC) SearchProduct(ctx context.Context, req *pbp.SearchProductReques
 
 	offset := req.Limit * (req.Page - 1)
 
-	res_products, err := u.product.SearchProduct(ctx, req.Limit, offset, req.Title)
+	res_products, err := u.product.SearchProduct(ctx, req.Limit, offset, req.Title, req.OwnerId)
 
 	if err != nil {
 		u.logger.Error("get products error", zap.Error(err))
@@ -167,18 +173,18 @@ func (u UserRPC) SearchProduct(ctx context.Context, req *pbp.SearchProductReques
 	return &products, err
 }
 
-func (u UserRPC) GetAllProductByCategoryId(ctx context.Context, req *pbp.GetProductsByCategoryIdRequest) (*pbp.GetProductsByCategoryIdResponse, error) {
+func (u UserRPC) GetAllProductByCategoryId(ctx context.Context, req *pbp.GetProductsByCategoryIdRequest) (*pbp.GetAllResponse, error) {
 
 	offset := req.Limit * (req.Page - 1)
 
-	res_products, err := u.product.GetAllProductByCategoryId(ctx, req.Limit, offset, req.Id)
+	res_products, err := u.product.GetAllProductByCategoryId(ctx, req.Limit, offset, req.CategoryId)
 
 	if err != nil {
 		u.logger.Error("get products error", zap.Error(err))
 		return nil, err
 	}
 
-	var products pbp.GetProductsByCategoryIdResponse
+	var products pbp.GetAllResponse
 
 	for _, in := range res_products.Products {
 		products.Products = append(products.Products, &pbp.Product{

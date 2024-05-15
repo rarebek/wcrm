@@ -1,8 +1,39 @@
 definitions:
+  models.Category:
+    properties:
+      created_at:
+        type: string
+      id:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
+      owner_id:
+        type: string
+    type: object
+  models.CategoryList:
+    properties:
+      categories:
+        items:
+          $ref: '#/definitions/models.Category'
+        type: array
+      count:
+        type: integer
+    type: object
   models.CheckResponse:
     properties:
       chack:
         type: boolean
+    type: object
+  models.CreateCategory:
+    properties:
+      image:
+        type: string
+      name:
+        type: string
+      owner_id:
+        type: string
     type: object
   models.CreateGeolocation:
     properties:
@@ -52,6 +83,8 @@ definitions:
       discount:
         example: 12
         type: integer
+      owner_id:
+        type: string
       picture:
         example: http://static/images/myimage.jpg
         type: string
@@ -98,7 +131,7 @@ definitions:
   models.GetAllProductByCategoryIdRequest:
     properties:
       category_id:
-        type: integer
+        type: string
       limit:
         type: integer
       page:
@@ -193,7 +226,7 @@ definitions:
       discount:
         type: integer
       id:
-        type: integer
+        type: string
       picture:
         type: string
       price:
@@ -205,6 +238,8 @@ definitions:
     type: object
   models.ProductList:
     properties:
+      count:
+        type: integer
       products:
         items:
           $ref: '#/definitions/models.Product'
@@ -234,6 +269,8 @@ definitions:
     properties:
       limit:
         type: integer
+      owner_id:
+        type: string
       page:
         type: integer
       title:
@@ -243,6 +280,15 @@ definitions:
     properties:
       error:
         $ref: '#/definitions/models.Error'
+    type: object
+  models.UpdateCategory:
+    properties:
+      id:
+        type: string
+      image:
+        type: string
+      name:
+        type: string
     type: object
   models.UpdateGeolocation:
     properties:
@@ -290,7 +336,7 @@ definitions:
       discount:
         type: integer
       id:
-        type: integer
+        type: string
       picture:
         type: string
       price:
@@ -341,6 +387,173 @@ info:
   title: WCRM
   version: "1.0"
 paths:
+  /v1/Category/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Api for delete Category
+      parameters:
+      - description: Id Category
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CheckResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Category
+      tags:
+      - Category
+  /v1/category/create:
+    post:
+      consumes:
+      - application/json
+      description: Api for create category
+      parameters:
+      - description: Create Category
+        in: body
+        name: Category
+        required: true
+        schema:
+          $ref: '#/definitions/models.CreateCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Category'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Create Category
+      tags:
+      - Category
+  /v1/category/get/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get Category
+      parameters:
+      - description: Id Category
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Category'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get Category
+      tags:
+      - Category
+  /v1/category/get/{page}/{limit}/{owner-id}:
+    get:
+      consumes:
+      - application/json
+      description: Api for get all Category
+      parameters:
+      - description: Page Category
+        in: path
+        name: page
+        required: true
+        type: string
+      - description: Limit Category
+        in: path
+        name: limit
+        required: true
+        type: string
+      - description: Owner ID
+        in: path
+        name: owner-id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CategoryList'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Get List Category
+      tags:
+      - Category
+  /v1/category/update:
+    put:
+      consumes:
+      - application/json
+      description: Api for update Category
+      parameters:
+      - description: Update Category
+        in: body
+        name: Category
+        required: true
+        schema:
+          $ref: '#/definitions/models.UpdateCategory'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Category'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Update Category
+      tags:
+      - Category
   /v1/file-upload:
     post:
       consumes:
@@ -1055,6 +1268,11 @@ paths:
       - description: Limit Product
         in: path
         name: limit
+        required: true
+        type: string
+      - description: Owner ID
+        in: path
+        name: owner-id
         required: true
         type: string
       produces:

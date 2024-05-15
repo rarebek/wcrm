@@ -15,6 +15,269 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/v1/Category/delete/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for delete Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Delete Category",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id Category",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CheckResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/category/create": {
+            "post": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for create category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Create Category",
+                "parameters": [
+                    {
+                        "description": "Create Category",
+                        "name": "Category",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateCategory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/category/get/{id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for get Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get Category",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id Category",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/category/get/{page}/{limit}/{owner-id}": {
+            "get": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for get all Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get List Category",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Page Category",
+                        "name": "page",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Limit Category",
+                        "name": "limit",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Owner ID",
+                        "name": "owner-id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CategoryList"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/category/update": {
+            "put": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for update Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Update Category",
+                "parameters": [
+                    {
+                        "description": "Update Category",
+                        "name": "Category",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdateCategory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.Category"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    }
+                }
+            }
+        },
         "/v1/file-upload": {
             "post": {
                 "security": [
@@ -1153,6 +1416,13 @@ const docTemplate = `{
                         "name": "limit",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Owner ID",
+                        "name": "owner-id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1629,11 +1899,59 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "models.Category": {
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CategoryList": {
+            "type": "object",
+            "properties": {
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/models.Category"
+                    }
+                },
+                "count": {
+                    "type": "integer"
+                }
+            }
+        },
         "models.CheckResponse": {
             "type": "object",
             "properties": {
                 "chack": {
                     "type": "boolean"
+                }
+            }
+        },
+        "models.CreateCategory": {
+            "type": "object",
+            "properties": {
+                "image": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "owner_id": {
+                    "type": "string"
                 }
             }
         },
@@ -1709,6 +2027,9 @@ const docTemplate = `{
                     "type": "integer",
                     "example": 12
                 },
+                "owner_id": {
+                    "type": "string"
+                },
                 "picture": {
                     "type": "string",
                     "example": "http://static/images/myimage.jpg"
@@ -1779,7 +2100,7 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "category_id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "limit": {
                     "type": "integer"
@@ -1925,7 +2246,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "picture": {
                     "type": "string"
@@ -1944,6 +2265,9 @@ const docTemplate = `{
         "models.ProductList": {
             "type": "object",
             "properties": {
+                "count": {
+                    "type": "integer"
+                },
                 "products": {
                     "type": "array",
                     "items": {
@@ -1989,6 +2313,9 @@ const docTemplate = `{
                 "limit": {
                     "type": "integer"
                 },
+                "owner_id": {
+                    "type": "string"
+                },
                 "page": {
                     "type": "integer"
                 },
@@ -2002,6 +2329,20 @@ const docTemplate = `{
             "properties": {
                 "error": {
                     "$ref": "#/definitions/models.Error"
+                }
+            }
+        },
+        "models.UpdateCategory": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "image": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
                 }
             }
         },
@@ -2075,7 +2416,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "picture": {
                     "type": "string"

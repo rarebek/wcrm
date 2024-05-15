@@ -14,7 +14,6 @@ import (
 	"github.com/google/uuid"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
-	"github.com/spf13/cast"
 )
 
 type File struct {
@@ -96,7 +95,7 @@ func (h *HandlerV1) UploadImage(c *gin.Context) {
 	id = c.Param("id")
 
 	h.Service.ProductService().UpdateProduct(ctx, &pbu.Product{
-		Id:      cast.ToInt64(id),
+		Id:      id,
 		Picture: minioURL,
 	})
 

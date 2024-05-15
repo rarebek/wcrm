@@ -11052,3 +11052,4 @@ google.golang.org/grpc.(*Server).handleStream
 google.golang.org/grpc.(*Server).serveStreams.func2.1
 	/home/asadbek/Documents/go/pkg/mod/google.golang.org/grpc@v1.63.2/server.go:1019
 2024-05-14T21:47:33.607+0500	INFO	zap/options.go:212	finished unary call with code OK	{"grpc.start_time": "2024-05-14T21:47:33+05:00", "grpc.request.deadline": "2024-05-14T21:47:40+05:00", "system": "grpc", "span.kind": "server", "grpc.service": "ProductService", "grpc.method": "DeleteProduct", "peer.address": "127.0.0.1:35564", "grpc.code": "OK", "grpc.time_ms": 0.666}
+2024-05-15T12:26:06.998+0500	INFO	app/app.go:105	gRPC Server Listening	{"url": ":1111"}

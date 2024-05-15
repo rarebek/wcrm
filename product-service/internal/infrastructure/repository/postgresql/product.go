@@ -10,7 +10,6 @@ import (
 
 	"github.com/Masterminds/squirrel"
 	"github.com/k0kubun/pp"
-	"github.com/spf13/cast"
 )
 
 const (
@@ -34,6 +33,7 @@ func (p *productRepo) productSelectQueryPrefix() squirrel.SelectBuilder {
 	return p.db.Sq.Builder.
 		Select(
 			"id",
+			"owner_id",
 			"title",
 			"description",
 			"price",
@@ -53,6 +53,7 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductW
 	defer span.End()
 	data := map[string]any{
 		"title":       product.Title,
+		"owner_id":    product.OwnerId,
 		"description": product.Description,
 		"price":       product.Price,
 		"discount":    product.Discount,
@@ -65,7 +66,7 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductW
 		return &entity.Product{}, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	query += " RETURNING id, title, description, price, discount, picture, created_at, updated_at"
+	query += " RETURNING id, owner_id, title, description, price, discount, picture, created_at, updated_at"
 
 	pp.Println("query", query)
 	pp.Println("args", args)
@@ -75,6 +76,7 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductW
 	var createdProduct entity.Product
 
 	err = row.Scan(&createdProduct.Id,
+		&createdProduct.OwnerId,
 		&createdProduct.Title,
 		&createdProduct.Description,
 		&createdProduct.Price,
@@ -116,7 +118,7 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductW
 
 	return &createdProduct, nil
 }
-func (p productRepo) GetProduct(ctx context.Context, params map[string]int64) (*entity.Product, error) {
+func (p productRepo) GetProduct(ctx context.Context, params map[string]string) (*entity.Product, error) {
 	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"Get")
 	defer span.End()
 
@@ -173,8 +175,8 @@ func (p productRepo) ListProduct(ctx context.Context, limit, offset uint64, filt
 	defer rows.Close()
 
 	var count int
-	query = `SELECT COUNT(*) FROM products`
-	err = p.db.QueryRow(ctx, query).Scan(&count)
+	query = `SELECT COUNT(*) FROM products where owner_id = $1`
+	err = p.db.QueryRow(ctx, query, filter["owner_id"]).Scan(&count)
 	if err != nil {
 		return nil, p.db.Error(err)
 	}
@@ -184,6 +186,7 @@ func (p productRepo) ListProduct(ctx context.Context, limit, offset uint64, filt
 		var product entity.Product
 		if err := rows.Scan(
 			&product.Id,
+			&product.OwnerId,
 			&product.Title,
 			&product.Description,
 			&product.Price,
@@ -244,7 +247,7 @@ func (p productRepo) UpdateProduct(ctx context.Context, product *entity.Product)
 	}
 	return &updatedProduct, nil
 }
-func (p productRepo) DeleteProduct(ctx context.Context, id int64) (*entity.CheckResponse, error) {
+func (p productRepo) DeleteProduct(ctx context.Context, id string) (*entity.CheckResponse, error) {
 	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"Delete")
 	defer span.End()
 
@@ -267,7 +270,7 @@ func (p productRepo) DeleteProduct(ctx context.Context, id int64) (*entity.Check
 
 	return &entity.CheckResponse{Check: true}, nil
 }
-func (p productRepo) SearchProduct(ctx context.Context, page, offset int64, title string) (*entity.AllProduct, error) {
+func (p productRepo) SearchProduct(ctx context.Context, page, offset int64, title string, ownerId string) (*entity.AllProduct, error) {
 
 	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"SearchProduct")
 	defer span.End()
@@ -278,20 +281,20 @@ func (p productRepo) SearchProduct(ctx context.Context, page, offset int64, titl
 
 	queryBuilder := p.productSelectQueryPrefix()
 
-	query, _, err := queryBuilder.Where("title ilike " + "'%" + title + "%' LIMIT $1 OFFSET $2").ToSql()
+	query, _, err := queryBuilder.Where("title ilike " + "'%" + title + "%' LIMIT $1 OFFSET $2 AND owner_id = $3").ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "search_product"))
 	}
 
-	rows, err := p.db.Query(ctx, query, page, offset)
+	rows, err := p.db.Query(ctx, query, page, offset, ownerId)
 	if err != nil {
 		return nil, p.db.Error(err)
 	}
 	defer rows.Close()
 
 	var count int
-	query = `SELECT COUNT(*) FROM products`
-	err = p.db.QueryRow(ctx, query).Scan(&count)
+	query = `SELECT COUNT(*) FROM products where owner_id = $1`
+	err = p.db.QueryRow(ctx, query, ownerId).Scan(&count)
 	if err != nil {
 		return nil, p.db.Error(err)
 	}
@@ -302,6 +305,7 @@ func (p productRepo) SearchProduct(ctx context.Context, page, offset int64, titl
 		var product entity.Product
 		if err := rows.Scan(
 			&product.Id,
+			&product.OwnerId,
 			&product.Title,
 			&product.Description,
 			&product.Price,
@@ -320,7 +324,8 @@ func (p productRepo) SearchProduct(ctx context.Context, page, offset int64, titl
 		Count:    count,
 	}, nil
 }
-func (p productRepo) GetAllProductByCategoryId(ctx context.Context, limit, offset, id uint64) (*entity.AllProduct, error) {
+
+func (p productRepo) GetAllProductByCategoryId(ctx context.Context, limit, offset uint64, CategoryId string) (*entity.AllProduct, error) {
 	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"GetAllProductByCategoryId")
 	defer span.End()
 
@@ -330,7 +335,7 @@ func (p productRepo) GetAllProductByCategoryId(ctx context.Context, limit, offse
 		).From("categories_products")
 
 	if limit != 0 {
-		queryBuilder = queryBuilder.Limit(limit).Offset(offset).Where(p.db.Sq.Equal("category_id", id))
+		queryBuilder = queryBuilder.Limit(limit).Offset(offset).Where(p.db.Sq.Equal("category_id", CategoryId))
 	}
 
 	query, _, err := queryBuilder.ToSql()
@@ -338,7 +343,7 @@ func (p productRepo) GetAllProductByCategoryId(ctx context.Context, limit, offse
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "GetAllProductByCategoryId"))
 	}
 
-	rows, err := p.db.Query(ctx, query, id)
+	rows, err := p.db.Query(ctx, query, CategoryId)
 	if err != nil {
 		return nil, p.db.Error(err)
 	}
@@ -347,13 +352,13 @@ func (p productRepo) GetAllProductByCategoryId(ctx context.Context, limit, offse
 	products := []entity.Product{}
 
 	for rows.Next() {
-		var req int64
+		var req string
 		if err := rows.Scan(
 			&req,
 		); err != nil {
 			return nil, p.db.Error(err)
 		}
-		filter := map[string]int64{"id": req}
+		filter := map[string]string{"id": req}
 		product, err := p.GetProduct(ctx, filter)
 		if err != nil {
 			return nil, p.db.Error(err)
@@ -362,7 +367,7 @@ func (p productRepo) GetAllProductByCategoryId(ctx context.Context, limit, offse
 	}
 
 	var count int
-	query = `SELECT COUNT(*) FROM categories_products WHERE category_id =` + cast.ToString(id)
+	query = `SELECT COUNT(*) FROM categories_products WHERE category_id =` + CategoryId
 	err = p.db.QueryRow(ctx, query).Scan(&count)
 	if err != nil {
 		return nil, p.db.Error(err)

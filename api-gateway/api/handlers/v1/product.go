@@ -46,6 +46,7 @@ func (h HandlerV1) CreateProduct(c *gin.Context) {
 	defer cancel()
 
 	response, err := h.Service.ProductService().CreateProduct(ctx, &pbp.ProductWithCategoryId{
+		OwnerId:     body.OwnerId,
 		Title:       body.Title,
 		Description: body.Description,
 		Price:       body.Price,
@@ -86,7 +87,7 @@ func (h *HandlerV1) GetProduct(c *gin.Context) {
 	defer cancel()
 
 	response, err := h.Service.ProductService().GetProduct(ctx, &pbp.GetProductRequest{
-		Id: cast.ToInt64(id),
+		Id: id,
 	})
 
 	if err != nil {
@@ -171,7 +172,7 @@ func (h *HandlerV1) DeleteProduct(c *gin.Context) {
 	defer cancel()
 
 	response, err := h.Service.ProductService().DeleteProduct(ctx, &pbp.DeleteProductRequest{
-		Id: cast.ToInt64(id),
+		Id: id,
 	})
 
 	if err != nil {
@@ -193,6 +194,7 @@ func (h *HandlerV1) DeleteProduct(c *gin.Context) {
 // @Produce 		json
 // @Param 			page path string true "Page Product"
 // @Param 			limit path string true "Limit Product"
+// @Param 			owner-id path string true "Owner ID"
 // @Success 		200 {object} models.ProductList
 // @Failure 		404 {object} models.StandartError
 // @Failure 		500 {object} models.StandartError
@@ -203,13 +205,15 @@ func (h *HandlerV1) ListProduct(c *gin.Context) {
 
 	page := c.Param("page")
 	limit := c.Param("limit")
+	ownerId := c.Param("owner-id")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 
 	response, err := h.Service.ProductService().ListProduct(ctx, &pbp.GetAllRequest{
-		Page:  cast.ToInt64(page),
-		Limit: cast.ToInt64(limit),
+		Page:    cast.ToInt64(page),
+		Limit:   cast.ToInt64(limit),
+		OwnerId: ownerId,
 	})
 
 	if err != nil {
@@ -254,9 +258,10 @@ func (h *HandlerV1) SearchProduct(c *gin.Context) {
 	defer cancel()
 
 	response, err := h.Service.ProductService().SearchProduct(ctx, &pbp.SearchProductRequest{
-		Page:  body.Page,
-		Limit: body.Limit,
-		Title: body.Title,
+		Page:    body.Page,
+		Limit:   body.Limit,
+		Title:   body.Title,
+		OwnerId: body.OwnerId,
 	})
 
 	if err != nil {
@@ -301,9 +306,9 @@ func (h *HandlerV1) GetAllProductByCategoryId(c *gin.Context) {
 	defer cancel()
 
 	response, err := h.Service.ProductService().GetAllProductByCategoryId(ctx, &pbp.GetProductsByCategoryIdRequest{
-		Id:    body.CategoryId,
-		Page:  body.Page,
-		Limit: body.Limit,
+		CategoryId: body.CategoryId,
+		Page:       body.Page,
+		Limit:      body.Limit,
 	})
 
 	if err != nil {

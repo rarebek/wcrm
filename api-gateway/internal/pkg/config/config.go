@@ -69,7 +69,7 @@ func NewConfig() Config {
 	config.Context.Timeout = getEnv("CONTEXT_TIMEOUT", "30s")
 
 	// server configuration
-//	config.Server.Host = getEnv("SERVER_HOST", "18.158.24.26")
+	//	config.Server.Host = getEnv("SERVER_HOST", "18.158.24.26")
 	config.Server.Port = getEnv("SERVER_PORT", ":8080")
 	config.Server.ReadTimeout = getEnv("SERVER_READ_TIMEOUT", "10s")
 	config.Server.WriteTimeout = getEnv("SERVER_WRITE_TIMEOUT", "10s")
@@ -79,21 +79,21 @@ func NewConfig() Config {
 	config.AccessTokenTimout = cast.ToInt(getEnv("ACCESS_TOKEN_TIMOUT", "30000"))
 
 	// redis configuration
-	config.Redis.Host = getEnv("REDIS_HOST", "localhost")
+	config.Redis.Host = getEnv("REDIS_HOST", "redis")
 	config.Redis.Port = getEnv("REDIS_PORT", "6379")
 	config.Redis.Password = getEnv("REDIS_PASSWORD", "")
 	config.Redis.Name = getEnv("REDIS_DATABASE", "0")
 
 	// USER
-	config.UserService.Host = getEnv("USER_SERVICE_GRPC_HOST", "localhost")
+	config.UserService.Host = getEnv("USER_SERVICE_GRPC_HOST", "user-service")
 	config.UserService.Port = getEnv("USER_SERVICE_GRPC_PORT", ":2222")
 
 	// PRODUCT
-	config.ProductService.Host = getEnv("PRODUCT_SERVICE_GRPC_HOST", "localhost")
+	config.ProductService.Host = getEnv("PRODUCT_SERVICE_GRPC_HOST", "product-service")
 	config.ProductService.Port = getEnv("PRODUCT_SERVICE_GRPC_PORT", ":1111")
 
 	// ORDER
-	config.OrderService.Host = getEnv("ORDER_SERVICE_GRPC_HOST", "localhost")
+	config.OrderService.Host = getEnv("ORDER_SERVICE_GRPC_HOST", "order-service")
 	config.OrderService.Port = getEnv("ORDER_SERVICE_GRPC_PORT", ":3333")
 
 	// casbin

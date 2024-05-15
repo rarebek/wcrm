@@ -14,6 +14,7 @@ func (u UserRPC) CreateCategory(ctx context.Context, category *pbc.Category) (*p
 
 	req_category := entity.Category{
 		Name:      category.Name,
+		OwnerId:   category.OwnerId,
 		Image:     category.Image,
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
@@ -28,6 +29,7 @@ func (u UserRPC) CreateCategory(ctx context.Context, category *pbc.Category) (*p
 
 	return &pbc.Category{
 		Id:        res_category.Id,
+		OwnerId:   req_category.OwnerId,
 		Name:      res_category.Name,
 		Image:     res_category.Image,
 		CreatedAt: res_category.CreatedAt.Format("2006-01-02 15:04:05"),
@@ -36,8 +38,9 @@ func (u UserRPC) CreateCategory(ctx context.Context, category *pbc.Category) (*p
 }
 func (u UserRPC) GetCategory(ctx context.Context, id *pbc.GetCategoryRequest) (*pbc.Category, error) {
 
-	reqMap := make(map[string]int64)
+	reqMap := make(map[string]string)
 	reqMap["id"] = id.Id
+	reqMap["owner_id"] = id.OwnerId
 
 	res, err := u.category.GetCategory(ctx, reqMap)
 
@@ -48,6 +51,7 @@ func (u UserRPC) GetCategory(ctx context.Context, id *pbc.GetCategoryRequest) (*
 
 	return &pbc.Category{
 		Id:        res.Id,
+		OwnerId:   res.OwnerId,
 		Name:      res.Name,
 		Image:     res.Image,
 		CreatedAt: res.CreatedAt.Format("2006-01-02 15:04:05"),
@@ -93,8 +97,10 @@ func (u UserRPC) UpdateCategory(ctx context.Context, category *pbc.Category) (*p
 }
 func (u UserRPC) ListCategory(ctx context.Context, req *pbc.GetAllRequest) (*pbc.GetAllCategoryResponse, error) {
 	offset := req.Limit * (req.Page - 1)
-
-	res_categorys, err := u.category.ListCategory(ctx, uint64(req.Limit), uint64(offset), map[string]string{})
+	filter := map[string]string{
+		"owner_id": req.OwnerId,
+	}
+	res_categorys, err := u.category.ListCategory(ctx, uint64(req.Limit), uint64(offset), filter)
 
 	if err != nil {
 		u.logger.Error("get all category error", zap.Error(err))
@@ -106,6 +112,7 @@ func (u UserRPC) ListCategory(ctx context.Context, req *pbc.GetAllRequest) (*pbc
 	for _, in := range res_categorys.Categories {
 		category.Categories = append(category.Categories, &pbc.Category{
 			Id:        in.Id,
+			OwnerId:   in.OwnerId,
 			Name:      in.Name,
 			Image:     in.Image,
 			CreatedAt: in.CreatedAt.Format("2006-01-02 15:04:05"),

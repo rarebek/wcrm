@@ -1,15 +1,30 @@
-CREATE TABLE categories (
-    id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS categories (
+    id UUID PRIMARY KEY,
+    owner_id UUID,
     name TEXT,
     image TEXT, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE categories_products (
-    id SERIAL PRIMARY KEY,
-    product_id REFERENCES products(id),
-    category_id REFERENCES categories(id), 
+
+CREATE TABLE IF NOT EXISTS products (
+    id UUID PRIMARY KEY,
+    owner_id UUID,
+    title VARCHAR(65),
+    description VARCHAR(255),
+    price INT,
+    discount INT, 
+    picture TEXT,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP DEFAULT NULL
+);
+
+CREATE TABLE IF NOT EXISTS categories_products (
+    id UUID PRIMARY KEY,
+    product_id UUID REFERENCES products(id) ON DELETE CASCADE,
+    category_id UUID REFERENCES categories(id) ON DELETE CASCADE, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -32,17 +47,6 @@ CREATE TABLE orders_products(
     product_id INT
 );
 
-CREATE TABLE IF NOT EXISTS products (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(65),
-    description VARCHAR(255),
-    price INT,
-    discount INT, 
-    picture TEXT,
-    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    deleted_at TIMESTAMP DEFAULT NULL
-);
 
 CREATE TABLE owners (
     id UUID NOT NULL PRIMARY KEY,

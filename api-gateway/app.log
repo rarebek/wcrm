@@ -2372,3 +2372,104 @@ net/http.serverHandler.ServeHTTP
 	/snap/go/10585/src/net/http/server.go:3137
 net/http.(*conn).serve
 	/snap/go/10585/src/net/http/server.go:2039
+2024-05-15T12:26:15.071+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-15T12:27:01.688+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp [::1]:2222: connect: connection refused\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/nodirbek/wcrm-latest/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/nodirbek/wcrm-latest/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/lib/go/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/usr/lib/go/src/net/http/server.go:2039
+2024-05-15T12:28:09.683+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp [::1]:2222: connect: connection refused\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/nodirbek/wcrm-latest/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/nodirbek/wcrm-latest/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/lib/go/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/usr/lib/go/src/net/http/server.go:2039
+2024-05-15T12:28:13.239+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unknown desc = ERROR: relation \"owners\" does not exist (SQLSTATE 42P01)"}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/nodirbek/wcrm-latest/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/nodirbek/wcrm-latest/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/lib/go/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/usr/lib/go/src/net/http/server.go:2039
+2024-05-15T12:37:05.579+0500	ERROR	v1/registration.go:148	cannot set redis
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/nodirbek/wcrm-latest/api-gateway/api/handlers/v1/registration.go:148
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/nodirbek/wcrm-latest/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/nodirbek/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/usr/lib/go/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/usr/lib/go/src/net/http/server.go:2039

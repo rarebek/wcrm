@@ -16,10 +16,10 @@ const (
 
 type Category interface {
 	CreateCategory(ctx context.Context, product *entity.Category) (*entity.Category, error)
-	GetCategory(ctx context.Context, params map[string]int64) (*entity.Category, error)
+	GetCategory(ctx context.Context, params map[string]string) (*entity.Category, error)
 	ListCategory(ctx context.Context, limit, offset uint64, filter map[string]string) (*entity.AllCategory, error)
 	UpdateCategory(ctx context.Context, product *entity.Category) (*entity.Category, error)
-	DeleteCategory(ctx context.Context, id int64) (*entity.CheckResponse, error)
+	DeleteCategory(ctx context.Context, id string) (*entity.CheckResponse, error)
 }
 
 type categoryService struct {
@@ -51,7 +51,7 @@ func (u categoryService) CreateCategory(ctx context.Context, category *entity.Ca
 	return createdCategory, nil
 }
 
-func (u categoryService) GetCategory(ctx context.Context, params map[string]int64) (*entity.Category, error) {
+func (u categoryService) GetCategory(ctx context.Context, params map[string]string) (*entity.Category, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 
@@ -86,7 +86,7 @@ func (u categoryService) UpdateCategory(ctx context.Context, product *entity.Cat
 	return updatedCategory, nil
 }
 
-func (u categoryService) DeleteCategory(ctx context.Context, id int64) (*entity.CheckResponse, error) {
+func (u categoryService) DeleteCategory(ctx context.Context, id string) (*entity.CheckResponse, error) {
 	ctx, cancel := context.WithTimeout(ctx, u.ctxTimeout)
 	defer cancel()
 

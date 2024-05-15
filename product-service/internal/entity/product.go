@@ -2,11 +2,11 @@ package entity
 
 import (
 	"time"
-
 )
 
 type Product struct {
-	Id          int64
+	Id          string
+	OwnerId     string
 	Title       string
 	Description string
 	Price       int64
@@ -18,7 +18,8 @@ type Product struct {
 }
 
 type ProductWithCategoryId struct {
-	Id          int64
+	Id          string
+	OwnerId     string
 	Title       string
 	Description string
 	Price       int64
@@ -31,8 +32,8 @@ type ProductWithCategoryId struct {
 }
 
 type AllProduct struct {
-    Products []Product
-    Count    int
+	Products []Product
+	Count    int
 }
 
 type CheckResponse struct {
