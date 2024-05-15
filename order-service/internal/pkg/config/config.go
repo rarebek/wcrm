@@ -65,7 +65,7 @@ func New() *Config {
 	// config.ProductService.Port = getEnv("PRODUCT_PORT", 8086)
 
 	// otlp collector configuration
-	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "localhost")
+	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "otel-collector")
 	config.OTLPCollector.Port = getEnv("OTLP_COLLECTOR_PORT", ":4317")
 
 	// kafka configuration

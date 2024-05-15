@@ -101,7 +101,7 @@ func NewConfig() Config {
 	config.CSVFilePath = cast.ToString(getEnv("CSV_FILE_PATH", "auth.csv"))
 
 	// otlp collector configuration
-	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "localhost")
+	config.OTLPCollector.Host = getEnv("OTLP_COLLECTOR_HOST", "otel-collector")
 	config.OTLPCollector.Port = getEnv("OTLP_COLLECTOR_PORT", ":4317")
 
 	config.CtxTimeout = cast.ToInt(getEnv("CTX_TIMEOUT", "7"))
