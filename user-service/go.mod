@@ -1,6 +1,6 @@
 module user-service
 
-go 1.22.2
+go 1.22
 
 require (
 	github.com/Masterminds/squirrel v1.5.4
