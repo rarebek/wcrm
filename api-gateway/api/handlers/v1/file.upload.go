@@ -90,7 +90,7 @@ func (h *HandlerV1) UploadImage(c *gin.Context) {
 	}
 
 	// MinIO serverining URL manzili
-	minioURL := fmt.Sprintf("http://%s/%s/%s", endpoint, bucketName, objectName)
+	minioURL := fmt.Sprintf("https://%s/%s/%s", "media.rarebek.uz", bucketName, objectName)
 
 	id = c.Param("id")
 

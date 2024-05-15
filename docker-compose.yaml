@@ -20,100 +20,125 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+
+
+  user-service:
+    container_name: user-service
+    build: ./user-service
+    depends_on:
+      - "wcrmdb"
+    ports:
+      - "2222:2222"
+    networks:
+      - db
+
+
+  migrate:
+    image: migrate/migrate
+    networks:
+      - db
+    volumes:
+      - ./migrations:/migrations
+    command: ["-path", "/migrations", "-database",  "postgres://postgres:nodirbek@db:5432/productdb?sslmode=disable", "up"]
+    depends_on:
+      - wcrmdb
+
+
+  order-service:
+    container_name: order-service
+    build: ./order-service
+    depends_on:
+      - "wcrmdb"
+    ports:
+      - "3333:3333"
+    networks:
+      - db
+
+
+    # Jaeger
+  jaeger-all-in-one:
+    container_name: jaeger-all-in-one
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "6831:6831/udp"
+      - "16686:16686"
+      - "14268:14268"
+      - "14250:14250"
+
+  # Collector
+  otel-collector:
+    container_name: otel-collector
+    image: ${OTELCOL_IMG}
+    command: ["--config=/etc/otel-collector-config.yaml", "${OTELCOL_ARGS}"]
+    volumes:
+      - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    ports:
+      - "4317:4317" # OTLP gRPC receiver
+    depends_on:
+      - jaeger-all-in-one
+
+      
+
+  product-service:
+    container_name: product-service
+    build: ./product-service
+    depends_on:
+      - "wcrmdb"
+    ports:
+      - "1111:1111"
+    networks:
+      - db
+
+  minio:
+    image: docker.io/bitnami/minio:2022
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    networks:
+      - db
+    volumes:
+      - 'minio_data:/data'
+    environment:
+      - MINIO_ROOT_USER=fnatic1111
+      - MINIO_ROOT_PASSWORD=12345678
+      - MINIO_DEFAULT_BUCKETS=picture
+
+
+  api-gateway:
+    build: ./api-gateway
+    depends_on:
+      - order-service
+      - user-service
+      - wcrmdb
+      - product-service
+#      - migrate
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    networks:
+      - db
+
 #
-#
-#   user-service:
-#     container_name: user-service
-#     build: ./user-service
-#     depends_on:
-#       - "wcrmdb"
-#     ports:
-#       - "2222:2222"
-#     networks:
-#       - db
-#
-#
-#   migrate:
-#     image: migrate/migrate
-#     networks:
-#       - db
-#     volumes:
-#       - ./migrations:/migrations
-#     command: ["-path", "/migrations", "-database",  "postgres://postgres:nodirbek@db:5432/productdb?sslmode=disable", "up"]
-#     depends_on:
-#       - wcrmdb
-#
-#
-#   order-service:
-#     container_name: order-service
-#     build: ./order-service
-#     depends_on:
-#       - "wcrmdb"
-#     ports:
-#       - "3333:3333"
-#     networks:
-#       - db
-#
-#   product-service:
-#     container_name: product-service
-#     build: ./product-service
-#     depends_on:
-#       - "wcrmdb"
-#     ports:
-#       - "1111:1111"
-#     networks:
-#       - db
-#
-#   minio:
-#     image: docker.io/bitnami/minio:2022
-#     ports:
-#       - '9000:9000'
-#       - '9001:9001'
-#     networks:
-#       - db
-#     volumes:
-#       - 'minio_data:/data'
-#     environment:
-#       - MINIO_ROOT_USER=fnatic1111
-#       - MINIO_ROOT_PASSWORD=12345678
-#       - MINIO_DEFAULT_BUCKETS=picture
-#
-#
-#   api-gateway:
-#     build: ./api-gateway
-#     depends_on:
-#       - order-service
-#       - user-service
-#       - wcrmdb
-#       - product-service
-# #      - migrate
-#     ports:
-#       - "8080:8080"
-#     restart: unless-stopped
-#     networks:
-#       - db
-#
-# #
-# #  migrate:
-# #    image: migrate/migrate
-# #    networks:
-# #      - db
-# #    volumes:
-# #      - ./migrations:/migrations
-# #    command: [ "-path", "/migrations", "-database",  "postgres://postgres:123@db:5432/userdb?sslmode=disable", "up","1"]
-# #    links:
-# #      - userdb
-# #    depends_on:
-# #      - "userdb"
-#
-#   redis:
-#     container_name: redis
-#     image: redis
-#     ports:
-#       - "6279:6279"
-#     networks:
-#       - db
-#
+#  migrate:
+#    image: migrate/migrate
+#    networks:
+#      - db
+#    volumes:
+#      - ./migrations:/migrations
+#    command: [ "-path", "/migrations", "-database",  "postgres://postgres:123@db:5432/userdb?sslmode=disable", "up","1"]
+#    links:
+#      - userdb
+#    depends_on:
+#      - "userdb"
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+      - "6279:6279"
+    networks:
+      - db
+
 networks:
   db:
   minio_data:
