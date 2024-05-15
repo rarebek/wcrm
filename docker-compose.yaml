@@ -68,10 +68,9 @@ services:
   jaeger-all-in-one:
     image: jaegertracing/all-in-one:latest
     container_name: jaeger
-    ports:
+    ports:  
       - "6831:6831/udp"  # jaeger agent
       - "16686:16686"    # jaeger UI
-      - "14268:14268"
       - "14268:14268"    # jaeger collector
       
 
