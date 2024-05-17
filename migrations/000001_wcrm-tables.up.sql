@@ -1,3 +1,6 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+    
+
 CREATE TABLE IF NOT EXISTS products (
     id UUID PRIMARY KEY,
     owner_id TEXT,
@@ -55,6 +58,7 @@ CREATE TABLE owners (
     password TEXT NOT NULL,
     avatar TEXT,
     tax INT,
+    refresh_token TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     deleted_at TIMESTAMPTZ
