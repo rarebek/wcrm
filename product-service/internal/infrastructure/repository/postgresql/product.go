@@ -3,6 +3,7 @@ package postgresql
 import (
 	"context"
 	"fmt"
+	"github.com/google/uuid"
 	"log"
 	"wcrm/product-service/internal/entity"
 
@@ -88,6 +89,7 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductW
 	}
 
 	data = map[string]any{
+		"id":          uuid.NewString(),
 		"product_id":  createdProduct.Id,
 		"category_id": product.CategoryId,
 		"created_at":  product.CreatedAt,

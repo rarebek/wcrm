@@ -9,7 +9,7 @@ services:
       PGDATA: /data/postgres
       POSTGRES_DB: productdb
     volumes:
-      - db:/data/postgres
+      - db:/data/postgress
     ports:
       - "5432:5432"
     networks:

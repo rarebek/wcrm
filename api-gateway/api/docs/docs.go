@@ -1744,7 +1744,7 @@ const docTemplate = `{
                 "tags": [
                     "Register"
                 ],
-                "summary": "Login owner",
+                "summary": "Login worker",
                 "parameters": [
                     {
                         "description": "worker",

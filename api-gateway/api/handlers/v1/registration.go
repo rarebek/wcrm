@@ -357,7 +357,7 @@ func (h *HandlerV1) LogIn(c *gin.Context) {
 	})
 }
 
-// @Summary     	Login owner
+// @Summary     	Login worker
 // @Description     Api for Login
 // @Tags       		Register
 // @Accept       	json

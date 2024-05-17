@@ -37,3 +37,4 @@ p, owner, /v1/order/update, PUT
 p, owner, /v1/order/delete/{id}, DELETE
 p, owner, /v1/orders/get/{page}/{limit}, GET
 p, owner, /v1/file-upload, POST
+p, worker, /v1/worker/login, POST
