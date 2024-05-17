@@ -3,6 +3,7 @@ package postgresql
 import (
 	"context"
 	"fmt"
+	"log"
 	"wcrm/product-service/internal/entity"
 
 	"wcrm/product-service/internal/pkg/otlp"
@@ -45,6 +46,7 @@ func (p categoryRepo) CreateCategory(ctx context.Context, category *entity.Categ
 	defer span.End()
 
 	data := map[string]any{
+		"id":         category.Id,
 		"name":       category.Name,
 		"owner_id":   category.OwnerId,
 		"image":      category.Image,
@@ -91,15 +93,6 @@ func (p categoryRepo) GetCategory(ctx context.Context, params map[string]string)
 		}
 	}
 
-	// queryBuilder.Where(
-	// 	squirrel.And{
-	// 		squirrel.Eq{
-	// 			"id":       params["id"],
-	// 			"owner_id": params["owner_id"],
-	// 		},
-	// 	},
-	// )
-
 	query, args, err := queryBuilder.ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "get"))
@@ -107,11 +100,13 @@ func (p categoryRepo) GetCategory(ctx context.Context, params map[string]string)
 
 	if err = p.db.QueryRow(ctx, query, args...).Scan(
 		&category.Id,
+		&category.OwnerId,
 		&category.Name,
 		&category.Image,
 		&category.CreatedAt,
 		&category.UpdatedAt,
 	); err != nil {
+		log.Println(err)
 		return nil, p.db.Error(err)
 	}
 
@@ -124,7 +119,7 @@ func (p categoryRepo) ListCategory(ctx context.Context, limit, offset uint64, fi
 	queryBuilder := p.categorySelectQueryPrefix()
 
 	if limit != 0 {
-		queryBuilder = queryBuilder.Limit(limit).Offset(offset)
+		queryBuilder = queryBuilder.Where(p.db.Sq.Equal("owner_id", filter["owner_id"])).Limit(limit).Offset(offset)
 	}
 
 	query, args, err := queryBuilder.ToSql()
@@ -139,8 +134,8 @@ func (p categoryRepo) ListCategory(ctx context.Context, limit, offset uint64, fi
 	defer rows.Close()
 
 	var count int
-	query = `SELECT COUNT(*) FROM categories`
-	err = p.db.QueryRow(ctx, query).Scan(&count)
+	query = `SELECT COUNT(*) FROM categories where owner_id = $1`
+	err = p.db.QueryRow(ctx, query, filter["owner_id"]).Scan(&count)
 	if err != nil {
 		return nil, p.db.Error(err)
 	}
@@ -150,6 +145,7 @@ func (p categoryRepo) ListCategory(ctx context.Context, limit, offset uint64, fi
 		var category entity.Category
 		if err := rows.Scan(
 			&category.Id,
+			&category.OwnerId,
 			&category.Name,
 			&category.Image,
 			&category.CreatedAt,
@@ -170,6 +166,7 @@ func (p categoryRepo) UpdateCategory(ctx context.Context, category *entity.Categ
 	ctx, span := otlp.Start(ctx, categoryServiceName, categorySpanRepoPrefix+"Update")
 	defer span.End()
 
+
 	clauses := map[string]any{
 		"name":       category.Name,
 		"image":      category.Image,
@@ -185,13 +182,14 @@ func (p categoryRepo) UpdateCategory(ctx context.Context, category *entity.Categ
 		return &entity.Category{}, p.db.ErrSQLBuild(err, p.tableName+" update")
 	}
 
-	query += " RETURNING id, name, image, created_at, updated_at"
+	query += " RETURNING id, owner_id, name, image, created_at, updated_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
 
 	var updatedCategory entity.Category
 
 	err = row.Scan(&updatedCategory.Id,
+		&updatedCategory.OwnerId,
 		&updatedCategory.Name,
 		&updatedCategory.Image,
 		&updatedCategory.CreatedAt,

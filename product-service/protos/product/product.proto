@@ -37,7 +37,7 @@ message ProductWithCategoryId{
   int64 price = 5;
   int64 discount = 6;
   string picture = 7;
-  int64 categoryId = 8;
+  string categoryId = 8;
   string createdAt = 9;
   string updatedAt = 10;
   string deletedAt = 11;
@@ -66,7 +66,6 @@ message GetProductRequest{
 
 message GetCategoryRequest{
   string id = 1;
-  string ownerId = 2;
 }
 
 message GetAllRequest{

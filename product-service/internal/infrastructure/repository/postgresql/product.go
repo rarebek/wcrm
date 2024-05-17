@@ -3,13 +3,13 @@ package postgresql
 import (
 	"context"
 	"fmt"
+	"log"
 	"wcrm/product-service/internal/entity"
 
 	"wcrm/product-service/internal/pkg/otlp"
 	"wcrm/product-service/internal/pkg/postgres"
 
 	"github.com/Masterminds/squirrel"
-	"github.com/k0kubun/pp"
 )
 
 const (
@@ -47,11 +47,9 @@ func (p *productRepo) productSelectQueryPrefix() squirrel.SelectBuilder {
 func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductWithCategoryId) (*entity.Product, error) {
 	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"Create")
 
-	pp.Println("postgesga keldi")
-	pp.Println(product)
-
 	defer span.End()
 	data := map[string]any{
+		"id":          product.Id,
 		"title":       product.Title,
 		"owner_id":    product.OwnerId,
 		"description": product.Description,
@@ -68,9 +66,6 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductW
 
 	query += " RETURNING id, owner_id, title, description, price, discount, picture, created_at, updated_at"
 
-	pp.Println("query", query)
-	pp.Println("args", args)
-
 	row := p.db.QueryRow(ctx, query, args...)
 
 	var createdProduct entity.Product
@@ -83,15 +78,14 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductW
 		&createdProduct.Discount,
 		&createdProduct.Picture,
 		&createdProduct.CreatedAt,
-		&createdProduct.UpdatedAt)
+		&createdProduct.UpdatedAt,
+	)
 
 	if err != nil {
-		pp.Println("Errorga>>>>>>")
+		log.Println(err)
+
 		return &entity.Product{}, err
 	}
-
-	pp.Println("cred bogan product")
-	pp.Println(createdProduct)
 
 	data = map[string]any{
 		"product_id":  createdProduct.Id,
@@ -99,11 +93,7 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductW
 		"created_at":  product.CreatedAt,
 		"updated_at":  product.UpdatedAt,
 	}
-
 	query, args, err = p.db.Sq.Builder.Insert("categories_products").SetMap(data).ToSql()
-
-	pp.Println("query", query)
-	pp.Println("args", args)
 
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", "categories_products", "create"))
@@ -112,7 +102,8 @@ func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductW
 	_, err = p.db.Exec(ctx, query, args...)
 
 	if err != nil {
-		pp.Println(err)
+		// (err)
+		log.Println(err)
 		return nil, err
 	}
 
@@ -140,6 +131,7 @@ func (p productRepo) GetProduct(ctx context.Context, params map[string]string) (
 
 	if err = p.db.QueryRow(ctx, query, args...).Scan(
 		&product.Id,
+		&product.OwnerId,
 		&product.Title,
 		&product.Description,
 		&product.Price,
@@ -148,6 +140,7 @@ func (p productRepo) GetProduct(ctx context.Context, params map[string]string) (
 		&product.CreatedAt,
 		&product.UpdatedAt,
 	); err != nil {
+		log.Println(err)
 		return nil, p.db.Error(err)
 	}
 
@@ -160,7 +153,7 @@ func (p productRepo) ListProduct(ctx context.Context, limit, offset uint64, filt
 	queryBuilder := p.productSelectQueryPrefix()
 
 	if limit != 0 {
-		queryBuilder = queryBuilder.Limit(limit).Offset(offset)
+		queryBuilder = queryBuilder.Where(p.db.Sq.Equal("owner_id", filter["owner_id"])).Limit(limit).Offset(offset)
 	}
 
 	query, args, err := queryBuilder.ToSql()
@@ -210,6 +203,7 @@ func (p productRepo) UpdateProduct(ctx context.Context, product *entity.Product)
 	defer span.End()
 
 	clauses := map[string]any{
+		"owner_id":    product.OwnerId,
 		"title":       product.Title,
 		"description": product.Description,
 		"price":       product.Price,
@@ -227,13 +221,14 @@ func (p productRepo) UpdateProduct(ctx context.Context, product *entity.Product)
 		return &entity.Product{}, p.db.ErrSQLBuild(err, p.tableName+" update")
 	}
 
-	query += " RETURNING id, title, description, price, discount, picture, created_at, updated_at"
+	query += " RETURNING id, owner_id, title, description, price, discount, picture, created_at, updated_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
 
 	var updatedProduct entity.Product
 
 	err = row.Scan(&updatedProduct.Id,
+		&updatedProduct.OwnerId,
 		&updatedProduct.Title,
 		&updatedProduct.Description,
 		&updatedProduct.Price,
@@ -281,7 +276,7 @@ func (p productRepo) SearchProduct(ctx context.Context, page, offset int64, titl
 
 	queryBuilder := p.productSelectQueryPrefix()
 
-	query, _, err := queryBuilder.Where("title ilike " + "'%" + title + "%' LIMIT $1 OFFSET $2 AND owner_id = $3").ToSql()
+	query, _, err := queryBuilder.Where("title ilike " + "'%" + title + "%' AND owner_id = $3 LIMIT $1 OFFSET $2").ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "search_product"))
 	}
@@ -324,7 +319,6 @@ func (p productRepo) SearchProduct(ctx context.Context, page, offset int64, titl
 		Count:    count,
 	}, nil
 }
-
 func (p productRepo) GetAllProductByCategoryId(ctx context.Context, limit, offset uint64, CategoryId string) (*entity.AllProduct, error) {
 	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"GetAllProductByCategoryId")
 	defer span.End()
@@ -335,15 +329,15 @@ func (p productRepo) GetAllProductByCategoryId(ctx context.Context, limit, offse
 		).From("categories_products")
 
 	if limit != 0 {
-		queryBuilder = queryBuilder.Limit(limit).Offset(offset).Where(p.db.Sq.Equal("category_id", CategoryId))
+		queryBuilder = queryBuilder.Where(p.db.Sq.Equal("category_id", CategoryId)).Limit(limit).Offset(offset)
 	}
 
-	query, _, err := queryBuilder.ToSql()
+	query, args, err := queryBuilder.ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "GetAllProductByCategoryId"))
 	}
 
-	rows, err := p.db.Query(ctx, query, CategoryId)
+	rows, err := p.db.Query(ctx, query, args...)
 	if err != nil {
 		return nil, p.db.Error(err)
 	}
@@ -367,8 +361,8 @@ func (p productRepo) GetAllProductByCategoryId(ctx context.Context, limit, offse
 	}
 
 	var count int
-	query = `SELECT COUNT(*) FROM categories_products WHERE category_id =` + CategoryId
-	err = p.db.QueryRow(ctx, query).Scan(&count)
+	query = `SELECT COUNT(*) FROM categories_products WHERE category_id = $1`
+	err = p.db.QueryRow(ctx, query, CategoryId).Scan(&count)
 	if err != nil {
 		return nil, p.db.Error(err)
 	}

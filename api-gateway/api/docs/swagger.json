@@ -7,55 +7,6 @@
         "version": "1.0"
     },
     "paths": {
-        "/v1/Category/delete/{id}": {
-            "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Api for delete Category",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Category"
-                ],
-                "summary": "Delete Category",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Id Category",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.CheckResponse"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandartError"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandartError"
-                        }
-                    }
-                }
-            }
-        },
         "/v1/category/create": {
             "post": {
                 "security": [
@@ -90,6 +41,55 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.Category"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/category/delete/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for delete Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Delete Category",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id Category",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CheckResponse"
                         }
                     },
                     "404": {
@@ -156,8 +156,8 @@
                 }
             }
         },
-        "/v1/category/get/{page}/{limit}/{owner-id}": {
-            "get": {
+        "/v1/category/getall": {
+            "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
@@ -176,25 +176,13 @@
                 "summary": "Get List Category",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "Page Category",
-                        "name": "page",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Limit Category",
-                        "name": "limit",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Owner ID",
-                        "name": "owner-id",
-                        "in": "path",
-                        "required": true
+                        "description": "List Category",
+                        "name": "Category",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CategoryListRequset"
+                        }
                     }
                 ],
                 "responses": {
@@ -1376,7 +1364,7 @@
                 }
             }
         },
-        "/v1/products/get/{page}/{limit}": {
+        "/v1/products/get/{page}/{limit}/{owner-id}": {
             "get": {
                 "security": [
                     {
@@ -1751,7 +1739,7 @@
                 "summary": "Login owner",
                 "parameters": [
                     {
-                        "description": "owner",
+                        "description": "worker",
                         "name": "Owner",
                         "in": "body",
                         "required": true,
@@ -1925,6 +1913,20 @@
                 }
             }
         },
+        "models.CategoryListRequset": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "owner_id": {
+                    "type": "string"
+                },
+                "page": {
+                    "type": "integer"
+                }
+            }
+        },
         "models.CheckResponse": {
             "type": "object",
             "properties": {
@@ -2008,27 +2010,22 @@
             "type": "object",
             "properties": {
                 "category_id": {
-                    "type": "integer",
-                    "example": 7
+                    "type": "string"
                 },
                 "description": {
-                    "type": "string",
-                    "example": "Juda mazzali"
+                    "type": "string"
                 },
                 "discount": {
-                    "type": "integer",
-                    "example": 12
+                    "type": "integer"
                 },
                 "owner_id": {
                     "type": "string"
                 },
                 "picture": {
-                    "type": "string",
-                    "example": "http://static/images/myimage.jpg"
+                    "type": "string"
                 },
                 "price": {
-                    "type": "integer",
-                    "example": 20000
+                    "type": "integer"
                 },
                 "title": {
                     "type": "string"
@@ -2105,10 +2102,10 @@
         "models.LoginWorker": {
             "type": "object",
             "properties": {
-                "companyName": {
+                "company_name": {
                     "type": "string"
                 },
-                "loginKey": {
+                "login_key": {
                     "type": "string"
                 },
                 "password": {
@@ -2294,7 +2291,10 @@
         "models.ResponseAccessToken": {
             "type": "object",
             "properties": {
-                "accessToken": {
+                "access_token": {
+                    "type": "string"
+                },
+                "worker_id": {
                     "type": "string"
                 }
             }
@@ -2334,6 +2334,9 @@
                     "type": "string"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "owner_id": {
                     "type": "string"
                 }
             }
@@ -2408,6 +2411,9 @@
                     "type": "integer"
                 },
                 "id": {
+                    "type": "string"
+                },
+                "owner_id": {
                     "type": "string"
                 },
                 "picture": {

@@ -21,6 +21,15 @@ definitions:
       count:
         type: integer
     type: object
+  models.CategoryListRequset:
+    properties:
+      limit:
+        type: integer
+      owner_id:
+        type: string
+      page:
+        type: integer
+    type: object
   models.CheckResponse:
     properties:
       chack:
@@ -75,21 +84,16 @@ definitions:
   models.CreateProduct:
     properties:
       category_id:
-        example: 7
-        type: integer
+        type: string
       description:
-        example: Juda mazzali
         type: string
       discount:
-        example: 12
         type: integer
       owner_id:
         type: string
       picture:
-        example: http://static/images/myimage.jpg
         type: string
       price:
-        example: 20000
         type: integer
       title:
         type: string
@@ -139,9 +143,9 @@ definitions:
     type: object
   models.LoginWorker:
     properties:
-      companyName:
+      company_name:
         type: string
-      loginKey:
+      login_key:
         type: string
       password:
         type: string
@@ -262,7 +266,9 @@ definitions:
     type: object
   models.ResponseAccessToken:
     properties:
-      accessToken:
+      access_token:
+        type: string
+      worker_id:
         type: string
     type: object
   models.SearchProductRequest:
@@ -288,6 +294,8 @@ definitions:
       image:
         type: string
       name:
+        type: string
+      owner_id:
         type: string
     type: object
   models.UpdateGeolocation:
@@ -336,6 +344,8 @@ definitions:
       discount:
         type: integer
       id:
+        type: string
+      owner_id:
         type: string
       picture:
         type: string
@@ -387,37 +397,6 @@ info:
   title: WCRM
   version: "1.0"
 paths:
-  /v1/Category/delete/{id}:
-    delete:
-      consumes:
-      - application/json
-      description: Api for delete Category
-      parameters:
-      - description: Id Category
-        in: path
-        name: id
-        required: true
-        type: string
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/models.CheckResponse'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/models.StandartError'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/models.StandartError'
-      security:
-      - ApiKeyAuth: []
-      summary: Delete Category
-      tags:
-      - Category
   /v1/category/create:
     post:
       consumes:
@@ -448,6 +427,37 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: Create Category
+      tags:
+      - Category
+  /v1/category/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Api for delete Category
+      parameters:
+      - description: Id Category
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.CheckResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.StandartError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.StandartError'
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Category
       tags:
       - Category
   /v1/category/get/{id}:
@@ -481,27 +491,18 @@ paths:
       summary: Get Category
       tags:
       - Category
-  /v1/category/get/{page}/{limit}/{owner-id}:
-    get:
+  /v1/category/getall:
+    post:
       consumes:
       - application/json
       description: Api for get all Category
       parameters:
-      - description: Page Category
-        in: path
-        name: page
+      - description: List Category
+        in: body
+        name: Category
         required: true
-        type: string
-      - description: Limit Category
-        in: path
-        name: limit
-        required: true
-        type: string
-      - description: Owner ID
-        in: path
-        name: owner-id
-        required: true
-        type: string
+        schema:
+          $ref: '#/definitions/models.CategoryListRequset'
       produces:
       - application/json
       responses:
@@ -1254,7 +1255,7 @@ paths:
       summary: Update Product
       tags:
       - Product
-  /v1/products/get/{page}/{limit}:
+  /v1/products/get/{page}/{limit}/{owner-id}:
     get:
       consumes:
       - application/json
@@ -1491,7 +1492,7 @@ paths:
       - application/json
       description: Api for Login
       parameters:
-      - description: owner
+      - description: worker
         in: body
         name: Owner
         required: true

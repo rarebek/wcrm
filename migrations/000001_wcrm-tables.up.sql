@@ -1,16 +1,6 @@
-CREATE TABLE IF NOT EXISTS categories (
-    id UUID PRIMARY KEY,
-    owner_id UUID,
-    name TEXT,
-    image TEXT, 
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-
 CREATE TABLE IF NOT EXISTS products (
     id UUID PRIMARY KEY,
-    owner_id UUID,
+    owner_id TEXT,
     title VARCHAR(65),
     description VARCHAR(255),
     price INT,
@@ -21,9 +11,18 @@ CREATE TABLE IF NOT EXISTS products (
     deleted_at TIMESTAMP DEFAULT NULL
 );
 
-CREATE TABLE IF NOT EXISTS categories_products (
+CREATE TABLE IF NOT EXISTS categories (
     id UUID PRIMARY KEY,
-    product_id UUID REFERENCES products(id) ON DELETE CASCADE,
+    owner_id TEXT,
+    name TEXT,
+    image TEXT, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS categories_products (
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    product_id  UUID REFERENCES products(id) ON DELETE CASCADE,
     category_id UUID REFERENCES categories(id) ON DELETE CASCADE, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP

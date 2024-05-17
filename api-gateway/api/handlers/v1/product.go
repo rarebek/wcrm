@@ -10,6 +10,8 @@ import (
 	pbp "api-gateway/genproto/product"
 
 	"github.com/gin-gonic/gin"
+	"github.com/google/uuid"
+	"github.com/k0kubun/pp"
 	"github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
 )
@@ -45,7 +47,10 @@ func (h HandlerV1) CreateProduct(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 
+	id := uuid.New().String()
+
 	response, err := h.Service.ProductService().CreateProduct(ctx, &pbp.ProductWithCategoryId{
+		Id:          id,
 		OwnerId:     body.OwnerId,
 		Title:       body.Title,
 		Description: body.Description,
@@ -133,6 +138,7 @@ func (h *HandlerV1) UpdateProduct(c *gin.Context) {
 
 	response, err := h.Service.ProductService().UpdateProduct(ctx, &pbp.Product{
 		Id:          body.Id,
+		OwnerId:     body.OwnerId,
 		Title:       body.Title,
 		Description: body.Description,
 		Price:       body.Price,
@@ -198,7 +204,7 @@ func (h *HandlerV1) DeleteProduct(c *gin.Context) {
 // @Success 		200 {object} models.ProductList
 // @Failure 		404 {object} models.StandartError
 // @Failure 		500 {object} models.StandartError
-// @Router 			/v1/products/get/{page}/{limit} [GET]
+// @Router 			/v1/products/get/{page}/{limit}/{owner-id} [GET]
 func (h *HandlerV1) ListProduct(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
@@ -246,6 +252,7 @@ func (h *HandlerV1) SearchProduct(c *gin.Context) {
 	jspbMarshal.UseProtoNames = true
 
 	err := c.ShouldBindJSON(&body)
+
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
@@ -294,6 +301,8 @@ func (h *HandlerV1) GetAllProductByCategoryId(c *gin.Context) {
 	jspbMarshal.UseProtoNames = true
 
 	err := c.ShouldBindJSON(&body)
+
+	pp.Println(body)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),

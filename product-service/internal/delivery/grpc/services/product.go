@@ -13,6 +13,7 @@ import (
 func (u UserRPC) CreateProduct(ctx context.Context, product *pbp.ProductWithCategoryId) (*pbp.Product, error) {
 
 	req_product := entity.ProductWithCategoryId{
+		Id:          product.Id,
 		Title:       product.Title,
 		Description: product.Description,
 		Price:       product.Price,
@@ -57,7 +58,8 @@ func (u UserRPC) GetProduct(ctx context.Context, id *pbp.GetProductRequest) (*pb
 	}
 
 	return &pbp.Product{
-		Id:          id.Id,
+		Id:          res.Id,
+		OwnerId:     res.OwnerId,
 		Title:       res.Title,
 		Description: res.Description,
 		Price:       res.Price,
@@ -65,7 +67,6 @@ func (u UserRPC) GetProduct(ctx context.Context, id *pbp.GetProductRequest) (*pb
 		Picture:     res.Picture,
 		CreatedAt:   res.CreatedAt.Format("2006-01-02 15:04:05"),
 		UpdatedAt:   res.UpdatedAt.Format("2006-01-02 15:04:05"),
-		DeletedAt:   "",
 	}, nil
 }
 func (u UserRPC) DeleteProduct(ctx context.Context, id *pbp.DeleteProductRequest) (*pbp.CheckResponse, error) {
@@ -85,6 +86,7 @@ func (u UserRPC) UpdateProduct(ctx context.Context, product *pbp.Product) (*pbp.
 
 	updated_product := entity.Product{
 		Id:          product.Id,
+		OwnerId:     product.OwnerId,
 		Title:       product.Title,
 		Description: product.Description,
 		Price:       product.Price,
@@ -102,6 +104,7 @@ func (u UserRPC) UpdateProduct(ctx context.Context, product *pbp.Product) (*pbp.
 
 	return &pbp.Product{
 		Id:          row.Id,
+		OwnerId:     row.OwnerId,
 		Title:       row.Title,
 		Description: row.Description,
 		Price:       row.Price,
@@ -130,6 +133,7 @@ func (u UserRPC) ListProduct(ctx context.Context, req *pbp.GetAllRequest) (*pbp.
 	for _, in := range res_products.Products {
 		products.Products = append(products.Products, &pbp.Product{
 			Id:          in.Id,
+			OwnerId:     in.OwnerId,
 			Title:       in.Title,
 			Description: in.Description,
 			Price:       in.Price,
@@ -159,6 +163,7 @@ func (u UserRPC) SearchProduct(ctx context.Context, req *pbp.SearchProductReques
 	for _, in := range res_products.Products {
 		products.Products = append(products.Products, &pbp.Product{
 			Id:          in.Id,
+			OwnerId:     in.OwnerId,
 			Title:       in.Title,
 			Description: in.Description,
 			Price:       in.Price,
@@ -172,7 +177,6 @@ func (u UserRPC) SearchProduct(ctx context.Context, req *pbp.SearchProductReques
 
 	return &products, err
 }
-
 func (u UserRPC) GetAllProductByCategoryId(ctx context.Context, req *pbp.GetProductsByCategoryIdRequest) (*pbp.GetAllResponse, error) {
 
 	offset := req.Limit * (req.Page - 1)
@@ -189,6 +193,7 @@ func (u UserRPC) GetAllProductByCategoryId(ctx context.Context, req *pbp.GetProd
 	for _, in := range res_products.Products {
 		products.Products = append(products.Products, &pbp.Product{
 			Id:          in.Id,
+			OwnerId:     in.OwnerId,
 			Title:       in.Title,
 			Description: in.Description,
 			Price:       in.Price,

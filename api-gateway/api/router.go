@@ -47,6 +47,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	jwtHandler := tokens.JWTHandler{
 		SigninKey: option.Config.SigningKey,
 	}
+
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
 	router.Use(middleware.NewAuthorizer(option.CasbinEnforcer, jwtHandler, *option.Config))
@@ -61,12 +62,19 @@ func NewRoute(option RouteOption) *gin.Engine {
 	router.Use(middleware.Tracing)
 	api := router.Group("/v1")
 
+	// // category
+	api.POST("/category/create", HandlerV1.CreateCategory)
+	api.GET("/category/get/:id", HandlerV1.GetCategory)
+	api.PUT("/category/update", HandlerV1.UpdateCategory)
+	api.DELETE("/category/delete/:id", HandlerV1.DeleteCategory)
+	api.POST("/category/getall", HandlerV1.ListCategory)
+
 	// products
 	api.POST("/product/create", HandlerV1.CreateProduct)
 	api.GET("/product/get/:id", HandlerV1.GetProduct)
 	api.PUT("/product/update", HandlerV1.UpdateProduct)
 	api.DELETE("/product/delete/:id", HandlerV1.DeleteProduct)
-	api.GET("/products/get/:page/:limit", HandlerV1.ListProduct)
+	api.GET("/products/get/:page/:limit/:owner-id", HandlerV1.ListProduct)
 	api.POST("/product/search", HandlerV1.SearchProduct)
 	api.POST("/products/get_category_id", HandlerV1.GetAllProductByCategoryId)
 
@@ -102,6 +110,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	api.POST("/register", HandlerV1.Register)
 	api.GET("/verification", HandlerV1.Verify)
 	api.GET("/login", HandlerV1.LogIn)
+	api.POST("/worker/login", HandlerV1.LogInWorker)
 
 	// upload file
 	api.POST("/file-upload", HandlerV1.UploadImage)

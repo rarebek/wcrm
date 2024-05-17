@@ -23,14 +23,14 @@ type File struct {
 // @Summary 		Image upload
 // @Security 		ApiKeyAuth
 // @Description 	Api for image upload
-// @Tags 		file-upload
-// @Accept 		json
+// @Tags 			file-upload
+// @Accept 			json
 // @Produce 		json
-// @Param 		file formData file true "Image"
+// @Param 			file formData file true "Image"
 // @Success 		200 {object} string
 // @Failure 		400 {object} string
 // @Failure 		500 {object} string
-// @Router 		/v1/file-upload [post]
+// @Router 			/v1/file-upload [post]
 func (h *HandlerV1) UploadImage(c *gin.Context) {
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))

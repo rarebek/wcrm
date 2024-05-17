@@ -357,16 +357,16 @@ func (h *HandlerV1) LogIn(c *gin.Context) {
 	})
 }
 
-// @Summary     Login owner
-// @Description   Api for Login
-// @Tags       Register
-// @Accept       json
-// @Produce     json
-// @Param       Owner body  models.LoginWorker true "worker"
-// @Success     200 {object} models.ResponseAccessToken
-// @Failure     400 {object} models.StandartError
-// @Failure     500 {object} models.StandartError
-// @Router       /v1/worker/login [POST]
+// @Summary     	Login owner
+// @Description     Api for Login
+// @Tags       		Register
+// @Accept       	json
+// @Produce     	json
+// @Param       	Owner body  models.LoginWorker true "worker"
+// @Success     	200 {object} models.ResponseAccessToken
+// @Failure     	400 {object} models.StandartError
+// @Failure     	500 {object} models.StandartError
+// @Router       	/v1/worker/login [POST]
 func (h *HandlerV1) LogInWorker(c *gin.Context) {
 
 	var (

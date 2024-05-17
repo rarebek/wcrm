@@ -13,6 +13,7 @@ import (
 func (u UserRPC) CreateCategory(ctx context.Context, category *pbc.Category) (*pbc.Category, error) {
 
 	req_category := entity.Category{
+		Id:        category.Id,
 		Name:      category.Name,
 		OwnerId:   category.OwnerId,
 		Image:     category.Image,
@@ -40,7 +41,6 @@ func (u UserRPC) GetCategory(ctx context.Context, id *pbc.GetCategoryRequest) (*
 
 	reqMap := make(map[string]string)
 	reqMap["id"] = id.Id
-	reqMap["owner_id"] = id.OwnerId
 
 	res, err := u.category.GetCategory(ctx, reqMap)
 
@@ -75,6 +75,7 @@ func (u UserRPC) UpdateCategory(ctx context.Context, category *pbc.Category) (*p
 
 	updated_category := entity.Category{
 		Id:        category.Id,
+		OwnerId:   category.OwnerId,
 		Name:      category.Name,
 		Image:     category.Image,
 		UpdatedAt: time.Now(),
@@ -89,6 +90,7 @@ func (u UserRPC) UpdateCategory(ctx context.Context, category *pbc.Category) (*p
 
 	return &pbc.Category{
 		Id:        row.Id,
+		OwnerId:   row.OwnerId,
 		Name:      row.Name,
 		Image:     row.Image,
 		CreatedAt: row.CreatedAt.Format("2006-01-02 15:04:05"),

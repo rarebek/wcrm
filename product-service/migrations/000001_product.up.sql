@@ -21,9 +21,9 @@ CREATE TABLE IF NOT EXISTS categories (
 );
 
 CREATE TABLE IF NOT EXISTS categories_products (
-    id UUID PRIMARY KEY,
-    product_id INT REFERENCES products(id) ON DELETE CASCADE,
-    category_id INT REFERENCES categories(id) ON DELETE CASCADE, 
+    id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+    product_id  UUID REFERENCES products(id) ON DELETE CASCADE,
+    category_id UUID REFERENCES categories(id) ON DELETE CASCADE, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

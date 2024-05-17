@@ -11,7 +11,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
@@ -130,9 +129,10 @@ func (h *HandlerV1) UpdateCategory(c *gin.Context) {
 	defer cancel()
 
 	response, err := h.Service.ProductService().UpdateCategory(ctx, &pbp.Category{
-		Id:    body.Id,
-		Name:  body.Name,
-		Image: body.Image,
+		Id:      body.Id,
+		OwnerId: body.OwnerId,
+		Name:    body.Name,
+		Image:   body.Image,
 	})
 
 	if err != nil {
@@ -156,7 +156,7 @@ func (h *HandlerV1) UpdateCategory(c *gin.Context) {
 // @Success 		200 {object} models.CheckResponse
 // @Failure 		404 {object} models.StandartError
 // @Failure 		500 {object} models.StandartError
-// @Router 			/v1/Category/delete/{id} [DELETE]
+// @Router 			/v1/category/delete/{id} [DELETE]
 func (h *HandlerV1) DeleteCategory(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
@@ -187,28 +187,34 @@ func (h *HandlerV1) DeleteCategory(c *gin.Context) {
 // @Tags 			Category
 // @Accept 			json
 // @Produce 		json
-// @Param 			page path string true "Page Category"
-// @Param 			limit path string true "Limit Category"
-// @Param 			owner-id path string true "Owner ID"
+// @Param 			Category body models.CategoryListRequset true "List Category"
 // @Success 		200 {object} models.CategoryList
 // @Failure 		404 {object} models.StandartError
 // @Failure 		500 {object} models.StandartError
-// @Router 			/v1/category/get/{page}/{limit}/{owner-id} [GET]
+// @Router 			/v1/category/getall [POST]
 func (h *HandlerV1) ListCategory(c *gin.Context) {
-	var jspbMarshal protojson.MarshalOptions
+	var (
+		body        models.CategoryListRequset
+		jspbMarshal protojson.MarshalOptions
+	)
 	jspbMarshal.UseProtoNames = true
 
-	page := c.Param("page")
-	limit := c.Param("limit")
-	ownerId := c.Param("owner-id")
+	err := c.ShouldBindJSON(&body)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		h.Logger.Fatal("Update Category error")
+		return
+	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 
 	response, err := h.Service.ProductService().ListCategory(ctx, &pbp.GetAllRequest{
-		Page:    cast.ToInt64(page),
-		Limit:   cast.ToInt64(limit),
-		OwnerId: ownerId,
+		Page:    body.Page,
+		Limit:   body.Limit,
+		OwnerId: body.OwnerId,
 	})
 
 	if err != nil {

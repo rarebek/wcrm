@@ -15,55 +15,6 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/v1/Category/delete/{id}": {
-            "delete": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "Api for delete Category",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Category"
-                ],
-                "summary": "Delete Category",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Id Category",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/models.CheckResponse"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandartError"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/models.StandartError"
-                        }
-                    }
-                }
-            }
-        },
         "/v1/category/create": {
             "post": {
                 "security": [
@@ -98,6 +49,55 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/models.Category"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/models.StandartError"
+                        }
+                    }
+                }
+            }
+        },
+        "/v1/category/delete/{id}": {
+            "delete": {
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "Api for delete Category",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Delete Category",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Id Category",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.CheckResponse"
                         }
                     },
                     "404": {
@@ -164,8 +164,8 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/category/get/{page}/{limit}/{owner-id}": {
-            "get": {
+        "/v1/category/getall": {
+            "post": {
                 "security": [
                     {
                         "ApiKeyAuth": []
@@ -184,25 +184,13 @@ const docTemplate = `{
                 "summary": "Get List Category",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "Page Category",
-                        "name": "page",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Limit Category",
-                        "name": "limit",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "Owner ID",
-                        "name": "owner-id",
-                        "in": "path",
-                        "required": true
+                        "description": "List Category",
+                        "name": "Category",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CategoryListRequset"
+                        }
                     }
                 ],
                 "responses": {
@@ -1384,7 +1372,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/products/get/{page}/{limit}": {
+        "/v1/products/get/{page}/{limit}/{owner-id}": {
             "get": {
                 "security": [
                     {
@@ -1759,7 +1747,7 @@ const docTemplate = `{
                 "summary": "Login owner",
                 "parameters": [
                     {
-                        "description": "owner",
+                        "description": "worker",
                         "name": "Owner",
                         "in": "body",
                         "required": true,
@@ -1933,6 +1921,20 @@ const docTemplate = `{
                 }
             }
         },
+        "models.CategoryListRequset": {
+            "type": "object",
+            "properties": {
+                "limit": {
+                    "type": "integer"
+                },
+                "owner_id": {
+                    "type": "string"
+                },
+                "page": {
+                    "type": "integer"
+                }
+            }
+        },
         "models.CheckResponse": {
             "type": "object",
             "properties": {
@@ -2016,27 +2018,22 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "category_id": {
-                    "type": "integer",
-                    "example": 7
+                    "type": "string"
                 },
                 "description": {
-                    "type": "string",
-                    "example": "Juda mazzali"
+                    "type": "string"
                 },
                 "discount": {
-                    "type": "integer",
-                    "example": 12
+                    "type": "integer"
                 },
                 "owner_id": {
                     "type": "string"
                 },
                 "picture": {
-                    "type": "string",
-                    "example": "http://static/images/myimage.jpg"
+                    "type": "string"
                 },
                 "price": {
-                    "type": "integer",
-                    "example": 20000
+                    "type": "integer"
                 },
                 "title": {
                     "type": "string"
@@ -2113,10 +2110,10 @@ const docTemplate = `{
         "models.LoginWorker": {
             "type": "object",
             "properties": {
-                "companyName": {
+                "company_name": {
                     "type": "string"
                 },
-                "loginKey": {
+                "login_key": {
                     "type": "string"
                 },
                 "password": {
@@ -2302,7 +2299,10 @@ const docTemplate = `{
         "models.ResponseAccessToken": {
             "type": "object",
             "properties": {
-                "accessToken": {
+                "access_token": {
+                    "type": "string"
+                },
+                "worker_id": {
                     "type": "string"
                 }
             }
@@ -2342,6 +2342,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "name": {
+                    "type": "string"
+                },
+                "owner_id": {
                     "type": "string"
                 }
             }
@@ -2416,6 +2419,9 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "id": {
+                    "type": "string"
+                },
+                "owner_id": {
                     "type": "string"
                 },
                 "picture": {

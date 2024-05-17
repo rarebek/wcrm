@@ -17,17 +17,18 @@ type ProductList struct {
 }
 
 type CreateProduct struct {
-	Title       string `json:"title" exmaple:"Lavash"`
+	Title       string `json:"title"` 
 	OwnerId     string `json:"owner_id"`
-	Description string `json:"description" example:"Juda mazzali"`
-	Price       int64  `json:"price" example:"20000"`
-	Discount    int64  `json:"discount" example:"12"`
-	Picture     string `json:"picture" example:"http://static/images/myimage.jpg"`
-	CategoryId  int64  `json:"category_id" example:"7"`
+	Description string `json:"description"` 
+	Price       int64  `json:"price"`
+	Discount    int64  `json:"discount"`
+	Picture     string `json:"picture"`
+	CategoryId  string `json:"category_id"`
 }
 
 type UpdateProduct struct {
 	Id          string `json:"id"`
+	OwnerId     string `json:"owner_id"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
 	Price       int64  `json:"price"`

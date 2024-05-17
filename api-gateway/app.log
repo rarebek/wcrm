@@ -2473,3 +2473,1300 @@ net/http.serverHandler.ServeHTTP
 	/usr/lib/go/src/net/http/server.go:3137
 net/http.(*conn).serve
 	/usr/lib/go/src/net/http/server.go:2039
+2024-05-17T16:31:40.701+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-17T16:33:28.261+0500	ERROR	v1/registration.go:321	rpc error: code = Unavailable desc = connection error: desc = "transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving"
+api-gateway/api/handlers/v1.(*HandlerV1).LogIn
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:321
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T16:34:48.575+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T16:37:23.429+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T16:38:36.017+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T16:39:41.695+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-17T16:40:22.040+0500	ERROR	v1/registration.go:65	Incorrect email format	{"error": "email: must be a valid email address."}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T16:40:56.267+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T16:42:10.943+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T16:44:32.496+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-17T16:46:45.392+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-17T16:46:59.057+0500	FATAL	v1/category.go:60	Create Category error
+api-gateway/api/handlers/v1.HandlerV1.CreateCategory
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/category.go:60
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T16:49:13.749+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-17T16:49:45.463+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-17T16:57:21.958+0500	FATAL	v1/category.go:60	Create Category error
+api-gateway/api/handlers/v1.HandlerV1.CreateCategory
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/category.go:60
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T16:58:44.692+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-17T17:01:52.254+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:36.645+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:37.509+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:37.856+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:38.099+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:38.306+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:38.497+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:38.657+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:38.867+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:39.134+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:40.850+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:41.039+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:41.255+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:41.458+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:41.663+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:41.821+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:41.984+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:42.158+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:42.332+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:42.507+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:42.704+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:42.901+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:43.073+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:43.218+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:43.407+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:43.610+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:43.835+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:03:44.026+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:06:03.157+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-17T17:08:05.737+0500	ERROR	v1/registration.go:73	password format incorrect	{"error": "the length must be between 8 and 30"}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:73
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:08:21.897+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:09:16.859+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:09:17.918+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:10:26.797+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:11:19.897+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:11:21.021+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unavailable desc = connection error: desc = \"transport: Error while dialing: dial tcp: lookup user-service on 127.0.0.53:53: server misbehaving\""}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:14:08.736+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-17T17:14:49.608+0500	ERROR	v1/registration.go:148	cannot set redis
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:148
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:15:31.854+0500	INFO	app/main.go:27	Listen: 	{"address": ":8080"}
+2024-05-17T17:21:37.462+0500	ERROR	v1/registration.go:148	cannot set redis
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:148
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:22:41.876+0500	INFO	app/main.go:27	Listen: 	{"address": "127.0.0.1:8080"}
+2024-05-17T17:26:08.061+0500	ERROR	v1/registration.go:148	cannot set redis
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:148
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:33:16.480+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T17:34:11.894+0500	ERROR	v1/registration.go:87	failed to check uniqueness: 	{"error": "rpc error: code = Unimplemented desc = unknown service UserService"}
+api-gateway/api/handlers/v1.(*HandlerV1).Register
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/registration.go:87
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:35:21.540+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T17:38:55.710+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T17:45:17.098+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T17:48:33.786+0500	FATAL	v1/product.go:65	Create product error
+api-gateway/api/handlers/v1.HandlerV1.CreateProduct
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/product.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:48:56.096+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T17:50:41.727+0500	FATAL	v1/product.go:65	Create product error
+api-gateway/api/handlers/v1.HandlerV1.CreateProduct
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/handlers/v1/product.go:65
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+api-gateway/api/middleware.Tracing
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/api/middleware/tracing.go:34
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.CustomRecoveryWithWriter.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/recovery.go:102
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.LoggerWithConfig.func1
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/logger.go:240
+github.com/gin-gonic/gin.(*Context).Next
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/context.go:174
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:620
+github.com/gin-gonic/gin.(*Engine).ServeHTTP
+	/home/asadbek/Documents/go/pkg/mod/github.com/gin-gonic/gin@v1.9.1/gin.go:576
+net/http.serverHandler.ServeHTTP
+	/snap/go/10603/src/net/http/server.go:3137
+net/http.(*conn).serve
+	/snap/go/10603/src/net/http/server.go:2039
+2024-05-17T17:52:49.277+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T17:54:50.657+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:01:15.208+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:10:04.090+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:12:22.389+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:22:37.869+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:23:35.027+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:26:36.347+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:31:25.158+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:33:07.962+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:34:58.596+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:37:41.920+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:39:11.721+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:40:20.300+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T18:40:47.838+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:18:26.067+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:18:54.352+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:24:03.212+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:24:19.699+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:24:27.754+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:24:35.329+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:24:44.567+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:33:39.857+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:42:58.781+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:44:10.894+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:44:10.896+0500	ERROR	app/main.go:29	app run	{"error": "listen tcp 127.0.0.1:8080: bind: address already in use"}
+main.main.func1
+	/home/asadbek/Documents/go/src/wcrm-project/wcrm/api-gateway/cmd/app/main.go:29
+2024-05-17T19:44:18.078+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T19:51:48.609+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}
+2024-05-17T20:00:04.727+0500	INFO	app/main.go:27	Listen: 	{"address": "localhost:8080"}

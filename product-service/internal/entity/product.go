@@ -25,7 +25,7 @@ type ProductWithCategoryId struct {
 	Price       int64
 	Discount    int64
 	Picture     string
-	CategoryId  int64
+	CategoryId  string
 	CreatedAt   time.Time
 	UpdatedAt   time.Time
 	DeletedAt   time.Time

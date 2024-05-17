@@ -15,9 +15,16 @@ type Category struct {
 }
 
 type UpdateCategory struct {
-	Id    string `json:"id"`
-	Name  string `json:"name"`
-	Image string `json:"image"`
+	Id      string `json:"id"`
+	OwnerId string `json:"owner_id"`
+	Name    string `json:"name"`
+	Image   string `json:"image"`
+}
+
+type CategoryListRequset struct {
+	Page    int64  `json:"page"`
+	Limit   int64  `json:"limit"`
+	OwnerId string `json:"owner_id"`
 }
 
 type CategoryList struct {
