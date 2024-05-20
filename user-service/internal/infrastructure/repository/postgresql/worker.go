@@ -200,8 +200,8 @@ func (p workersRepo) List(ctx context.Context, limit uint64, offset uint64, filt
 	defer rows.Close()
 
 	var count int
-	query = `SELECT COUNT(*) FROM workers`
-	err = p.db.QueryRow(ctx, query).Scan(&count)
+	query = `SELECT COUNT(*) FROM workers WHERE owner_id = $1`
+	err = p.db.QueryRow(ctx, query, filter["owner_id"]).Scan(&count)
 	if err != nil {
 		return nil, p.db.Error(err)
 	}
