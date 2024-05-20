@@ -11,6 +11,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/k0kubun/pp"
 	"github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
 )
@@ -203,6 +204,7 @@ func (h *HandlerV1) ListWorker(c *gin.Context) {
 	page := c.Param("page")
 	limit := c.Param("limit")
 	ownerId := c.Param("owner-id")
+	pp.Println("OWNER ID IN API GATEWAY: ", ownerId)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()

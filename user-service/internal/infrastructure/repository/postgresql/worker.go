@@ -172,7 +172,7 @@ func (p workersRepo) Delete(ctx context.Context, guid string) (*entity.CheckResp
 func (p workersRepo) List(ctx context.Context, limit uint64, offset uint64, filter map[string]string) (*entity.AllWorker, error) {
 	ctx, span := otlp.Start(ctx, workersServiceName, workersSpanRepoPrefix+"Create")
 	defer span.End()
-	fmt.Println(filter["owner_id"])
+	fmt.Println("OWNER ID IN POSTGRES REPO", filter["owner_id"])
 
 	queryBuilder := p.workersSelectQueryPrefix()
 

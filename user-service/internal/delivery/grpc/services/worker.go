@@ -8,6 +8,7 @@ import (
 
 	"user-service/internal/pkg/otlp"
 
+	"github.com/k0kubun/pp"
 	"go.opentelemetry.io/otel/attribute"
 )
 
@@ -125,8 +126,7 @@ func (s userRPC) ListWorker(ctx context.Context, in *userproto.GetAllWorkerReque
 	ctx, span := otlp.Start(ctx, "user_grpc-delivery", "ListWorker")
 	defer span.End()
 	//tracing end
-
-
+	pp.Println("OWNER ID: ", in.Filter["owner_id"])
 
 	offset := in.Limit * (in.Page - 1)
 	workers, err := s.workerUsecase.List(ctx, uint64(in.Limit), uint64(offset), in.Filter)
