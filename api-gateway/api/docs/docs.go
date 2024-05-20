@@ -1861,6 +1861,13 @@ const docTemplate = `{
                         "name": "limit",
                         "in": "path",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Owner ID od Worker",
+                        "name": "owner-id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -2484,6 +2491,9 @@ const docTemplate = `{
         "models.WorkerList": {
             "type": "object",
             "properties": {
+                "count": {
+                    "type": "integer"
+                },
                 "workers": {
                     "type": "array",
                     "items": {

@@ -386,6 +386,8 @@ definitions:
     type: object
   models.WorkerList:
     properties:
+      count:
+        type: integer
       workers:
         items:
           $ref: '#/definitions/models.Worker'
@@ -1562,6 +1564,11 @@ paths:
       - description: Limit Worker
         in: path
         name: limit
+        required: true
+        type: string
+      - description: Owner ID od Worker
+        in: path
+        name: owner-id
         required: true
         type: string
       produces:

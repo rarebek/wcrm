@@ -176,7 +176,16 @@ func (p workersRepo) List(ctx context.Context, limit uint64, offset uint64, filt
 	queryBuilder := p.workersSelectQueryPrefix()
 
 	if limit != 0 {
-		queryBuilder = queryBuilder.Limit(limit).Offset(offset).Where("deleted_at IS NULL")
+		queryBuilder = queryBuilder.Limit(limit).Offset(offset).Where(
+			squirrel.And{
+				squirrel.Eq{
+					"deleted_at": nil,
+				},
+				squirrel.Eq{
+					"owner_id": filter["owner_id"],
+				},
+			},
+		)
 	}
 
 	query, args, err := queryBuilder.ToSql()

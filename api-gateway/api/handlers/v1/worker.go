@@ -191,6 +191,7 @@ func (h *HandlerV1) DeleteWorker(c *gin.Context) {
 // @Produce 		json
 // @Param 			page path string true "Page Worker"
 // @Param 			limit path string true "Limit Worker"
+// @Param 			owner-id path string true "Owner ID od Worker"
 // @Success 		200 {object} models.WorkerList
 // @Failure 		404 {object} models.StandartError
 // @Failure 		500 {object} models.StandartError
@@ -201,13 +202,19 @@ func (h *HandlerV1) ListWorker(c *gin.Context) {
 
 	page := c.Param("page")
 	limit := c.Param("limit")
+	ownerId := c.Param("owner-id")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 
+	filter := map[string]string{
+		"owner_id": ownerId,
+	}
+
 	response, err := h.Service.UserService().ListWorker(ctx, &pbu.GetAllWorkerRequest{
-		Page:  cast.ToInt64(page),
-		Limit: cast.ToInt64(limit),
+		Page:   cast.ToInt64(page),
+		Limit:  cast.ToInt64(limit),
+		Filter: filter,
 	})
 
 	if err != nil {
