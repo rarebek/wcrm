@@ -126,8 +126,10 @@ func (s userRPC) ListWorker(ctx context.Context, in *userproto.GetAllWorkerReque
 	defer span.End()
 	//tracing end
 
+
+
 	offset := in.Limit * (in.Page - 1)
-	workers, err := s.workerUsecase.List(ctx, uint64(in.Limit), uint64(offset), map[string]string{})
+	workers, err := s.workerUsecase.List(ctx, uint64(in.Limit), uint64(offset), in.Filter)
 	if err != nil {
 		s.logger.Error(err.Error())
 		return nil, err
