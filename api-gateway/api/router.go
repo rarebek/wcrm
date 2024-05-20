@@ -97,7 +97,7 @@ func NewRoute(option RouteOption) *gin.Engine {
 	api.GET("/worker/get/:id", HandlerV1.GetWorker)
 	api.PUT("/worker/update", HandlerV1.UpdateWorker)
 	api.DELETE("/worker/delete/:id", HandlerV1.DeleteWorker)
-	api.GET("/workers/get/:page/:limit", HandlerV1.ListWorker)
+	api.GET("/workers/get/:page/:limit/:owner-id", HandlerV1.ListWorker)
 
 	// order
 	api.POST("/order/create", HandlerV1.CreateOrder)

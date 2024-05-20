@@ -195,7 +195,7 @@ func (h *HandlerV1) DeleteWorker(c *gin.Context) {
 // @Success 		200 {object} models.WorkerList
 // @Failure 		404 {object} models.StandartError
 // @Failure 		500 {object} models.StandartError
-// @Router 			/v1/workers/get/{page}/{limit} [GET]
+// @Router 			/v1/workers/get/{page}/{limit}/{owner-id} [GET]
 func (h *HandlerV1) ListWorker(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true

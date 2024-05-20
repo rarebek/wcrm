@@ -30,7 +30,7 @@ p, owner, /v1/worker/create, POST
 p, owner, /v1/worker/get/{id}, GET
 p, owner, /v1/worker/update, PUT
 p, owner, /v1/worker/delete/{id}, DELETE
-p, owner, /v1/workers/get/{page}/{limit}, GET
+p, owner, /v1/workers/get/{page}/{limit}/{owner-id}, GET
 p, owner, /v1/order/create, POST
 p, owner, /v1/order/get/{id}, GET
 p, owner, /v1/order/update, PUT

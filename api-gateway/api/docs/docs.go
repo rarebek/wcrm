@@ -1829,7 +1829,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/workers/get/{page}/{limit}": {
+        "/v1/workers/get/{page}/{limit}/{owner-id}": {
             "get": {
                 "security": [
                     {
