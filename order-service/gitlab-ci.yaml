@@ -1,0 +1,42 @@
+.build_environment:
+  image: zafar682/goclang
+
+.deploy_environment:
+  image: docker:19.03.1-dind
+
+variables:
+  GO_VERSION: "1.20"
+
+stages:
+  - build_dev
+  - lint
+  - deploy_dev
+
+build_dev:
+  only:
+    - dev
+  tags:
+    - base-runner
+  stage: build_dev
+  extends: .deploy_environment
+  script:
+    - docker build -t wcrm-order/backend .
+
+deploy_dev:
+  stage: deploy_dev
+  only:
+    - dev
+  tags:
+    - base-runner
+  extends: .deploy_environment
+  script:
+    - docker service update --image wcrm-order/backend:latest dev_wcrm-order --force
+  environment: dev
+
+lint:
+  stage: lint
+  image: golangci/golangci-lint:v1.50.1
+  script:
+    - echo "Linting Go code..."
+    - golangci-lint run
+  allow_failure: false

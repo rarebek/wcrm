@@ -22,6 +22,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/k0kubun/pp"
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
@@ -131,10 +132,11 @@ func (h *HandlerV1) Register(c *gin.Context) {
 	tpl.Execute(&buf, data)
 	htmlContent := buf.Bytes()
 
-	auth := smtp.PlainAuth("", "asadfaxriddinov611@gmail.com", "drkeagdlwrfanrdp", "smtp.gmail.com")
-	err = smtp.SendMail("smtp.gmail.com:587", auth, "asadfaxriddinov611@gmail.com", []string{body.Email}, []byte("To: "+body.Email+"\r\nSubject: Email verification\r\nMIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"+string(htmlContent)))
+	auth := smtp.PlainAuth("", "nodirbekgolang@gmail.com", "jgbu bsru qcha buko", "smtp.gmail.com")
+	err = smtp.SendMail("smtp.gmail.com:587", auth, "nodirbekgolang@gmail.com", []string{body.Email}, []byte("To: "+body.Email+"\r\nSubject: Email verification\r\nMIME-version: 1.0;\nContent-Type: text/html; charset=\"UTF-8\";\n\n"+string(htmlContent)))
 
 	if err != nil {
+		pp.Println(err)
 		h.Logger.Error("error writing redis")
 		return
 	}

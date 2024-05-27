@@ -206,7 +206,7 @@ func NewConfig() Config {
 	// USER
 	config.UserService.Host = getEnv("USER_SERVICE_GRPC_HOST", "user-service")
 	config.UserService.Port = getEnv("USER_SERVICE_GRPC_PORT", ":2222")
-
+ 
 	// PRODUCT
 	config.ProductService.Host = getEnv("PRODUCT_SERVICE_GRPC_HOST", "product-service")
 	config.ProductService.Port = getEnv("PRODUCT_SERVICE_GRPC_PORT", ":1111")
