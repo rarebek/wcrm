@@ -462,5 +462,6 @@ func (h *HandlerV1) LogInWorker(c *gin.Context) {
 		AccessToken: access,
 		WorkerId:    resWorker.Id,
 		Role:        "worker",
+		OwnerId:     resWorker.OwnerId,
 	})
 }
