@@ -1984,7 +1984,13 @@ const docTemplate = `{
                 "discount": {
                     "type": "integer"
                 },
-                "product_id": {
+                "product_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "table_number": {
                     "type": "integer"
                 },
                 "tax": {
@@ -1994,7 +2000,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "worker_id": {
-                    "type": "integer"
+                    "type": "string"
                 }
             }
         },
@@ -2140,8 +2146,11 @@ const docTemplate = `{
                 "id": {
                     "type": "integer"
                 },
-                "product_id": {
-                    "type": "integer"
+                "product_ids": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "tax": {
                     "type": "integer"
@@ -2383,7 +2392,7 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "tax": {
                     "type": "integer"

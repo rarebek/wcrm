@@ -57,14 +57,18 @@ definitions:
     properties:
       discount:
         type: integer
-      product_id:
+      product_ids:
+        items:
+          type: string
+        type: array
+      table_number:
         type: integer
       tax:
         type: integer
       total_price:
         type: integer
       worker_id:
-        type: integer
+        type: string
     type: object
   models.CreateOwner:
     properties:
@@ -158,8 +162,10 @@ definitions:
         type: integer
       id:
         type: integer
-      product_id:
-        type: integer
+      product_ids:
+        items:
+          type: string
+        type: array
       tax:
         type: integer
       total_price:
@@ -316,7 +322,7 @@ definitions:
       discount:
         type: integer
       id:
-        type: integer
+        type: string
       tax:
         type: integer
       total_price:
