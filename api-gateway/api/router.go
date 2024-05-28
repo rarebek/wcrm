@@ -15,7 +15,6 @@ import (
 
 	grpcClients "api-gateway/internal/infrastructure/grpc_service_client"
 	"api-gateway/internal/pkg/config"
-	tokens "api-gateway/internal/pkg/token"
 )
 
 type RouteOption struct {
@@ -44,13 +43,13 @@ func NewRoute(option RouteOption) *gin.Engine {
 	corsConfig.AllowMethods = []string{"*"}
 	router.Use(cors.New(corsConfig))
 
-	jwtHandler := tokens.JWTHandler{
-		SigninKey: option.Config.SigningKey,
-	}
+	// jwtHandler := tokens.JWTHandler{
+	// 	SigninKey: option.Config.SigningKey,
+	// }
 
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
-	router.Use(middleware.NewAuthorizer(option.CasbinEnforcer, jwtHandler, *option.Config))
+	// router.Use(middleware.NewAuthorizer(option.CasbinEnforcer, jwtHandler, *option.Config))
 
 	HandlerV1 := v1.New(&v1.HandlerV1Config{
 		Config:         option.Config,

@@ -17,7 +17,6 @@ p, owner, /v1/owner/create, POST
 p, owner, /v1/category/get/{id}, GET
 p, owner, /v1/category/update, PUT
 p, owner, /v1/category/delete/{id}, DELETE
-p, worker, /v1/category/getall, POST
 p, owner, /v1/category/getall, POST
 p, owner, /v1/owner/get/{id}, GET
 p, owner, /v1/owner/update, PUT
