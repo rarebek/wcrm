@@ -461,5 +461,6 @@ func (h *HandlerV1) LogInWorker(c *gin.Context) {
 	c.JSON(http.StatusOK, models.ResponseAccessToken{
 		AccessToken: access,
 		WorkerId:    resWorker.Id,
+		Role:        "worker",
 	})
 }

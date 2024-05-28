@@ -2309,6 +2309,9 @@ const docTemplate = `{
                 "access_token": {
                     "type": "string"
                 },
+                "role": {
+                    "type": "string"
+                },
                 "worker_id": {
                     "type": "string"
                 }

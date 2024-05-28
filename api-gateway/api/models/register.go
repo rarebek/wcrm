@@ -34,6 +34,7 @@ type OwnerResponse struct {
 type ResponseAccessToken struct {
 	AccessToken string `json:"access_token"`
 	WorkerId    string `json:"worker_id"`
+	Role        string `json:"role"`
 }
 
 type ResponseOwnerLogin struct {
