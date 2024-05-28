@@ -274,6 +274,8 @@ definitions:
     properties:
       access_token:
         type: string
+      owner_id:
+        type: string
       role:
         type: string
       worker_id:

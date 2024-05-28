@@ -2318,6 +2318,9 @@ const docTemplate = `{
                 "access_token": {
                     "type": "string"
                 },
+                "owner_id": {
+                    "type": "string"
+                },
                 "role": {
                     "type": "string"
                 },
