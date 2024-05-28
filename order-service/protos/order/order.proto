@@ -1,39 +1,46 @@
 syntax = "proto3";
 
+
 option go_package = ".";
+
 
 service OrderService{
   rpc CreateOrder(Order) returns (Order);
   rpc UpdateOrder(Order) returns (Order);
-  rpc DeleteOrder(Id) returns (DeleteStatus);
-  rpc GetOrder(Id) returns (Order);
-  rpc GetOrders(GetAllRequest) returns (GetAllResponse);
+  rpc DeleteOrder(OrderId) returns (Empty);
+  rpc GetOrder(OrderId) returns (Order);
+  rpc GetOrders(GetAllOrderRequest) returns (GetAllOrderResponse);
 }
 
-message Order{
-  int64 id = 1;
+message Empty {
+
+}
+
+message Order {
+  string id = 1;
   string workerId = 2;
-  int64 productId = 3;
-  int64 tax = 4;
-  int64 discount = 5;
-  int64 totalPrice = 6;
-  string createdAt = 7;
-  string updatedAt = 8;
+  repeated string product_ids = 3;
+  int64 table_number = 4;
+  int64 tax = 5;
+  int64 discount = 6;
+  int64 totalPrice = 7;
+  string createdAt = 8;
+  string updatedAt = 9;
 }
 
-message DeleteStatus {
-  bool Status = 1;
+message OrderId{
+  string id = 1;
 }
 
-message Id{
-  int64 id = 1;
-}
-
-message GetAllRequest{
+message GetAllOrderRequest{
   int64 page = 1;
   int64 limit = 2;
 }
 
-message GetAllResponse{
+message GetAllOrderResponse{
   repeated Order orders = 1;
+}
+
+message DeleteStatus {
+  bool status = 1;
 }

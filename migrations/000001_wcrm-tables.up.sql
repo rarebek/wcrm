@@ -33,15 +33,16 @@ CREATE TABLE IF NOT EXISTS categories_products (
 
 
 CREATE TABLE IF NOT EXISTS orders (
-    id UUID PRIMARY KEY, 
+    id UUID PRIMARY KEY,
     worker_id UUID,
-    product_id SERIAL,
+    product_ids JSONB,
     tax INT,
     discount INT,
     total_price INT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 
 CREATE TABLE orders_products(
     id SERIAL PRIMARY KEY,

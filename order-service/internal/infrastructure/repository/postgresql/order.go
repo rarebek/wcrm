@@ -2,7 +2,9 @@ package postgresql
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+
 	// "projects/order-service/genproto/order"
 	"projects/order-service/internal/entity"
 
@@ -49,13 +51,20 @@ func (p *orderRepo) orderSelectQueryPrefix() squirrel.SelectBuilder {
 		).From(p.tableName)
 }
 
-func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entity.Order, error) {
+func (p *orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entity.Order, error) {
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Create")
 	span.SetAttributes(attribute.String("create", "order"))
 	defer span.End()
-	data := map[string]any{
+
+	// Convert ProductIds to JSONB
+	productIdsJSON, err := json.Marshal(order.ProductIds)
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal product ids: %w", err)
+	}
+
+	data := map[string]interface{}{
 		"worker_id":   order.WorkerId,
-		"product_id":  order.ProductId,
+		"product_ids": productIdsJSON,
 		"tax":         order.Tax,
 		"discount":    order.Discount,
 		"total_price": order.TotalPrice,
@@ -63,20 +72,18 @@ func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entit
 		"updated_at":  order.UpdatedAt,
 	}
 
-	query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).ToSql()
+	query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).Suffix("RETURNING id, worker_id, product_ids, tax, discount, total_price, created_at, updated_at").ToSql()
 	if err != nil {
-		return &entity.Order{}, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
+		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
-	query += " RETURNING id, worker_id, product_id, tax, discount, total_price, created_at, updated_at"
 	row := p.db.QueryRow(ctx, query, args...)
-
 	var createdOrder entity.Order
 
 	err = row.Scan(
 		&createdOrder.Id,
 		&createdOrder.WorkerId,
-		&createdOrder.ProductId,
+		&createdOrder.ProductIds,
 		&createdOrder.Tax,
 		&createdOrder.Discount,
 		&createdOrder.TotalPrice,
@@ -84,22 +91,7 @@ func (p orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*entit
 		&createdOrder.UpdatedAt,
 	)
 	if err != nil {
-		pp.Println(err.Error())
-		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.opTableName, "opcreate"))
-	}
-
-	orders_products_data := map[string]any{
-		"order_id":   createdOrder.Id,
-		"product_id": createdOrder.ProductId,
-	}
-
-	orders_products_query, orders_products_args, err := p.db.Sq.Builder.Insert(p.opTableName).SetMap(orders_products_data).ToSql()
-	if err != nil {
-		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.opTableName, "opcreate"))
-	}
-	_, err = p.db.Exec(ctx, orders_products_query, orders_products_args...)
-	if err != nil {
-		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.opTableName, "opcreate"))
+		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
 
 	return &createdOrder, nil
@@ -110,9 +102,7 @@ func (p orderRepo) GetOrder(ctx context.Context, id string) (*entity.Order, erro
 	span.SetAttributes(attribute.String("get", "order"))
 	defer span.End()
 
-	var (
-		order entity.Order
-	)
+	var order entity.Order
 
 	queryBuilder := p.orderSelectQueryPrefix()
 	sql, args, err := queryBuilder.Where(squirrel.Eq{"id": id}).ToSql()
@@ -123,7 +113,7 @@ func (p orderRepo) GetOrder(ctx context.Context, id string) (*entity.Order, erro
 	if err = p.db.QueryRow(ctx, sql, args...).Scan(
 		&order.Id,
 		&order.WorkerId,
-		&order.ProductId,
+		&order.ProductIds,
 		&order.Tax,
 		&order.Discount,
 		&order.TotalPrice,
@@ -140,9 +130,8 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Gets")
 	span.SetAttributes(attribute.String("gets", "order"))
 	defer span.End()
-	var (
-		orders []*entity.Order
-	)
+
+	var orders []*entity.Order
 	queryBuilder := p.orderSelectQueryPrefix()
 
 	if limit != 0 {
@@ -158,13 +147,14 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 		return nil, p.db.Error(err)
 	}
 	defer rows.Close()
+
 	orders = make([]*entity.Order, 0)
 	for rows.Next() {
 		var order entity.Order
 		if err = rows.Scan(
 			&order.Id,
 			&order.WorkerId,
-			&order.ProductId,
+			&order.ProductIds,
 			&order.Tax,
 			&order.Discount,
 			&order.TotalPrice,
@@ -184,7 +174,14 @@ func (p orderRepo) UpdateOrder(ctx context.Context, order *entity.Order) (*entit
 	span.SetAttributes(attribute.String("update", "order"))
 	defer span.End()
 	pp.Println("ORDER", order)
-	clauses := map[string]any{
+
+	productIdsJSON, err := json.Marshal(order.ProductIds)
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal product ids: %w", err)
+	}
+
+	clauses := map[string]interface{}{
+		"product_ids": productIdsJSON,
 		"tax":         order.Tax,
 		"discount":    order.Discount,
 		"total_price": order.TotalPrice,
@@ -201,7 +198,7 @@ func (p orderRepo) UpdateOrder(ctx context.Context, order *entity.Order) (*entit
 		return nil, p.db.ErrSQLBuild(err, p.tableName+" update")
 	}
 
-	query += " RETURNING id, worker_id, product_id, tax, discount, total_price, created_at, updated_at"
+	query += " RETURNING id, worker_id, product_ids, tax, discount, total_price, created_at, updated_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
 
@@ -210,7 +207,7 @@ func (p orderRepo) UpdateOrder(ctx context.Context, order *entity.Order) (*entit
 	err = row.Scan(
 		&updated.Id,
 		&updated.WorkerId,
-		&updated.ProductId,
+		&updated.ProductIds,
 		&updated.Tax,
 		&updated.Discount,
 		&updated.TotalPrice,
@@ -230,19 +227,6 @@ func (p orderRepo) DeleteOrder(ctx context.Context, id string) error {
 	defer span.End()
 
 	sqlStr, args, err := p.db.Sq.Builder.
-		Delete(p.opTableName).
-		Where(p.db.Sq.Equal("order_id", id)).
-		ToSql()
-	if err != nil {
-		return p.db.ErrSQLBuild(err, p.tableName+" delete")
-	}
-
-	commandTag, err := p.db.Exec(ctx, sqlStr, args...)
-	if err != nil {
-		return p.db.Error(err)
-	}
-
-	sqlStr, args, err = p.db.Sq.Builder.
 		Delete(p.tableName).
 		Where(p.db.Sq.Equal("id", id)).
 		ToSql()
@@ -250,7 +234,7 @@ func (p orderRepo) DeleteOrder(ctx context.Context, id string) error {
 		return p.db.ErrSQLBuild(err, p.tableName+" delete")
 	}
 
-	commandTag, err = p.db.Exec(ctx, sqlStr, args...)
+	commandTag, err := p.db.Exec(ctx, sqlStr, args...)
 	if err != nil {
 		return p.db.Error(err)
 	}

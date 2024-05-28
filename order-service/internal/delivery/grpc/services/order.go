@@ -2,14 +2,14 @@ package services
 
 import (
 	"context"
-	"github.com/k0kubun/pp"
 	pb "projects/order-service/genproto/order"
 	"projects/order-service/internal/entity"
 	"projects/order-service/internal/pkg/otlp"
 	"projects/order-service/internal/usecase"
 	"projects/order-service/internal/usecase/event"
-	"strconv"
 	"time"
+
+	"github.com/k0kubun/pp"
 
 	"go.opentelemetry.io/otel/attribute"
 	"go.uber.org/zap"
@@ -41,10 +41,10 @@ func (u orderRPC) CreateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 	span.SetAttributes(attribute.String("create", "order"))
 	defer span.End()
 
-	req_order := entity.Order{
-		Id:         int(order.Id),
+	reqOrder := entity.Order{
+		Id:         order.Id,
 		WorkerId:   order.WorkerId,
-		ProductId:  order.ProductId,
+		ProductIds: order.ProductIds,
 		Tax:        order.Tax,
 		Discount:   order.Discount,
 		TotalPrice: order.TotalPrice,
@@ -52,39 +52,39 @@ func (u orderRPC) CreateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 		UpdatedAt:  time.Now(),
 	}
 
-	res_ordered, err := u.order.CreateOrder(ctx, &req_order)
+	resOrdered, err := u.order.CreateOrder(ctx, &reqOrder)
 	if err != nil {
 		u.logger.Error("Create order error", zap.Error(err))
 		return &pb.Order{}, nil
 	}
 
 	return &pb.Order{
-		Id:         int64(res_ordered.Id),
-		WorkerId:   res_ordered.WorkerId,
-		ProductId:  res_ordered.ProductId,
-		Tax:        res_ordered.Tax,
-		Discount:   res_ordered.Discount,
-		TotalPrice: res_ordered.TotalPrice,
-		CreatedAt:  res_ordered.CreatedAt.Format("2006-01-02 15:04:05"),
-		UpdatedAt:  res_ordered.UpdatedAt.Format("2006-01-02 15:04:05"),
+		Id:         resOrdered.Id,
+		WorkerId:   resOrdered.WorkerId,
+		ProductIds: resOrdered.ProductIds,
+		Tax:        resOrdered.Tax,
+		Discount:   resOrdered.Discount,
+		TotalPrice: resOrdered.TotalPrice,
+		CreatedAt:  resOrdered.CreatedAt.Format("2006-01-02 15:04:05"),
+		UpdatedAt:  resOrdered.UpdatedAt.Format("2006-01-02 15:04:05"),
 	}, nil
 }
-func (u orderRPC) GetOrder(ctx context.Context, id *pb.Id) (*pb.Order, error) {
+
+func (u orderRPC) GetOrder(ctx context.Context, id *pb.OrderId) (*pb.Order, error) {
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Get")
 	span.SetAttributes(attribute.String("get", "order"))
 	defer span.End()
 
-	res, err := u.order.GetOrder(ctx, strconv.FormatInt(id.Id, 10))
-
+	res, err := u.order.GetOrder(ctx, id.Id)
 	if err != nil {
 		u.logger.Error("get order error", zap.Error(err))
 		return &pb.Order{}, nil
 	}
 
 	return &pb.Order{
-		Id:         id.Id,
+		Id:         res.Id,
 		WorkerId:   res.WorkerId,
-		ProductId:  res.ProductId,
+		ProductIds: res.ProductIds,
 		Tax:        res.Tax,
 		Discount:   res.Discount,
 		TotalPrice: res.TotalPrice,
@@ -92,28 +92,30 @@ func (u orderRPC) GetOrder(ctx context.Context, id *pb.Id) (*pb.Order, error) {
 		UpdatedAt:  res.UpdatedAt.String(),
 	}, nil
 }
-func (u orderRPC) DeleteOrder(ctx context.Context, id *pb.Id) (*pb.DeleteStatus, error) {
+
+func (u orderRPC) DeleteOrder(ctx context.Context, id *pb.OrderId) (*pb.Empty, error) {
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Delete")
 	span.SetAttributes(attribute.String("delete", "order"))
 	defer span.End()
 
-	err := u.order.DeleteOrder(ctx, strconv.FormatInt(id.Id, 10))
+	err := u.order.DeleteOrder(ctx, id.Id)
 	if err != nil {
 		u.logger.Error("delete order error", zap.Error(err))
-		return &pb.DeleteStatus{Status: false}, nil
+		return &pb.Empty{}, nil
 	}
 
-	return &pb.DeleteStatus{Status: true}, nil
+	return &pb.Empty{}, nil
 }
+
 func (u orderRPC) UpdateOrder(ctx context.Context, order *pb.Order) (*pb.Order, error) {
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Update")
 	span.SetAttributes(attribute.String("update", "order"))
 	defer span.End()
 
 	updated_order := entity.Order{
-		Id:         int(order.Id),
+		Id:         order.Id,
 		WorkerId:   order.WorkerId,
-		ProductId:  order.ProductId,
+		ProductIds: order.ProductIds,
 		Tax:        order.Tax,
 		Discount:   order.Discount,
 		TotalPrice: order.TotalPrice,
@@ -127,9 +129,9 @@ func (u orderRPC) UpdateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 	}
 
 	return &pb.Order{
-		Id:         int64(updated_ordered.Id),
+		Id:         updated_order.Id,
 		WorkerId:   updated_ordered.WorkerId,
-		ProductId:  updated_ordered.ProductId,
+		ProductIds: updated_ordered.ProductIds,
 		Tax:        updated_ordered.Tax,
 		Discount:   updated_ordered.Discount,
 		TotalPrice: updated_ordered.TotalPrice,
@@ -137,7 +139,7 @@ func (u orderRPC) UpdateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 		UpdatedAt:  updated_ordered.UpdatedAt.Format("2006-01-02 15:04:05"),
 	}, nil
 }
-func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllRequest) (*pb.GetAllResponse, error) {
+func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllOrderRequest) (*pb.GetAllOrderResponse, error) {
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Gets")
 	span.SetAttributes(attribute.String("gets", "order"))
 	defer span.End()
@@ -152,13 +154,13 @@ func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllRequest) (*pb.Get
 		return nil, err
 	}
 
-	var orders pb.GetAllResponse
+	var orders pb.GetAllOrderResponse
 
 	for _, in := range res_orders {
 		orders.Orders = append(orders.Orders, &pb.Order{
-			Id:         int64(in.Id),
+			Id:         in.Id,
 			WorkerId:   in.WorkerId,
-			ProductId:  in.ProductId,
+			ProductIds: in.ProductIds,
 			Tax:        in.Tax,
 			Discount:   in.Discount,
 			TotalPrice: in.TotalPrice,

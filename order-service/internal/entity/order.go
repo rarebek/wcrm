@@ -5,12 +5,16 @@ import (
 )
 
 type Order struct {
-	Id         int
+	Id         string
 	WorkerId   string
-	ProductId  int64
+	ProductIds []string
 	Tax        int64
 	Discount   int64
 	TotalPrice int64
 	CreatedAt  time.Time
 	UpdatedAt  time.Time
+}
+
+type DeleteStatus struct {
+	Status bool
 }

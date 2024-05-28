@@ -24,7 +24,7 @@ const _ = grpc.SupportPackageIsVersion7
 type OrderServiceClient interface {
 	CreateOrder(ctx context.Context, in *Order, opts ...grpc.CallOption) (*Order, error)
 	UpdateOrder(ctx context.Context, in *Order, opts ...grpc.CallOption) (*Order, error)
-	DeleteOrder(ctx context.Context, in *OrderId, opts ...grpc.CallOption) (*Order, error)
+	DeleteOrder(ctx context.Context, in *OrderId, opts ...grpc.CallOption) (*Empty, error)
 	GetOrder(ctx context.Context, in *OrderId, opts ...grpc.CallOption) (*Order, error)
 	GetOrders(ctx context.Context, in *GetAllOrderRequest, opts ...grpc.CallOption) (*GetAllOrderResponse, error)
 }
@@ -55,8 +55,8 @@ func (c *orderServiceClient) UpdateOrder(ctx context.Context, in *Order, opts ..
 	return out, nil
 }
 
-func (c *orderServiceClient) DeleteOrder(ctx context.Context, in *OrderId, opts ...grpc.CallOption) (*Order, error) {
-	out := new(Order)
+func (c *orderServiceClient) DeleteOrder(ctx context.Context, in *OrderId, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
 	err := c.cc.Invoke(ctx, "/OrderService/DeleteOrder", in, out, opts...)
 	if err != nil {
 		return nil, err
@@ -88,7 +88,7 @@ func (c *orderServiceClient) GetOrders(ctx context.Context, in *GetAllOrderReque
 type OrderServiceServer interface {
 	CreateOrder(context.Context, *Order) (*Order, error)
 	UpdateOrder(context.Context, *Order) (*Order, error)
-	DeleteOrder(context.Context, *OrderId) (*Order, error)
+	DeleteOrder(context.Context, *OrderId) (*Empty, error)
 	GetOrder(context.Context, *OrderId) (*Order, error)
 	GetOrders(context.Context, *GetAllOrderRequest) (*GetAllOrderResponse, error)
 	mustEmbedUnimplementedOrderServiceServer()
@@ -104,7 +104,7 @@ func (UnimplementedOrderServiceServer) CreateOrder(context.Context, *Order) (*Or
 func (UnimplementedOrderServiceServer) UpdateOrder(context.Context, *Order) (*Order, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateOrder not implemented")
 }
-func (UnimplementedOrderServiceServer) DeleteOrder(context.Context, *OrderId) (*Order, error) {
+func (UnimplementedOrderServiceServer) DeleteOrder(context.Context, *OrderId) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOrder not implemented")
 }
 func (UnimplementedOrderServiceServer) GetOrder(context.Context, *OrderId) (*Order, error) {

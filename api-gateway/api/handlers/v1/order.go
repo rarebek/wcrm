@@ -44,11 +44,12 @@ func (h HandlerV1) CreateOrder(c *gin.Context) {
 	defer cancel()
 
 	response, err := h.Service.OrderService().CreateOrder(ctx, &pbo.Order{
-		WorkerId:   body.WorkerId,
-		ProductId:  body.ProductId,
-		Tax:        body.Tax,
-		Discount:   body.Discount,
-		TotalPrice: body.TotalPrice,
+		WorkerId:    body.WorkerId,
+		ProductIds:  body.ProductIds,
+		TableNumber: body.TableNumber,
+		Tax:         body.Tax,
+		Discount:    body.Discount,
+		TotalPrice:  body.TotalPrice,
 	})
 
 	if err != nil {
@@ -82,7 +83,7 @@ func (h *HandlerV1) GetOrder(c *gin.Context) {
 	defer cancel()
 
 	response, err := h.Service.OrderService().GetOrder(ctx, &pbo.OrderId{
-		Id: cast.ToInt64(id),
+		Id: id,
 	})
 
 	if err != nil {
@@ -162,7 +163,7 @@ func (h *HandlerV1) DeleteOrder(c *gin.Context) {
 	defer cancel()
 
 	response, err := h.Service.OrderService().DeleteOrder(ctx, &pbo.OrderId{
-		Id: cast.ToInt64(id),
+		Id: id,
 	})
 
 	if err != nil {
