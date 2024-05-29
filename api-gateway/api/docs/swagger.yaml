@@ -198,6 +198,8 @@ definitions:
         items:
           $ref: '#/definitions/models.Order'
         type: array
+      worker_name:
+        type: string
     type: object
   models.Owner:
     properties:

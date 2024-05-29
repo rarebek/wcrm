@@ -21,8 +21,9 @@ type GetOrderResponse struct {
 	CreatedAt  string   `json:"created_at"`
 }
 
-type OrderList struct {
-	Orders []Order `json:"orders"`
+type OrderList struct {	
+	Orders     []Order `json:"orders"`
+	WorkerName string  `json:"worker_name"`
 }
 
 type CreateOrder struct {

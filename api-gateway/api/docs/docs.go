@@ -2207,6 +2207,9 @@ const docTemplate = `{
                     "items": {
                         "$ref": "#/definitions/models.Order"
                     }
+                },
+                "worker_name": {
+                    "type": "string"
                 }
             }
         },
