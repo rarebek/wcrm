@@ -74,13 +74,12 @@ func sendInvoice(bot *tgbotapi.BotAPI, chatID int64) {
 	invoice := tgbotapi.NewInvoice(chatID,
 		strings.Join(productNames, ", "),
 		"Description of products",
-		"payload", // Unique payload identifier
-		"398062629:TEST:999999999_F91D8F69C042267444B74CC0B3C747757EB0E065", // Replace with your actual provider token from @BotFather
-		"StartParam", // Unique deep-linking parameter
-		"UZS",        // Currency code
+		"payload", 
+		"398062629:TEST:999999999_F91D8F69C042267444B74CC0B3C747757EB0E065", 
+		"StartParam",
+		"UZS",       
 		prices)
 
-	// Add empty array for suggested tip amounts
 	invoice.SuggestedTipAmounts = []int{}
 
 	if _, err := bot.Send(invoice); err != nil {
@@ -89,7 +88,6 @@ func sendInvoice(bot *tgbotapi.BotAPI, chatID int64) {
 }
 
 func getProductsFromAPI() ([]Product, error) {
-	// Replace "your_api_endpoint" with the actual endpoint of your API
 	resp, err := http.Get("http://localhost:8080/products")
 	if err != nil {
 		return nil, err

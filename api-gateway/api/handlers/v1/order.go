@@ -4,19 +4,22 @@ import (
 	_ "api-gateway/api/docs"
 	"api-gateway/api/models"
 	pbo "api-gateway/genproto/order"
+	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/cast"
+
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
 // @Summary 		Create Order
 // @Security 		ApiKeyAuth
-// @Description 	Api for create oder
+// @Description 	Api for create order
 // @Tags 			Order
 // @Accept 			json
 // @Produce 		json
@@ -34,11 +37,11 @@ func (h HandlerV1) CreateOrder(c *gin.Context) {
 	jspbMarshal.UseProtoNames = true
 
 	err := c.ShouldBindJSON(&body)
-
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
+		return
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
@@ -67,6 +70,44 @@ func (h HandlerV1) CreateOrder(c *gin.Context) {
 		})
 		return
 	}
+
+	products := make([]models.Product, len(body.Products))
+	for i, p := range body.Products {
+		products[i] = models.Product{
+			Title: p.Title,
+			Price: p.Price,
+		}
+	}
+
+	go func(products []models.Product) {
+		productsURL := "http://localhost:8080/products"
+
+		jsonData, err := json.Marshal(products)
+		if err != nil {
+			fmt.Println("Failed to marshal products:", err)
+			return
+		}
+
+		req, err := http.NewRequest("POST", productsURL, bytes.NewBuffer(jsonData))
+		if err != nil {
+			fmt.Println("Failed to create request:", err)
+			return
+		}
+
+		req.Header.Set("Content-Type", "application/json")
+
+		client := &http.Client{}
+		resp, err := client.Do(req)
+		if err != nil {
+			fmt.Println("Failed to send request:", err)
+			return
+		}
+		defer resp.Body.Close()
+
+		if resp.StatusCode != http.StatusOK {
+			fmt.Println("Failed to send products, status code:", resp.StatusCode)
+		}
+	}(products)
 
 	c.JSON(http.StatusCreated, response)
 }
