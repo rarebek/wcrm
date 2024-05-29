@@ -7,12 +7,18 @@ import (
 type Order struct {
 	Id         string
 	WorkerId   string
+	WorkerName string
 	Products   []ProductCheck
 	Tax        int64
 	Discount   int64
 	TotalPrice int64
 	CreatedAt  time.Time
 	UpdatedAt  time.Time
+}
+
+type GetAllOrdersResponse struct {
+	Orders     []Order
+	WorkerName string
 }
 
 type ProductCheck struct {

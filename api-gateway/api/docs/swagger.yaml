@@ -143,6 +143,27 @@ definitions:
       page:
         type: integer
     type: object
+  models.GetOrderResponse:
+    properties:
+      created_at:
+        type: string
+      discount:
+        type: integer
+      id:
+        type: integer
+      product_ids:
+        items:
+          type: string
+        type: array
+      tax:
+        type: integer
+      total_price:
+        type: integer
+      worker_id:
+        type: integer
+      worker_name:
+        type: string
+    type: object
   models.LoginWorker:
     properties:
       company_name:
@@ -880,7 +901,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.Order'
+            $ref: '#/definitions/models.GetOrderResponse'
         "404":
           description: Not Found
           schema:

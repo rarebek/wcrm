@@ -156,7 +156,7 @@ func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllOrderRequest) (*p
 
 	for _, in := range res_orders {
 		var products []*pb.ProductCheck
-		for _, product := range in.Products {
+		for _, product := range in.Orders[0].Products {
 			pbProduct := &pb.ProductCheck{
 				Id:    product.Id,
 				Title: product.Title,
@@ -166,16 +166,53 @@ func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllOrderRequest) (*p
 			products = append(products, pbProduct)
 		}
 
-		orders.Orders = append(orders.Orders, &pb.Order{
-			Id:         in.Id,
-			WorkerId:   in.WorkerId,
+		pbOrder := &pb.GetOrderResponse{
+			Id:         in.Orders[0].Id,
+			WorkerId:   in.Orders[0].WorkerId,
+			WorkerName: in.WorkerName,
 			Products:   products,
-			Tax:        in.Tax,
-			TotalPrice: in.TotalPrice,
-			CreatedAt:  in.CreatedAt.String(),
-			UpdatedAt:  in.UpdatedAt.String(),
-		})
+			Tax:        in.Orders[0].Tax,
+			TotalPrice: in.Orders[0].TotalPrice,
+			CreatedAt:  in.Orders[0].CreatedAt.String(),
+			UpdatedAt:  in.Orders[0].UpdatedAt.String(),
+		}
+
+		orders.Orders = append(orders.Orders, pbOrder)
 	}
 
 	return &orders, nil
+}
+
+func (u orderRPC) GetOrder(ctx context.Context, id *pb.OrderId) (*pb.GetOrderResponse, error) {
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Get")
+	span.SetAttributes(attribute.String("get", "order"))
+	defer span.End()
+
+	order, err := u.order.GetOrder(ctx, id.Id)
+	if err != nil {
+		u.logger.Error("get order error", zap.Error(err))
+		return nil, err
+	}
+
+	var products []*pb.ProductCheck
+	for _, product := range order.Products {
+		pbProduct := &pb.ProductCheck{
+			Id:    product.Id,
+			Title: product.Title,
+			Price: product.Price,
+			Count: product.Count,
+		}
+		products = append(products, pbProduct)
+	}
+
+	return &pb.GetOrderResponse{
+		Id:         order.Id,
+		WorkerId:   order.WorkerId,
+		WorkerName: order.WorkerName,
+		Products:   products,
+		Tax:        order.Tax,
+		TotalPrice: order.TotalPrice,
+		CreatedAt:  order.CreatedAt.String(),
+		UpdatedAt:  order.UpdatedAt.String(),
+	}, nil
 }

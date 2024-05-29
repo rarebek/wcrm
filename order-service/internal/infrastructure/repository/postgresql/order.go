@@ -15,6 +15,7 @@ import (
 
 	"github.com/Masterminds/squirrel"
 	"github.com/google/uuid"
+	"github.com/jackc/pgx/v4"
 	"github.com/k0kubun/pp"
 	"go.opentelemetry.io/otel/attribute"
 )
@@ -149,15 +150,21 @@ func (p orderRepo) GetOrder(ctx context.Context, id string) (*entity.Order, erro
 		return nil, fmt.Errorf("failed to unmarshal products: %w", err)
 	}
 
+	query := `SELECT full_name from workers WHERE id = $1;`
+	row := p.db.QueryRow(ctx, query, order.WorkerId).Scan(&order.WorkerName)
+	if row == pgx.ErrNoRows {
+		return nil, fmt.Errorf("worker with id %s not found", order.WorkerId)
+	}
+
 	return &order, nil
 }
 
-func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.Order, error) {
+func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter map[string]string) ([]*entity.GetAllOrdersResponse, error) {
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Gets")
 	span.SetAttributes(attribute.String("gets", "order"))
 	defer span.End()
 
-	var orders []*entity.Order
+	var orders []*entity.GetAllOrdersResponse
 	queryBuilder := p.orderSelectQueryPrefix()
 
 	if limit != 0 {
@@ -200,8 +207,22 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 			return nil, fmt.Errorf("failed to unmarshal products: %w", err)
 		}
 
-		orders = append(orders, &order)
+		// Create a new instance of GetAllOrdersResponse
+		response := &entity.GetAllOrdersResponse{
+			Orders: []entity.Order{order},
+		}
+
+		// Append WorkerName to the response
+		query := `SELECT full_name from workers where id = $1;`
+		if err := p.db.QueryRow(ctx, query, filter["worker_id"]).Scan(&response.WorkerName); err != nil {
+			return nil, p.db.Error(err)
+		}
+
+		orders = append(orders, response)
 	}
+
+	query = `SELECT full_name from workers where id = $1;`
+	p.db.QueryRow(ctx, query, filter["worker_id"]).Scan(&orders[0].WorkerName)
 
 	return orders, nil
 }

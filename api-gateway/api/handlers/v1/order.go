@@ -5,11 +5,11 @@ import (
 	"api-gateway/api/models"
 	pbo "api-gateway/genproto/order"
 	"context"
+	"fmt"
 	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/k0kubun/pp"
 	"github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
 )
@@ -61,8 +61,6 @@ func (h HandlerV1) CreateOrder(c *gin.Context) {
 		TotalPrice:  body.TotalPrice,
 	})
 
-	pp.Println("RESPONSE: ", response)
-
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
@@ -80,7 +78,7 @@ func (h HandlerV1) CreateOrder(c *gin.Context) {
 // @Accept 			json
 // @Produce 		json
 // @Param 			id path string true "Id Order"
-// @Success 		200 {object} models.Order
+// @Success 		200 {object} models.GetOrderResponse
 // @Failure 		404 {object} models.StandartError
 // @Failure 		500 {object} models.StandartError
 // @Router 			/v1/order/get/{id} [GET]
@@ -222,6 +220,8 @@ func (h *HandlerV1) ListOrder(c *gin.Context) {
 		})
 		return
 	}
+
+	fmt.Println(response)
 
 	c.JSON(http.StatusOK, response)
 }

@@ -8,12 +8,24 @@ service OrderService{
   rpc CreateOrder(Order) returns (Order);
   rpc UpdateOrder(Order) returns (Order);
   rpc DeleteOrder(OrderId) returns (Empty);
-  rpc GetOrder(OrderId) returns (Order);
+  rpc GetOrder(OrderId) returns (GetOrderResponse);
   rpc GetOrders(GetAllOrderRequest) returns (GetAllOrderResponse);
 }
 
 message Empty {
 
+}
+
+message GetOrderResponse{
+  string id = 1;
+  string workerId = 2;
+  string worker_name = 3;
+  repeated ProductCheck products = 4;
+  int64 table_number = 5;
+  int64 tax = 6;
+  int64 totalPrice = 7;
+  string createdAt = 8;
+  string updatedAt = 9;
 }
 
 message Order {
@@ -45,7 +57,7 @@ message GetAllOrderRequest{
 }
 
 message GetAllOrderResponse{
-  repeated Order orders = 1;
+  repeated GetOrderResponse orders = 1;
 }
 
 message DeleteStatus {
