@@ -44,6 +44,8 @@ func (h HandlerV1) CreateProduct(c *gin.Context) {
 		h.Logger.Fatal("Create product error")
 	}
 
+	pp.Println("BODY OF REQUEST: ", body)
+
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 

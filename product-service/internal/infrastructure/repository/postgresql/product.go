@@ -3,9 +3,11 @@ package postgresql
 import (
 	"context"
 	"fmt"
-	"github.com/google/uuid"
 	"log"
 	"wcrm/product-service/internal/entity"
+
+	"github.com/google/uuid"
+	"github.com/k0kubun/pp"
 
 	"wcrm/product-service/internal/pkg/otlp"
 	"wcrm/product-service/internal/pkg/postgres"
@@ -47,7 +49,7 @@ func (p *productRepo) productSelectQueryPrefix() squirrel.SelectBuilder {
 
 func (p productRepo) CreateProduct(ctx context.Context, product *entity.ProductWithCategoryId) (*entity.Product, error) {
 	ctx, span := otlp.Start(ctx, productServiceName, productSpanRepoPrefix+"Create")
-
+	pp.Println("PRODUCT FOR CREATING: ", product)
 	defer span.End()
 	data := map[string]any{
 		"id":          product.Id,
