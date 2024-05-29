@@ -55,8 +55,6 @@ definitions:
     type: object
   models.CreateOrder:
     properties:
-      discount:
-        type: integer
       product_ids:
         items:
           type: string
@@ -279,6 +277,8 @@ definitions:
       role:
         type: string
       worker_id:
+        type: string
+      worker_name:
         type: string
     type: object
   models.SearchProductRequest:

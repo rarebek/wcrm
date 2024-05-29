@@ -1981,9 +1981,6 @@ const docTemplate = `{
         "models.CreateOrder": {
             "type": "object",
             "properties": {
-                "discount": {
-                    "type": "integer"
-                },
                 "product_ids": {
                     "type": "array",
                     "items": {
@@ -2325,6 +2322,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "worker_id": {
+                    "type": "string"
+                },
+                "worker_name": {
                     "type": "string"
                 }
             }
