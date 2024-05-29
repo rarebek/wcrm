@@ -4,6 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
+	"time"
 
 	// "projects/order-service/genproto/order"
 	"projects/order-service/internal/entity"
@@ -12,6 +14,7 @@ import (
 	"projects/order-service/internal/pkg/postgres"
 
 	"github.com/Masterminds/squirrel"
+	"github.com/google/uuid"
 	"github.com/k0kubun/pp"
 	"go.opentelemetry.io/otel/attribute"
 )
@@ -42,7 +45,7 @@ func (p *orderRepo) orderSelectQueryPrefix() squirrel.SelectBuilder {
 		Select(
 			"id",
 			"worker_id",
-			"product_id",
+			"products",
 			"tax",
 			"discount",
 			"total_price",
@@ -55,24 +58,29 @@ func (p *orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*enti
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Create")
 	span.SetAttributes(attribute.String("create", "order"))
 	defer span.End()
+	pp.Println(order)
 
-	// Convert ProductIds to JSONB
-	productIdsJSON, err := json.Marshal(order.ProductIds)
+	// Convert Products to JSONB
+	productsJSON, err := json.Marshal(order.Products)
 	if err != nil {
-		return nil, fmt.Errorf("failed to marshal product ids: %w", err)
+		return nil, fmt.Errorf("failed to marshal products: %w", err)
 	}
 
 	data := map[string]interface{}{
+		"id":          uuid.NewString(),
 		"worker_id":   order.WorkerId,
-		"product_ids": productIdsJSON,
+		"products":    productsJSON,
 		"tax":         order.Tax,
 		"discount":    order.Discount,
 		"total_price": order.TotalPrice,
-		"created_at":  order.CreatedAt,
-		"updated_at":  order.UpdatedAt,
+		"created_at":  time.Now(),
+		"updated_at":  time.Now(),
 	}
 
-	query, args, err := p.db.Sq.Builder.Insert(p.tableName).SetMap(data).Suffix("RETURNING id, worker_id, product_ids, tax, discount, total_price, created_at, updated_at").ToSql()
+	query, args, err := p.db.Sq.Builder.Insert(p.tableName).
+		SetMap(data).
+		Suffix("RETURNING id, worker_id, products, tax, discount, total_price, created_at, updated_at").
+		ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
@@ -80,19 +88,29 @@ func (p *orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*enti
 	row := p.db.QueryRow(ctx, query, args...)
 	var createdOrder entity.Order
 
+	var productsJSON2 []byte
+
 	err = row.Scan(
 		&createdOrder.Id,
 		&createdOrder.WorkerId,
-		&createdOrder.ProductIds,
+		&productsJSON,
 		&createdOrder.Tax,
-		&createdOrder.Discount,
 		&createdOrder.TotalPrice,
 		&createdOrder.CreatedAt,
 		&createdOrder.UpdatedAt,
 	)
 	if err != nil {
+		log.Println(err)
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
 	}
+
+	err = json.Unmarshal(productsJSON2, &createdOrder.Products)
+	if err != nil {
+		log.Println(err)
+		return nil, fmt.Errorf("failed to unmarshal products: %w", err)
+	}
+
+	pp.Println("CREATED ORDER: ", createdOrder)
 
 	return &createdOrder, nil
 }
@@ -110,10 +128,12 @@ func (p orderRepo) GetOrder(ctx context.Context, id string) (*entity.Order, erro
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.opTableName, "get"))
 	}
 
+	var productsJSON []byte // Declaring productsJSON again to scan into it
+
 	if err = p.db.QueryRow(ctx, sql, args...).Scan(
 		&order.Id,
 		&order.WorkerId,
-		&order.ProductIds,
+		&productsJSON, // Scanning into productsJSON
 		&order.Tax,
 		&order.Discount,
 		&order.TotalPrice,
@@ -121,6 +141,12 @@ func (p orderRepo) GetOrder(ctx context.Context, id string) (*entity.Order, erro
 		&order.UpdatedAt,
 	); err != nil {
 		return nil, p.db.Error(err)
+	}
+
+	// Unmarshal productsJSON into the Products field of order
+	err = json.Unmarshal(productsJSON, &order.Products)
+	if err != nil {
+		return nil, fmt.Errorf("failed to unmarshal products: %w", err)
 	}
 
 	return &order, nil
@@ -137,6 +163,10 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 	if limit != 0 {
 		queryBuilder = queryBuilder.Limit(limit).Offset(offset)
 	}
+
+	queryBuilder = queryBuilder.Where(squirrel.Eq{
+		"worker_id": filter["worker_id"],
+	})
 	query, args, err := queryBuilder.ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "getOrders"))
@@ -148,13 +178,13 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 	}
 	defer rows.Close()
 
-	orders = make([]*entity.Order, 0)
 	for rows.Next() {
 		var order entity.Order
+		var productsJSON []byte // Declaring productsJSON again to scan into it
 		if err = rows.Scan(
 			&order.Id,
 			&order.WorkerId,
-			&order.ProductIds,
+			&productsJSON, // Scanning into productsJSON
 			&order.Tax,
 			&order.Discount,
 			&order.TotalPrice,
@@ -163,6 +193,13 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 		); err != nil {
 			return nil, p.db.Error(err)
 		}
+
+		// Unmarshal productsJSON into the Products field of order
+		err = json.Unmarshal(productsJSON, &order.Products)
+		if err != nil {
+			return nil, fmt.Errorf("failed to unmarshal products: %w", err)
+		}
+
 		orders = append(orders, &order)
 	}
 
@@ -173,15 +210,15 @@ func (p orderRepo) UpdateOrder(ctx context.Context, order *entity.Order) (*entit
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Update")
 	span.SetAttributes(attribute.String("update", "order"))
 	defer span.End()
-	pp.Println("ORDER", order)
 
-	productIdsJSON, err := json.Marshal(order.ProductIds)
+	productIdsJSON, err := json.Marshal(order.Products)
 	if err != nil {
-		return nil, fmt.Errorf("failed to marshal product ids: %w", err)
+		return nil, fmt.Errorf("failed to marshal products: %w", err)
 	}
 
 	clauses := map[string]interface{}{
-		"product_ids": productIdsJSON,
+		"worker_id":   order.WorkerId,
+		"products":    productIdsJSON,
 		"tax":         order.Tax,
 		"discount":    order.Discount,
 		"total_price": order.TotalPrice,
@@ -192,32 +229,37 @@ func (p orderRepo) UpdateOrder(ctx context.Context, order *entity.Order) (*entit
 		Update(p.tableName).
 		SetMap(clauses).
 		Where(p.db.Sq.Equal("id", order.Id)).
+		Suffix("RETURNING id, worker_id, products, tax, discount, total_price, created_at, updated_at").
 		ToSql()
 	if err != nil {
-		pp.Println(err.Error())
 		return nil, p.db.ErrSQLBuild(err, p.tableName+" update")
 	}
-
-	query += " RETURNING id, worker_id, product_ids, tax, discount, total_price, created_at, updated_at"
 
 	row := p.db.QueryRow(ctx, query, args...)
 
 	var updated entity.Order
+	var productsJSON []byte // Declaring productsJSON again to scan into it
 
 	err = row.Scan(
 		&updated.Id,
 		&updated.WorkerId,
-		&updated.ProductIds,
+		&productsJSON, // Scanning into productsJSON
 		&updated.Tax,
 		&updated.Discount,
 		&updated.TotalPrice,
 		&updated.CreatedAt,
-		&updated.UpdatedAt)
-
+		&updated.UpdatedAt,
+	)
 	if err != nil {
-		pp.Println(err.Error())
-		return &entity.Order{}, err
+		return nil, p.db.Error(err)
 	}
+
+	// Unmarshal productsJSON into the Products field of updated
+	err = json.Unmarshal(productsJSON, &updated.Products)
+	if err != nil {
+		return nil, fmt.Errorf("failed to unmarshal products: %w", err)
+	}
+
 	return &updated, nil
 }
 

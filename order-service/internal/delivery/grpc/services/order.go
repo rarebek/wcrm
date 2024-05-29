@@ -41,10 +41,21 @@ func (u orderRPC) CreateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 	span.SetAttributes(attribute.String("create", "order"))
 	defer span.End()
 
+	var products []entity.ProductCheck
+	for _, pbProduct := range order.Products {
+		product := &entity.ProductCheck{
+			Id:    pbProduct.Id,
+			Title: pbProduct.Title,
+			Price: pbProduct.Price,
+			Count: pbProduct.Count,
+		}
+		products = append(products, *product)
+	}
+
 	reqOrder := entity.Order{
 		Id:         order.Id,
 		WorkerId:   order.WorkerId,
-		ProductIds: order.ProductIds,
+		Products:   products,
 		Tax:        order.Tax,
 		TotalPrice: order.TotalPrice,
 		CreatedAt:  time.Now(),
@@ -60,7 +71,7 @@ func (u orderRPC) CreateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 	return &pb.Order{
 		Id:         resOrdered.Id,
 		WorkerId:   resOrdered.WorkerId,
-		ProductIds: resOrdered.ProductIds,
+		Products:   order.Products,
 		Tax:        resOrdered.Tax,
 		TotalPrice: resOrdered.TotalPrice,
 		CreatedAt:  resOrdered.CreatedAt.Format("2006-01-02 15:04:05"),
@@ -68,25 +79,45 @@ func (u orderRPC) CreateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 	}, nil
 }
 
-func (u orderRPC) GetOrder(ctx context.Context, id *pb.OrderId) (*pb.Order, error) {
-	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Get")
-	span.SetAttributes(attribute.String("get", "order"))
+func (u orderRPC) UpdateOrder(ctx context.Context, order *pb.Order) (*pb.Order, error) {
+	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Update")
+	span.SetAttributes(attribute.String("update", "order"))
 	defer span.End()
 
-	res, err := u.order.GetOrder(ctx, id.Id)
+	var products []entity.ProductCheck
+	for _, pbProduct := range order.Products {
+		product := &entity.ProductCheck{
+			Id:    pbProduct.Id,
+			Title: pbProduct.Title,
+			Price: pbProduct.Price,
+			Count: pbProduct.Count,
+		}
+		products = append(products, *product)
+	}
+
+	updated_order := entity.Order{
+		Id:         order.Id,
+		WorkerId:   order.WorkerId,
+		Products:   products,
+		Tax:        order.Tax,
+		TotalPrice: order.TotalPrice,
+		UpdatedAt:  time.Now(),
+	}
+
+	updated_ordered, err := u.order.UpdateOrder(ctx, &updated_order)
 	if err != nil {
-		u.logger.Error("get order error", zap.Error(err))
-		return &pb.Order{}, nil
+		u.logger.Error("update order error", zap.Error(err))
+		return nil, err
 	}
 
 	return &pb.Order{
-		Id:         res.Id,
-		WorkerId:   res.WorkerId,
-		ProductIds: res.ProductIds,
-		Tax:        res.Tax,
-		TotalPrice: res.TotalPrice,
-		CreatedAt:  res.CreatedAt.String(),
-		UpdatedAt:  res.UpdatedAt.String(),
+		Id:         updated_order.Id,
+		WorkerId:   updated_ordered.WorkerId,
+		Products:   order.Products, // No need to convert back to pb.ProductCheck
+		Tax:        updated_ordered.Tax,
+		TotalPrice: updated_ordered.TotalPrice,
+		CreatedAt:  updated_ordered.CreatedAt.Format("2006-01-02 15:04:05"),
+		UpdatedAt:  updated_ordered.UpdatedAt.Format("2006-01-02 15:04:05"),
 	}, nil
 }
 
@@ -104,36 +135,6 @@ func (u orderRPC) DeleteOrder(ctx context.Context, id *pb.OrderId) (*pb.Empty, e
 	return &pb.Empty{}, nil
 }
 
-func (u orderRPC) UpdateOrder(ctx context.Context, order *pb.Order) (*pb.Order, error) {
-	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Update")
-	span.SetAttributes(attribute.String("update", "order"))
-	defer span.End()
-
-	updated_order := entity.Order{
-		Id:         order.Id,
-		WorkerId:   order.WorkerId,
-		ProductIds: order.ProductIds,
-		Tax:        order.Tax,
-		TotalPrice: order.TotalPrice,
-		UpdatedAt:  time.Now(),
-	}
-
-	updated_ordered, err := u.order.UpdateOrder(ctx, &updated_order)
-	if err != nil {
-		u.logger.Error("update order error", zap.Error(err))
-		return nil, err
-	}
-
-	return &pb.Order{
-		Id:         updated_order.Id,
-		WorkerId:   updated_ordered.WorkerId,
-		ProductIds: updated_ordered.ProductIds,
-		Tax:        updated_ordered.Tax,
-		TotalPrice: updated_ordered.TotalPrice,
-		CreatedAt:  updated_ordered.CreatedAt.Format("2006-01-02 15:04:05"),
-		UpdatedAt:  updated_ordered.UpdatedAt.Format("2006-01-02 15:04:05"),
-	}, nil
-}
 func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllOrderRequest) (*pb.GetAllOrderResponse, error) {
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Gets")
 	span.SetAttributes(attribute.String("gets", "order"))
@@ -141,9 +142,11 @@ func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllOrderRequest) (*p
 
 	offset := req.Limit * (req.Page - 1)
 	pp.Println(offset, req.Limit, req.Page)
+	filter := map[string]string{
+		"worker_id": req.WorkerId,
+	}
 
-	res_orders, err := u.order.GetOrders(ctx, uint64(req.Limit), uint64(offset), map[string]string{})
-
+	res_orders, err := u.order.GetOrders(ctx, uint64(req.Limit), uint64(offset), filter)
 	if err != nil {
 		u.logger.Error("get all orders error", zap.Error(err))
 		return nil, err
@@ -152,10 +155,21 @@ func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllOrderRequest) (*p
 	var orders pb.GetAllOrderResponse
 
 	for _, in := range res_orders {
+		var products []*pb.ProductCheck
+		for _, product := range in.Products {
+			pbProduct := &pb.ProductCheck{
+				Id:    product.Id,
+				Title: product.Title,
+				Price: product.Price,
+				Count: product.Count,
+			}
+			products = append(products, pbProduct)
+		}
+
 		orders.Orders = append(orders.Orders, &pb.Order{
 			Id:         in.Id,
 			WorkerId:   in.WorkerId,
-			ProductIds: in.ProductIds,
+			Products:   products,
 			Tax:        in.Tax,
 			TotalPrice: in.TotalPrice,
 			CreatedAt:  in.CreatedAt.String(),

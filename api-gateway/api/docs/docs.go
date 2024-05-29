@@ -809,7 +809,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/v1/orders/get/{page}/{limit}": {
+        "/v1/orders/get/{page}/{limit}/{worker-id}": {
             "get": {
                 "security": [
                     {
@@ -839,6 +839,13 @@ const docTemplate = `{
                         "type": "string",
                         "description": "Limit Order",
                         "name": "limit",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Worker Id",
+                        "name": "worker-id",
                         "in": "path",
                         "required": true
                     }
@@ -1981,10 +1988,10 @@ const docTemplate = `{
         "models.CreateOrder": {
             "type": "object",
             "properties": {
-                "product_ids": {
+                "products": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/definitions/models.ProductCheck"
                     }
                 },
                 "table_number": {
@@ -2268,6 +2275,23 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "updated_at": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ProductCheck": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "price": {
+                    "type": "integer"
+                },
+                "title": {
                     "type": "string"
                 }
             }

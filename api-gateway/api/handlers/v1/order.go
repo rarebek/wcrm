@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/k0kubun/pp"
 	"github.com/spf13/cast"
 	"google.golang.org/protobuf/encoding/protojson"
 )
@@ -43,13 +44,24 @@ func (h HandlerV1) CreateOrder(c *gin.Context) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 
+	protoProducts := make([]*pbo.ProductCheck, len(body.Products))
+	for i, product := range body.Products {
+		protoProducts[i] = &pbo.ProductCheck{
+			Title: product.Title,
+			Count: product.Count,
+			Price: product.Price,
+		}
+	}
+
 	response, err := h.Service.OrderService().CreateOrder(ctx, &pbo.Order{
 		WorkerId:    body.WorkerId,
-		ProductIds:  body.ProductIds,
+		Products:    protoProducts,
 		TableNumber: body.TableNumber,
 		Tax:         body.Tax,
 		TotalPrice:  body.TotalPrice,
 	})
+
+	pp.Println("RESPONSE: ", response)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -182,23 +194,26 @@ func (h *HandlerV1) DeleteOrder(c *gin.Context) {
 // @Produce 		json
 // @Param 			page path string true "Page Order"
 // @Param 			limit path string true "Limit Order"
+// @Param 			worker-id path string true "Worker Id"
 // @Success 		200 {object} models.OrderList
 // @Failure 		404 {object} models.StandartError
 // @Failure 		500 {object} models.StandartError
-// @Router 			/v1/orders/get/{page}/{limit} [GET]
+// @Router 			/v1/orders/get/{page}/{limit}/{worker-id} [GET]
 func (h *HandlerV1) ListOrder(c *gin.Context) {
 	var jspbMarshal protojson.MarshalOptions
 	jspbMarshal.UseProtoNames = true
 
 	page := c.Param("page")
 	limit := c.Param("limit")
+	workerId := c.Param("worker-id")
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 
 	response, err := h.Service.OrderService().GetOrders(ctx, &pbo.GetAllOrderRequest{
-		Page:  cast.ToInt64(page),
-		Limit: cast.ToInt64(limit),
+		Page:     cast.ToInt64(page),
+		Limit:    cast.ToInt64(limit),
+		WorkerId: workerId,
 	})
 
 	if err != nil {

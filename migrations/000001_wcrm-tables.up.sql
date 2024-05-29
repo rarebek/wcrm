@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS categories_products (
 CREATE TABLE IF NOT EXISTS orders (
     id UUID PRIMARY KEY,
     worker_id UUID,
-    product_ids JSONB,
+    products JSONB,
     tax INT,
     discount INT,
     total_price INT,

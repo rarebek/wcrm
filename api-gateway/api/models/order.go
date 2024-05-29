@@ -15,11 +15,11 @@ type OrderList struct {
 }
 
 type CreateOrder struct {
-	WorkerId    string   `json:"worker_id"`
-	ProductIds  []string `json:"product_ids"`
-	TableNumber int64    `json:"table_number"`
-	Tax         int64    `json:"tax"`
-	TotalPrice  int64    `json:"total_price"`
+	WorkerId    string         `json:"worker_id"`
+	Products    []ProductCheck `json:"products"`
+	TableNumber int64          `json:"table_number"`
+	Tax         int64          `json:"tax"`
+	TotalPrice  int64          `json:"total_price"`
 }
 
 type UpdateOrder struct {

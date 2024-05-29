@@ -19,12 +19,19 @@ message Empty {
 message Order {
   string id = 1;
   string workerId = 2;
-  repeated string product_ids = 3;
+  repeated ProductCheck products = 3;
   int64 table_number = 4;
   int64 tax = 5;
   int64 totalPrice = 6;
   string createdAt = 8;
   string updatedAt = 9;
+}
+
+message ProductCheck {
+  string id = 1;
+  string title = 2;
+  int64 price = 3;
+  int64 count = 4;
 }
 
 message OrderId{
@@ -34,6 +41,7 @@ message OrderId{
 message GetAllOrderRequest{
   int64 page = 1;
   int64 limit = 2;
+  string worker_id = 3;
 }
 
 message GetAllOrderResponse{

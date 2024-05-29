@@ -11,15 +11,22 @@ type Product struct {
 	UpdatedAt   string `json:"updated_at"`
 }
 
+type ProductCheck struct {
+	Id    string `json:"id"`
+	Title string `json:"title"`
+	Price int64  `json:"price"`
+	Count int64  `json:"count"`
+}
+
 type ProductList struct {
 	Products []Product `json:"products"`
 	Count    int64     `json:"count"`
 }
 
 type CreateProduct struct {
-	Title       string `json:"title"` 
+	Title       string `json:"title"`
 	OwnerId     string `json:"owner_id"`
-	Description string `json:"description"` 
+	Description string `json:"description"`
 	Price       int64  `json:"price"`
 	Discount    int64  `json:"discount"`
 	Picture     string `json:"picture"`

@@ -55,9 +55,9 @@ definitions:
     type: object
   models.CreateOrder:
     properties:
-      product_ids:
+      products:
         items:
-          type: string
+          $ref: '#/definitions/models.ProductCheck'
         type: array
       table_number:
         type: integer
@@ -242,6 +242,17 @@ definitions:
       title:
         type: string
       updated_at:
+        type: string
+    type: object
+  models.ProductCheck:
+    properties:
+      count:
+        type: integer
+      id:
+        type: string
+      price:
+        type: integer
+      title:
         type: string
     type: object
   models.ProductList:
@@ -911,7 +922,7 @@ paths:
       summary: Update Order
       tags:
       - Order
-  /v1/orders/get/{page}/{limit}:
+  /v1/orders/get/{page}/{limit}/{worker-id}:
     get:
       consumes:
       - application/json
@@ -925,6 +936,11 @@ paths:
       - description: Limit Order
         in: path
         name: limit
+        required: true
+        type: string
+      - description: Worker Id
+        in: path
+        name: worker-id
         required: true
         type: string
       produces:
