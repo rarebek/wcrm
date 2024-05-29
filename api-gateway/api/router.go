@@ -5,6 +5,7 @@ import (
 
 	v1 "api-gateway/api/handlers/v1"
 	"api-gateway/api/middleware"
+	tokens "api-gateway/internal/pkg/token"
 
 	"github.com/casbin/casbin/v2"
 	"github.com/gin-contrib/cors"
@@ -43,13 +44,13 @@ func NewRoute(option RouteOption) *gin.Engine {
 	corsConfig.AllowMethods = []string{"*"}
 	router.Use(cors.New(corsConfig))
 
-	// jwtHandler := tokens.JWTHandler{
-	// 	SigninKey: option.Config.SigningKey,
-	// }
+	jwtHandler := tokens.JWTHandler{
+		SigninKey: option.Config.SigningKey,
+	}
 
 	router.Use(gin.Logger())
 	router.Use(gin.Recovery())
-	// router.Use(middleware.NewAuthorizer(option.CasbinEnforcer, jwtHandler, *option.Config))
+	router.Use(middleware.NewAuthorizer(option.CasbinEnforcer, jwtHandler, *option.Config))
 
 	HandlerV1 := v1.New(&v1.HandlerV1Config{
 		Config:         option.Config,

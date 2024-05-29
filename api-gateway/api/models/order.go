@@ -19,7 +19,6 @@ type CreateOrder struct {
 	ProductIds  []string `json:"product_ids"`
 	TableNumber int64    `json:"table_number"`
 	Tax         int64    `json:"tax"`
-	Discount    int64    `json:"discount"`
 	TotalPrice  int64    `json:"total_price"`
 }
 

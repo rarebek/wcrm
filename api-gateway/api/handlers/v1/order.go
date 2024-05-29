@@ -48,7 +48,6 @@ func (h HandlerV1) CreateOrder(c *gin.Context) {
 		ProductIds:  body.ProductIds,
 		TableNumber: body.TableNumber,
 		Tax:         body.Tax,
-		Discount:    body.Discount,
 		TotalPrice:  body.TotalPrice,
 	})
 
@@ -128,7 +127,6 @@ func (h *HandlerV1) UpdateOrder(c *gin.Context) {
 	response, err := h.Service.OrderService().UpdateOrder(ctx, &pbo.Order{
 		Id:         body.Id,
 		Tax:        body.Tax,
-		Discount:   body.Discount,
 		TotalPrice: body.TotalPrice,
 	})
 

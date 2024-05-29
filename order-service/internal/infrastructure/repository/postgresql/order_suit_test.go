@@ -42,7 +42,6 @@ func (p *OrderRepositrySuiteTest) TestProductCRUD() {
 	createdOrder, err := p.Repository.CreateOrder(context.Background(), &model.Order{
 		WorkerId:   WorkerID,
 		Tax:        orderReq.Tax,
-		Discount:   orderReq.Discount,
 		TotalPrice: orderReq.TotalPrice,
 		CreatedAt:  time.Now(),
 		UpdatedAt:  time.Now(),
@@ -53,7 +52,6 @@ func (p *OrderRepositrySuiteTest) TestProductCRUD() {
 	p.Suite.NotNil(createdOrder.Id)
 	p.Suite.NotNil(orderReq.WorkerId)
 	p.Suite.Equal(orderReq.Tax, createdOrder.Tax)
-	p.Suite.Equal(orderReq.Discount, createdOrder.Discount)
 	p.Suite.Equal(orderReq.TotalPrice, createdOrder.TotalPrice)
 	p.Suite.NotNil(createdOrder.CreatedAt)
 	p.Suite.NotNil(createdOrder.UpdatedAt)
