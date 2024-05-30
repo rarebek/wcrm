@@ -2038,7 +2038,7 @@ const docTemplate = `{
                         "$ref": "#/definitions/models.ProductCheck"
                     }
                 },
-                "table_num": {
+                "table_number": {
                     "type": "integer"
                 },
                 "tax": {
@@ -2232,7 +2232,7 @@ const docTemplate = `{
                         "type": "string"
                     }
                 },
-                "table_num": {
+                "table_number": {
                     "type": "integer"
                 },
                 "tax": {

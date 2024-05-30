@@ -2030,7 +2030,7 @@
                         "$ref": "#/definitions/models.ProductCheck"
                     }
                 },
-                "table_num": {
+                "table_number": {
                     "type": "integer"
                 },
                 "tax": {
@@ -2224,7 +2224,7 @@
                         "type": "string"
                     }
                 },
-                "table_num": {
+                "table_number": {
                     "type": "integer"
                 },
                 "tax": {

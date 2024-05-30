@@ -2,7 +2,7 @@ package models
 
 type Order struct {
 	Id          int64    `json:"id"`
-	TableNumber int64    `json:"table_num"`
+	TableNumber int64    `json:"table_number"`
 	WorkerId    int64    `json:"worker_id"`
 	ProductIds  []string `json:"product_ids"`
 	Tax         int64    `json:"tax"`
@@ -30,7 +30,7 @@ type OrderList struct {
 type CreateOrder struct {
 	WorkerId    string         `json:"worker_id"`
 	Products    []ProductCheck `json:"products"`
-	TableNumber int64          `json:"table_num"`
+	TableNumber int64          `json:"table_number"`
 	Tax         int64          `json:"tax"`
 	TotalPrice  int64          `json:"total_price"`
 }
