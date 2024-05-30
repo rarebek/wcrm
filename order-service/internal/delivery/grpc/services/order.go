@@ -136,53 +136,54 @@ func (u orderRPC) DeleteOrder(ctx context.Context, id *pb.OrderId) (*pb.Empty, e
 	return &pb.Empty{}, nil
 }
 
-func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllOrderRequest) (*pb.GetAllOrderResponse, error) {
-	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Gets")
-	span.SetAttributes(attribute.String("gets", "order"))
-	defer span.End()
+	func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllOrderRequest) (*pb.GetAllOrderResponse, error) {
+		ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Gets")
+		span.SetAttributes(attribute.String("gets", "order"))
+		defer span.End()
 
-	offset := req.Limit * (req.Page - 1)
-	pp.Println(offset, req.Limit, req.Page)
-	filter := map[string]string{
-		"worker_id": req.WorkerId,
-	}
+		offset := req.Limit * (req.Page - 1)
+		pp.Println(offset, req.Limit, req.Page)
+		filter := map[string]string{       
+			"worker_id": req.WorkerId,
+		}
 
-	res_orders, err := u.order.GetOrders(ctx, uint64(req.Limit), uint64(offset), filter)
-	if err != nil {
-		u.logger.Error("get all orders error", zap.Error(err))
-		return nil, err
-	}
+		res_orders, err := u.order.GetOrders(ctx, uint64(req.Limit), uint64(offset), filter)
+		if err != nil {
+			u.logger.Error("get all orders error", zap.Error(err))
+			return nil, err
+		}
 
-	var orders pb.GetAllOrderResponse
 
-	for _, in := range res_orders {
-		var products []*pb.ProductCheck
-		for _, product := range in.Orders[0].Products {
-			pbProduct := &pb.ProductCheck{
-				Id:    product.Id,
-				Title: product.Title,
-				Price: product.Price,
-				Count: product.Count,
+		var orders pb.GetAllOrderResponse
+
+		for _, in := range res_orders {
+			var products []*pb.ProductCheck
+			for _, product := range in.Orders[0].Products {
+				pbProduct := &pb.ProductCheck{
+					Id:    product.Id,
+					Title: product.Title,
+					Price: product.Price,
+					Count: product.Count,
+				}
+				products = append(products, pbProduct)
 			}
-			products = append(products, pbProduct)
+
+			pbOrder := &pb.GetOrderResponse{
+				Id:         in.Orders[0].Id,
+				WorkerId:   in.Orders[0].WorkerId,
+				WorkerName: in.WorkerName,
+				Products:   products,
+				Tax:        in.Orders[0].Tax,
+				TotalPrice: in.Orders[0].TotalPrice,
+				CreatedAt:  in.Orders[0].CreatedAt.String(),
+				UpdatedAt:  in.Orders[0].UpdatedAt.String(),
+			}
+
+			orders.Orders = append(orders.Orders, pbOrder)
 		}
 
-		pbOrder := &pb.GetOrderResponse{
-			Id:         in.Orders[0].Id,
-			WorkerId:   in.Orders[0].WorkerId,
-			WorkerName: in.WorkerName,
-			Products:   products,
-			Tax:        in.Orders[0].Tax,
-			TotalPrice: in.Orders[0].TotalPrice,
-			CreatedAt:  in.Orders[0].CreatedAt.String(),
-			UpdatedAt:  in.Orders[0].UpdatedAt.String(),
-		}
-
-		orders.Orders = append(orders.Orders, pbOrder)
+		return &orders, nil
 	}
-
-	return &orders, nil
-}
 
 func (u orderRPC) GetOrder(ctx context.Context, id *pb.OrderId) (*pb.GetOrderResponse, error) {
 	ctx, span := otlp.Start(ctx, orderServiceName, orderSpanRepoPrefix+"Get")

@@ -212,7 +212,7 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 		}
 
 		// Create a new instance of GetAllOrdersResponse
-		response := &entity.GetAllOrdersResponse{
+		response := entity.GetAllOrdersResponse{
 			Orders: []entity.Order{order},
 		}
 
@@ -227,7 +227,7 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 			return nil, p.db.Error(err)
 		}
 
-		orders = append(orders, response)
+		orders = append(orders, &response)
 	}
 
 	if len(orders) == 0 {
