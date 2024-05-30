@@ -2,6 +2,7 @@ package postgresql
 
 import (
 	"context"
+	"database/sql"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -132,12 +133,12 @@ func (p orderRepo) GetOrder(ctx context.Context, id string) (*entity.Order, erro
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.opTableName, "get"))
 	}
 
-	var productsJSON []byte // Declaring productsJSON again to scan into it
+	var productsJSON []byte
 
 	if err = p.db.QueryRow(ctx, sql, args...).Scan(
 		&order.Id,
 		&order.WorkerId,
-		&productsJSON, // Scanning into productsJSON
+		&productsJSON,
 		&order.Tax,
 		&order.Discount,
 		&order.TotalPrice,
@@ -147,7 +148,6 @@ func (p orderRepo) GetOrder(ctx context.Context, id string) (*entity.Order, erro
 		return nil, p.db.Error(err)
 	}
 
-	// Unmarshal productsJSON into the Products field of order
 	err = json.Unmarshal(productsJSON, &order.Products)
 	if err != nil {
 		return nil, fmt.Errorf("failed to unmarshal products: %w", err)
@@ -219,14 +219,21 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 		// Append WorkerName to the response
 		query := `SELECT full_name from workers where id = $1;`
 		if err := p.db.QueryRow(ctx, query, filter["worker_id"]).Scan(&response.WorkerName); err != nil {
+			// Check if no rows were returned
+			if err == sql.ErrNoRows {
+				// Handle the case where no rows were returned
+				return nil, fmt.Errorf("no rows found for worker with ID: %s", filter["worker_id"])
+			}
 			return nil, p.db.Error(err)
 		}
 
 		orders = append(orders, response)
 	}
 
-	query = `SELECT full_name from workers where id = $1;`
-	p.db.QueryRow(ctx, query, filter["worker_id"]).Scan(&orders[0].WorkerName)
+	if len(orders) == 0 {
+		// Handle the case where no rows were returned
+		return nil, fmt.Errorf("no rows found for worker with ID: %s", filter["worker_id"])
+	}
 
 	return orders, nil
 }
