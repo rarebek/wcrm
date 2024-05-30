@@ -4,9 +4,7 @@ import (
 	_ "api-gateway/api/docs"
 	"api-gateway/api/models"
 	pbo "api-gateway/genproto/order"
-	"bytes"
 	"context"
-	"encoding/json"
 	"fmt"
 	"net/http"
 	"time"
@@ -17,17 +15,17 @@ import (
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
-// @Summary 		Create Order
-// @Security 		ApiKeyAuth
-// @Description 	Api for create order
-// @Tags 			Order
-// @Accept 			json
-// @Produce 		json
-// @Param 			Order body models.CreateOrder true "Create Order"
-// @Success 		200 {object} models.Order
-// @Failure 		404 {object} models.StandartError
-// @Failure 		500 {object} models.StandartError
-// @Router 			/v1/order/create [POST]
+// @Summary Create Order
+// @Security ApiKeyAuth
+// @Description Api for create order
+// @Tags Order
+// @Accept json
+// @Produce json
+// @Param Order body models.CreateOrder true "Create Order"
+// @Success 200 {object} models.Order
+// @Failure 404 {object} models.StandartError
+// @Failure 500 {object} models.StandartError
+// @Router /v1/order/create [POST]
 func (h HandlerV1) CreateOrder(c *gin.Context) {
 	var (
 		body        models.CreateOrder
@@ -79,37 +77,21 @@ func (h HandlerV1) CreateOrder(c *gin.Context) {
 		}
 	}
 
-	go func(products []models.Product) {
-		productsURL := "http://localhost:8080/products"
-
-		jsonData, err := json.Marshal(products)
-		if err != nil {
-			fmt.Println("Failed to marshal products:", err)
-			return
-		}
-
-		req, err := http.NewRequest("POST", productsURL, bytes.NewBuffer(jsonData))
-		if err != nil {
-			fmt.Println("Failed to create request:", err)
-			return
-		}
-
-		req.Header.Set("Content-Type", "application/json")
-
-		client := &http.Client{}
-		resp, err := client.Do(req)
-		if err != nil {
-			fmt.Println("Failed to send request:", err)
-			return
-		}
-		defer resp.Body.Close()
-
-		if resp.StatusCode != http.StatusOK {
-			fmt.Println("Failed to send products, status code:", resp.StatusCode)
-		}
-	}(products)
+	// Store products in memory for simplicity. You can use a database for persistence.
+	h.ProductStore = append(h.ProductStore, products...)
 
 	c.JSON(http.StatusCreated, response)
+}
+
+// Endpoint to get product details
+// @Summary Get Products
+// @Description Get the list of products
+// @Tags Product
+// @Produce json
+// @Success 200 {array} models.Product
+// @Router /v1/products/bot [GET]
+func (h HandlerV1) GetProducts(c *gin.Context) {
+	c.JSON(http.StatusOK, h.ProductStore)
 }
 
 // @Summary 		Get Order

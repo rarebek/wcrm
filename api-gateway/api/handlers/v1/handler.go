@@ -3,6 +3,7 @@ package v1
 import (
 	"time"
 
+	"api-gateway/api/models"
 	tokens "api-gateway/internal/pkg/token"
 
 	"go.uber.org/zap"
@@ -34,6 +35,7 @@ type HandlerV1 struct {
 	Service        grpcClients.ServiceClient
 	jwthandler     tokens.JWTHandler
 	enforcer       *casbin.Enforcer
+	ProductStore   []models.Product
 }
 
 // HandlerV1Config ...
