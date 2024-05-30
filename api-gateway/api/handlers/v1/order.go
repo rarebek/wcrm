@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/k0kubun/pp"
 	"github.com/spf13/cast"
 
 	"google.golang.org/protobuf/encoding/protojson"
@@ -27,7 +26,7 @@ import (
 // @Failure 404 {object} models.StandartError
 // @Failure 500 {object} models.StandartError
 // @Router /v1/order/create [POST]
-func (h HandlerV1) CreateOrder(c *gin.Context) {
+func (h *HandlerV1) CreateOrder(c *gin.Context) {
 	var (
 		body        models.CreateOrder
 		jspbMarshal protojson.MarshalOptions
@@ -84,16 +83,14 @@ func (h HandlerV1) CreateOrder(c *gin.Context) {
 	c.JSON(http.StatusCreated, response)
 }
 
-// Endpoint to get product details
 // @Summary Get Products
 // @Description Get the list of products
 // @Tags Product
 // @Produce json
 // @Success 200 {array} models.Product
 // @Router /v1/products/bot [GET]
-func (h HandlerV1) GetProducts(c *gin.Context) {
+func (h *HandlerV1) GetProducts(c *gin.Context) {
 	c.JSON(http.StatusOK, h.ProductStore)
-	pp.Println(h.ProductStore)
 }
 
 // @Summary 		Get Order
