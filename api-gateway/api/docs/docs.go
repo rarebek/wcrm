@@ -597,7 +597,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/models.ResponseAccessToken"
+                            "$ref": "#/definitions/models.ResponseOwnerLogin"
                         }
                     },
                     "400": {
@@ -2431,6 +2431,20 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "worker_name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.ResponseOwnerLogin": {
+            "type": "object",
+            "properties": {
+                "access_token": {
+                    "type": "string"
+                },
+                "owner_id": {
+                    "type": "string"
+                },
+                "owner_name": {
                     "type": "string"
                 }
             }

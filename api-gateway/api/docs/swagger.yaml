@@ -317,6 +317,15 @@ definitions:
       worker_name:
         type: string
     type: object
+  models.ResponseOwnerLogin:
+    properties:
+      access_token:
+        type: string
+      owner_id:
+        type: string
+      owner_name:
+        type: string
+    type: object
   models.SearchProductRequest:
     properties:
       limit:
@@ -813,7 +822,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/models.ResponseAccessToken'
+            $ref: '#/definitions/models.ResponseOwnerLogin'
         "400":
           description: Bad Request
           schema:

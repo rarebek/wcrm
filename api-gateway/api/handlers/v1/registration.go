@@ -290,7 +290,7 @@ func (h *HandlerV1) Verify(c *gin.Context) {
 // @Produce 		json
 // @Param 			email query string true "EMAIL"
 // @Param 			password query string true "PASSWORD"
-// @Success 		200 {object} models.ResponseAccessToken
+// @Success 		200 {object} models.ResponseOwnerLogin
 // @Failure 		400 {object} models.StandartError
 // @Failure 		500 {object} models.StandartError
 // @Router 			/v1/login [get]
@@ -356,7 +356,7 @@ func (h *HandlerV1) LogIn(c *gin.Context) {
 	c.JSON(http.StatusOK, models.ResponseOwnerLogin{
 		AccessToken: access,
 		OwnerId:     response.Id,
-		
+		OwnerName:   response.FullName,
 	})
 }
 
