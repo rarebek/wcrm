@@ -90,9 +90,19 @@ func (h *HandlerV1) CreateOrder(c *gin.Context) {
 // @Success 200 {array} models.Product
 // @Router /v1/products/bot [GET]
 func (h *HandlerV1) GetProducts(c *gin.Context) {
-	h.ProductStore = nil
-
 	c.JSON(http.StatusOK, h.ProductStore)
+
+	h.ProductStore = nil
+}
+
+// @Summary Delete Products
+// @Description deleted bot product
+// @Tags Product
+// @Produce json
+// @Success 200 {array} models.Product
+// @Router /v1/products/bot [DELETE]
+func (h *HandlerV1) DeleteProductBot(c *gin.Context) {
+	h.ProductStore = nil
 }
 
 // @Summary 		Get Order

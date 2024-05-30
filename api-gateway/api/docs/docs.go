@@ -1400,6 +1400,27 @@ const docTemplate = `{
                         }
                     }
                 }
+            },
+            "delete": {
+                "description": "deleted bot product",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Product"
+                ],
+                "summary": "Delete Products",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.Product"
+                            }
+                        }
+                    }
+                }
             }
         },
         "/v1/products/get/{page}/{limit}/{owner-id}": {
