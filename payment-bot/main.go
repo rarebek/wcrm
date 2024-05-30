@@ -74,10 +74,10 @@ func sendInvoice(bot *tgbotapi.BotAPI, chatID int64) {
 	invoice := tgbotapi.NewInvoice(chatID,
 		strings.Join(productNames, ", "),
 		"Description of products",
-		"payload", 
-		"398062629:TEST:999999999_F91D8F69C042267444B74CC0B3C747757EB0E065", 
+		"payload",
+		"398062629:TEST:999999999_F91D8F69C042267444B74CC0B3C747757EB0E065",
 		"StartParam",
-		"UZS",       
+		"UZS",
 		prices)
 
 	invoice.SuggestedTipAmounts = []int{}

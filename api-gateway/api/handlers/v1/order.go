@@ -93,7 +93,7 @@ func (h *HandlerV1) GetProducts(c *gin.Context) {
 	c.JSON(http.StatusOK, h.ProductStore)
 
 	h.ProductStore = nil
-}
+}	
 
 // @Summary Delete Products
 // @Description deleted bot product
