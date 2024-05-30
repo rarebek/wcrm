@@ -190,11 +190,12 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 
 	for rows.Next() {
 		var order entity.Order
-		var productsJSON []byte // Declaring productsJSON again to scan into it
+		var productsJSON []byte
 		if err = rows.Scan(
 			&order.Id,
+			&order.TableNumber,
 			&order.WorkerId,
-			&productsJSON, // Scanning into productsJSON
+			&productsJSON,
 			&order.Tax,
 			&order.Discount,
 			&order.TotalPrice,
