@@ -30,13 +30,13 @@ message GetOrderResponse{
 
 message Order {
   string id = 1;
-  string workerId = 2;
-  repeated ProductCheck products = 3;
-  int64 table_number = 4;
+  int64 table_number = 2;
+  string workerId = 3;
+  repeated ProductCheck products = 4;
   int64 tax = 5;
   int64 totalPrice = 6;
-  string createdAt = 8;
-  string updatedAt = 9;
+  string createdAt = 7;
+  string updatedAt = 8;
 }
 
 message ProductCheck {
