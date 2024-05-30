@@ -90,6 +90,8 @@ func (h *HandlerV1) CreateOrder(c *gin.Context) {
 // @Success 200 {array} models.Product
 // @Router /v1/products/bot [GET]
 func (h *HandlerV1) GetProducts(c *gin.Context) {
+	h.ProductStore = nil
+
 	c.JSON(http.StatusOK, h.ProductStore)
 }
 
