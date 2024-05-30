@@ -45,6 +45,7 @@ func (p *orderRepo) orderSelectQueryPrefix() squirrel.SelectBuilder {
 	return p.db.Sq.Builder.
 		Select(
 			"id",
+			"table_number",
 			"worker_id",
 			"products",
 			"tax",
@@ -68,19 +69,20 @@ func (p *orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*enti
 	}
 
 	data := map[string]interface{}{
-		"id":          uuid.NewString(),
-		"worker_id":   order.WorkerId,
-		"products":    productsJSON,
-		"tax":         order.Tax,
-		"discount":    order.Discount,
-		"total_price": order.TotalPrice,
-		"created_at":  time.Now(),
-		"updated_at":  time.Now(),
+		"id":           uuid.NewString(),
+		"table_number": order.TableNumber,
+		"worker_id":    order.WorkerId,
+		"products":     productsJSON,
+		"tax":          order.Tax,
+		"discount":     order.Discount,
+		"total_price":  order.TotalPrice,
+		"created_at":   time.Now(),
+		"updated_at":   time.Now(),
 	}
 
 	query, args, err := p.db.Sq.Builder.Insert(p.tableName).
 		SetMap(data).
-		Suffix("RETURNING id, worker_id, products, tax, discount, total_price, created_at, updated_at").
+		Suffix("RETURNING id, table_number, worker_id, products, tax, discount, total_price, created_at, updated_at").
 		ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
@@ -93,6 +95,7 @@ func (p *orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*enti
 
 	err = row.Scan(
 		&createdOrder.Id,
+		&createdOrder.TableNumber,
 		&createdOrder.WorkerId,
 		&productsJSON,
 		&createdOrder.Tax,

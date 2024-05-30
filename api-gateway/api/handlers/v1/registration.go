@@ -356,6 +356,7 @@ func (h *HandlerV1) LogIn(c *gin.Context) {
 	c.JSON(http.StatusOK, models.ResponseOwnerLogin{
 		AccessToken: access,
 		OwnerId:     response.Id,
+		
 	})
 }
 

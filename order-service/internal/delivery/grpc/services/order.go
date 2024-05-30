@@ -53,13 +53,14 @@ func (u orderRPC) CreateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 	}
 
 	reqOrder := entity.Order{
-		Id:         order.Id,
-		WorkerId:   order.WorkerId,
-		Products:   products,
-		Tax:        order.Tax,
-		TotalPrice: order.TotalPrice,
-		CreatedAt:  time.Now(),
-		UpdatedAt:  time.Now(),
+		Id:          order.Id,
+		TableNumber: int(order.TableNumber),
+		WorkerId:    order.WorkerId,
+		Products:    products,
+		Tax:         order.Tax,
+		TotalPrice:  order.TotalPrice,
+		CreatedAt:   time.Now(),
+		UpdatedAt:   time.Now(),
 	}
 
 	resOrdered, err := u.order.CreateOrder(ctx, &reqOrder)

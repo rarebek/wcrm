@@ -55,9 +55,9 @@ func (h *HandlerV1) CreateOrder(c *gin.Context) {
 	}
 
 	response, err := h.Service.OrderService().CreateOrder(ctx, &pbo.Order{
+		TableNumber: body.TableNumber,
 		WorkerId:    body.WorkerId,
 		Products:    protoProducts,
-		TableNumber: body.TableNumber,
 		Tax:         body.Tax,
 		TotalPrice:  body.TotalPrice,
 	})
@@ -93,7 +93,7 @@ func (h *HandlerV1) GetProducts(c *gin.Context) {
 	c.JSON(http.StatusOK, h.ProductStore)
 
 	h.ProductStore = nil
-}	
+}
 
 // @Summary Delete Products
 // @Description deleted bot product

@@ -5,15 +5,16 @@ import (
 )
 
 type Order struct {
-	Id         string
-	WorkerId   string
-	WorkerName string
-	Products   []ProductCheck
-	Tax        int64
-	Discount   int64
-	TotalPrice int64
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
+	Id          string
+	TableNumber int
+	WorkerId    string
+	WorkerName  string
+	Products    []ProductCheck
+	Tax         int64
+	Discount    int64
+	TotalPrice  int64
+	CreatedAt   time.Time
+	UpdatedAt   time.Time
 }
 
 type GetAllOrdersResponse struct {
