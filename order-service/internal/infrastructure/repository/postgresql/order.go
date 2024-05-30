@@ -82,7 +82,7 @@ func (p *orderRepo) CreateOrder(ctx context.Context, order *entity.Order) (*enti
 
 	query, args, err := p.db.Sq.Builder.Insert(p.tableName).
 		SetMap(data).
-		Suffix("RETURNING id, table_number, worker_id, products, tax, discount, total_price, created_at, updated_at").
+		Suffix("RETURNING id, table_number, worker_id, products, tax, total_price, created_at, updated_at").
 		ToSql()
 	if err != nil {
 		return nil, p.db.ErrSQLBuild(err, fmt.Sprintf("%s %s", p.tableName, "create"))
