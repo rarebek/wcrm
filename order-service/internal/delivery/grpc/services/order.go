@@ -55,7 +55,7 @@ func (u orderRPC) CreateOrder(ctx context.Context, order *pb.Order) (*pb.Order, 
 
 	reqOrder := entity.Order{
 		Id:          order.Id,
-		TableNumber: int(order.TableNumber),
+		TableNumber: order.TableNumber,
 		WorkerId:    order.WorkerId,
 		Products:    products,
 		Tax:         order.Tax,
@@ -169,14 +169,15 @@ func (u orderRPC) GetOrders(ctx context.Context, req *pb.GetAllOrderRequest) (*p
 		}
 
 		pbOrder := &pb.GetOrderResponse{
-			Id:         in.Orders[0].Id,
-			WorkerId:   in.Orders[0].WorkerId,
-			WorkerName: in.WorkerName,
-			Products:   products,
-			Tax:        in.Orders[0].Tax,
-			TotalPrice: in.Orders[0].TotalPrice,
-			CreatedAt:  in.Orders[0].CreatedAt.String(),
-			UpdatedAt:  in.Orders[0].UpdatedAt.String(),
+			Id:          in.Orders[0].Id,
+			TableNumber: in.Orders[0].TableNumber,
+			WorkerId:    in.Orders[0].WorkerId,
+			WorkerName:  in.WorkerName,
+			Products:    products,
+			Tax:         in.Orders[0].Tax,
+			TotalPrice:  in.Orders[0].TotalPrice,
+			CreatedAt:   in.Orders[0].CreatedAt.String(),
+			UpdatedAt:   in.Orders[0].UpdatedAt.String(),
 		}
 
 		orders.Orders = append(orders.Orders, pbOrder)

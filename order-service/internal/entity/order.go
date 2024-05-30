@@ -6,7 +6,7 @@ import (
 
 type Order struct {
 	Id          string
-	TableNumber int
+	TableNumber int64
 	WorkerId    string
 	WorkerName  string
 	Products    []ProductCheck
