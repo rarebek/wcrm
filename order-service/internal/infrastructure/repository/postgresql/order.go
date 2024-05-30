@@ -219,6 +219,8 @@ func (p orderRepo) GetOrders(ctx context.Context, limit, offset uint64, filter m
 		// Append WorkerName to the response
 		query := `SELECT full_name from workers where id = $1;`
 		if err := p.db.QueryRow(ctx, query, filter["worker_id"]).Scan(&response.WorkerName); err != nil {
+
+			pp.Println("ERROR IN SELECT", err)
 			// Check if no rows were returned
 			if err == sql.ErrNoRows {
 				// Handle the case where no rows were returned
