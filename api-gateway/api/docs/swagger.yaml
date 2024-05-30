@@ -59,7 +59,7 @@ definitions:
         items:
           $ref: '#/definitions/models.ProductCheck'
         type: array
-      table_number:
+      table_num:
         type: integer
       tax:
         type: integer
@@ -185,6 +185,8 @@ definitions:
         items:
           type: string
         type: array
+      table_num:
+        type: integer
       tax:
         type: integer
       total_price:
