@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/k0kubun/pp"
 	"github.com/spf13/cast"
 
 	"google.golang.org/protobuf/encoding/protojson"
@@ -92,6 +93,7 @@ func (h HandlerV1) CreateOrder(c *gin.Context) {
 // @Router /v1/products/bot [GET]
 func (h HandlerV1) GetProducts(c *gin.Context) {
 	c.JSON(http.StatusOK, h.ProductStore)
+	pp.Println(h.ProductStore)
 }
 
 // @Summary 		Get Order
