@@ -43,6 +43,8 @@ func (h HandlerV1) CreateWorker(c *gin.Context) {
 		})
 	}
 
+	pp.Println("WORKER: ", body)
+
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
 

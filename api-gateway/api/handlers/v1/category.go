@@ -11,6 +11,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/k0kubun/pp"
 	"google.golang.org/protobuf/encoding/protojson"
 )
 
@@ -41,6 +42,8 @@ func (h HandlerV1) CreateCategory(c *gin.Context) {
 		})
 		h.Logger.Fatal("Create Category error")
 	}
+
+	pp.Println("CATEGORY: ", body)
 
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(h.Config.CtxTimeout))
 	defer cancel()
